@@ -28,8 +28,14 @@ final class ForecastData {
         catch(Exception e) { return false; }
     }
     static JSONObject fetch(Context c) throws Exception {
+        return fetch(c,false);
+    }
+    static JSONObject historical(Context c) throws Exception {
+        return fetch(c,true);
+    }
+    private static JSONObject fetch(Context c,boolean historical) throws Exception {
         String origin=validateUrl(baseUrl(c));
-        HttpsURLConnection conn=(HttpsURLConnection)new URL(origin+"/api/forecast").openConnection();
+        HttpsURLConnection conn=(HttpsURLConnection)new URL(origin+(historical?"/api/demo":"/api/forecast")).openConnection();
         conn.setConnectTimeout(8000); conn.setReadTimeout(8000); conn.setInstanceFollowRedirects(false);
         try {
             if(conn.getResponseCode()!=200) throw new Exception("Fresh observations are unavailable. Historical examples are available in the full app.");
@@ -37,8 +43,9 @@ final class ForecastData {
             StringBuilder body=new StringBuilder(); char[] block=new char[4096];int count;
             while((count=reader.read(block))!=-1){body.append(block,0,count);if(body.length()>1000000)throw new Exception("Response too large");}
             JSONObject data=new JSONObject(body.toString());
-            if(!fresh(data)) throw new Exception("The forecast is outdated.");
-            preferences(c).edit().putString("forecast",data.toString()).putLong("fetched_at",System.currentTimeMillis()).apply();
+            if(historical){if(!data.optString("mode").equals("historical")||data.optBoolean("is_current_forecast"))throw new Exception("Unexpected historical response");}
+            else {if(!fresh(data)) throw new Exception("The forecast is outdated.");
+                preferences(c).edit().putString("forecast",data.toString()).putLong("fetched_at",System.currentTimeMillis()).apply();}
             return data;
         } finally { conn.disconnect(); }
     }

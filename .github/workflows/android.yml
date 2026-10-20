@@ -71,11 +71,13 @@ jobs:
           script: |
             cd android && gradle connectedDebugAndroidTest --no-daemon
             adb pull /sdcard/Android/data/pe.airepredict/files/application.png ../application.png
+            adb pull /sdcard/Android/data/pe.airepredict/files/widget.png ../widget.png
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: Android-device-evidence
           path: |
             application.png
+            widget.png
             android/app/build/reports/androidTests/
           retention-days: 30

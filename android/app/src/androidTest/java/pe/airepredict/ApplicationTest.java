@@ -78,6 +78,8 @@ public class ApplicationTest {
         try(ActivityScenario<NearbyActivity> scenario=ActivityScenario.launch(NearbyActivity.class)){
             scenario.onActivity(activity->{android.location.Location sample=new android.location.Location("test-fixture");sample.setLatitude(-12.070544);sample.setLongitude(-77.043214);sample.setAccuracy(1000);sample.setTime(System.currentTimeMillis());sample.setElapsedRealtimeNanos(android.os.SystemClock.elapsedRealtimeNanos());activity.acceptLocation(sample);});
             UiDevice device=UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+            assertNotNull(device.wait(Until.findObject(By.textContains("Referencias a un máximo")),90000));
+            new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().textStartsWith("Jesús María ·"));
             assertNotNull(device.wait(Until.findObject(By.textContains("Jesús María ·")),90000));
             saveEvidence("location-nearby.png");
         }

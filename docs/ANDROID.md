@@ -6,7 +6,7 @@ El aplicativo consulta el servicio HTTPS publicado. Permite explorar la demostra
 
 Descargar el APK de [Releases](https://github.com/Miguel7293/AirPredict/releases). Requiere Android 8 o posterior; las pruebas de dispositivo se ejecutan en Android 15. Es un APK firmado para pruebas y no una publicación en Google Play. Las compilaciones de CI pueden usar certificados de prueba distintos; si Android rechaza actualizar un APK anterior, desinstalar primero esa versión de demostración.
 
-El servidor viene configurado durante la compilación desde la variable GitHub `APP_BASE_URL`. Connection settings permite cambiarlo a otro origen HTTPS compatible. La clave de OpenAQ y las credenciales administrativas nunca se incluyen en el APK.
+El servidor viene configurado durante la compilación desde la variable GitHub `APP_BASE_URL`. Ajustes permite cambiarlo a otro origen HTTPS compatible y comprobar la conexión. La clave de OpenAQ y las credenciales administrativas nunca se incluyen en el APK.
 
 ## Widget y permisos
 
@@ -14,7 +14,7 @@ Pulsar Add home-screen widget y confirmar la solicitud del launcher. Si no admit
 
 Enable forecast notifications solicita el permiso de notificaciones en las versiones de Android que lo requieren. Rechazarlo mantiene disponible la consulta y el widget. Disable notifications desactiva la preferencia. Las notificaciones informan de nuevas predicciones actuales; no representan alertas sanitarias oficiales.
 
-No se solicita ubicación, cámara, micrófono ni superposición sobre otras aplicaciones. Campo de Marte es una estación fija. Si no existe una predicción fresca, el widget muestra su indisponibilidad; no sustituye ese estado por el ejemplo histórico.
+La versión 0.4.1 permite solicitar ubicación aproximada al pulsar «Usar mi ubicación» en Inicio o Mapa. Es opcional, se procesa en memoria y permite elegir referencias cercanas; no se envían coordenadas al servidor. No se solicita cámara, micrófono, ubicación en segundo plano ni superposición. Consulta [ubicación y permisos](UBICACION.md). Si no existe una predicción reciente, el widget muestra su indisponibilidad; no sustituye ese estado por el ejemplo histórico.
 
 ## Desarrollo y construcción
 

@@ -2,17 +2,24 @@
   "experiment_id": "oefa_campo_marte_v1",
   "target_location_id": 2415,
   "target_sensor_id": 4672,
-  "target_name": "Campo de Marte",
+  "target_name": "Jesús María",
   "target_start": "2026-04-01",
   "target_end": "2026-10-15",
   "validation_start": "2026-08-16",
   "test_start": "2026-09-16",
-  "source_stations": ["CA-MAC-01", "CA-HUA-01"],
+  "source_stations": [
+    "CA-MAC-01",
+    "CA-HUA-01"
+  ],
   "source_timezone_assumption": "UTC-05:00, hora peruana; pendiente de confirmar con diccionario OEFA",
   "source_midnight_assumption": "1899-12-31 en HORA_INICIO representa 00:00:00",
   "source_interval_assumption": "Se usa HORA_INICIO como etiqueta horaria; equivalencia con final de intervalo OpenAQ pendiente de confirmar",
   "horizon_hours": 1,
-  "source_weight_budgets": [0.1, 0.5, 1.0],
+  "source_weight_budgets": [
+    0.1,
+    0.5,
+    1.0
+  ],
   "random_seed": 2026,
   "workers": 4
 }

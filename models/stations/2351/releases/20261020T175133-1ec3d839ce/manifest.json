@@ -1,0 +1,56 @@
+{
+  "id": "20261020T175133-1ec3d839ce",
+  "created_at": "2026-10-20T17:51:33.705942+00:00",
+  "sandbox": false,
+  "model_sha256": "0dd5931130a3eeda605a99de31ebc13f322cac78f7354ce539d10ce242c47cf2",
+  "feature_sha256": "25212ba37fe106a891313083383488c6e334e61dece556f2712928c76bb5aabf",
+  "environment": {
+    "python": "3.12",
+    "sklearn": "1.9.1",
+    "numpy": "2.3.5",
+    "pandas": "3.0.1",
+    "joblib": "1.6.0"
+  },
+  "config": {
+    "experiment_id": "station_2351",
+    "target_location_id": 2351,
+    "target_sensor_id": 4319,
+    "target_name": "San Martín de Porres",
+    "target_start": "2026-04-01",
+    "target_end": "2026-10-15",
+    "validation_start": "2026-08-16",
+    "test_start": "2026-09-16",
+    "source_stations": [
+      "CA-MAC-01",
+      "CA-HUA-01"
+    ],
+    "source_timezone_assumption": "UTC-05:00, hora peruana; pendiente de confirmar con diccionario OEFA",
+    "source_midnight_assumption": "1899-12-31 en HORA_INICIO representa 00:00:00",
+    "source_interval_assumption": "Se usa HORA_INICIO como etiqueta horaria; equivalencia con final de intervalo OpenAQ pendiente de confirmar",
+    "horizon_hours": 1,
+    "source_weight_budgets": [
+      0.1,
+      0.5,
+      1.0
+    ],
+    "random_seed": 2026,
+    "workers": 4,
+    "target_file": "station_2351_hourly.csv",
+    "live_database": "data/live/station_2351.sqlite",
+    "use_source": false
+  },
+  "metadata": {
+    "origin": "original_experimental_run",
+    "trained_until": "2026-08-20T07:00:00+00:00",
+    "evaluated_until": "2026-10-16T04:59:59.999999+00:00",
+    "initial_metrics": {
+      "mae": 2.142066381275136,
+      "rmse": 3.2310465324268898,
+      "r2": 0.7522723418448809,
+      "bias": 0.409671542114905,
+      "n": 456
+    },
+    "status": "experimental",
+    "promotion_policy_passed": false
+  }
+}

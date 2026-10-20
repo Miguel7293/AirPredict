@@ -67,10 +67,14 @@ public class ApplicationTest {
     @Test public void historicalScreenConnectsToPublishedStationService() throws Exception {
         Context context=InstrumentationRegistry.getInstrumentation().getTargetContext();
         ForecastData.preferences(context).edit().putInt("station_id",2402).commit();
+        JSONObject response=ForecastData.fetchStation(context,2402,true);
+        assertEquals(2402,response.getInt("location_id"));
+        assertEquals("historical",response.getString("mode"));
         try(ActivityScenario<MainActivity> scenario=ActivityScenario.launch(MainActivity.class)){
             UiDevice device=UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
             device.wait(Until.findObject(By.text("Estaciones")),5000).click();
             device.wait(Until.findObject(By.text("Explorar predicción histórica")),5000).click();
+            new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(5);
             assertNotNull(device.wait(Until.findObject(By.textContains("Ejemplo histórico: no describe")),90000));
             saveEvidence("station-connected.png");
         }finally{ForecastData.preferences(context).edit().clear().commit();}

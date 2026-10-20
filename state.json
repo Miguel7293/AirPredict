@@ -1,10 +1,21 @@
 {
-  "action": "monitor",
+  "action": "ingest",
   "status": "completed",
-  "completed_at": "2026-10-20T13:48:36.755367+00:00",
+  "completed_at": "2026-10-20T15:09:50.038306+00:00",
   "result": {
-    "status": "skipped",
-    "reason": "No active/previous release pair is available."
+    "fetched_at_utc": "2026-10-20T15:09:49.098905+00:00",
+    "location_id": 2415,
+    "sensor_id": 4672,
+    "accepted_unique_hours": 28,
+    "rejected": {
+      "conflicting_timestamps": 0
+    },
+    "inserted": 0,
+    "updated": 0,
+    "unchanged": 28,
+    "mode": "authenticated_openaq",
+    "live_api_configured": true,
+    "forecast_status": "No fresh consecutive input window"
   },
   "code_commit": "c5174a5f5f923410dc9d135a6bcdf213cb17b323",
   "registry": {

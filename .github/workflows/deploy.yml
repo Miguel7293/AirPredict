@@ -7,7 +7,7 @@ permissions:
   contents: read
   packages: write
 concurrency:
-  group: production-maintenance
+  group: production-deployment
   cancel-in-progress: false
 jobs:
   validate:
@@ -43,9 +43,15 @@ jobs:
           RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
         run: |
           test -n "$RENDER_DEPLOY_HOOK" || { echo 'RENDER_DEPLOY_HOOK is missing'; exit 1; }
-          curl --fail --silent --show-error --output /dev/null --request POST "${RENDER_DEPLOY_HOOK}&ref=${GITHUB_SHA}"
+          LATEST=$(git ls-remote origin refs/heads/main | cut -f1)
+          if test "$LATEST" != "$GITHUB_SHA"; then
+            echo 'DEPLOY_SUPERSEDED=true' >> "$GITHUB_ENV"
+            echo 'A newer main commit exists; its workflow will deploy it.' >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          curl --fail --silent --show-error --output /dev/null --request POST "$RENDER_DEPLOY_HOOK"
       - name: Verify deployed commit and actual prediction
-        if: env.APP_BASE_URL != ''
+        if: env.APP_BASE_URL != '' && env.DEPLOY_SUPERSEDED != 'true'
         env:
           APP_BASE_URL: ${{ vars.APP_BASE_URL }}
           EXPECTED_COMMIT: ${{ github.sha }}

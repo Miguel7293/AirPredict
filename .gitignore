@@ -1,0 +1,6 @@
+*.lock
+*.tmp
+__pycache__/
+data/raw/
+backups/
+models/mlops_demo/

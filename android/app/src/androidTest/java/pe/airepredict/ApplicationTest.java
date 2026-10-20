@@ -68,7 +68,7 @@ public class ApplicationTest {
             device.wait(Until.findObject(By.text("Usar mi ubicación")),5000).click();
             androidx.test.uiautomator.UiObject2 deny=device.wait(Until.findObject(By.res("com.android.permissioncontroller","permission_deny_button")),10000);
             assertNotNull("Expected optional approximate location permission",deny);deny.click();
-            new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(3);
+            if(device.findObject(new UiSelector().scrollable(true)).exists())new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(3);
             assertNotNull(device.wait(Until.findObject(By.textContains("Permiso de ubicación rechazado")),5000));
             assertNotNull(device.findObject(By.text("Volver")));
             saveEvidence("location.png");

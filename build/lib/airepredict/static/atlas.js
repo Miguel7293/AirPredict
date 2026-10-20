@@ -1,0 +1,88 @@
+const byId=id=>document.getElementById(id);
+if(new URLSearchParams(location.search).get('embedded')==='1')document.body.classList.add('embedded');
+const fmt=n=>Number.isFinite(n)?n.toLocaleString('es-PE',{maximumFractionDigits:2}):'—';
+const localDate=t=>new Intl.DateTimeFormat('es-PE',{timeZone:'America/Lima',dateStyle:'medium',timeStyle:'short'}).format(new Date(t));
+let atlasData, stationData=[], mode='general', selected=null, requestSequence=0, markers=[], map;
+const color=value=>value==null?'#87958d':value<=10?'#4da59b':value<=25?'#9bb968':value<=50?'#d7a354':'#a96857';
+async function getJSON(path,options={}){const response=await fetch(path,{cache:'no-store',...options});let value;try{value=await response.json();}catch{throw Error('El servidor aún se está iniciando. Espera un momento y vuelve a intentarlo.');}if(!response.ok)throw Error(typeof value.detail==='string'?value.detail:'No se pudo cargar la información.');return value;}
+function notice(text,error=false){byId('atlas-notice').textContent=text;byId('atlas-notice').classList.toggle('error',error);}
+function drawChart(rows,hourly=false){
+  const chart=byId('history-chart');chart.replaceChildren();
+  if(!rows.length){chart.textContent='No hay observaciones en este periodo.';return;}
+  const points=rows.map(r=>({t:new Date(hourly?r.timestamp:r.date+'T12:00:00-05:00').getTime(),v:r.pm25})).sort((a,b)=>a.t-b.t);
+  const width=Math.max(280,chart.clientWidth),height=220,left=38,right=14,top=15,bottom=35;
+  const first=points[0].t,last=Math.max(first+1,points.at(-1).t),maximum=Math.max(1,...points.map(p=>p.v))*1.15;
+  const x=t=>left+(t-first)/(last-first)*(width-left-right),y=v=>top+(1-v/maximum)*(height-top-bottom),ns='http://www.w3.org/2000/svg';
+  const svg=document.createElementNS(ns,'svg');svg.setAttribute('viewBox',`0 0 ${width} ${height}`);svg.setAttribute('role','img');svg.setAttribute('aria-label','Evolución histórica de PM2.5, con interrupciones donde faltan observaciones');
+  function add(name,attrs,text){const el=document.createElementNS(ns,name);for(const [k,v] of Object.entries(attrs))el.setAttribute(k,v);if(text!=null)el.textContent=text;svg.appendChild(el);}
+  for(let i=0;i<5;i++){const v=maximum*i/4;add('line',{x1:left,x2:width-right,y1:y(v),y2:y(v),stroke:'#e6ebe3'});add('text',{x:left-8,y:y(v)+4,'text-anchor':'end',fill:'#73847c','font-size':10},Math.round(v));}
+  let d='';points.forEach((p,i)=>d+=`${i&&p.t-points[i-1].t<=(hourly?3600000:86400000)?'L':'M'}${x(p.t)},${y(p.v)} `);
+  add('path',{d,stroke:'#267b6b','stroke-width':2,fill:'none'});
+  // Small isolated records remain visible, rather than being connected over gaps.
+  points.forEach(p=>add('circle',{cx:x(p.t),cy:y(p.v),r:points.length>400?1.2:2.2,fill:'#267b6b'}));
+  const date=new Intl.DateTimeFormat('es-PE',{timeZone:'America/Lima',day:'2-digit',month:'short',...(hourly?{hour:'2-digit'}:{})});
+  for(let i=0;i<4;i++){const t=first+(last-first)*i/3;add('text',{x:x(t),y:height-9,'font-size':9,'text-anchor':i===0?'start':i===3?'end':'middle',fill:'#73847c'},date.format(t));}
+  chart.appendChild(svg);
+  byId('series-count').textContent=fmt(rows.length);byId('series-mean').textContent=fmt(rows.reduce((a,r)=>a+r.pm25,0)/rows.length);byId('series-max').textContent=fmt(Math.max(...rows.map(r=>r.pm25)));
+}
+function resetAnalysis(){byId('scenario-box').hidden=true;for(const id of ['estimate','series-count','series-mean','series-max'])byId(id).textContent='—';byId('history-chart').replaceChildren();byId('estimate-date').textContent='Selecciona un punto para continuar.';byId('open-point').hidden=true;}
+function filteredSites(){const term=byId('point-search').value.toLocaleLowerCase('es');const region=byId('region').value;return(mode==='general'?atlasData.sites:stationData).filter(s=>(!region||s.region===region)&&`${s.name||''} ${s.district||''} ${s.code||''} ${s.region}`.toLocaleLowerCase('es').includes(term));}
+function pointName(s){return mode==='general'?`${s.district} · ${s.code}`:s.name;}
+function showPoints(fit=false){
+  if(!atlasData||!map)return;markers.forEach(m=>m.remove());markers=[];byId('point-list').replaceChildren();
+  const sites=filteredSites();byId('map-state').textContent=`${sites.length} puntos · ${mode==='general'?'OEFA':'SENAMHI / OpenAQ'}`;
+  sites.forEach(site=>{
+    const button=document.createElement('button');const label=document.createElement('span');label.textContent=pointName(site);const sub=document.createElement('small');sub.textContent=mode==='general'?`${site.region} · ${site.daily_count} días registrados`:(site.fresh?'Datos recientes':'Revisa la fecha de la medición');label.appendChild(sub);button.appendChild(label);const arrow=document.createElement('span');arrow.textContent='↗';button.appendChild(arrow);button.classList.toggle('chosen',selected?.id===site.id);button.onclick=()=>selectSite(site,true);byId('point-list').appendChild(button);
+    if(site.latitude==null||site.longitude==null)return;
+    const value=mode==='general'?site.mean_pm25:site.latest?.pm25;
+    const marker=L.circleMarker([site.latitude,site.longitude],{radius:selected?.id===site.id?10:7,color:'#fff',weight:2,fillColor:color(value),fillOpacity:.95}).addTo(map);
+    const shape=marker.getElement();if(shape){shape.setAttribute('tabindex','0');shape.setAttribute('role','button');shape.setAttribute('aria-label',pointName(site));shape.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();selectSite(site,true);}});}
+    const popup=document.createElement('div');const strong=document.createElement('strong');strong.textContent=pointName(site);popup.appendChild(strong);popup.appendChild(document.createElement('br'));const desc=document.createElement('span');desc.textContent=mode==='general'?`Promedio histórico: ${fmt(value)} µg/m³. ${site.last_date||'Sin datos diarios'}`:site.latest?`${fmt(value)} µg/m³ · ${localDate(site.latest.timestamp)}`:'Aún sin mediciones publicadas';popup.appendChild(desc);marker.bindPopup(popup);marker.on('click',()=>selectSite(site,false));markers.push(marker);
+  });
+  if(!sites.length)byId('point-list').textContent='No hay puntos para este filtro.';
+  if(fit){const coords=sites.filter(s=>s.latitude!=null).map(s=>[s.latitude,s.longitude]);if(coords.length)map.fitBounds(L.latLngBounds(coords).pad(.25),{maxZoom:12});}
+}
+async function selectSite(site,pan){
+  selected=site;const seq=++requestSequence;resetAnalysis();showPoints();
+  byId('selected-title').textContent=pointName(site);byId('selected-subtitle').textContent=mode==='general'?`${site.region} · ${site.daily_count} observaciones diarias · ${site.first_date||'Sin fecha'} a ${site.last_date||'sin fecha'}`:'Modelo horario independiente · observaciones verificadas por sensor';
+  byId('year').disabled=mode!=='general';
+  if(pan&&site.latitude!=null)map.setView([site.latitude,site.longitude],mode==='general'?9:13);
+  notice('Cargando el análisis del punto seleccionado…');
+  if(mode==='general'){
+    try{const data=await getJSON(`/api/atlas/sites/${encodeURIComponent(site.id)}${byId('year').value?'?year='+byId('year').value:''}`);if(seq!==requestSequence)return;drawChart(data.history);byId('chart-title').textContent='Evolución diaria de PM2.5';byId('prediction-kicker').textContent='MODELO GENERAL · PREDICCIÓN DIARIA HISTÓRICA';
+      byId('scenario-box').hidden=!site.trained;if(data.prediction){byId('scenario-date').value=data.prediction.observed_date;byId('scenario-pm25').value=data.prediction.observed;byId('estimate').textContent=fmt(data.prediction.value);byId('estimate-date').textContent=`Para el ${data.prediction.target_date}, a partir de la medición del ${data.prediction.observed_date}.`;byId('estimate-context').textContent=`Ejemplo histórico, no actual. Última observación del periodo: ${fmt(data.prediction.observed)} µg/m³. ${data.prediction.trained_site?'Este punto está representado en el entrenamiento.':'Este punto no está representado en el entrenamiento; su estimación es exploratoria y no está validada.'}`;}else{byId('estimate-date').textContent='Sin observaciones diarias válidas en este periodo.';byId('estimate-context').textContent='Este punto se conserva en el inventario, pero no se inventan datos para emitir una predicción.';}
+      notice('Análisis histórico cargado. Los valores y la estimación corresponden a las fechas indicadas.');
+    }catch(error){if(seq===requestSequence)notice(error.message,true);}
+  }else{
+    byId('prediction-kicker').textContent='MODELO POR ESTACIÓN · PRÓXIMA HORA';byId('open-point').hidden=false;byId('open-point').onclick=()=>location.assign('/stations?id='+site.id);
+    try{const data=await getJSON(`/api/stations/${site.id}/forecast?mode=live`);if(seq!==requestSequence)return;drawChart(data.history,true);byId('estimate').textContent=fmt(data.predicted_pm25);byId('estimate-date').textContent='Para '+localDate(data.target_time_utc);byId('estimate-context').textContent='Predicción actual experimental. Solo se muestra mientras la hora estimada siga en el futuro.';notice('Datos actuales disponibles. Revisa la hora de la predicción.');}
+    catch(error){if(seq!==requestSequence)return;byId('estimate-date').textContent='Predicción actual no disponible';byId('estimate-context').textContent=error.message;try{const data=await getJSON(`/api/stations/${site.id}/observations`);if(seq!==requestSequence)return;drawChart(data.history,true);byId('chart-title').textContent='Últimas observaciones horarias recibidas';notice(data.history.length?`Última medición recibida: ${localDate(data.history.at(-1).timestamp)}. La falta de predicción no implica que haya fallado la conexión.`:'Aún no se han publicado observaciones recientes para este punto. Puedes consultar su demostración histórica en Estaciones.');}catch{notice('No se pudo consultar el estado del servidor. Vuelve a intentarlo.',true);}}
+  }
+}
+function changeMode(next){mode=next;selected=null;++requestSequence;resetAnalysis();for(const [id,on] of [['general-tab',next==='general'],['stations-tab',next==='stations']]){byId(id).classList.toggle('active',on);byId(id).setAttribute('aria-pressed',on);}
+  byId('map-kicker').textContent=mode==='general'?'HISTÓRICO OEFA':'SENAMHI MEDIANTE OPENAQ';byId('map-title').textContent=mode==='general'?'Explora los puntos':'Modelos por distrito';byId('map-description').textContent=mode==='general'?'Concentraciones diarias registradas. Selecciona un punto para ver su histórico y una predicción del modelo general.':'Predicciones de la próxima hora solo cuando existen mediciones recientes y consecutivas. Cada punto mantiene su propio modelo.';byId('map-badge').textContent=mode==='general'?'Histórico · no es tiempo real':'Revisa la fecha de cada punto';byId('region').value='';byId('point-search').value='';showPoints(true);byId('selected-title').textContent='Selecciona un punto en el mapa.';byId('year').disabled=mode!=='general';}
+async function loadStations(){const data=await getJSON('/api/stations');stationData=data.stations;byId('station-cards').replaceChildren();stationData.forEach(s=>{const card=document.createElement('article');card.className='station-card';const title=document.createElement('h4');title.textContent=s.name;card.appendChild(title);const state=document.createElement('span');state.className='station-state';state.textContent=s.fresh?'Mediciones recientes':'Sin predicción actual';card.appendChild(state);const p=document.createElement('p');p.textContent=s.latest?`Última medición: ${fmt(s.latest.pm25)} µg/m³ · ${localDate(s.latest.timestamp)}`:'Sin mediciones actuales publicadas. El histórico permanece disponible.';card.appendChild(p);const metrics=document.createElement('p');metrics.textContent=`MAE histórico: ${fmt(s.metrics?.combinado?.test?.mae)} µg/m³ · MLOps independiente`;card.appendChild(metrics);const link=document.createElement('a');link.href='/stations?id='+s.id;link.textContent='Consultar este distrito ↗';card.appendChild(link);byId('station-cards').appendChild(card);});if(mode==='stations')showPoints();}
+async function initializeAtlas(){
+  try{
+    map=L.map('map',{scrollWheelZoom:false}).setView([-10.5,-75],5);
+    fetch('/static/region.geojson').then(r=>r.json()).then(geo=>L.geoJSON(geo,{style:{color:'#a9bca5',weight:1,fillColor:'#e0e9d8',fillOpacity:.85},interactive:false}).addTo(map)).catch(()=>{});
+    // Bundled vector geography avoids tile-provider failures and remains usable
+    // in the Android app and cached shell without third-party map requests.
+    fetch('/static/departments.geojson').then(r=>r.json()).then(geo=>L.geoJSON(geo,{style:{color:'#b4c4aa',weight:.7,fillColor:'#d4e1c9',fillOpacity:.6},onEachFeature:(feature,layer)=>{const label=document.createElement('span');label.textContent=feature.properties.shapeName;layer.bindTooltip(label);}}).addTo(map)).catch(()=>{});
+    for(let lat=-20;lat<=0;lat+=2)L.polyline([[lat,-84],[lat,-66]],{color:'#bacbc3',weight:.5,opacity:.35,interactive:false}).addTo(map);
+    for(let lon=-84;lon<=-66;lon+=2)L.polyline([[-20,lon],[0,lon]],{color:'#bacbc3',weight:.5,opacity:.35,interactive:false}).addTo(map);
+    map.attributionControl.addAttribution('Límites referenciales: Natural Earth · geoBoundaries');L.control.scale({imperial:false,position:'bottomright'}).addTo(map);
+    atlasData=await getJSON('/api/atlas');const model=atlasData.general_model;
+    byId('raw-count').textContent=fmt(model.counts.scanned_rows);byId('daily-count').textContent=fmt(model.counts.accepted_daily_observations);byId('site-count').textContent=fmt(model.training_sites);byId('general-mae').textContent=fmt(model.test.mae);byId('general-detail').textContent=`${fmt(model.test.rmse)} µg/m³ / ${fmt(model.test.r2)}`;byId('baseline-detail').textContent=`MAE ${fmt(model.persistence.mae)} µg/m³`;
+    [...new Set(atlasData.sites.map(s=>s.region))].sort().forEach(region=>{const option=document.createElement('option');option.value=option.textContent=region;byId('region').appendChild(option);});atlasData.years.forEach(year=>{const option=document.createElement('option');option.value=option.textContent=year;byId('year').appendChild(option);});
+    showPoints(true);notice(atlasData.note);await loadStations();const first=atlasData.sites.find(s=>s.daily_count>300&&s.trained);if(first)await selectSite(first,false);
+  }catch(error){notice('No se pudo completar la carga. '+error.message,true);byId('map-state').textContent='Vuelve a cargar la página para reintentar';}
+}
+byId('general-tab').onclick=()=>changeMode('general');byId('stations-tab').onclick=()=>changeMode('stations');byId('region').onchange=()=>showPoints(true);byId('point-search').oninput=()=>showPoints();byId('fit-map').onclick=()=>showPoints(true);byId('year').onchange=()=>selected&&selectSite(selected,false);byId('refresh-stations').onclick=async()=>{byId('refresh-stations').disabled=true;try{await loadStations();if(mode==='stations'&&selected)await selectSite(selected,false);notice('Estado consultado de nuevo. Las mediciones conservan la fecha comunicada por el proveedor.');}catch(error){notice(error.message,true);}finally{byId('refresh-stations').disabled=false;}};
+if('serviceWorker' in navigator)navigator.serviceWorker.register('/sw.js').catch(()=>{});initializeAtlas();
+
+byId('scenario-form').addEventListener('submit',async event=>{
+  event.preventDefault();if(mode!=='general'||!selected?.trained)return;
+  const sequence=++requestSequence;byId('scenario-submit').disabled=true;notice('Calculando escenario diario…');
+  try{const body={site_id:selected.id,observed_date:byId('scenario-date').value,pm25:Number(byId('scenario-pm25').value),previous_pm25:byId('scenario-previous').value===''?null:Number(byId('scenario-previous').value)};const data=await getJSON('/api/general/predict',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});if(sequence!==requestSequence)return;byId('prediction-kicker').textContent='MODELO GENERAL · SIMULACIÓN CON TUS DATOS';byId('estimate').textContent=fmt(data.predicted_pm25);byId('estimate-date').textContent=`Escenario para el ${data.target_date}, a partir del ${data.observed_date}.`;byId('estimate-context').textContent=data.note;notice(data.outside_training_period?'Escenario calculado fuera del periodo usado para ajustar el modelo. Su validez actual no está demostrada.':'Simulación calculada con los valores introducidos; no se ha verificado su procedencia.');}catch(error){if(sequence===requestSequence)notice(error.message,true);}finally{byId('scenario-submit').disabled=false;}
+});

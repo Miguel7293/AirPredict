@@ -22,6 +22,10 @@ for attempt in range(90):
             with urllib.request.urlopen(base+'/api/atlas', timeout=30) as response:
                 atlas=json.load(response)
             assert atlas['general_model']['training_sites']>=20
+            with urllib.request.urlopen(base+'/static/vendor/leaflet.js',timeout=20) as response:
+                assert len(response.read())>100000
+            with urllib.request.urlopen(base+'/static/departments.geojson',timeout=20) as response:
+                assert len(json.load(response)['features'])==26
             for station in [2415,2402,2351]:
                 with urllib.request.urlopen(base+f'/api/stations/{station}/forecast?mode=historical', timeout=30) as response:
                     prediction=json.load(response)

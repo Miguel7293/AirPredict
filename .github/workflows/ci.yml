@@ -30,6 +30,10 @@ jobs:
           done
           curl --fail --silent http://127.0.0.1:8000/api/demo | python -c "import json,sys; d=json.load(sys.stdin); assert d['predicted_pm25'] >= 0 and d['mode']=='historical' and not d['is_current_forecast']"
           curl --fail --silent http://127.0.0.1:8000/api/atlas | python -c "import json,sys; d=json.load(sys.stdin); assert d['general_model']['training_sites'] >= 20 and len(d['sites']) >= 30"
+          curl --fail --silent http://127.0.0.1:8000/static/vendor/leaflet.js -o /tmp/leaflet.js
+          test "$(wc -c < /tmp/leaflet.js)" -gt 100000
+          curl --fail --silent http://127.0.0.1:8000/static/departments.geojson | python -c "import json,sys; assert len(json.load(sys.stdin)['features'])==26"
+          curl --fail --silent http://127.0.0.1:8000/static/region.geojson | python -c "import json,sys; assert len(json.load(sys.stdin)['features'])>=5"
           for station in 2415 2402 2351; do
             curl --fail --silent "http://127.0.0.1:8000/api/stations/$station/forecast?mode=historical" | python -c "import json,sys; d=json.load(sys.stdin); assert d['predicted_pm25'] >= 0 and d['mode']=='historical' and not d['is_current_forecast']"
           done

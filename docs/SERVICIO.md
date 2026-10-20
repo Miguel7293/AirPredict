@@ -74,3 +74,7 @@ Referencias de contrato: [OpenAQ, mediciones](https://docs.openaq.org/resources/
 ## Mantenimiento de modelos
 
 El registro local permite evaluar y activar candidatos, conservar una versión anterior y recuperarla ante fallas o degradación comprobada. La aplicación consulta la versión activa del registro. Procedimiento, controles y límites: [MLOPS.md](MLOPS.md). El registro inicial sigue siendo experimental.
+
+## Actualización del MVP
+
+La aplicación se publica en https://airpredict-4u3c.onrender.com/ con una proyección de estado administrada por GitHub Actions. El contenedor y las pruebas de arranque ya se ejecutan en GitHub. La conexión autenticada sigue dependiendo de una clave propia. Véase [INFORME_TECNICO_MVP.md](INFORME_TECNICO_MVP.md) para la arquitectura actual; las instrucciones locales anteriores conservan su utilidad.

@@ -54,6 +54,19 @@ def main():
     initialize(registry)
     try:
         with maintenance_lock():
+            base = os.environ.get('APP_BASE_URL', '').rstrip('/')
+            if base.startswith('https://'):
+                import urllib.request
+                try:
+                    with urllib.request.urlopen(base+'/api/operations', timeout=20) as response:
+                        projection = json.load(response)
+                    state = registry.state()
+                    if (projection.get('local_recovery') and state['previous']
+                            and projection['published_state']['registry']['active'] == state['active']
+                            and projection['state']['active'] == state['previous']):
+                        registry.rollback(expected_active=state['active'], reason='Persist recovery reported by the read-only web projection', mark_failed=True)
+                except (OSError, ValueError, KeyError):
+                    pass
             if action == 'ingest':
                 result = ingest() if os.environ.get('OPENAQ_API_KEY', '').strip() else archive_ingestion()
                 if os.environ.get('OPENAQ_API_KEY', '').strip():

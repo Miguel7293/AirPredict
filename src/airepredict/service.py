@@ -238,9 +238,12 @@ def create_app(predictor=None, database=DEFAULT_DATABASE, demo_path=None, regist
     def public_operations():
         path = ROOT/'state.json'
         published = json.loads(path.read_text(encoding='utf-8')) if path.exists() else {}
+        local_state = registry.state()
+        expected_active = published.get('registry', {}).get('active')
         return {'managed_by_github': bool(os.environ.get('STATE_SYNC_REPOSITORY')),
                 'workflows_url': 'https://github.com/Miguel7293/AirPredict/actions',
-                'published_state': published, 'state': registry.state()}
+                'published_state': published, 'state': local_state,
+                'local_recovery': bool(expected_active and local_state['active'] != expected_active)}
 
     @app.get('/health')
     def health():

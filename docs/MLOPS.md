@@ -44,3 +44,7 @@ La recuperación exige compatibilidad con las características y el entorno en e
 `reports/mlops_demo.json` contiene el resultado y los eventos: entrenamiento aceptado frente a persistencia, segundo entrenamiento rechazado por no mejorar y recuperación de la referencia tras una falla simulada. Usa datos históricos ya consultados y relaja explícitamente dos controles solo en el registro aislado. No constituye aprobación de producción ni modifica el registro de la aplicación.
 
 Se verificaron 33 pruebas, incluyendo integridad de artefactos, incompatibilidad de dependencias, activación concurrente, aislamiento de la simulación, rechazo sin aprobación, recuperación del servicio y recuperación por degradación de métricas. Falta verificar la operación con datos actuales, instalar la ejecución periódica y desplegar con almacenamiento persistente.
+
+## Despliegue gratuito y automatización
+
+El MVP ahora tiene flujos de GitHub Actions y alojamiento Render gratuito. La rama `runtime-state` conserva el estado y el servidor consume copias de lectura. Las tareas locales descritas arriba siguen disponibles, pero el mantenimiento publicado se ejecuta en Actions. Véase [INFORME_TECNICO_MVP.md](INFORME_TECNICO_MVP.md) para horarios, credenciales, sincronización y límites. Los periodos de aprobación quedan consumidos incluso tras rechazos o fallas.

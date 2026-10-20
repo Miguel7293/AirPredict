@@ -1,99 +1,58 @@
 # AirePredict Perú
 
-Base experimental para predecir PM2.5 de Campo de Marte a una hora, aprovechando histórico OEFA de La Huaca y Macacará mediante entrenamiento ponderado.
+MVP de pronóstico supervisado de PM2.5 a una hora para Campo de Marte, Lima. Interfaz web en inglés, PWA, aplicación Android con widget y mantenimiento de modelos.
 
-## Estado actual
+**Aplicación:** https://airpredict-4u3c.onrender.com/  
+**Automatizaciones:** https://github.com/Miguel7293/AirPredict/actions
 
-Se implementaron la aplicación web local, el servicio de predicción, la demostración histórica, la descarga y validación de datos, y la comparación temporal de modelos. La interfaz está en inglés para la exposición del curso. **La demostración usa datos históricos; no se ha desplegado en producción ni verificado la conexión autenticada de OpenAQ.**
+## Producto y operación
 
-Para abrir la aplicación:
+La aplicación distingue observaciones actuales de la demostración histórica, muestra las fechas y representa los huecos de datos. Android añade widget de pantalla de inicio y notificaciones opcionales. El modelo sigue siendo experimental.
 
-```powershell
-.\.venv\Scripts\python.exe -m airepredict serve
-```
+Render gratuito sirve la aplicación. GitHub Actions ejecuta las operaciones y conserva el estado en la rama pública `runtime-state`; el servidor carga revisiones completas cada diez minutos y al arrancar. No se contrató alojamiento de pago. El primer acceso puede tardar porque el servicio gratuito se suspende por inactividad.
 
-Después visita [http://127.0.0.1:8000](http://127.0.0.1:8000). Instrucciones del servicio y la ingesta: [docs/SERVICIO.md](docs/SERVICIO.md).
+Los flujos comprueban pruebas y contenedor, publican imágenes por commit, despliegan en Render, ingieren datos, evalúan candidatos, supervisan predicciones y respaldan el estado. Sin `OPENAQ_API_KEY`, la ingesta utiliza el archivo público retrasado y conserva explícitamente el modo histórico.
 
-El experimento combinado tiene MAE de **2,0177 µg/m³** sobre 270 ejemplos de prueba. Solo Campo de Marte obtiene 2,0849 y persistencia 2,0699. La mejora observada de la combinación es aproximadamente 3,22 % frente al entrenamiento solo con Campo de Marte, pero el intervalo del 95 % por días incluye cero. No se presenta como una mejora demostrada. El registro inicial conserva su condición experimental; los nuevos candidatos deben superar controles antes de activarse.
+## Documentación
 
-Informe del experimento: [EXPERIMENTO.md](reports/oefa_campo_marte_v1/EXPERIMENTO.md). Auditoría previa: [COMPATIBILIDAD.md](audit/COMPATIBILIDAD.md).
+- [Informe técnico del MVP](docs/INFORME_TECNICO_MVP.md): arquitectura, configuración, pipelines, recuperación y límites.
+- [Entrenamiento y resultados](reports/oefa_campo_marte_v1/REPORTE_ENTRENAMIENTO.md): fuentes, 30 configuraciones, métricas y gráficos.
+- [Guion de exposición de 14 minutos](docs/GUION_EXPOSICION.md).
+- [Registro y controles de modelos](docs/MLOPS.md).
+- [Contrato de predicción e ingesta](docs/SERVICIO.md).
+- [Auditoría de compatibilidad](audit/COMPATIBILIDAD.md).
 
-Reporte detallado del entrenamiento, con hiperparámetros, selección, métricas y gráficos: [REPORTE_ENTRENAMIENTO.md](reports/oefa_campo_marte_v1/REPORTE_ENTRENAMIENTO.md).
+El combinado obtiene MAE 2,0177 µg/m³, RMSE 2,8815 y R² 0,6175 en 270 ejemplos históricos de prueba. La mejora observada frente a persistencia es pequeña; el intervalo diario incluye cero. El registro inicial no representa aprobación de la nueva política de promoción.
 
-## Ejecución en Windows
+## Ejecución local
 
-Desde la carpeta del proyecto, con Python 3.11 o posterior:
+Usar Python 3.12 para mantener compatibilidad con CI y contenedor:
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe -m pip install -e . --no-deps
 .\.venv\Scripts\python.exe -m pytest -q
-.\.venv\Scripts\python.exe -m airepredict experiment
+.\.venv\Scripts\python.exe -m airepredict registry-init
+.\.venv\Scripts\python.exe -m airepredict serve
 ```
 
-Las versiones de requirements.txt corresponden al entorno de la ejecución inicial. En este equipo ya está preparado `.venv`.
+El modelo inicial y las mediciones normalizadas necesarias para arrancar están incluidos. Reproducir la auditoría completa desde el CSV original requiere conservarlo en `Dataset/`; ese archivo grande no se publica en el repositorio. La receta y resultados del entrenamiento original están documentados.
 
-Comandos disponibles:
-
-```powershell
-# Descarga y comprueba los archivos públicos de Campo de Marte.
-.\.venv\Scripts\python.exe -m airepredict download
-
-# Prepara ambas fuentes sin entrenar.
-.\.venv\Scripts\python.exe -m airepredict prepare
-
-# Reproduce entrenamiento y evaluación con las copias almacenadas.
-.\.venv\Scripts\python.exe -m airepredict experiment
-
-# Consulta nuevamente los archivos; puede incorporar correcciones del proveedor.
-.\.venv\Scripts\python.exe -m airepredict download --refresh
-```
-
-La configuración está en [config/experiment.json](config/experiment.json). El histórico OEFA original debe conservarse en `Dataset/`; no se modifica. La descarga pública de OpenAQ no necesita credenciales. Para la ingesta por API habrá que configurar una clave propia fuera del código.
+Para operaciones locales: `registry-status`, `retrain`, `monitor`, `rollback`, `maintenance` y `mlops-demo`. Las operaciones de producción gratuita se ejecutan desde **Scheduled model maintenance → Run workflow** en GitHub.
 
 ## Organización
 
-| Ubicación | Función |
+| Ruta | Función |
 |---|---|
-| Dataset/ | CSV original del usuario |
-| audit/ | Auditoría inicial, cruces de estaciones y muestras verificadas |
-| config/experiment.json | Estación, sensor, fechas, fuentes, cortes y ponderaciones |
-| src/airepredict/data.py | Descarga con caché, manifiesto, hashes y preparación de registros |
-| src/airepredict/features.py | Características por hora exacta y estación; separación por fecha del objetivo |
-| src/airepredict/experiment.py | Búsqueda de hiperparámetros, comparación, incertidumbre y persistencia de modelos |
-| src/airepredict/service.py | API de predicción y comprobación de frescura |
-| src/airepredict/live.py | Ingesta autenticada, deduplicación y almacenamiento SQLite |
-| src/airepredict/static/ | Interfaz en inglés y gráfico de observaciones |
-| tests/ | Comprobaciones de separación temporal, huecos, estaciones y duplicados |
-| data/raw/ | Copias comprimidas y manifiesto de OpenAQ; excluidas del control de versiones |
-| data/processed/ | Mediciones normalizadas y estadísticas de limpieza |
-| models/ | Modelos experimentales y registro local de versiones con activación controlada |
-| reports/ | Métricas, predicciones reservadas e informe reproducible |
+| `src/airepredict/` | Datos, características, entrenamiento, servicio, registro y recuperación |
+| `src/airepredict/static/` | Interfaz, PWA, vista compacta y acceso a operaciones |
+| `android/` | Aplicación nativa, widget y pruebas de dispositivo |
+| `.github/workflows/` | CI, entrega, mantenimiento y Android |
+| `scripts/state_job.py` | Operaciones del estado durable en Actions |
+| `config/` | Experimento y controles de promoción |
+| `data/processed/` | Semilla normalizada de datos públicos |
+| `models/oefa_campo_marte_v1/` | Modelo experimental de arranque |
+| `docs/` y `reports/` | Informe, procedimientos, entrenamiento y evidencias |
 
-Los modelos guardados se verificaron comparando sus predicciones tras volver a cargarlos.
-
-## Diseño del experimento
-
-- Destino: Campo de Marte, ubicación OpenAQ 2415, sensor PM2.5 4672.
-- Horizonte: una hora, con PM2.5 numérico en µg/m³.
-- Fuente: segmentos horarios reconstruibles de CA-MAC-01 y CA-HUA-01, en 2021–2022.
-- Destino descargado: 198 días, del 01/04/2026 al 15/10/2026. Se obtuvieron 181 archivos y 17 fechas respondieron 404; las ausencias permanecen visibles en el manifiesto.
-- Entrenamiento: antes del 16/08/2026. Validación: 16/08–15/09. Prueba: 16/09–15/10, hora peruana.
-- Entradas: PM2.5 actual, dos retardos, promedio de tres horas, cambio reciente, hora y día de semana cíclicos.
-- Modelos: Ridge, Random Forest e HistGradientBoosting. Cada uno estima el cambio horario y la salida se convierte de nuevo en concentración.
-- Regímenes: solo OEFA, solo Campo de Marte y combinación con presupuesto total OEFA de 0,1, 0,5 o 1 respecto al peso de destino.
-- Referencia: persistencia, que mantiene el último valor medido.
-- Selección: MAE de validación. Después se reentrenan las configuraciones elegidas con entrenamiento y validación, y se evalúan una vez en la prueba reservada.
-
-La combinación fue elegida por validación. En prueba, solo OEFA obtuvo un MAE ligeramente menor; ese resultado no se utilizó para cambiar la selección a posteriori. Una siguiente iteración de ajuste necesita un nuevo periodo de confirmación o una validación temporal anidada; la prueba actual ya fue consultada.
-
-## Límites y siguiente etapa del producto
-
-El archivo público AWS tiene retraso documentado de 72 horas. Sirve para entrenamiento histórico y esta evaluación retrospectiva, pero no alimenta por sí solo una predicción actual a una hora. La ingesta por API debe comprobar la frescura específica del sensor.
-
-La preparación usa supuestos explícitos de hora peruana, medianoche Excel y etiqueta horaria OEFA. Falta contrastar el diccionario original. No se rellenan horas desconocidas ni se convierten promedios diarios en observaciones horarias.
-
-La aplicación y el servicio funcionan localmente. La ingesta por API está implementada y probada con respuestas controladas; falta verificarla con una clave propia. Se incluyó un flujo CI para pruebas en GitHub y un contenedor para el despliegue. Este equipo no dispone de Docker para comprobar la imagen y el flujo CI todavía no se ha ejecutado en GitHub.
-
-Se implementaron el registro local de versiones, el reentrenamiento con evaluación de candidatos y la reversión. Véase [docs/MLOPS.md](docs/MLOPS.md). Faltan la conexión real de ingesta, la ejecución periódica y el despliegue remoto con almacenamiento persistente. El comando `readiness` solo informa si hay suficientes ejemplos nuevos: no entrena ni promueve un modelo. Los modelos actuales permanecen experimentales.
+No guardar credenciales en el código, los modelos, el APK ni la rama `runtime-state`.

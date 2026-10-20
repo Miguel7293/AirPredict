@@ -65,7 +65,11 @@ jobs:
       - name: Exercise application and widget on Android 15
         timeout-minutes: 12
         run: |
-          echo no | avdmanager create avd --force --name airepredict --package 'system-images;android-35;google_apis;x86_64'
+          export ANDROID_AVD_HOME="$RUNNER_TEMP/airepredict-avd"
+          export ANDROID_USER_HOME="$RUNNER_TEMP/airepredict-android-user"
+          mkdir -p "$ANDROID_AVD_HOME" "$ANDROID_USER_HOME"
+          echo no | avdmanager create avd --force --name airepredict --path "$ANDROID_AVD_HOME/airepredict.avd" --package 'system-images;android-35;google_apis;x86_64'
+          "$ANDROID_HOME/emulator/emulator" -list-avds | grep -x airepredict
           mkdir -p artifacts
           "$ANDROID_HOME/emulator/emulator" -avd airepredict -no-window -no-snapshot -noaudio -no-boot-anim -gpu swiftshader_indirect > artifacts/emulator.log 2>&1 < /dev/null &
           EMULATOR_PID=$!

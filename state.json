@@ -1,23 +1,35 @@
 {
-  "action": "ingest",
+  "action": "verify",
   "status": "completed",
-  "completed_at": "2026-10-20T04:07:13.287785+00:00",
+  "completed_at": "2026-10-20T04:13:37.136924+00:00",
   "result": {
-    "fetched_at_utc": "2026-10-20T04:07:11.957832+00:00",
-    "location_id": 2415,
-    "sensor_id": 4672,
-    "accepted_unique_hours": 34,
-    "rejected": {
-      "conflicting_timestamps": 0
+    "retraining": {
+      "status": "skipped",
+      "active_unchanged": "20261020T035022-f10a116b8b",
+      "reason": "Fewer than 168 complete examples after the last reserved evaluation period.",
+      "new_examples": 18
     },
-    "inserted": 34,
-    "updated": 0,
-    "unchanged": 0,
-    "forecast_status": "No fresh consecutive input window"
+    "monitoring": {
+      "status": "skipped",
+      "reason": "No active/previous release pair is available."
+    },
+    "backup": {
+      "backup_id": "2026-10-20T04-13-34.396316+00-00-9b4b80",
+      "files": 25,
+      "archive": "2026-10-20T04-13-34.396316+00-00-9b4b80.zip",
+      "sha256": "7b4eb3f45c2e52ff36cea10ba8dece0e9ba009b9805c58b1d53283f15ec352db"
+    },
+    "historical_simulation": {
+      "application_registry_modified": false,
+      "first_training": "promoted",
+      "second_training": "rejected",
+      "restored": true
+    }
   },
-  "code_commit": "ed3be49cb9b4c6b56d6a1498db9ca0edeaad45c4",
+  "code_commit": "854614e328bfe36520faf921ded5fec82a5c6341",
   "registry": {
     "active": "20261020T035022-f10a116b8b",
     "previous": null
-  }
+  },
+  "live_api_configured": true
 }

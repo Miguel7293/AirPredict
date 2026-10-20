@@ -1,0 +1,11 @@
+{
+  "counts": {
+    "pm25_rows": 28
+  },
+  "duplicates": {
+    "identical_duplicates": 0,
+    "conflicting_rows_removed": 0
+  },
+  "accepted": 28,
+  "output_sha256": "55826789ca2c37cd2faedd21a944379dd3b070dc7b521e3d0b7e5f2dbfbf2b61"
+}

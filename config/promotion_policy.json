@@ -1,0 +1,11 @@
+{
+  "minimum_examples": 100,
+  "minimum_observed_days": 7,
+  "minimum_evaluable_coverage": 0.35,
+  "minimum_relative_mae_improvement": 0.02,
+  "maximum_rmse_ratio": 1.02,
+  "maximum_absolute_bias": 1.0,
+  "maximum_high_concentration_rmse_ratio": 1.10,
+  "require_negative_daily_bootstrap_upper_bound": true,
+  "note": "Política inicial del prototipo; no constituye un estándar ambiental. La cobertura mínima debe revisarse antes de producción."
+}

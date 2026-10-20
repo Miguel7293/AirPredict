@@ -1,0 +1,22 @@
+{
+  "action": "ingest",
+  "status": "completed",
+  "completed_at": "2026-10-20T03:50:22.586005+00:00",
+  "result": {
+    "mode": "historical_archive",
+    "live_api_configured": false,
+    "accepted_rows": 28,
+    "total_rows": 3315,
+    "duplicates": {
+      "identical_duplicates": 0,
+      "conflicting_rows_removed": 0
+    },
+    "archive_end": "2026-10-16",
+    "note": "Delayed archive; no observations written to the live store."
+  },
+  "code_commit": "6a824293fd327ef8ba9f4e29c79482165d33f17b",
+  "registry": {
+    "active": "20261020T035022-f10a116b8b",
+    "previous": null
+  }
+}

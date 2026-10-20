@@ -1,32 +1,21 @@
 {
-  "action": "verify",
+  "action": "ingest",
   "status": "completed",
-  "completed_at": "2026-10-20T04:04:43.189168+00:00",
+  "completed_at": "2026-10-20T04:07:13.287785+00:00",
   "result": {
-    "retraining": {
-      "status": "skipped",
-      "active_unchanged": "20261020T035022-f10a116b8b",
-      "reason": "Fewer than 168 complete examples after the last reserved evaluation period.",
-      "new_examples": 0
+    "fetched_at_utc": "2026-10-20T04:07:11.957832+00:00",
+    "location_id": 2415,
+    "sensor_id": 4672,
+    "accepted_unique_hours": 34,
+    "rejected": {
+      "conflicting_timestamps": 0
     },
-    "monitoring": {
-      "status": "skipped",
-      "reason": "No active/previous release pair is available."
-    },
-    "backup": {
-      "backup_id": "2026-10-20T04-04-41.925401+00-00-f37aab",
-      "files": 23,
-      "archive": "2026-10-20T04-04-41.925401+00-00-f37aab.zip",
-      "sha256": "467d39bb296346046df860a99231fb08c261c363fc082fdaa00b929d15cf1333"
-    },
-    "historical_simulation": {
-      "application_registry_modified": false,
-      "first_training": "promoted",
-      "second_training": "rejected",
-      "restored": true
-    }
+    "inserted": 34,
+    "updated": 0,
+    "unchanged": 0,
+    "forecast_status": "No fresh consecutive input window"
   },
-  "code_commit": "08ba3c39b9dbc8420f045381a4b1c9ad784bf0e1",
+  "code_commit": "ed3be49cb9b4c6b56d6a1498db9ca0edeaad45c4",
   "registry": {
     "active": "20261020T035022-f10a116b8b",
     "previous": null

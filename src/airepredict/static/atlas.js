@@ -65,10 +65,11 @@ async function loadStations(){const data=await getJSON('/api/stations');stationD
 async function initializeAtlas(){
   try{
     map=L.map('map',{scrollWheelZoom:false}).setView([-10.5,-75],5);
-    fetch('/static/region.geojson').then(r=>r.json()).then(geo=>L.geoJSON(geo,{style:{color:'#a9bca5',weight:1,fillColor:'#e0e9d8',fillOpacity:.85},interactive:false}).addTo(map)).catch(()=>{});
+    map.createPane('geography');map.getPane('geography').style.zIndex=250;
+    fetch('/static/region.geojson').then(r=>r.json()).then(geo=>L.geoJSON(geo,{pane:'geography',style:{color:'#a9bca5',weight:1,fillColor:'#e0e9d8',fillOpacity:.85},interactive:false}).addTo(map)).catch(()=>{});
     // Bundled vector geography avoids tile-provider failures and remains usable
     // in the Android app and cached shell without third-party map requests.
-    fetch('/static/departments.geojson').then(r=>r.json()).then(geo=>L.geoJSON(geo,{style:{color:'#b4c4aa',weight:.7,fillColor:'#d4e1c9',fillOpacity:.6},onEachFeature:(feature,layer)=>{const label=document.createElement('span');label.textContent=feature.properties.shapeName;layer.bindTooltip(label);}}).addTo(map)).catch(()=>{});
+    fetch('/static/departments.geojson').then(r=>r.json()).then(geo=>L.geoJSON(geo,{pane:'geography',style:{color:'#b4c4aa',weight:.7,fillColor:'#d4e1c9',fillOpacity:.6},onEachFeature:(feature,layer)=>{const label=document.createElement('span');label.textContent=feature.properties.shapeName;layer.bindTooltip(label);}}).addTo(map)).catch(()=>{});
     for(let lat=-20;lat<=0;lat+=2)L.polyline([[lat,-84],[lat,-66]],{color:'#bacbc3',weight:.5,opacity:.35,interactive:false}).addTo(map);
     for(let lon=-84;lon<=-66;lon+=2)L.polyline([[-20,lon],[0,lon]],{color:'#bacbc3',weight:.5,opacity:.35,interactive:false}).addTo(map);
     map.attributionControl.addAttribution('Límites referenciales: Natural Earth · geoBoundaries');L.control.scale({imperial:false,position:'bottomright'}).addTo(map);

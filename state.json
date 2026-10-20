@@ -1,51 +1,28 @@
 {
-  "action": "ingest",
+  "action": "retrain",
   "status": "completed",
-  "completed_at": "2026-10-20T17:51:34.114489+00:00",
+  "completed_at": "2026-10-20T17:54:00.734060+00:00",
   "result": {
-    "fetched_at_utc": "2026-10-20T17:51:32.050075+00:00",
-    "location_id": 2415,
-    "sensor_id": 4672,
-    "accepted_unique_hours": 26,
-    "rejected": {
-      "conflicting_timestamps": 0
-    },
-    "inserted": 0,
-    "updated": 0,
-    "unchanged": 26,
-    "mode": "authenticated_openaq",
-    "live_api_configured": true,
-    "forecast_status": "No fresh consecutive input window",
+    "status": "skipped",
+    "active_unchanged": "20261020T035022-f10a116b8b",
+    "reason": "Fewer than 168 complete examples after the last reserved evaluation period.",
+    "new_examples": 18,
     "station_results": {
       "2402": {
-        "fetched_at_utc": "2026-10-20T17:51:33.174977+00:00",
-        "location_id": 2402,
-        "sensor_id": 4492,
-        "accepted_unique_hours": 31,
-        "rejected": {
-          "conflicting_timestamps": 0
-        },
-        "inserted": 31,
-        "updated": 0,
-        "unchanged": 0,
-        "forecast_issued": false
+        "status": "skipped",
+        "active_unchanged": "20261020T175133-0d97c6d742",
+        "reason": "Fewer than 168 complete examples after the last reserved evaluation period.",
+        "new_examples": 18
       },
       "2351": {
-        "fetched_at_utc": "2026-10-20T17:51:33.741413+00:00",
-        "location_id": 2351,
-        "sensor_id": 4319,
-        "accepted_unique_hours": 43,
-        "rejected": {
-          "conflicting_timestamps": 0
-        },
-        "inserted": 43,
-        "updated": 0,
-        "unchanged": 0,
-        "forecast_issued": false
+        "status": "skipped",
+        "active_unchanged": "20261020T175133-1ec3d839ce",
+        "reason": "Fewer than 168 complete examples after the last reserved evaluation period.",
+        "new_examples": 18
       }
     }
   },
-  "code_commit": "81ca3a8080209bce9f027ed3622d5b1d179ddc75",
+  "code_commit": "fce3d6b9cf0837f7afba9fdfd10325fb86e4fafc",
   "registry": {
     "active": "20261020T035022-f10a116b8b",
     "previous": null

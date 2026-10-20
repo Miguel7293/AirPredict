@@ -120,5 +120,8 @@ def test_stale_live_store_is_rejected(tmp_path, engine):
 
 def test_page_assets_and_health(client):
     assert 'EXPLORACIÓN GEOGRÁFICA' in client.get('/').text
+    assert 'Usar mi ubicación' in client.get('/').text
+    assert 'geolocation=(self)' in client.get('/').headers['permissions-policy']
+    assert client.get('/static/nearby.js').status_code==200
     assert client.get('/static/app.js').status_code == 200
     assert client.get('/health').json()['status'] == 'ok'

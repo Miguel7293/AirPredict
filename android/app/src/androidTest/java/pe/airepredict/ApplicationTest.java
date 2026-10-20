@@ -53,6 +53,35 @@ public class ApplicationTest {
         assertEquals(2351,ForecastData.cached(context).getInt("location_id"));
         ForecastData.preferences(context).edit().clear().commit();
     }
+    @Test public void nearbyDistanceAndUnknownCoordinatesAreHandled() {
+        assertEquals(0,NearbyActivity.distanceKm(-12.07,-77.04,-12.07,-77.04),.0001);
+        assertEquals(111.195,NearbyActivity.distanceKm(0,0,0,1),.01);
+        assertTrue(Double.isInfinite(NearbyActivity.distanceKm(100,0,0,0)));
+    }
+    @Test public void locationIsOptionalAndDenialKeepsManualNavigation() throws Exception {
+        Context context=InstrumentationRegistry.getInstrumentation().getTargetContext();
+        shell("pm revoke "+context.getPackageName()+" android.permission.ACCESS_COARSE_LOCATION");
+        shell("pm clear-permission-flags "+context.getPackageName()+" android.permission.ACCESS_COARSE_LOCATION user-set user-fixed");
+        try(ActivityScenario<NearbyActivity> scenario=ActivityScenario.launch(NearbyActivity.class)){
+            UiDevice device=UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+            assertEquals(android.content.pm.PackageManager.PERMISSION_DENIED,context.checkSelfPermission(android.Manifest.permission.ACCESS_COARSE_LOCATION));
+            device.wait(Until.findObject(By.text("Usar mi ubicación")),5000).click();
+            androidx.test.uiautomator.UiObject2 deny=device.wait(Until.findObject(By.res("com.android.permissioncontroller","permission_deny_button")),10000);
+            assertNotNull("Expected optional approximate location permission",deny);deny.click();
+            new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(3);
+            assertNotNull(device.wait(Until.findObject(By.textContains("Permiso de ubicación rechazado")),5000));
+            assertNotNull(device.findObject(By.text("Volver")));
+            saveEvidence("location.png");
+        }
+    }
+    @Test public void injectedApproximateLocationShowsNearbyReferences() throws Exception {
+        try(ActivityScenario<NearbyActivity> scenario=ActivityScenario.launch(NearbyActivity.class)){
+            scenario.onActivity(activity->{android.location.Location sample=new android.location.Location("test-fixture");sample.setLatitude(-12.070544);sample.setLongitude(-77.043214);sample.setAccuracy(1000);sample.setTime(System.currentTimeMillis());sample.setElapsedRealtimeNanos(android.os.SystemClock.elapsedRealtimeNanos());activity.acceptLocation(sample);});
+            UiDevice device=UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+            assertNotNull(device.wait(Until.findObject(By.textContains("Jesús María ·")),90000));
+            saveEvidence("location-nearby.png");
+        }
+    }
     @Test public void navigationSeparatesModelsAndConnectionSettings() throws Exception {
         try(ActivityScenario<MainActivity> scenario=ActivityScenario.launch(MainActivity.class)){
             UiDevice device=UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());

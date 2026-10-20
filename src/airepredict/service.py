@@ -123,7 +123,7 @@ def create_app(predictor=None, database=DEFAULT_DATABASE, demo_path=None, regist
         response.headers['X-Content-Type-Options'] = 'nosniff'
         response.headers['Referrer-Policy'] = 'same-origin'
         response.headers['X-Frame-Options'] = 'DENY'
-        response.headers['Permissions-Policy'] = 'camera=(), microphone=(), geolocation=()'
+        response.headers['Permissions-Policy'] = 'camera=(), microphone=(), geolocation=(self)'
         if request.url.path.startswith('/api/'):
             response.headers['Cache-Control'] = 'no-store'
         return response

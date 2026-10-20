@@ -4,7 +4,7 @@ Observatorio experimental de PM2.5 de Perú. Mapa e histórico del dataset OEFA 
 
 **Aplicación:** https://airpredict-4u3c.onrender.com/  
 **Automatizaciones:** https://github.com/Miguel7293/AirPredict/actions  
-**APK Android de demostración:** [descargar](https://github.com/Miguel7293/AirPredict/releases/download/v0.4.0/airepredict-demo.apk)
+**APK Android de demostración:** [descargar](https://github.com/Miguel7293/AirPredict/releases/download/v0.4.1/airepredict-demo.apk)
 
 ## Producto y operación
 
@@ -73,3 +73,5 @@ Para operaciones locales: `registry-status`, `retrain`, `monitor`, `rollback`, `
 | `docs/` y `reports/` | Informe, procedimientos, entrenamiento y evidencias |
 
 No guardar credenciales en el código, los modelos, el APK ni la rama `runtime-state`.
+
+Ubicación opcional en web y Android: [funcionamiento y permisos](docs/UBICACION.md). Busca referencias cercanas y muestra su distancia sin enviar coordenadas al servidor.

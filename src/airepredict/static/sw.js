@@ -1,5 +1,5 @@
-const CACHE='airepredict-shell-v0.4.0-atlas';
-const SHELL=['/stations','/static/atlas.css','/static/atlas.js','/static/vendor/leaflet.css','/static/vendor/leaflet.js','/static/region.geojson','/static/departments.geojson','/','/widget','/static/style.css','/static/app.js','/static/pwa.js','/static/widget.js','/static/icon.svg'];
+const CACHE='airepredict-shell-v0.4.1-location';
+const SHELL=['/static/nearby.js','/stations','/static/atlas.css','/static/atlas.js','/static/vendor/leaflet.css','/static/vendor/leaflet.js','/static/region.geojson','/static/departments.geojson','/','/widget','/static/style.css','/static/app.js','/static/pwa.js','/static/widget.js','/static/icon.svg'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(SHELL))));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));
 self.addEventListener('fetch',event=>{

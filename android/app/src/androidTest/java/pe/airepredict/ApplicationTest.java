@@ -69,7 +69,6 @@ public class ApplicationTest {
             androidx.test.uiautomator.UiObject2 deny=device.wait(Until.findObject(By.res("com.android.permissioncontroller","permission_deny_button")),5000);
             assertNotNull("Expected optional notification permission request",deny);
             deny.click();
-            new UiScrollable(new UiSelector().scrollable(true)).scrollToBeginning(5);
             assertEquals(android.content.pm.PackageManager.PERMISSION_DENIED,context.checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS));
             assertTrue(device.wait(Until.hasObject(By.pkg(context.getPackageName())),5000));
         }

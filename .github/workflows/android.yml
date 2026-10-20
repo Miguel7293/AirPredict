@@ -83,9 +83,13 @@ jobs:
           test "$BOOTED" = true || { echo 'Emulator did not finish booting'; exit 1; }
           adb shell input keyevent 82
           cd android
+          set +e
           gradle connectedDebugAndroidTest --no-daemon
-          adb pull /data/local/tmp/airepredict-application.png ../application.png
-          adb pull /data/local/tmp/airepredict-widget.png ../widget.png
+          TEST_STATUS=$?
+          set -e
+          adb pull /data/local/tmp/airepredict-application.png ../application.png || test "$TEST_STATUS" != 0
+          adb pull /data/local/tmp/airepredict-widget.png ../widget.png || test "$TEST_STATUS" != 0
+          exit "$TEST_STATUS"
       - uses: actions/upload-artifact@v4
         if: always()
         with:

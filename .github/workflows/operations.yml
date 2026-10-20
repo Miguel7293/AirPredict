@@ -1,0 +1,46 @@
+name: Scheduled model maintenance
+on:
+  schedule:
+    - cron: '17 * * * *'
+    - cron: '37 8 * * *'
+    - cron: '47 9 * * 1'
+    - cron: '27 7 * * *'
+  workflow_dispatch:
+    inputs:
+      action:
+        type: choice
+        required: true
+        options: [ingest, retrain, monitor, backup, rollback, demo]
+        default: monitor
+permissions:
+  contents: read
+concurrency:
+  group: production-maintenance
+  cancel-in-progress: false
+jobs:
+  maintain:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    environment: production
+    env:
+      APP_BASE_URL: ${{ vars.APP_BASE_URL }}
+      AIRPREDICT_ADMIN_TOKEN: ${{ secrets.AIRPREDICT_ADMIN_TOKEN }}
+      ACTION: ${{ inputs.action || (github.event.schedule == '17 * * * *' && 'ingest') || (github.event.schedule == '37 8 * * *' && 'monitor') || (github.event.schedule == '47 9 * * 1' && 'retrain') || 'backup' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check production configuration
+        run: python -c "import os; assert os.environ['APP_BASE_URL'] and len(os.environ['AIRPREDICT_ADMIN_TOKEN']) >= 32, 'Production secrets or URL are missing'"
+      - name: Run serialized operation on persistent server
+        run: python scripts/remote_job.py "$ACTION"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: maintenance-${{ github.run_id }}
+          path: artifacts/
+          retention-days: 30
+      - name: Record workflow result
+        if: always()
+        run: echo "### Maintenance $ACTION — ${{ job.status }}" >> "$GITHUB_STEP_SUMMARY"

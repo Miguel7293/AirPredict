@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: airpredict
+    runtime: docker
+    repo: https://github.com/Miguel7293/AirPredict
+    branch: main
+    plan: starter
+    region: oregon
+    autoDeployTrigger: off
+    healthCheckPath: /ready
+    disk:
+      name: airpredict-state
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: AIRPREDICT_ADMIN_TOKEN
+        generateValue: true
+      - key: OPENAQ_API_KEY
+        sync: false
+      - key: PORT
+        value: '8000'

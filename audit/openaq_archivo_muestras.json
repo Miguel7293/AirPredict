@@ -1,0 +1,261 @@
+[
+  {
+    "id": 2402,
+    "day": "2026-10-12",
+    "url": "https://openaq-data-archive.s3.amazonaws.com/records/csv.gz/locationid=2402/year=2026/month=10/location-2402-20261012.csv.gz",
+    "status": 200,
+    "columns": [
+      "location_id",
+      "sensors_id",
+      "location",
+      "datetime",
+      "lat",
+      "lon",
+      "parameter",
+      "units",
+      "value"
+    ],
+    "rows": 67,
+    "parameters": {
+      "o3": 7,
+      "co": 20,
+      "no2": 20,
+      "so2": 20
+    },
+    "pm25_rows": 0,
+    "pm25_sample": []
+  },
+  {
+    "id": 2402,
+    "day": "2026-10-13",
+    "url": "https://openaq-data-archive.s3.amazonaws.com/records/csv.gz/locationid=2402/year=2026/month=10/location-2402-20261013.csv.gz",
+    "status": 200,
+    "columns": [
+      "location_id",
+      "sensors_id",
+      "location",
+      "datetime",
+      "lat",
+      "lon",
+      "parameter",
+      "units",
+      "value"
+    ],
+    "rows": 80,
+    "parameters": {
+      "o3": 20,
+      "co": 20,
+      "no2": 20,
+      "so2": 20
+    },
+    "pm25_rows": 0,
+    "pm25_sample": []
+  },
+  {
+    "id": 2402,
+    "day": "2026-10-14",
+    "url": "https://openaq-data-archive.s3.amazonaws.com/records/csv.gz/locationid=2402/year=2026/month=10/location-2402-20261014.csv.gz",
+    "status": 200,
+    "columns": [
+      "location_id",
+      "sensors_id",
+      "location",
+      "datetime",
+      "lat",
+      "lon",
+      "parameter",
+      "units",
+      "value"
+    ],
+    "rows": 74,
+    "parameters": {
+      "pm10": 9,
+      "pm25": 9,
+      "o3": 14,
+      "co": 14,
+      "no2": 14,
+      "so2": 14
+    },
+    "pm25_rows": 9,
+    "pm25_sample": [
+      {
+        "location_id": "2402",
+        "sensors_id": "4492",
+        "location": "SAN BORJA-2402",
+        "datetime": "2026-10-14T10:00:00-05:00",
+        "lat": "-12.108872",
+        "lon": "-77.007689",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "17.12"
+      },
+      {
+        "location_id": "2402",
+        "sensors_id": "4492",
+        "location": "SAN BORJA-2402",
+        "datetime": "2026-10-14T11:00:00-05:00",
+        "lat": "-12.108872",
+        "lon": "-77.007689",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "16.8"
+      },
+      {
+        "location_id": "2402",
+        "sensors_id": "4492",
+        "location": "SAN BORJA-2402",
+        "datetime": "2026-10-14T12:00:00-05:00",
+        "lat": "-12.108872",
+        "lon": "-77.007689",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "15.76"
+      }
+    ]
+  },
+  {
+    "id": 2402,
+    "day": "2026-10-15",
+    "url": "https://openaq-data-archive.s3.amazonaws.com/records/csv.gz/locationid=2402/year=2026/month=10/location-2402-20261015.csv.gz",
+    "status": 200,
+    "columns": [
+      "location_id",
+      "sensors_id",
+      "location",
+      "datetime",
+      "lat",
+      "lon",
+      "parameter",
+      "units",
+      "value"
+    ],
+    "rows": 92,
+    "parameters": {
+      "pm10": 16,
+      "pm25": 16,
+      "o3": 12,
+      "co": 16,
+      "no2": 16,
+      "so2": 16
+    },
+    "pm25_rows": 16,
+    "pm25_sample": [
+      {
+        "location_id": "2402",
+        "sensors_id": "4492",
+        "location": "SAN BORJA-2402",
+        "datetime": "2026-10-15T01:00:00-05:00",
+        "lat": "-12.108872",
+        "lon": "-77.007689",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "10.46"
+      },
+      {
+        "location_id": "2402",
+        "sensors_id": "4492",
+        "location": "SAN BORJA-2402",
+        "datetime": "2026-10-15T02:00:00-05:00",
+        "lat": "-12.108872",
+        "lon": "-77.007689",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "10.51"
+      },
+      {
+        "location_id": "2402",
+        "sensors_id": "4492",
+        "location": "SAN BORJA-2402",
+        "datetime": "2026-10-15T03:00:00-05:00",
+        "lat": "-12.108872",
+        "lon": "-77.007689",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "11.21"
+      }
+    ]
+  },
+  {
+    "id": 2578976,
+    "day": "2025-12-03",
+    "url": "https://openaq-data-archive.s3.amazonaws.com/records/csv.gz/locationid=2578976/year=2025/month=12/location-2578976-20251203.csv.gz",
+    "status": 200,
+    "columns": [
+      "location_id",
+      "sensors_id",
+      "location",
+      "datetime",
+      "lat",
+      "lon",
+      "parameter",
+      "units",
+      "value"
+    ],
+    "rows": 2,
+    "parameters": {
+      "pm10": 1,
+      "pm25": 1
+    },
+    "pm25_rows": 1,
+    "pm25_sample": [
+      {
+        "location_id": "2578976",
+        "sensors_id": "8437748",
+        "location": "La Huaca-2548767",
+        "datetime": "2025-12-03T19:00:00-05:00",
+        "lat": "-4.914723",
+        "lon": "-80.960358",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "0.0"
+      }
+    ]
+  },
+  {
+    "id": 2578979,
+    "day": "2025-12-03",
+    "url": "https://openaq-data-archive.s3.amazonaws.com/records/csv.gz/locationid=2578979/year=2025/month=12/location-2578979-20251203.csv.gz",
+    "status": 200,
+    "columns": [
+      "location_id",
+      "sensors_id",
+      "location",
+      "datetime",
+      "lat",
+      "lon",
+      "parameter",
+      "units",
+      "value"
+    ],
+    "rows": 4,
+    "parameters": {
+      "pm10": 2,
+      "pm25": 2
+    },
+    "pm25_rows": 2,
+    "pm25_sample": [
+      {
+        "location_id": "2578979",
+        "sensors_id": "8437742",
+        "location": "Macacara-2548770",
+        "datetime": "2025-12-03T19:00:00-05:00",
+        "lat": "-4.916988",
+        "lon": "-80.858255",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "4.9"
+      },
+      {
+        "location_id": "2578979",
+        "sensors_id": "8437742",
+        "location": "Macacara-2548770",
+        "datetime": "2025-12-03T19:05:00-05:00",
+        "lat": "-4.916988",
+        "lon": "-80.858255",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "5.1"
+      }
+    ]
+  }
+]

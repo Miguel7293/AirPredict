@@ -1,0 +1,1111 @@
+{
+  "experiment_id": "oefa_campo_marte_v1",
+  "created_at_utc": "2026-10-19T17:26:07.829915+00:00",
+  "config": {
+    "experiment_id": "oefa_campo_marte_v1",
+    "target_location_id": 2415,
+    "target_sensor_id": 4672,
+    "target_name": "Campo de Marte",
+    "target_start": "2026-04-01",
+    "target_end": "2026-10-15",
+    "validation_start": "2026-08-16",
+    "test_start": "2026-09-16",
+    "source_stations": [
+      "CA-MAC-01",
+      "CA-HUA-01"
+    ],
+    "source_timezone_assumption": "UTC-05:00, hora peruana; pendiente de confirmar con diccionario OEFA",
+    "source_midnight_assumption": "1899-12-31 en HORA_INICIO representa 00:00:00",
+    "source_interval_assumption": "Se usa HORA_INICIO como etiqueta horaria; equivalencia con final de intervalo OpenAQ pendiente de confirmar",
+    "horizon_hours": 1,
+    "source_weight_budgets": [
+      0.1,
+      0.5,
+      1.0
+    ],
+    "random_seed": 2026,
+    "workers": 4
+  },
+  "features": [
+    "pm25_now",
+    "pm25_lag1",
+    "pm25_lag2",
+    "mean_last3",
+    "change_last1",
+    "hour_sin",
+    "hour_cos",
+    "weekday_sin",
+    "weekday_cos"
+  ],
+  "target_definition": "PM2.5 de t+1 hora; el regresor estima el cambio respecto a t",
+  "evaluation": "walk-forward a una hora con observaciones reales disponibles en cada emisión; no es pronóstico recursivo de todo el mes",
+  "selection": "MAE en validación; prueba reservada; modelos elegidos se reentrenan con train+val antes de la prueba",
+  "champion_selected_on_validation": "combinado",
+  "status": "experimental_no_desplegado",
+  "rows": {
+    "source_features": 15587,
+    "target_features": 2752,
+    "train": 2200,
+    "validation": 282,
+    "test": 270
+  },
+  "split_ranges": {
+    "train": {
+      "first_outcome_utc": "2026-04-01 09:00:00+00:00",
+      "last_outcome_utc": "2026-08-16 04:00:00+00:00"
+    },
+    "validation": {
+      "first_outcome_utc": "2026-08-16 12:00:00+00:00",
+      "last_outcome_utc": "2026-09-16 00:00:00+00:00"
+    },
+    "test": {
+      "first_outcome_utc": "2026-09-16 05:00:00+00:00",
+      "last_outcome_utc": "2026-10-16 03:00:00+00:00"
+    }
+  },
+  "summary": {
+    "persistencia": {
+      "validation": {
+        "mae": 2.447375886524823,
+        "rmse": 3.52152006186239,
+        "r2": 0.7423916609174062,
+        "bias": -0.01751773049645392,
+        "n": 282
+      },
+      "test": {
+        "mae": 2.0699259259259257,
+        "rmse": 2.9318548041457633,
+        "r2": 0.6039564209618613,
+        "bias": 0.16451851851851856,
+        "n": 270
+      }
+    },
+    "solo_oefa": {
+      "mode": "solo_oefa",
+      "family": "random_forest",
+      "params": {
+        "n_estimators": 100,
+        "min_samples_leaf": 15,
+        "max_depth": 10,
+        "max_features": 1.0
+      },
+      "source_weight_budget": null,
+      "validation": {
+        "mae": 2.6514460577677803,
+        "rmse": 3.8845287405654165,
+        "r2": 0.6865442349052284,
+        "bias": -0.9955810435552307,
+        "n": 282
+      },
+      "training_rows": 15587,
+      "refit_rows": 15587,
+      "test": {
+        "mae": 2.0119294673064014,
+        "rmse": 2.7126959950353577,
+        "r2": 0.660952683325021,
+        "bias": -0.12186204079381184,
+        "n": 270
+      }
+    },
+    "solo_campo_marte": {
+      "mode": "solo_campo_marte",
+      "family": "hist_gradient_boosting",
+      "params": {
+        "max_leaf_nodes": 7,
+        "max_iter": 120,
+        "learning_rate": 0.05,
+        "l2_regularization": 5.0,
+        "min_samples_leaf": 20,
+        "early_stopping": false
+      },
+      "source_weight_budget": null,
+      "validation": {
+        "mae": 2.2993682382692437,
+        "rmse": 3.3309170945066144,
+        "r2": 0.7695231920098281,
+        "bias": 0.30955404408113346,
+        "n": 282
+      },
+      "training_rows": 2200,
+      "refit_rows": 2482,
+      "test": {
+        "mae": 2.0848768722523943,
+        "rmse": 2.9509205872261615,
+        "r2": 0.5987887485664882,
+        "bias": 0.7598586820942377,
+        "n": 270
+      }
+    },
+    "combinado": {
+      "mode": "combinado",
+      "family": "hist_gradient_boosting",
+      "params": {
+        "max_leaf_nodes": 7,
+        "max_iter": 120,
+        "learning_rate": 0.05,
+        "l2_regularization": 5.0,
+        "min_samples_leaf": 20,
+        "early_stopping": false
+      },
+      "source_weight_budget": 1.0,
+      "validation": {
+        "mae": 2.2786114202206242,
+        "rmse": 3.2819248157372667,
+        "r2": 0.7762531966605118,
+        "bias": 0.04165208688739356,
+        "n": 282
+      },
+      "training_rows": 17787,
+      "refit_rows": 18069,
+      "test": {
+        "mae": 2.0177004056222074,
+        "rmse": 2.8814661331641678,
+        "r2": 0.6174527377276559,
+        "bias": 0.46814897468444727,
+        "n": 270
+      }
+    }
+  },
+  "comparisons": {
+    "combinado_vs_solo_campo_marte": {
+      "mae_difference_first_minus_second": -0.0671764666301866,
+      "ci95_daily_bootstrap": [
+        -0.13383710265031626,
+        0.0005300802727275117
+      ],
+      "observed_days": 30,
+      "replications": 2000,
+      "interpretation": "Negativo favorece al primer modelo; un intervalo que contiene cero no respalda una mejora concluyente."
+    },
+    "combinado_vs_persistencia": {
+      "mae_difference_first_minus_second": -0.05222552030371811,
+      "ci95_daily_bootstrap": [
+        -0.11875073145779753,
+        0.006252136769564768
+      ],
+      "observed_days": 30,
+      "replications": 2000,
+      "interpretation": "Negativo favorece al primer modelo; un intervalo que contiene cero no respalda una mejora concluyente."
+    }
+  },
+  "candidates": [
+    {
+      "mode": "solo_oefa",
+      "family": "ridge",
+      "params": {
+        "alpha": 1.0
+      },
+      "source_weight_budget": null,
+      "validation": {
+        "mae": 2.7661729647359756,
+        "rmse": 3.8652554269706862,
+        "r2": 0.6896469762951514,
+        "bias": -1.6370316118368862,
+        "n": 282
+      },
+      "training_rows": 15587
+    },
+    {
+      "mode": "solo_oefa",
+      "family": "ridge",
+      "params": {
+        "alpha": 100.0
+      },
+      "source_weight_budget": null,
+      "validation": {
+        "mae": 2.7630235617615426,
+        "rmse": 3.861368038667099,
+        "r2": 0.690270922656053,
+        "bias": -1.6331333028929427,
+        "n": 282
+      },
+      "training_rows": 15587
+    },
+    {
+      "mode": "solo_oefa",
+      "family": "hist_gradient_boosting",
+      "params": {
+        "max_leaf_nodes": 7,
+        "max_iter": 120,
+        "learning_rate": 0.05,
+        "l2_regularization": 5.0,
+        "min_samples_leaf": 20,
+        "early_stopping": false
+      },
+      "source_weight_budget": null,
+      "validation": {
+        "mae": 2.70507189092993,
+        "rmse": 4.015165803263909,
+        "r2": 0.6651066286699614,
+        "bias": -1.1100171672636898,
+        "n": 282
+      },
+      "training_rows": 15587
+    },
+    {
+      "mode": "solo_oefa",
+      "family": "hist_gradient_boosting",
+      "params": {
+        "max_leaf_nodes": 15,
+        "max_iter": 120,
+        "learning_rate": 0.05,
+        "l2_regularization": 5.0,
+        "min_samples_leaf": 20,
+        "early_stopping": false
+      },
+      "source_weight_budget": null,
+      "validation": {
+        "mae": 2.824951483498166,
+        "rmse": 4.227677151948672,
+        "r2": 0.628718582513887,
+        "bias": -1.0895195451803197,
+        "n": 282
+      },
+      "training_rows": 15587
+    },
+    {
+      "mode": "solo_oefa",
+      "family": "random_forest",
+      "params": {
+        "n_estimators": 100,
+        "min_samples_leaf": 5,
+        "max_depth": 10,
+        "max_features": 1.0
+      },
+      "source_weight_budget": null,
+      "validation": {
+        "mae": 2.7049570706336485,
+        "rmse": 3.9830066729971443,
+        "r2": 0.6704497451741517,
+        "bias": -0.9844738992892031,
+        "n": 282
+      },
+      "training_rows": 15587
+    },
+    {
+      "mode": "solo_oefa",
+      "family": "random_forest",
+      "params": {
+        "n_estimators": 100,
+        "min_samples_leaf": 15,
+        "max_depth": 10,
+        "max_features": 1.0
+      },
+      "source_weight_budget": null,
+      "validation": {
+        "mae": 2.6514460577677803,
+        "rmse": 3.8845287405654165,
+        "r2": 0.6865442349052284,
+        "bias": -0.9955810435552307,
+        "n": 282
+      },
+      "training_rows": 15587
+    },
+    {
+      "mode": "solo_campo_marte",
+      "family": "ridge",
+      "params": {
+        "alpha": 1.0
+      },
+      "source_weight_budget": null,
+      "validation": {
+        "mae": 2.5405380291095874,
+        "rmse": 3.5500243183788562,
+        "r2": 0.7382044621953063,
+        "bias": 0.46970824958920787,
+        "n": 282
+      },
+      "training_rows": 2200
+    },
+    {
+      "mode": "solo_campo_marte",
+      "family": "ridge",
+      "params": {
+        "alpha": 100.0
+      },
+      "source_weight_budget": null,
+      "validation": {
+        "mae": 2.4853039906324543,
+        "rmse": 3.521116627389308,
+        "r2": 0.7424506820955215,
+        "bias": 0.5191998477495222,
+        "n": 282
+      },
+      "training_rows": 2200
+    },
+    {
+      "mode": "solo_campo_marte",
+      "family": "hist_gradient_boosting",
+      "params": {
+        "max_leaf_nodes": 7,
+        "max_iter": 120,
+        "learning_rate": 0.05,
+        "l2_regularization": 5.0,
+        "min_samples_leaf": 20,
+        "early_stopping": false
+      },
+      "source_weight_budget": null,
+      "validation": {
+        "mae": 2.2993682382692437,
+        "rmse": 3.3309170945066144,
+        "r2": 0.7695231920098281,
+        "bias": 0.30955404408113346,
+        "n": 282
+      },
+      "training_rows": 2200
+    },
+    {
+      "mode": "solo_campo_marte",
+      "family": "hist_gradient_boosting",
+      "params": {
+        "max_leaf_nodes": 15,
+        "max_iter": 120,
+        "learning_rate": 0.05,
+        "l2_regularization": 5.0,
+        "min_samples_leaf": 20,
+        "early_stopping": false
+      },
+      "source_weight_budget": null,
+      "validation": {
+        "mae": 2.3730049462025353,
+        "rmse": 3.4184235497164783,
+        "r2": 0.7572544220628177,
+        "bias": 0.2845572986506434,
+        "n": 282
+      },
+      "training_rows": 2200
+    },
+    {
+      "mode": "solo_campo_marte",
+      "family": "random_forest",
+      "params": {
+        "n_estimators": 100,
+        "min_samples_leaf": 5,
+        "max_depth": 10,
+        "max_features": 1.0
+      },
+      "source_weight_budget": null,
+      "validation": {
+        "mae": 2.389022679389698,
+        "rmse": 3.3789773048895944,
+        "r2": 0.762824331468298,
+        "bias": 0.3255011276180403,
+        "n": 282
+      },
+      "training_rows": 2200
+    },
+    {
+      "mode": "solo_campo_marte",
+      "family": "random_forest",
+      "params": {
+        "n_estimators": 100,
+        "min_samples_leaf": 15,
+        "max_depth": 10,
+        "max_features": 1.0
+      },
+      "source_weight_budget": null,
+      "validation": {
+        "mae": 2.342886351952477,
+        "rmse": 3.353206818752275,
+        "r2": 0.7664282766818168,
+        "bias": 0.33657584294026466,
+        "n": 282
+      },
+      "training_rows": 2200
+    },
+    {
+      "mode": "combinado",
+      "family": "ridge",
+      "params": {
+        "alpha": 1.0
+      },
+      "source_weight_budget": 0.1,
+      "validation": {
+        "mae": 2.5075908253532875,
+        "rmse": 3.515110741654528,
+        "r2": 0.7433285244152954,
+        "bias": 0.40137809328017104,
+        "n": 282
+      },
+      "training_rows": 17787
+    },
+    {
+      "mode": "combinado",
+      "family": "ridge",
+      "params": {
+        "alpha": 100.0
+      },
+      "source_weight_budget": 0.1,
+      "validation": {
+        "mae": 2.457769293771404,
+        "rmse": 3.4921653154619623,
+        "r2": 0.7466685126711925,
+        "bias": 0.4408050198395752,
+        "n": 282
+      },
+      "training_rows": 17787
+    },
+    {
+      "mode": "combinado",
+      "family": "hist_gradient_boosting",
+      "params": {
+        "max_leaf_nodes": 7,
+        "max_iter": 120,
+        "learning_rate": 0.05,
+        "l2_regularization": 5.0,
+        "min_samples_leaf": 20,
+        "early_stopping": false
+      },
+      "source_weight_budget": 0.1,
+      "validation": {
+        "mae": 2.3047488410500723,
+        "rmse": 3.332636157705213,
+        "r2": 0.7692852356592971,
+        "bias": 0.26629537333515785,
+        "n": 282
+      },
+      "training_rows": 17787
+    },
+    {
+      "mode": "combinado",
+      "family": "hist_gradient_boosting",
+      "params": {
+        "max_leaf_nodes": 15,
+        "max_iter": 120,
+        "learning_rate": 0.05,
+        "l2_regularization": 5.0,
+        "min_samples_leaf": 20,
+        "early_stopping": false
+      },
+      "source_weight_budget": 0.1,
+      "validation": {
+        "mae": 2.3614907794001634,
+        "rmse": 3.4684681134022624,
+        "r2": 0.7500949707150181,
+        "bias": 0.30321098186074574,
+        "n": 282
+      },
+      "training_rows": 17787
+    },
+    {
+      "mode": "combinado",
+      "family": "random_forest",
+      "params": {
+        "n_estimators": 100,
+        "min_samples_leaf": 5,
+        "max_depth": 10,
+        "max_features": 1.0
+      },
+      "source_weight_budget": 0.1,
+      "validation": {
+        "mae": 2.4421799261815473,
+        "rmse": 3.734483629090033,
+        "r2": 0.7102918561109004,
+        "bias": 0.3207123595630439,
+        "n": 282
+      },
+      "training_rows": 17787
+    },
+    {
+      "mode": "combinado",
+      "family": "random_forest",
+      "params": {
+        "n_estimators": 100,
+        "min_samples_leaf": 15,
+        "max_depth": 10,
+        "max_features": 1.0
+      },
+      "source_weight_budget": 0.1,
+      "validation": {
+        "mae": 2.401273676288619,
+        "rmse": 3.4090667737871607,
+        "r2": 0.7585814709019917,
+        "bias": 0.26674533494572694,
+        "n": 282
+      },
+      "training_rows": 17787
+    },
+    {
+      "mode": "combinado",
+      "family": "ridge",
+      "params": {
+        "alpha": 1.0
+      },
+      "source_weight_budget": 0.5,
+      "validation": {
+        "mae": 2.4183301334857608,
+        "rmse": 3.4346142393067502,
+        "r2": 0.7549495434561777,
+        "bias": 0.22662305630199503,
+        "n": 282
+      },
+      "training_rows": 17787
+    },
+    {
+      "mode": "combinado",
+      "family": "ridge",
+      "params": {
+        "alpha": 100.0
+      },
+      "source_weight_budget": 0.5,
+      "validation": {
+        "mae": 2.387117409936825,
+        "rmse": 3.425667849862789,
+        "r2": 0.7562244823119562,
+        "bias": 0.24487586762646996,
+        "n": 282
+      },
+      "training_rows": 17787
+    },
+    {
+      "mode": "combinado",
+      "family": "hist_gradient_boosting",
+      "params": {
+        "max_leaf_nodes": 7,
+        "max_iter": 120,
+        "learning_rate": 0.05,
+        "l2_regularization": 5.0,
+        "min_samples_leaf": 20,
+        "early_stopping": false
+      },
+      "source_weight_budget": 0.5,
+      "validation": {
+        "mae": 2.2790361906708334,
+        "rmse": 3.3259127943815225,
+        "r2": 0.7702151988554128,
+        "bias": 0.1565733319340602,
+        "n": 282
+      },
+      "training_rows": 17787
+    },
+    {
+      "mode": "combinado",
+      "family": "hist_gradient_boosting",
+      "params": {
+        "max_leaf_nodes": 15,
+        "max_iter": 120,
+        "learning_rate": 0.05,
+        "l2_regularization": 5.0,
+        "min_samples_leaf": 20,
+        "early_stopping": false
+      },
+      "source_weight_budget": 0.5,
+      "validation": {
+        "mae": 2.313506231107671,
+        "rmse": 3.357475343984486,
+        "r2": 0.7658332394966089,
+        "bias": 0.13897200516001515,
+        "n": 282
+      },
+      "training_rows": 17787
+    },
+    {
+      "mode": "combinado",
+      "family": "random_forest",
+      "params": {
+        "n_estimators": 100,
+        "min_samples_leaf": 5,
+        "max_depth": 10,
+        "max_features": 1.0
+      },
+      "source_weight_budget": 0.5,
+      "validation": {
+        "mae": 2.341445863045143,
+        "rmse": 3.364352489608588,
+        "r2": 0.7648729654548854,
+        "bias": 0.08076160512140133,
+        "n": 282
+      },
+      "training_rows": 17787
+    },
+    {
+      "mode": "combinado",
+      "family": "random_forest",
+      "params": {
+        "n_estimators": 100,
+        "min_samples_leaf": 15,
+        "max_depth": 10,
+        "max_features": 1.0
+      },
+      "source_weight_budget": 0.5,
+      "validation": {
+        "mae": 2.3633199065448873,
+        "rmse": 3.3753190581385017,
+        "r2": 0.7633376095177845,
+        "bias": 0.08399077097067242,
+        "n": 282
+      },
+      "training_rows": 17787
+    },
+    {
+      "mode": "combinado",
+      "family": "ridge",
+      "params": {
+        "alpha": 1.0
+      },
+      "source_weight_budget": 1.0,
+      "validation": {
+        "mae": 2.3612298908161815,
+        "rmse": 3.3898335438959526,
+        "r2": 0.761297850626999,
+        "bias": 0.10676030499041256,
+        "n": 282
+      },
+      "training_rows": 17787
+    },
+    {
+      "mode": "combinado",
+      "family": "ridge",
+      "params": {
+        "alpha": 100.0
+      },
+      "source_weight_budget": 1.0,
+      "validation": {
+        "mae": 2.346233113960586,
+        "rmse": 3.3877090536546843,
+        "r2": 0.7615969576292007,
+        "bias": 0.11536119783301117,
+        "n": 282
+      },
+      "training_rows": 17787
+    },
+    {
+      "mode": "combinado",
+      "family": "hist_gradient_boosting",
+      "params": {
+        "max_leaf_nodes": 7,
+        "max_iter": 120,
+        "learning_rate": 0.05,
+        "l2_regularization": 5.0,
+        "min_samples_leaf": 20,
+        "early_stopping": false
+      },
+      "source_weight_budget": 1.0,
+      "validation": {
+        "mae": 2.2786114202206242,
+        "rmse": 3.2819248157372667,
+        "r2": 0.7762531966605118,
+        "bias": 0.04165208688739356,
+        "n": 282
+      },
+      "training_rows": 17787
+    },
+    {
+      "mode": "combinado",
+      "family": "hist_gradient_boosting",
+      "params": {
+        "max_leaf_nodes": 15,
+        "max_iter": 120,
+        "learning_rate": 0.05,
+        "l2_regularization": 5.0,
+        "min_samples_leaf": 20,
+        "early_stopping": false
+      },
+      "source_weight_budget": 1.0,
+      "validation": {
+        "mae": 2.3103175697969762,
+        "rmse": 3.315760289504208,
+        "r2": 0.7716159154876605,
+        "bias": -0.013842179257840106,
+        "n": 282
+      },
+      "training_rows": 17787
+    },
+    {
+      "mode": "combinado",
+      "family": "random_forest",
+      "params": {
+        "n_estimators": 100,
+        "min_samples_leaf": 5,
+        "max_depth": 10,
+        "max_features": 1.0
+      },
+      "source_weight_budget": 1.0,
+      "validation": {
+        "mae": 2.3217651639857775,
+        "rmse": 3.339295216915692,
+        "r2": 0.7683623157155292,
+        "bias": 0.060763207307301566,
+        "n": 282
+      },
+      "training_rows": 17787
+    },
+    {
+      "mode": "combinado",
+      "family": "random_forest",
+      "params": {
+        "n_estimators": 100,
+        "min_samples_leaf": 15,
+        "max_depth": 10,
+        "max_features": 1.0
+      },
+      "source_weight_budget": 1.0,
+      "validation": {
+        "mae": 2.3186116082103525,
+        "rmse": 3.332037901112875,
+        "r2": 0.7693680615264443,
+        "bias": 0.02144087464064608,
+        "n": 282
+      },
+      "training_rows": 17787
+    }
+  ],
+  "data_quality": {
+    "source": {
+      "cache_signature": {
+        "size": 1317949839,
+        "mtime_ns": 1792421385684913400,
+        "stations": [
+          "CA-MAC-01",
+          "CA-HUA-01"
+        ],
+        "parser_version": 1
+      },
+      "source_path": "Dataset\\1a_Vigilancia y Seguimiento ambiental en la calidad del aire.csv",
+      "source_sha256": "1f09a8064ee0aed0b3a9a0a90b96f63ce226b45a969dace49f73e45134f26d92",
+      "counts": {
+        "source_rows_scanned": 2883877,
+        "candidate_hourly_rows": 159852,
+        "missing_or_invalid_pm25": 21528,
+        "midnight_interpretation": 654,
+        "unknown_unit": 122640
+      },
+      "duplicates": {
+        "identical_duplicates": 0,
+        "conflicting_rows_removed": 0
+      },
+      "accepted": 15684,
+      "output_sha256": "b2ee5e6e0af74b0f2ae0409c71987a2e7e64b4977595b762584e23afdebd2238",
+      "assumptions": {
+        "source_timezone_assumption": "UTC-05:00, hora peruana; pendiente de confirmar con diccionario OEFA",
+        "source_midnight_assumption": "1899-12-31 en HORA_INICIO representa 00:00:00",
+        "source_interval_assumption": "Se usa HORA_INICIO como etiqueta horaria; equivalencia con final de intervalo OpenAQ pendiente de confirmar"
+      }
+    },
+    "target": {
+      "counts": {
+        "pm25_rows": 3315
+      },
+      "duplicates": {
+        "identical_duplicates": 0,
+        "conflicting_rows_removed": 0
+      },
+      "accepted": 3315,
+      "output_sha256": "a9d30d2c3f6912915500ddb74724745eb45fca1fc0805e06f54741188c92257b"
+    },
+    "monthly_observations": [
+      {
+        "source": "OEFA",
+        "station": "CA-HUA-01",
+        "month": "2021-12",
+        "observations": 558,
+        "first_utc": "2021-12-08 23:00:00+00:00",
+        "last_utc": "2022-01-01 04:00:00+00:00",
+        "zeros": 0,
+        "mean_pm25": 11.036917562724016
+      },
+      {
+        "source": "OEFA",
+        "station": "CA-HUA-01",
+        "month": "2022-01",
+        "observations": 744,
+        "first_utc": "2022-01-01 05:00:00+00:00",
+        "last_utc": "2022-02-01 04:00:00+00:00",
+        "zeros": 0,
+        "mean_pm25": 11.963575268817204
+      },
+      {
+        "source": "OEFA",
+        "station": "CA-HUA-01",
+        "month": "2022-02",
+        "observations": 668,
+        "first_utc": "2022-02-01 05:00:00+00:00",
+        "last_utc": "2022-03-01 04:00:00+00:00",
+        "zeros": 0,
+        "mean_pm25": 11.329640718562874
+      },
+      {
+        "source": "OEFA",
+        "station": "CA-HUA-01",
+        "month": "2022-03",
+        "observations": 659,
+        "first_utc": "2022-03-01 05:00:00+00:00",
+        "last_utc": "2022-03-28 15:00:00+00:00",
+        "zeros": 0,
+        "mean_pm25": 11.44112291350531
+      },
+      {
+        "source": "OEFA",
+        "station": "CA-HUA-01",
+        "month": "2022-06",
+        "observations": 559,
+        "first_utc": "2022-06-07 22:00:00+00:00",
+        "last_utc": "2022-07-01 04:00:00+00:00",
+        "zeros": 0,
+        "mean_pm25": 12.816815742397138
+      },
+      {
+        "source": "OEFA",
+        "station": "CA-HUA-01",
+        "month": "2022-07",
+        "observations": 741,
+        "first_utc": "2022-07-01 05:00:00+00:00",
+        "last_utc": "2022-08-01 04:00:00+00:00",
+        "zeros": 0,
+        "mean_pm25": 11.856140350877196
+      },
+      {
+        "source": "OEFA",
+        "station": "CA-HUA-01",
+        "month": "2022-08",
+        "observations": 742,
+        "first_utc": "2022-08-01 05:00:00+00:00",
+        "last_utc": "2022-09-01 04:00:00+00:00",
+        "zeros": 0,
+        "mean_pm25": 10.441374663072777
+      },
+      {
+        "source": "OEFA",
+        "station": "CA-HUA-01",
+        "month": "2022-09",
+        "observations": 716,
+        "first_utc": "2022-09-01 05:00:00+00:00",
+        "last_utc": "2022-10-01 04:00:00+00:00",
+        "zeros": 0,
+        "mean_pm25": 11.143254189944134
+      },
+      {
+        "source": "OEFA",
+        "station": "CA-HUA-01",
+        "month": "2022-10",
+        "observations": 741,
+        "first_utc": "2022-10-01 05:00:00+00:00",
+        "last_utc": "2022-11-01 04:00:00+00:00",
+        "zeros": 0,
+        "mean_pm25": 11.692753036437248
+      },
+      {
+        "source": "OEFA",
+        "station": "CA-HUA-01",
+        "month": "2022-11",
+        "observations": 577,
+        "first_utc": "2022-11-01 05:00:00+00:00",
+        "last_utc": "2022-12-01 04:00:00+00:00",
+        "zeros": 0,
+        "mean_pm25": 9.852859618717503
+      },
+      {
+        "source": "OEFA",
+        "station": "CA-HUA-01",
+        "month": "2022-12",
+        "observations": 743,
+        "first_utc": "2022-12-01 05:00:00+00:00",
+        "last_utc": "2023-01-01 04:00:00+00:00",
+        "zeros": 0,
+        "mean_pm25": 10.49293405114401
+      },
+      {
+        "source": "OEFA",
+        "station": "CA-MAC-01",
+        "month": "2021-12",
+        "observations": 528,
+        "first_utc": "2021-12-10 03:00:00+00:00",
+        "last_utc": "2022-01-01 04:00:00+00:00",
+        "zeros": 3,
+        "mean_pm25": 9.291856060606062
+      },
+      {
+        "source": "OEFA",
+        "station": "CA-MAC-01",
+        "month": "2022-01",
+        "observations": 744,
+        "first_utc": "2022-01-01 05:00:00+00:00",
+        "last_utc": "2022-02-01 04:00:00+00:00",
+        "zeros": 0,
+        "mean_pm25": 9.3127688172043
+      },
+      {
+        "source": "OEFA",
+        "station": "CA-MAC-01",
+        "month": "2022-02",
+        "observations": 669,
+        "first_utc": "2022-02-01 05:00:00+00:00",
+        "last_utc": "2022-03-01 04:00:00+00:00",
+        "zeros": 0,
+        "mean_pm25": 8.305829596412556
+      },
+      {
+        "source": "OEFA",
+        "station": "CA-MAC-01",
+        "month": "2022-03",
+        "observations": 663,
+        "first_utc": "2022-03-01 05:00:00+00:00",
+        "last_utc": "2022-03-28 19:00:00+00:00",
+        "zeros": 0,
+        "mean_pm25": 8.77812971342383
+      },
+      {
+        "source": "OEFA",
+        "station": "CA-MAC-01",
+        "month": "2022-05",
+        "observations": 555,
+        "first_utc": "2022-05-07 20:00:00+00:00",
+        "last_utc": "2022-05-31 20:00:00+00:00",
+        "zeros": 0,
+        "mean_pm25": 14.328648648648649
+      },
+      {
+        "source": "OEFA",
+        "station": "CA-MAC-01",
+        "month": "2022-06",
+        "observations": 675,
+        "first_utc": "2022-06-01 23:00:00+00:00",
+        "last_utc": "2022-07-01 04:00:00+00:00",
+        "zeros": 0,
+        "mean_pm25": 16.950074074074077
+      },
+      {
+        "source": "OEFA",
+        "station": "CA-MAC-01",
+        "month": "2022-07",
+        "observations": 742,
+        "first_utc": "2022-07-01 05:00:00+00:00",
+        "last_utc": "2022-08-01 04:00:00+00:00",
+        "zeros": 0,
+        "mean_pm25": 15.587196765498652
+      },
+      {
+        "source": "OEFA",
+        "station": "CA-MAC-01",
+        "month": "2022-08",
+        "observations": 741,
+        "first_utc": "2022-08-01 05:00:00+00:00",
+        "last_utc": "2022-09-01 04:00:00+00:00",
+        "zeros": 0,
+        "mean_pm25": 13.22456140350877
+      },
+      {
+        "source": "OEFA",
+        "station": "CA-MAC-01",
+        "month": "2022-09",
+        "observations": 718,
+        "first_utc": "2022-09-01 05:00:00+00:00",
+        "last_utc": "2022-10-01 04:00:00+00:00",
+        "zeros": 0,
+        "mean_pm25": 11.333649025069636
+      },
+      {
+        "source": "OEFA",
+        "station": "CA-MAC-01",
+        "month": "2022-10",
+        "observations": 742,
+        "first_utc": "2022-10-01 05:00:00+00:00",
+        "last_utc": "2022-11-01 04:00:00+00:00",
+        "zeros": 0,
+        "mean_pm25": 11.039070080862533
+      },
+      {
+        "source": "OEFA",
+        "station": "CA-MAC-01",
+        "month": "2022-11",
+        "observations": 717,
+        "first_utc": "2022-11-01 05:00:00+00:00",
+        "last_utc": "2022-12-01 04:00:00+00:00",
+        "zeros": 0,
+        "mean_pm25": 11.430808926080891
+      },
+      {
+        "source": "OEFA",
+        "station": "CA-MAC-01",
+        "month": "2022-12",
+        "observations": 742,
+        "first_utc": "2022-12-01 05:00:00+00:00",
+        "last_utc": "2023-01-01 04:00:00+00:00",
+        "zeros": 0,
+        "mean_pm25": 11.89401617250674
+      },
+      {
+        "source": "OpenAQ",
+        "station": "2415",
+        "month": "2026-04",
+        "observations": 432,
+        "first_utc": "2026-04-01 06:00:00+00:00",
+        "last_utc": "2026-05-01 04:00:00+00:00",
+        "zeros": 0,
+        "mean_pm25": 28.08930555555556
+      },
+      {
+        "source": "OpenAQ",
+        "station": "2415",
+        "month": "2026-05",
+        "observations": 721,
+        "first_utc": "2026-05-01 05:00:00+00:00",
+        "last_utc": "2026-06-01 04:00:00+00:00",
+        "zeros": 0,
+        "mean_pm25": 35.85843273231623
+      },
+      {
+        "source": "OpenAQ",
+        "station": "2415",
+        "month": "2026-06",
+        "observations": 717,
+        "first_utc": "2026-06-01 05:00:00+00:00",
+        "last_utc": "2026-07-01 04:00:00+00:00",
+        "zeros": 0,
+        "mean_pm25": 19.822273361227335
+      },
+      {
+        "source": "OpenAQ",
+        "station": "2415",
+        "month": "2026-07",
+        "observations": 352,
+        "first_utc": "2026-07-01 05:00:00+00:00",
+        "last_utc": "2026-08-01 04:00:00+00:00",
+        "zeros": 2,
+        "mean_pm25": 22.710511363636364
+      },
+      {
+        "source": "OpenAQ",
+        "station": "2415",
+        "month": "2026-08",
+        "observations": 415,
+        "first_utc": "2026-08-01 10:00:00+00:00",
+        "last_utc": "2026-09-01 01:00:00+00:00",
+        "zeros": 0,
+        "mean_pm25": 18.187060240963856
+      },
+      {
+        "source": "OpenAQ",
+        "station": "2415",
+        "month": "2026-09",
+        "observations": 423,
+        "first_utc": "2026-09-01 06:00:00+00:00",
+        "last_utc": "2026-10-01 04:00:00+00:00",
+        "zeros": 0,
+        "mean_pm25": 15.083167848699764
+      },
+      {
+        "source": "OpenAQ",
+        "station": "2415",
+        "month": "2026-10",
+        "observations": 255,
+        "first_utc": "2026-10-01 05:00:00+00:00",
+        "last_utc": "2026-10-16 03:00:00+00:00",
+        "zeros": 0,
+        "mean_pm25": 15.102117647058824
+      }
+    ]
+  },
+  "provenance": {
+    "manifest_sha256": "6b25df1c91052778df46b39e274687aa86e22fd350ff302bb7486c29c1eea2b7",
+    "oefa_processed_sha256": "b2ee5e6e0af74b0f2ae0409c71987a2e7e64b4977595b762584e23afdebd2238",
+    "target_processed_sha256": "a9d30d2c3f6912915500ddb74724745eb45fca1fc0805e06f54741188c92257b"
+  },
+  "versions": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "pandas": "3.0.1",
+    "sklearn": "1.9.1",
+    "joblib": "1.6.0"
+  }
+}

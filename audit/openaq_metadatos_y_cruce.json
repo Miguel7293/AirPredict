@@ -1,0 +1,1322 @@
+{
+  "audit_date_local": "2026-10-19",
+  "method": "Public Explorer HTML metadata; known regional ID range is a candidate inventory, not an exhaustive API catalogue.",
+  "locations": [
+    {
+      "id": 2578954,
+      "url": "https://explore.openaq.org/locations/2578954",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": 2578955,
+      "url": "https://explore.openaq.org/locations/2578955",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": 2578956,
+      "url": "https://explore.openaq.org/locations/2578956",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": 2578957,
+      "url": "https://explore.openaq.org/locations/2578957",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": 2578958,
+      "url": "https://explore.openaq.org/locations/2578958",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": 2578959,
+      "url": "https://explore.openaq.org/locations/2578959",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": 2578960,
+      "url": "https://explore.openaq.org/locations/2578960",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": 2578961,
+      "url": "https://explore.openaq.org/locations/2578961",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": 2578962,
+      "url": "https://explore.openaq.org/locations/2578962",
+      "response_date": "Mon, 19 Oct 2026 17:10:28 GMT",
+      "name": "Cajamarquilla-ROJ",
+      "provider": "Peru Organismo de Evaluación y Fiscalización Ambiental",
+      "timezone": "America/Lima",
+      "latitude": -11.952882,
+      "longitude": -76.875572,
+      "datetime_first_utc": "2024-03-11T01:00:00Z",
+      "datetime_last_utc": "2025-01-08T12:00:00Z",
+      "datetime_last_local": "2025-01-08T07:00:00-05:00",
+      "pm25_sensors": [],
+      "raw_public_metadata": "id:2578962,name:\"Cajamarquilla-ROJ\",locality:\"Lurigancho Chosica\",timezone:\"America/Lima\",country:$R[19]={id:5,code:\"PE\",name:\"Peru\"},owner:$R[20]={id:4,name:\"Unknown Governmental Organization\"},provider:$R[21]={id:71,name:\"Peru Organismo de Evaluación y Fiscalización Ambiental\"},isMobile:!1,isMonitor:!0,instruments:$R[22]=[$R[23]={id:2,name:\"Government Monitor\"}],sensors:$R[24]=[$R[25]={id:8437753,name:\"so2 µg/m³\",parameter:$R[26]={id:6,name:\"so2\",units:\"µg/m³\",displayName:\"SO₂ mass\"}}],coordinates:$R[27]={latitude:-11.952882,longitude:-76.875572},licenses:null,bounds:$R[28]=[-76.875572,-11.952882,-76.875572,-11.952882],distance:null,datetimeFirst:$R[29]={utc:\"2024-03-11T01:00:00Z\",local:\"2024-03-10T20:00:00-05:00\"},datetimeLast:$R[30]={utc:\"2025-01-08T12:00:00Z\",local:\"2025-01-08T07:00:00-05:00\"}});_$HY.r[\"000000000100000000000130091\"]=$R[18];$R[15]($R[10],$R[31]=[]);_$HY.r[\"000000000100000000000130092\"]=$R[31];$R[15]($R[12],!0);"
+    },
+    {
+      "id": 2578963,
+      "url": "https://explore.openaq.org/locations/2578963",
+      "response_date": "Mon, 19 Oct 2026 17:10:28 GMT",
+      "name": "Casa Grande 03",
+      "provider": "Peru Organismo de Evaluación y Fiscalización Ambiental",
+      "timezone": "America/Lima",
+      "latitude": -7.739941,
+      "longitude": -79.183239,
+      "datetime_first_utc": "2024-03-11T01:00:00Z",
+      "datetime_last_utc": "2025-01-08T12:05:00Z",
+      "datetime_last_local": "2025-01-08T07:05:00-05:00",
+      "pm25_sensors": [
+        {
+          "id": 8437744,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ],
+      "raw_public_metadata": "id:2578963,name:\"Casa Grande 03\",locality:\"Casa Grande\",timezone:\"America/Lima\",country:$R[19]={id:5,code:\"PE\",name:\"Peru\"},owner:$R[20]={id:4,name:\"Unknown Governmental Organization\"},provider:$R[21]={id:71,name:\"Peru Organismo de Evaluación y Fiscalización Ambiental\"},isMobile:!1,isMonitor:!0,instruments:$R[22]=[$R[23]={id:2,name:\"Government Monitor\"}],sensors:$R[24]=[$R[25]={id:8437747,name:\"pm10 µg/m³\",parameter:$R[26]={id:1,name:\"pm10\",units:\"µg/m³\",displayName:\"PM10\"}},$R[27]={id:8437744,name:\"pm25 µg/m³\",parameter:$R[28]={id:2,name:\"pm25\",units:\"µg/m³\",displayName:\"PM2.5\"}}],coordinates:$R[29]={latitude:-7.739941,longitude:-79.183239},licenses:null,bounds:$R[30]=[-79.183239,-7.739941,-79.183239,-7.739941],distance:null,datetimeFirst:$R[31]={utc:\"2024-03-11T01:00:00Z\",local:\"2024-03-10T20:00:00-05:00\"},datetimeLast:$R[32]={utc:\"2025-01-08T12:05:00Z\",local:\"2025-01-08T07:05:00-05:00\"}});_$HY.r[\"000000000100000000000130091\"]=$R[18];$R[15]($R[10],$R[33]=[]);_$HY.r[\"000000000100000000000130092\"]=$R[33];$R[15]($R[12],!0);"
+    },
+    {
+      "id": 2578964,
+      "url": "https://explore.openaq.org/locations/2578964",
+      "response_date": "Mon, 19 Oct 2026 17:10:28 GMT",
+      "name": "Ccapacmarca",
+      "provider": "Peru Organismo de Evaluación y Fiscalización Ambiental",
+      "timezone": "America/Lima",
+      "latitude": -14.008673,
+      "longitude": -72.001256,
+      "datetime_first_utc": "2024-03-11T01:00:00Z",
+      "datetime_last_utc": "2025-01-08T12:00:00Z",
+      "datetime_last_local": "2025-01-08T07:00:00-05:00",
+      "pm25_sensors": [
+        {
+          "id": 8437772,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ],
+      "raw_public_metadata": "id:2578964,name:\"Ccapacmarca\",locality:\"Capacmarca\",timezone:\"America/Lima\",country:$R[19]={id:5,code:\"PE\",name:\"Peru\"},owner:$R[20]={id:4,name:\"Unknown Governmental Organization\"},provider:$R[21]={id:71,name:\"Peru Organismo de Evaluación y Fiscalización Ambiental\"},isMobile:!1,isMonitor:!0,instruments:$R[22]=[$R[23]={id:2,name:\"Government Monitor\"}],sensors:$R[24]=[$R[25]={id:8437750,name:\"pm10 µg/m³\",parameter:$R[26]={id:1,name:\"pm10\",units:\"µg/m³\",displayName:\"PM10\"}},$R[27]={id:8437772,name:\"pm25 µg/m³\",parameter:$R[28]={id:2,name:\"pm25\",units:\"µg/m³\",displayName:\"PM2.5\"}}],coordinates:$R[29]={latitude:-14.008673,longitude:-72.001256},licenses:null,bounds:$R[30]=[-72.001256,-14.008673,-72.001256,-14.008673],distance:null,datetimeFirst:$R[31]={utc:\"2024-03-11T01:00:00Z\",local:\"2024-03-10T20:00:00-05:00\"},datetimeLast:$R[32]={utc:\"2025-01-08T12:00:00Z\",local:\"2025-01-08T07:00:00-05:00\"}});_$HY.r[\"000000000100000000000130091\"]=$R[18];$R[15]($R[10],$R[33]=[]);_$HY.r[\"000000000100000000000130092\"]=$R[33];$R[15]($R[12],!0);"
+    },
+    {
+      "id": 2578965,
+      "url": "https://explore.openaq.org/locations/2578965",
+      "response_date": "Mon, 19 Oct 2026 17:10:29 GMT",
+      "name": "Challhuahuacho",
+      "provider": "Peru Organismo de Evaluación y Fiscalización Ambiental",
+      "timezone": "America/Lima",
+      "latitude": -14.110423,
+      "longitude": -72.242785,
+      "datetime_first_utc": "2024-03-11T01:00:00Z",
+      "datetime_last_utc": "2025-12-04T00:05:00Z",
+      "datetime_last_local": "2025-12-03T19:05:00-05:00",
+      "pm25_sensors": [
+        {
+          "id": 8437745,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ],
+      "raw_public_metadata": "id:2578965,name:\"Challhuahuacho\",locality:\"Challhuahuacho\",timezone:\"America/Lima\",country:$R[19]={id:5,code:\"PE\",name:\"Peru\"},owner:$R[20]={id:4,name:\"Unknown Governmental Organization\"},provider:$R[21]={id:71,name:\"Peru Organismo de Evaluación y Fiscalización Ambiental\"},isMobile:!1,isMonitor:!0,instruments:$R[22]=[$R[23]={id:2,name:\"Government Monitor\"}],sensors:$R[24]=[$R[25]={id:8437768,name:\"pm10 µg/m³\",parameter:$R[26]={id:1,name:\"pm10\",units:\"µg/m³\",displayName:\"PM10\"}},$R[27]={id:8437745,name:\"pm25 µg/m³\",parameter:$R[28]={id:2,name:\"pm25\",units:\"µg/m³\",displayName:\"PM2.5\"}}],coordinates:$R[29]={latitude:-14.110423,longitude:-72.242785},licenses:null,bounds:$R[30]=[-72.242785,-14.110423,-72.242785,-14.110423],distance:null,datetimeFirst:$R[31]={utc:\"2024-03-11T01:00:00Z\",local:\"2024-03-10T20:00:00-05:00\"},datetimeLast:$R[32]={utc:\"2025-12-04T00:05:00Z\",local:\"2025-12-03T19:05:00-05:00\"}});_$HY.r[\"000000000100000000000130091\"]=$R[18];$R[15]($R[10],$R[33]=[]);_$HY.r[\"000000000100000000000130092\"]=$R[33];$R[15]($R[12],!0);"
+    },
+    {
+      "id": 2578966,
+      "url": "https://explore.openaq.org/locations/2578966",
+      "response_date": "Mon, 19 Oct 2026 17:10:28 GMT",
+      "name": "Inca Garcilaso de La Vega",
+      "provider": "Peru Organismo de Evaluación y Fiscalización Ambiental",
+      "timezone": "America/Lima",
+      "latitude": -9.102904,
+      "longitude": -78.565141,
+      "datetime_first_utc": "2024-03-11T01:00:00Z",
+      "datetime_last_utc": "2025-12-04T00:00:00Z",
+      "datetime_last_local": "2025-12-03T19:00:00-05:00",
+      "pm25_sensors": [
+        {
+          "id": 8437794,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ],
+      "raw_public_metadata": "id:2578966,name:\"Inca Garcilaso de La Vega\",locality:\"Chimbote\",timezone:\"America/Lima\",country:$R[19]={id:5,code:\"PE\",name:\"Peru\"},owner:$R[20]={id:4,name:\"Unknown Governmental Organization\"},provider:$R[21]={id:71,name:\"Peru Organismo de Evaluación y Fiscalización Ambiental\"},isMobile:!1,isMonitor:!0,instruments:$R[22]=[$R[23]={id:2,name:\"Government Monitor\"}],sensors:$R[24]=[$R[25]={id:8437790,name:\"pm10 µg/m³\",parameter:$R[26]={id:1,name:\"pm10\",units:\"µg/m³\",displayName:\"PM10\"}},$R[27]={id:8437794,name:\"pm25 µg/m³\",parameter:$R[28]={id:2,name:\"pm25\",units:\"µg/m³\",displayName:\"PM2.5\"}},$R[29]={id:8437792,name:\"so2 µg/m³\",parameter:$R[30]={id:6,name:\"so2\",units:\"µg/m³\",displayName:\"SO₂ mass\"}}],coordinates:$R[31]={latitude:-9.102904,longitude:-78.565141},licenses:null,bounds:$R[32]=[-78.565141,-9.102904,-78.565141,-9.102904],distance:null,datetimeFirst:$R[33]={utc:\"2024-03-11T01:00:00Z\",local:\"2024-03-10T20:00:00-05:00\"},datetimeLast:$R[34]={utc:\"2025-12-04T00:00:00Z\",local:\"2025-12-03T19:00:00-05:00\"}});_$HY.r[\"000000000100000000000130091\"]=$R[18];$R[15]($R[10],$R[35]=[]);_$HY.r[\"000000000100000000000130092\"]=$R[35];$R[15]($R[12],!0);"
+    },
+    {
+      "id": 2578967,
+      "url": "https://explore.openaq.org/locations/2578967",
+      "response_date": "Mon, 19 Oct 2026 17:10:29 GMT",
+      "name": "Colquijirca",
+      "provider": "Peru Organismo de Evaluación y Fiscalización Ambiental",
+      "timezone": "America/Lima",
+      "latitude": -10.750829,
+      "longitude": -76.263631,
+      "datetime_first_utc": "2024-03-11T01:00:00Z",
+      "datetime_last_utc": "2025-01-08T12:00:00Z",
+      "datetime_last_local": "2025-01-08T07:00:00-05:00",
+      "pm25_sensors": [
+        {
+          "id": 8437777,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ],
+      "raw_public_metadata": "id:2578967,name:\"Colquijirca\",locality:\"Tinyahuarco\",timezone:\"America/Lima\",country:$R[19]={id:5,code:\"PE\",name:\"Peru\"},owner:$R[20]={id:4,name:\"Unknown Governmental Organization\"},provider:$R[21]={id:71,name:\"Peru Organismo de Evaluación y Fiscalización Ambiental\"},isMobile:!1,isMonitor:!0,instruments:$R[22]=[$R[23]={id:2,name:\"Government Monitor\"}],sensors:$R[24]=[$R[25]={id:8437796,name:\"pm10 µg/m³\",parameter:$R[26]={id:1,name:\"pm10\",units:\"µg/m³\",displayName:\"PM10\"}},$R[27]={id:8437777,name:\"pm25 µg/m³\",parameter:$R[28]={id:2,name:\"pm25\",units:\"µg/m³\",displayName:\"PM2.5\"}}],coordinates:$R[29]={latitude:-10.750829,longitude:-76.263631},licenses:null,bounds:$R[30]=[-76.263631,-10.750829,-76.263631,-10.750829],distance:null,datetimeFirst:$R[31]={utc:\"2024-03-11T01:00:00Z\",local:\"2024-03-10T20:00:00-05:00\"},datetimeLast:$R[32]={utc:\"2025-01-08T12:00:00Z\",local:\"2025-01-08T07:00:00-05:00\"}});_$HY.r[\"000000000100000000000130091\"]=$R[18];$R[15]($R[10],$R[33]=[]);_$HY.r[\"000000000100000000000130092\"]=$R[33];$R[15]($R[12],!0);"
+    },
+    {
+      "id": 2578968,
+      "url": "https://explore.openaq.org/locations/2578968",
+      "response_date": "Mon, 19 Oct 2026 17:10:28 GMT",
+      "name": "Huachipa - El Paraiso",
+      "provider": "Peru Organismo de Evaluación y Fiscalización Ambiental",
+      "timezone": "America/Lima",
+      "latitude": -11.996141,
+      "longitude": -76.922521,
+      "datetime_first_utc": "2024-03-11T01:00:00Z",
+      "datetime_last_utc": "2025-12-04T00:05:00Z",
+      "datetime_last_local": "2025-12-03T19:05:00-05:00",
+      "pm25_sensors": [
+        {
+          "id": 8437791,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ],
+      "raw_public_metadata": "id:2578968,name:\"Huachipa - El Paraiso\",locality:\"Lurigancho Chosica\",timezone:\"America/Lima\",country:$R[19]={id:5,code:\"PE\",name:\"Peru\"},owner:$R[20]={id:4,name:\"Unknown Governmental Organization\"},provider:$R[21]={id:71,name:\"Peru Organismo de Evaluación y Fiscalización Ambiental\"},isMobile:!1,isMonitor:!0,instruments:$R[22]=[$R[23]={id:2,name:\"Government Monitor\"}],sensors:$R[24]=[$R[25]={id:9831841,name:\"no2 µg/m³\",parameter:$R[26]={id:5,name:\"no2\",units:\"µg/m³\",displayName:\"NO₂ mass\"}},$R[27]={id:8437759,name:\"pm10 µg/m³\",parameter:$R[28]={id:1,name:\"pm10\",units:\"µg/m³\",displayName:\"PM10\"}},$R[29]={id:8437791,name:\"pm25 µg/m³\",parameter:$R[30]={id:2,name:\"pm25\",units:\"µg/m³\",displayName:\"PM2.5\"}},$R[31]={id:9831842,name:\"so2 µg/m³\",parameter:$R[32]={id:6,name:\"so2\",units:\"µg/m³\",displayName:\"SO₂ mass\"}}],coordinates:$R[33]={latitude:-11.996141,longitude:-76.922521},licenses:null,bounds:$R[34]=[-76.922521,-11.996141,-76.922521,-11.996141],distance:null,datetimeFirst:$R[35]={utc:\"2024-03-11T01:00:00Z\",local:\"2024-03-10T20:00:00-05:00\"},datetimeLast:$R[36]={utc:\"2025-12-04T00:05:00Z\",local:\"2025-12-03T19:05:00-05:00\"}});_$HY.r[\"000000000100000000000130091\"]=$R[18];$R[15]($R[10],$R[37]=[]);_$HY.r[\"000000000100000000000130092\"]=$R[37];$R[15]($R[12],!0);"
+    },
+    {
+      "id": 2578969,
+      "url": "https://explore.openaq.org/locations/2578969",
+      "response_date": "Mon, 19 Oct 2026 17:10:29 GMT",
+      "name": "Huachipa - Nieveria",
+      "provider": "Peru Organismo de Evaluación y Fiscalización Ambiental",
+      "timezone": "America/Lima",
+      "latitude": -11.985654,
+      "longitude": -76.925467,
+      "datetime_first_utc": "2024-03-11T01:00:00Z",
+      "datetime_last_utc": "2025-12-04T00:00:00Z",
+      "datetime_last_local": "2025-12-03T19:00:00-05:00",
+      "pm25_sensors": [
+        {
+          "id": 8437769,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ],
+      "raw_public_metadata": "id:2578969,name:\"Huachipa - Nieveria\",locality:\"Lurigancho Chosica\",timezone:\"America/Lima\",country:$R[19]={id:5,code:\"PE\",name:\"Peru\"},owner:$R[20]={id:4,name:\"Unknown Governmental Organization\"},provider:$R[21]={id:71,name:\"Peru Organismo de Evaluación y Fiscalización Ambiental\"},isMobile:!1,isMonitor:!0,instruments:$R[22]=[$R[23]={id:2,name:\"Government Monitor\"}],sensors:$R[24]=[$R[25]={id:8437739,name:\"pm10 µg/m³\",parameter:$R[26]={id:1,name:\"pm10\",units:\"µg/m³\",displayName:\"PM10\"}},$R[27]={id:8437769,name:\"pm25 µg/m³\",parameter:$R[28]={id:2,name:\"pm25\",units:\"µg/m³\",displayName:\"PM2.5\"}}],coordinates:$R[29]={latitude:-11.985654,longitude:-76.925467},licenses:null,bounds:$R[30]=[-76.925467,-11.985654,-76.925467,-11.985654],distance:null,datetimeFirst:$R[31]={utc:\"2024-03-11T01:00:00Z\",local:\"2024-03-10T20:00:00-05:00\"},datetimeLast:$R[32]={utc:\"2025-12-04T00:00:00Z\",local:\"2025-12-03T19:00:00-05:00\"}});_$HY.r[\"000000000100000000000130091\"]=$R[18];$R[15]($R[10],$R[33]=[]);_$HY.r[\"000000000100000000000130092\"]=$R[33];$R[15]($R[12],!0);"
+    },
+    {
+      "id": 2578970,
+      "url": "https://explore.openaq.org/locations/2578970",
+      "response_date": "Mon, 19 Oct 2026 17:10:29 GMT",
+      "name": "Huachipa - Santa Maria",
+      "provider": "Peru Organismo de Evaluación y Fiscalización Ambiental",
+      "timezone": "America/Lima",
+      "latitude": -12.012363,
+      "longitude": -76.937171,
+      "datetime_first_utc": "2024-03-11T01:00:00Z",
+      "datetime_last_utc": "2025-12-04T00:05:00Z",
+      "datetime_last_local": "2025-12-03T19:05:00-05:00",
+      "pm25_sensors": [
+        {
+          "id": 8437787,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ],
+      "raw_public_metadata": "id:2578970,name:\"Huachipa - Santa Maria\",locality:\"Lurigancho Chosica\",timezone:\"America/Lima\",country:$R[19]={id:5,code:\"PE\",name:\"Peru\"},owner:$R[20]={id:4,name:\"Unknown Governmental Organization\"},provider:$R[21]={id:71,name:\"Peru Organismo de Evaluación y Fiscalización Ambiental\"},isMobile:!1,isMonitor:!0,instruments:$R[22]=[$R[23]={id:2,name:\"Government Monitor\"}],sensors:$R[24]=[$R[25]={id:9831843,name:\"no2 µg/m³\",parameter:$R[26]={id:5,name:\"no2\",units:\"µg/m³\",displayName:\"NO₂ mass\"}},$R[27]={id:8437800,name:\"pm10 µg/m³\",parameter:$R[28]={id:1,name:\"pm10\",units:\"µg/m³\",displayName:\"PM10\"}},$R[29]={id:8437787,name:\"pm25 µg/m³\",parameter:$R[30]={id:2,name:\"pm25\",units:\"µg/m³\",displayName:\"PM2.5\"}},$R[31]={id:9831844,name:\"so2 µg/m³\",parameter:$R[32]={id:6,name:\"so2\",units:\"µg/m³\",displayName:\"SO₂ mass\"}}],coordinates:$R[33]={latitude:-12.012363,longitude:-76.937171},licenses:null,bounds:$R[34]=[-76.937171,-12.012363,-76.937171,-12.012363],distance:null,datetimeFirst:$R[35]={utc:\"2024-03-11T01:00:00Z\",local:\"2024-03-10T20:00:00-05:00\"},datetimeLast:$R[36]={utc:\"2025-12-04T00:05:00Z\",local:\"2025-12-03T19:05:00-05:00\"}});_$HY.r[\"000000000100000000000130091\"]=$R[18];$R[15]($R[10],$R[37]=[]);_$HY.r[\"000000000100000000000130092\"]=$R[37];$R[15]($R[12],!0);"
+    },
+    {
+      "id": 2578971,
+      "url": "https://explore.openaq.org/locations/2578971",
+      "response_date": "Mon, 19 Oct 2026 17:10:29 GMT",
+      "name": "Huaraucaca",
+      "provider": "Peru Organismo de Evaluación y Fiscalización Ambiental",
+      "timezone": "America/Lima",
+      "latitude": -10.79368,
+      "longitude": -76.292123,
+      "datetime_first_utc": "2024-03-11T01:00:00Z",
+      "datetime_last_utc": "2025-12-04T00:05:00Z",
+      "datetime_last_local": "2025-12-03T19:05:00-05:00",
+      "pm25_sensors": [
+        {
+          "id": 8437763,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ],
+      "raw_public_metadata": "id:2578971,name:\"Huaraucaca\",locality:\"Tinyahuarco\",timezone:\"America/Lima\",country:$R[19]={id:5,code:\"PE\",name:\"Peru\"},owner:$R[20]={id:4,name:\"Unknown Governmental Organization\"},provider:$R[21]={id:71,name:\"Peru Organismo de Evaluación y Fiscalización Ambiental\"},isMobile:!1,isMonitor:!0,instruments:$R[22]=[$R[23]={id:2,name:\"Government Monitor\"}],sensors:$R[24]=[$R[25]={id:8437749,name:\"pm10 µg/m³\",parameter:$R[26]={id:1,name:\"pm10\",units:\"µg/m³\",displayName:\"PM10\"}},$R[27]={id:8437763,name:\"pm25 µg/m³\",parameter:$R[28]={id:2,name:\"pm25\",units:\"µg/m³\",displayName:\"PM2.5\"}}],coordinates:$R[29]={latitude:-10.79368,longitude:-76.292123},licenses:null,bounds:$R[30]=[-76.292123,-10.79368,-76.292123,-10.79368],distance:null,datetimeFirst:$R[31]={utc:\"2024-03-11T01:00:00Z\",local:\"2024-03-10T20:00:00-05:00\"},datetimeLast:$R[32]={utc:\"2025-12-04T00:05:00Z\",local:\"2025-12-03T19:05:00-05:00\"}});_$HY.r[\"000000000100000000000130091\"]=$R[18];$R[15]($R[10],$R[33]=[]);_$HY.r[\"000000000100000000000130092\"]=$R[33];$R[15]($R[12],!0);"
+    },
+    {
+      "id": 2578972,
+      "url": "https://explore.openaq.org/locations/2578972",
+      "response_date": "Mon, 19 Oct 2026 17:10:30 GMT",
+      "name": "Ilo - Bolognesi",
+      "provider": "Peru Organismo de Evaluación y Fiscalización Ambiental",
+      "timezone": "America/Lima",
+      "latitude": -17.634021,
+      "longitude": -71.335221,
+      "datetime_first_utc": "2024-03-11T01:00:00Z",
+      "datetime_last_utc": "2025-12-04T00:00:00Z",
+      "datetime_last_local": "2025-12-03T19:00:00-05:00",
+      "pm25_sensors": [
+        {
+          "id": 8437798,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ],
+      "raw_public_metadata": "id:2578972,name:\"Ilo - Bolognesi\",locality:\"Ilo\",timezone:\"America/Lima\",country:$R[19]={id:5,code:\"PE\",name:\"Peru\"},owner:$R[20]={id:4,name:\"Unknown Governmental Organization\"},provider:$R[21]={id:71,name:\"Peru Organismo de Evaluación y Fiscalización Ambiental\"},isMobile:!1,isMonitor:!0,instruments:$R[22]=[$R[23]={id:2,name:\"Government Monitor\"}],sensors:$R[24]=[$R[25]={id:8437779,name:\"co µg/m³\",parameter:$R[26]={id:4,name:\"co\",units:\"µg/m³\",displayName:\"CO mass\"}},$R[27]={id:8437773,name:\"no2 µg/m³\",parameter:$R[28]={id:5,name:\"no2\",units:\"µg/m³\",displayName:\"NO₂ mass\"}},$R[29]={id:8437783,name:\"pm10 µg/m³\",parameter:$R[30]={id:1,name:\"pm10\",units:\"µg/m³\",displayName:\"PM10\"}},$R[31]={id:8437798,name:\"pm25 µg/m³\",parameter:$R[32]={id:2,name:\"pm25\",units:\"µg/m³\",displayName:\"PM2.5\"}},$R[33]={id:8437788,name:\"so2 µg/m³\",parameter:$R[34]={id:6,name:\"so2\",units:\"µg/m³\",displayName:\"SO₂ mass\"}}],coordinates:$R[35]={latitude:-17.634021,longitude:-71.335221},licenses:null,bounds:$R[36]=[-71.335221,-17.634021,-71.335221,-17.634021],distance:null,datetimeFirst:$R[37]={utc:\"2024-03-11T01:00:00Z\",local:\"2024-03-10T20:00:00-05:00\"},datetimeLast:$R[38]={utc:\"2025-12-04T00:00:00Z\",local:\"2025-12-03T19:00:00-05:00\"}});_$HY.r[\"000000000100000000000130091\"]=$R[18];$R[15]($R[10],$R[39]=[]);_$HY.r[\"000000000100000000000130092\"]=$R[39];$R[15]($R[12],!0);"
+    },
+    {
+      "id": 2578973,
+      "url": "https://explore.openaq.org/locations/2578973",
+      "response_date": "Mon, 19 Oct 2026 17:10:30 GMT",
+      "name": "Ilo - Jose Pardo",
+      "provider": "Peru Organismo de Evaluación y Fiscalización Ambiental",
+      "timezone": "America/Lima",
+      "latitude": -17.647061,
+      "longitude": -71.3248,
+      "datetime_first_utc": "2024-03-11T00:40:00Z",
+      "datetime_last_utc": "2025-12-04T00:00:00Z",
+      "datetime_last_local": "2025-12-03T19:00:00-05:00",
+      "pm25_sensors": [
+        {
+          "id": 8437771,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ],
+      "raw_public_metadata": "id:2578973,name:\"Ilo - Jose Pardo\",locality:\"Ilo\",timezone:\"America/Lima\",country:$R[19]={id:5,code:\"PE\",name:\"Peru\"},owner:$R[20]={id:4,name:\"Unknown Governmental Organization\"},provider:$R[21]={id:71,name:\"Peru Organismo de Evaluación y Fiscalización Ambiental\"},isMobile:!1,isMonitor:!0,instruments:$R[22]=[$R[23]={id:2,name:\"Government Monitor\"}],sensors:$R[24]=[$R[25]={id:8437778,name:\"co µg/m³\",parameter:$R[26]={id:4,name:\"co\",units:\"µg/m³\",displayName:\"CO mass\"}},$R[27]={id:8437802,name:\"no2 µg/m³\",parameter:$R[28]={id:5,name:\"no2\",units:\"µg/m³\",displayName:\"NO₂ mass\"}},$R[29]={id:8437781,name:\"pm10 µg/m³\",parameter:$R[30]={id:1,name:\"pm10\",units:\"µg/m³\",displayName:\"PM10\"}},$R[31]={id:8437771,name:\"pm25 µg/m³\",parameter:$R[32]={id:2,name:\"pm25\",units:\"µg/m³\",displayName:\"PM2.5\"}},$R[33]={id:8437733,name:\"so2 µg/m³\",parameter:$R[34]={id:6,name:\"so2\",units:\"µg/m³\",displayName:\"SO₂ mass\"}}],coordinates:$R[35]={latitude:-17.647061,longitude:-71.3248},licenses:null,bounds:$R[36]=[-71.3248,-17.647061,-71.3248,-17.647061],distance:null,datetimeFirst:$R[37]={utc:\"2024-03-11T00:40:00Z\",local:\"2024-03-10T19:40:00-05:00\"},datetimeLast:$R[38]={utc:\"2025-12-04T00:00:00Z\",local:\"2025-12-03T19:00:00-05:00\"}});_$HY.r[\"000000000100000000000130091\"]=$R[18];$R[15]($R[10],$R[39]=[]);_$HY.r[\"000000000100000000000130092\"]=$R[39];$R[15]($R[12],!0);"
+    },
+    {
+      "id": 2578974,
+      "url": "https://explore.openaq.org/locations/2578974",
+      "response_date": "Mon, 19 Oct 2026 17:10:30 GMT",
+      "name": "Ilo - Pacocha",
+      "provider": "Peru Organismo de Evaluación y Fiscalización Ambiental",
+      "timezone": "America/Lima",
+      "latitude": -17.61076,
+      "longitude": -71.340649,
+      "datetime_first_utc": "2024-03-11T01:00:00Z",
+      "datetime_last_utc": "2025-12-04T00:00:00Z",
+      "datetime_last_local": "2025-12-03T19:00:00-05:00",
+      "pm25_sensors": [
+        {
+          "id": 8437797,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ],
+      "raw_public_metadata": "id:2578974,name:\"Ilo - Pacocha\",locality:\"Pacocha\",timezone:\"America/Lima\",country:$R[19]={id:5,code:\"PE\",name:\"Peru\"},owner:$R[20]={id:4,name:\"Unknown Governmental Organization\"},provider:$R[21]={id:71,name:\"Peru Organismo de Evaluación y Fiscalización Ambiental\"},isMobile:!1,isMonitor:!0,instruments:$R[22]=[$R[23]={id:2,name:\"Government Monitor\"}],sensors:$R[24]=[$R[25]={id:8437735,name:\"co µg/m³\",parameter:$R[26]={id:4,name:\"co\",units:\"µg/m³\",displayName:\"CO mass\"}},$R[27]={id:8437743,name:\"no2 µg/m³\",parameter:$R[28]={id:5,name:\"no2\",units:\"µg/m³\",displayName:\"NO₂ mass\"}},$R[29]={id:8437755,name:\"pm10 µg/m³\",parameter:$R[30]={id:1,name:\"pm10\",units:\"µg/m³\",displayName:\"PM10\"}},$R[31]={id:8437797,name:\"pm25 µg/m³\",parameter:$R[32]={id:2,name:\"pm25\",units:\"µg/m³\",displayName:\"PM2.5\"}},$R[33]={id:8437741,name:\"so2 µg/m³\",parameter:$R[34]={id:6,name:\"so2\",units:\"µg/m³\",displayName:\"SO₂ mass\"}}],coordinates:$R[35]={latitude:-17.61076,longitude:-71.340649},licenses:null,bounds:$R[36]=[-71.340649,-17.61076,-71.340649,-17.61076],distance:null,datetimeFirst:$R[37]={utc:\"2024-03-11T01:00:00Z\",local:\"2024-03-10T20:00:00-05:00\"},datetimeLast:$R[38]={utc:\"2025-12-04T00:00:00Z\",local:\"2025-12-03T19:00:00-05:00\"}});_$HY.r[\"000000000100000000000130091\"]=$R[18];$R[15]($R[10],$R[39]=[]);_$HY.r[\"000000000100000000000130092\"]=$R[39];$R[15]($R[12],!0);"
+    },
+    {
+      "id": 2578975,
+      "url": "https://explore.openaq.org/locations/2578975",
+      "response_date": "Mon, 19 Oct 2026 17:10:30 GMT",
+      "name": "Juprog",
+      "provider": "Peru Organismo de Evaluación y Fiscalización Ambiental",
+      "timezone": "America/Lima",
+      "latitude": -9.561408,
+      "longitude": -77.083976,
+      "datetime_first_utc": "2024-03-11T01:00:00Z",
+      "datetime_last_utc": "2025-12-04T00:05:00Z",
+      "datetime_last_local": "2025-12-03T19:05:00-05:00",
+      "pm25_sensors": [
+        {
+          "id": 8437751,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ],
+      "raw_public_metadata": "id:2578975,name:\"Juprog\",locality:\"San Marcos\",timezone:\"America/Lima\",country:$R[19]={id:5,code:\"PE\",name:\"Peru\"},owner:$R[20]={id:4,name:\"Unknown Governmental Organization\"},provider:$R[21]={id:71,name:\"Peru Organismo de Evaluación y Fiscalización Ambiental\"},isMobile:!1,isMonitor:!0,instruments:$R[22]=[$R[23]={id:2,name:\"Government Monitor\"}],sensors:$R[24]=[$R[25]={id:8437764,name:\"pm10 µg/m³\",parameter:$R[26]={id:1,name:\"pm10\",units:\"µg/m³\",displayName:\"PM10\"}},$R[27]={id:8437751,name:\"pm25 µg/m³\",parameter:$R[28]={id:2,name:\"pm25\",units:\"µg/m³\",displayName:\"PM2.5\"}}],coordinates:$R[29]={latitude:-9.561408,longitude:-77.083976},licenses:null,bounds:$R[30]=[-77.083976,-9.561408,-77.083976,-9.561408],distance:null,datetimeFirst:$R[31]={utc:\"2024-03-11T01:00:00Z\",local:\"2024-03-10T20:00:00-05:00\"},datetimeLast:$R[32]={utc:\"2025-12-04T00:05:00Z\",local:\"2025-12-03T19:05:00-05:00\"}});_$HY.r[\"000000000100000000000130091\"]=$R[18];$R[15]($R[10],$R[33]=[]);_$HY.r[\"000000000100000000000130092\"]=$R[33];$R[15]($R[12],!0);"
+    },
+    {
+      "id": 2578976,
+      "url": "https://explore.openaq.org/locations/2578976",
+      "response_date": "Mon, 19 Oct 2026 17:10:30 GMT",
+      "name": "La Huaca",
+      "provider": "Peru Organismo de Evaluación y Fiscalización Ambiental",
+      "timezone": "America/Lima",
+      "latitude": -4.914723,
+      "longitude": -80.960358,
+      "datetime_first_utc": "2024-03-11T01:00:00Z",
+      "datetime_last_utc": "2025-12-04T00:00:00Z",
+      "datetime_last_local": "2025-12-03T19:00:00-05:00",
+      "pm25_sensors": [
+        {
+          "id": 8437748,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ],
+      "raw_public_metadata": "id:2578976,name:\"La Huaca\",locality:\"La Huaca\",timezone:\"America/Lima\",country:$R[19]={id:5,code:\"PE\",name:\"Peru\"},owner:$R[20]={id:4,name:\"Unknown Governmental Organization\"},provider:$R[21]={id:71,name:\"Peru Organismo de Evaluación y Fiscalización Ambiental\"},isMobile:!1,isMonitor:!0,instruments:$R[22]=[$R[23]={id:2,name:\"Government Monitor\"}],sensors:$R[24]=[$R[25]={id:8437775,name:\"pm10 µg/m³\",parameter:$R[26]={id:1,name:\"pm10\",units:\"µg/m³\",displayName:\"PM10\"}},$R[27]={id:8437748,name:\"pm25 µg/m³\",parameter:$R[28]={id:2,name:\"pm25\",units:\"µg/m³\",displayName:\"PM2.5\"}}],coordinates:$R[29]={latitude:-4.914723,longitude:-80.960358},licenses:null,bounds:$R[30]=[-80.960358,-4.914723,-80.960358,-4.914723],distance:null,datetimeFirst:$R[31]={utc:\"2024-03-11T01:00:00Z\",local:\"2024-03-10T20:00:00-05:00\"},datetimeLast:$R[32]={utc:\"2025-12-04T00:00:00Z\",local:\"2025-12-03T19:00:00-05:00\"}});_$HY.r[\"000000000100000000000130091\"]=$R[18];$R[15]($R[10],$R[33]=[]);_$HY.r[\"000000000100000000000130092\"]=$R[33];$R[15]($R[12],!0);"
+    },
+    {
+      "id": 2578977,
+      "url": "https://explore.openaq.org/locations/2578977",
+      "response_date": "Mon, 19 Oct 2026 17:10:31 GMT",
+      "name": "La Oroya",
+      "provider": "Peru Organismo de Evaluación y Fiscalización Ambiental",
+      "timezone": "America/Lima",
+      "latitude": -11.519952,
+      "longitude": -75.900882,
+      "datetime_first_utc": "2024-03-11T01:00:00Z",
+      "datetime_last_utc": "2025-12-04T00:05:00Z",
+      "datetime_last_local": "2025-12-03T19:05:00-05:00",
+      "pm25_sensors": [],
+      "raw_public_metadata": "id:2578977,name:\"La Oroya\",locality:\"La Oroya\",timezone:\"America/Lima\",country:$R[19]={id:5,code:\"PE\",name:\"Peru\"},owner:$R[20]={id:4,name:\"Unknown Governmental Organization\"},provider:$R[21]={id:71,name:\"Peru Organismo de Evaluación y Fiscalización Ambiental\"},isMobile:!1,isMonitor:!0,instruments:$R[22]=[$R[23]={id:2,name:\"Government Monitor\"}],sensors:$R[24]=[$R[25]={id:8437774,name:\"so2 µg/m³\",parameter:$R[26]={id:6,name:\"so2\",units:\"µg/m³\",displayName:\"SO₂ mass\"}}],coordinates:$R[27]={latitude:-11.519952,longitude:-75.900882},licenses:null,bounds:$R[28]=[-75.900882,-11.519952,-75.900882,-11.519952],distance:null,datetimeFirst:$R[29]={utc:\"2024-03-11T01:00:00Z\",local:\"2024-03-10T20:00:00-05:00\"},datetimeLast:$R[30]={utc:\"2025-12-04T00:05:00Z\",local:\"2025-12-03T19:05:00-05:00\"}});_$HY.r[\"000000000100000000000130091\"]=$R[18];$R[15]($R[10],$R[31]=[]);_$HY.r[\"000000000100000000000130092\"]=$R[31];$R[15]($R[12],!0);"
+    },
+    {
+      "id": 2578978,
+      "url": "https://explore.openaq.org/locations/2578978",
+      "response_date": "Mon, 19 Oct 2026 17:10:31 GMT",
+      "name": "Los Andes",
+      "provider": "Peru Organismo de Evaluación y Fiscalización Ambiental",
+      "timezone": "America/Lima",
+      "latitude": -11.978926,
+      "longitude": -76.888742,
+      "datetime_first_utc": "2024-03-11T01:00:00Z",
+      "datetime_last_utc": "2025-01-08T12:05:00Z",
+      "datetime_last_local": "2025-01-08T07:05:00-05:00",
+      "pm25_sensors": [],
+      "raw_public_metadata": "id:2578978,name:\"Los Andes\",locality:\"Lurigancho Chosica\",timezone:\"America/Lima\",country:$R[19]={id:5,code:\"PE\",name:\"Peru\"},owner:$R[20]={id:4,name:\"Unknown Governmental Organization\"},provider:$R[21]={id:71,name:\"Peru Organismo de Evaluación y Fiscalización Ambiental\"},isMobile:!1,isMonitor:!0,instruments:$R[22]=[$R[23]={id:2,name:\"Government Monitor\"}],sensors:$R[24]=[$R[25]={id:8437737,name:\"co µg/m³\",parameter:$R[26]={id:4,name:\"co\",units:\"µg/m³\",displayName:\"CO mass\"}},$R[27]={id:8437789,name:\"no2 µg/m³\",parameter:$R[28]={id:5,name:\"no2\",units:\"µg/m³\",displayName:\"NO₂ mass\"}},$R[29]={id:8437785,name:\"so2 µg/m³\",parameter:$R[30]={id:6,name:\"so2\",units:\"µg/m³\",displayName:\"SO₂ mass\"}}],coordinates:$R[31]={latitude:-11.978926,longitude:-76.888742},licenses:null,bounds:$R[32]=[-76.888742,-11.978926,-76.888742,-11.978926],distance:null,datetimeFirst:$R[33]={utc:\"2024-03-11T01:00:00Z\",local:\"2024-03-10T20:00:00-05:00\"},datetimeLast:$R[34]={utc:\"2025-01-08T12:05:00Z\",local:\"2025-01-08T07:05:00-05:00\"}});_$HY.r[\"000000000100000000000130091\"]=$R[18];$R[15]($R[10],$R[35]=[]);_$HY.r[\"000000000100000000000130092\"]=$R[35];$R[15]($R[12],!0);"
+    },
+    {
+      "id": 2578979,
+      "url": "https://explore.openaq.org/locations/2578979",
+      "response_date": "Mon, 19 Oct 2026 17:10:31 GMT",
+      "name": "Macacara",
+      "provider": "Peru Organismo de Evaluación y Fiscalización Ambiental",
+      "timezone": "America/Lima",
+      "latitude": -4.916988,
+      "longitude": -80.858255,
+      "datetime_first_utc": "2024-03-11T01:00:00Z",
+      "datetime_last_utc": "2025-12-04T00:05:00Z",
+      "datetime_last_local": "2025-12-03T19:05:00-05:00",
+      "pm25_sensors": [
+        {
+          "id": 8437742,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ],
+      "raw_public_metadata": "id:2578979,name:\"Macacara\",locality:\"La Huaca\",timezone:\"America/Lima\",country:$R[19]={id:5,code:\"PE\",name:\"Peru\"},owner:$R[20]={id:4,name:\"Unknown Governmental Organization\"},provider:$R[21]={id:71,name:\"Peru Organismo de Evaluación y Fiscalización Ambiental\"},isMobile:!1,isMonitor:!0,instruments:$R[22]=[$R[23]={id:2,name:\"Government Monitor\"}],sensors:$R[24]=[$R[25]={id:8437786,name:\"pm10 µg/m³\",parameter:$R[26]={id:1,name:\"pm10\",units:\"µg/m³\",displayName:\"PM10\"}},$R[27]={id:8437742,name:\"pm25 µg/m³\",parameter:$R[28]={id:2,name:\"pm25\",units:\"µg/m³\",displayName:\"PM2.5\"}}],coordinates:$R[29]={latitude:-4.916988,longitude:-80.858255},licenses:null,bounds:$R[30]=[-80.858255,-4.916988,-80.858255,-4.916988],distance:null,datetimeFirst:$R[31]={utc:\"2024-03-11T01:00:00Z\",local:\"2024-03-10T20:00:00-05:00\"},datetimeLast:$R[32]={utc:\"2025-12-04T00:05:00Z\",local:\"2025-12-03T19:05:00-05:00\"}});_$HY.r[\"000000000100000000000130091\"]=$R[18];$R[15]($R[10],$R[33]=[]);_$HY.r[\"000000000100000000000130092\"]=$R[33];$R[15]($R[12],!0);"
+    },
+    {
+      "id": 2578980,
+      "url": "https://explore.openaq.org/locations/2578980",
+      "response_date": "Mon, 19 Oct 2026 17:10:31 GMT",
+      "name": "Mara",
+      "provider": "Peru Organismo de Evaluación y Fiscalización Ambiental",
+      "timezone": "America/Lima",
+      "latitude": -14.087046,
+      "longitude": -72.106363,
+      "datetime_first_utc": "2024-03-11T01:00:00Z",
+      "datetime_last_utc": "2025-12-04T00:00:00Z",
+      "datetime_last_local": "2025-12-03T19:00:00-05:00",
+      "pm25_sensors": [
+        {
+          "id": 8437736,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ],
+      "raw_public_metadata": "id:2578980,name:\"Mara\",locality:\"Mara\",timezone:\"America/Lima\",country:$R[16]={id:5,code:\"PE\",name:\"Peru\"},owner:$R[17]={id:4,name:\"Unknown Governmental Organization\"},provider:$R[18]={id:71,name:\"Peru Organismo de Evaluación y Fiscalización Ambiental\"},isMobile:!1,isMonitor:!0,instruments:$R[19]=[$R[20]={id:2,name:\"Government Monitor\"}],sensors:$R[21]=[$R[22]={id:8437734,name:\"pm10 µg/m³\",parameter:$R[23]={id:1,name:\"pm10\",units:\"µg/m³\",displayName:\"PM10\"}},$R[24]={id:8437736,name:\"pm25 µg/m³\",parameter:$R[25]={id:2,name:\"pm25\",units:\"µg/m³\",displayName:\"PM2.5\"}}],coordinates:$R[26]={latitude:-14.087046,longitude:-72.106363},licenses:null,bounds:$R[27]=[-72.106363,-14.087046,-72.106363,-14.087046],distance:null,datetimeFirst:$R[28]={utc:\"2024-03-11T01:00:00Z\",local:\"2024-03-10T20:00:00-05:00\"},datetimeLast:$R[29]={utc:\"2025-12-04T00:00:00Z\",local:\"2025-12-03T19:00:00-05:00\"}});$R[30]($R[10],$R[31]=[]);$R[30]($R[1],null);$R[30]($R[4],$R[32]={user:null,accountStatus:null});$R[30]($R[8],$R[33]=[]);$R[30]($R[14],$R[32]);_$HY.r[\"000000000100000000000130090\"]=null;_$HY.r[\"000000000100000000000130092\"]=$R[31];_$HY.r[\"000000000100000000000130091\"]=$R[15];$R[30]($R[12],!0);"
+    },
+    {
+      "id": 2578981,
+      "url": "https://explore.openaq.org/locations/2578981",
+      "response_date": "Mon, 19 Oct 2026 17:10:31 GMT",
+      "name": "Mobile",
+      "provider": "Kosovo",
+      "timezone": "Europe/Belgrade",
+      "latitude": 42.687073,
+      "longitude": 21.158341000000004,
+      "datetime_first_utc": "2024-03-11T20:00:00Z",
+      "datetime_last_utc": "2024-03-15T20:00:00Z",
+      "datetime_last_local": "2024-03-15T21:00:00+01:00",
+      "pm25_sensors": [
+        {
+          "id": 8437776,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ],
+      "raw_public_metadata": "id:2578981,name:\"Mobile\",locality:\"Mobile\",timezone:\"Europe/Belgrade\",country:$R[19]={id:65,code:\"XK\",name:\"Kosovo\"},owner:$R[20]={id:4,name:\"Unknown Governmental Organization\"},provider:$R[21]={id:204,name:\"Kosovo\"},isMobile:!1,isMonitor:!0,instruments:$R[22]=[$R[23]={id:2,name:\"Government Monitor\"}],sensors:$R[24]=[$R[25]={id:8437756,name:\"co µg/m³\",parameter:$R[26]={id:4,name:\"co\",units:\"µg/m³\",displayName:\"CO mass\"}},$R[27]={id:8437765,name:\"no2 µg/m³\",parameter:$R[28]={id:5,name:\"no2\",units:\"µg/m³\",displayName:\"NO₂ mass\"}},$R[29]={id:8437782,name:\"o3 µg/m³\",parameter:$R[30]={id:3,name:\"o3\",units:\"µg/m³\",displayName:\"O₃ mass\"}},$R[31]={id:8437795,name:\"pm10 µg/m³\",parameter:$R[32]={id:1,name:\"pm10\",units:\"µg/m³\",displayName:\"PM10\"}},$R[33]={id:8437776,name:\"pm25 µg/m³\",parameter:$R[34]={id:2,name:\"pm25\",units:\"µg/m³\",displayName:\"PM2.5\"}},$R[35]={id:8437780,name:\"so2 µg/m³\",parameter:$R[36]={id:6,name:\"so2\",units:\"µg/m³\",displayName:\"SO₂ mass\"}}],coordinates:$R[37]={latitude:42.687073,longitude:21.158341000000004},licenses:null,bounds:$R[38]=[21.158341000000004,42.687073,21.158341000000004,42.687073],distance:null,datetimeFirst:$R[39]={utc:\"2024-03-11T20:00:00Z\",local:\"2024-03-11T21:00:00+01:00\"},datetimeLast:$R[40]={utc:\"2024-03-15T20:00:00Z\",local:\"2024-03-15T21:00:00+01:00\"}});_$HY.r[\"000000000100000000000130091\"]=$R[18];$R[15]($R[10],$R[41]=[]);_$HY.r[\"000000000100000000000130092\"]=$R[41];$R[15]($R[12],!0);"
+    },
+    {
+      "id": 2578982,
+      "url": "https://explore.openaq.org/locations/2578982",
+      "response_date": "Mon, 19 Oct 2026 17:10:31 GMT",
+      "name": "Miguel Grau ",
+      "provider": "Peru Organismo de Evaluación y Fiscalización Ambiental",
+      "timezone": "America/Lima",
+      "latitude": -9.119182,
+      "longitude": -78.54401,
+      "datetime_first_utc": "2024-03-11T01:00:00Z",
+      "datetime_last_utc": "2025-12-04T00:05:00Z",
+      "datetime_last_local": "2025-12-03T19:05:00-05:00",
+      "pm25_sensors": [
+        {
+          "id": 8437761,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ],
+      "raw_public_metadata": "id:2578982,name:\"Miguel Grau \",locality:\"Nuevo Chimbote\",timezone:\"America/Lima\",country:$R[19]={id:5,code:\"PE\",name:\"Peru\"},owner:$R[20]={id:4,name:\"Unknown Governmental Organization\"},provider:$R[21]={id:71,name:\"Peru Organismo de Evaluación y Fiscalización Ambiental\"},isMobile:!1,isMonitor:!0,instruments:$R[22]=[$R[23]={id:2,name:\"Government Monitor\"}],sensors:$R[24]=[$R[25]={id:8437731,name:\"pm10 µg/m³\",parameter:$R[26]={id:1,name:\"pm10\",units:\"µg/m³\",displayName:\"PM10\"}},$R[27]={id:8437761,name:\"pm25 µg/m³\",parameter:$R[28]={id:2,name:\"pm25\",units:\"µg/m³\",displayName:\"PM2.5\"}},$R[29]={id:8437801,name:\"so2 µg/m³\",parameter:$R[30]={id:6,name:\"so2\",units:\"µg/m³\",displayName:\"SO₂ mass\"}}],coordinates:$R[31]={latitude:-9.119182,longitude:-78.54401},licenses:null,bounds:$R[32]=[-78.54401,-9.119182,-78.54401,-9.119182],distance:null,datetimeFirst:$R[33]={utc:\"2024-03-11T01:00:00Z\",local:\"2024-03-10T20:00:00-05:00\"},datetimeLast:$R[34]={utc:\"2025-12-04T00:05:00Z\",local:\"2025-12-03T19:05:00-05:00\"}});_$HY.r[\"000000000100000000000130091\"]=$R[18];$R[15]($R[10],$R[35]=[]);_$HY.r[\"000000000100000000000130092\"]=$R[35];$R[15]($R[12],!0);"
+    },
+    {
+      "id": 2578983,
+      "url": "https://explore.openaq.org/locations/2578983",
+      "response_date": "Mon, 19 Oct 2026 17:10:32 GMT",
+      "name": "Pisco - Municipalidad de Pisco",
+      "provider": "Peru Organismo de Evaluación y Fiscalización Ambiental",
+      "timezone": "America/Lima",
+      "latitude": -13.707724000000002,
+      "longitude": -76.193606,
+      "datetime_first_utc": "2024-03-11T00:40:00Z",
+      "datetime_last_utc": "2025-01-08T12:00:00Z",
+      "datetime_last_local": "2025-01-08T07:00:00-05:00",
+      "pm25_sensors": [
+        {
+          "id": 8437784,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ],
+      "raw_public_metadata": "id:2578983,name:\"Pisco - Municipalidad de Pisco\",locality:\"Pisco\",timezone:\"America/Lima\",country:$R[19]={id:5,code:\"PE\",name:\"Peru\"},owner:$R[20]={id:4,name:\"Unknown Governmental Organization\"},provider:$R[21]={id:71,name:\"Peru Organismo de Evaluación y Fiscalización Ambiental\"},isMobile:!1,isMonitor:!0,instruments:$R[22]=[$R[23]={id:2,name:\"Government Monitor\"}],sensors:$R[24]=[$R[25]={id:8437762,name:\"co µg/m³\",parameter:$R[26]={id:4,name:\"co\",units:\"µg/m³\",displayName:\"CO mass\"}},$R[27]={id:8437758,name:\"no2 µg/m³\",parameter:$R[28]={id:5,name:\"no2\",units:\"µg/m³\",displayName:\"NO₂ mass\"}},$R[29]={id:8437799,name:\"pm10 µg/m³\",parameter:$R[30]={id:1,name:\"pm10\",units:\"µg/m³\",displayName:\"PM10\"}},$R[31]={id:8437784,name:\"pm25 µg/m³\",parameter:$R[32]={id:2,name:\"pm25\",units:\"µg/m³\",displayName:\"PM2.5\"}},$R[33]={id:8437740,name:\"so2 µg/m³\",parameter:$R[34]={id:6,name:\"so2\",units:\"µg/m³\",displayName:\"SO₂ mass\"}}],coordinates:$R[35]={latitude:-13.707724000000002,longitude:-76.193606},licenses:null,bounds:$R[36]=[-76.193606,-13.707724000000002,-76.193606,-13.707724000000002],distance:null,datetimeFirst:$R[37]={utc:\"2024-03-11T00:40:00Z\",local:\"2024-03-10T19:40:00-05:00\"},datetimeLast:$R[38]={utc:\"2025-01-08T12:00:00Z\",local:\"2025-01-08T07:00:00-05:00\"}});_$HY.r[\"000000000100000000000130091\"]=$R[18];$R[15]($R[10],$R[39]=[]);_$HY.r[\"000000000100000000000130092\"]=$R[39];$R[15]($R[12],!0);"
+    },
+    {
+      "id": 2578984,
+      "url": "https://explore.openaq.org/locations/2578984",
+      "response_date": "Mon, 19 Oct 2026 17:10:32 GMT",
+      "name": "Pisco - Paracas",
+      "provider": "Peru Organismo de Evaluación y Fiscalización Ambiental",
+      "timezone": "America/Lima",
+      "latitude": -13.834835000000002,
+      "longitude": -76.141729,
+      "datetime_first_utc": "2024-03-11T01:00:00Z",
+      "datetime_last_utc": "2025-01-08T12:00:00Z",
+      "datetime_last_local": "2025-01-08T07:00:00-05:00",
+      "pm25_sensors": [
+        {
+          "id": 8437766,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ],
+      "raw_public_metadata": "id:2578984,name:\"Pisco - Paracas\",locality:\"Paracas\",timezone:\"America/Lima\",country:$R[19]={id:5,code:\"PE\",name:\"Peru\"},owner:$R[20]={id:4,name:\"Unknown Governmental Organization\"},provider:$R[21]={id:71,name:\"Peru Organismo de Evaluación y Fiscalización Ambiental\"},isMobile:!1,isMonitor:!0,instruments:$R[22]=[$R[23]={id:2,name:\"Government Monitor\"}],sensors:$R[24]=[$R[25]={id:8437793,name:\"co µg/m³\",parameter:$R[26]={id:4,name:\"co\",units:\"µg/m³\",displayName:\"CO mass\"}},$R[27]={id:8437732,name:\"no2 µg/m³\",parameter:$R[28]={id:5,name:\"no2\",units:\"µg/m³\",displayName:\"NO₂ mass\"}},$R[29]={id:8437752,name:\"pm10 µg/m³\",parameter:$R[30]={id:1,name:\"pm10\",units:\"µg/m³\",displayName:\"PM10\"}},$R[31]={id:8437766,name:\"pm25 µg/m³\",parameter:$R[32]={id:2,name:\"pm25\",units:\"µg/m³\",displayName:\"PM2.5\"}},$R[33]={id:8437760,name:\"so2 µg/m³\",parameter:$R[34]={id:6,name:\"so2\",units:\"µg/m³\",displayName:\"SO₂ mass\"}}],coordinates:$R[35]={latitude:-13.834835000000002,longitude:-76.141729},licenses:null,bounds:$R[36]=[-76.141729,-13.834835000000002,-76.141729,-13.834835000000002],distance:null,datetimeFirst:$R[37]={utc:\"2024-03-11T01:00:00Z\",local:\"2024-03-10T20:00:00-05:00\"},datetimeLast:$R[38]={utc:\"2025-01-08T12:00:00Z\",local:\"2025-01-08T07:00:00-05:00\"}});_$HY.r[\"000000000100000000000130091\"]=$R[18];$R[15]($R[10],$R[39]=[]);_$HY.r[\"000000000100000000000130092\"]=$R[39];$R[15]($R[12],!0);"
+    },
+    {
+      "id": 2578985,
+      "url": "https://explore.openaq.org/locations/2578985",
+      "response_date": "Mon, 19 Oct 2026 17:10:32 GMT",
+      "name": "Roma",
+      "provider": "Peru Organismo de Evaluación y Fiscalización Ambiental",
+      "timezone": "America/Lima",
+      "latitude": -9.999997,
+      "longitude": -76.000015,
+      "datetime_first_utc": "2024-03-11T00:40:00Z",
+      "datetime_last_utc": "2024-06-13T14:15:00Z",
+      "datetime_last_local": "2024-06-13T09:15:00-05:00",
+      "pm25_sensors": [
+        {
+          "id": 8437754,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ],
+      "raw_public_metadata": "id:2578985,name:\"Roma\",locality:\"Casa Grande\",timezone:\"America/Lima\",country:$R[19]={id:5,code:\"PE\",name:\"Peru\"},owner:$R[20]={id:4,name:\"Unknown Governmental Organization\"},provider:$R[21]={id:71,name:\"Peru Organismo de Evaluación y Fiscalización Ambiental\"},isMobile:!1,isMonitor:!0,instruments:$R[22]=[$R[23]={id:2,name:\"Government Monitor\"}],sensors:$R[24]=[$R[25]={id:8437746,name:\"pm10 µg/m³\",parameter:$R[26]={id:1,name:\"pm10\",units:\"µg/m³\",displayName:\"PM10\"}},$R[27]={id:8437754,name:\"pm25 µg/m³\",parameter:$R[28]={id:2,name:\"pm25\",units:\"µg/m³\",displayName:\"PM2.5\"}}],coordinates:$R[29]={latitude:-9.999997,longitude:-76.000015},licenses:null,bounds:$R[30]=[-76.000015,-9.999997,-76.000015,-9.999997],distance:null,datetimeFirst:$R[31]={utc:\"2024-03-11T00:40:00Z\",local:\"2024-03-10T19:40:00-05:00\"},datetimeLast:$R[32]={utc:\"2024-06-13T14:15:00Z\",local:\"2024-06-13T09:15:00-05:00\"}});_$HY.r[\"000000000100000000000130091\"]=$R[18];$R[15]($R[10],$R[33]=[]);_$HY.r[\"000000000100000000000130092\"]=$R[33];$R[15]($R[12],!0);"
+    },
+    {
+      "id": 2578986,
+      "url": "https://explore.openaq.org/locations/2578986",
+      "response_date": "Mon, 19 Oct 2026 17:10:32 GMT",
+      "name": "Socabaya",
+      "provider": "Peru Organismo de Evaluación y Fiscalización Ambiental",
+      "timezone": "America/Lima",
+      "latitude": -16.487574,
+      "longitude": -71.519153,
+      "datetime_first_utc": "2024-03-11T01:00:00Z",
+      "datetime_last_utc": "2025-12-04T00:05:00Z",
+      "datetime_last_local": "2025-12-03T19:05:00-05:00",
+      "pm25_sensors": [
+        {
+          "id": 8437738,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ],
+      "raw_public_metadata": "id:2578986,name:\"Socabaya\",locality:\"Socabaya\",timezone:\"America/Lima\",country:$R[19]={id:5,code:\"PE\",name:\"Peru\"},owner:$R[20]={id:4,name:\"Unknown Governmental Organization\"},provider:$R[21]={id:71,name:\"Peru Organismo de Evaluación y Fiscalización Ambiental\"},isMobile:!1,isMonitor:!0,instruments:$R[22]=[$R[23]={id:2,name:\"Government Monitor\"}],sensors:$R[24]=[$R[25]={id:8437757,name:\"pm10 µg/m³\",parameter:$R[26]={id:1,name:\"pm10\",units:\"µg/m³\",displayName:\"PM10\"}},$R[27]={id:8437738,name:\"pm25 µg/m³\",parameter:$R[28]={id:2,name:\"pm25\",units:\"µg/m³\",displayName:\"PM2.5\"}}],coordinates:$R[29]={latitude:-16.487574,longitude:-71.519153},licenses:null,bounds:$R[30]=[-71.519153,-16.487574,-71.519153,-16.487574],distance:null,datetimeFirst:$R[31]={utc:\"2024-03-11T01:00:00Z\",local:\"2024-03-10T20:00:00-05:00\"},datetimeLast:$R[32]={utc:\"2025-12-04T00:05:00Z\",local:\"2025-12-03T19:05:00-05:00\"}});_$HY.r[\"000000000100000000000130091\"]=$R[18];$R[15]($R[10],$R[33]=[]);_$HY.r[\"000000000100000000000130092\"]=$R[33];$R[15]($R[12],!0);"
+    },
+    {
+      "id": 2578987,
+      "url": "https://explore.openaq.org/locations/2578987",
+      "response_date": "Mon, 19 Oct 2026 17:10:32 GMT",
+      "name": "Tala",
+      "provider": "Peru Organismo de Evaluación y Fiscalización Ambiental",
+      "timezone": "America/Lima",
+      "latitude": -17.09943,
+      "longitude": -70.681922,
+      "datetime_first_utc": "2024-03-11T01:00:00Z",
+      "datetime_last_utc": "2025-12-04T00:05:00Z",
+      "datetime_last_local": "2025-12-03T19:05:00-05:00",
+      "pm25_sensors": [
+        {
+          "id": 8437767,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ],
+      "raw_public_metadata": "id:2578987,name:\"Tala\",locality:\"Torata\",timezone:\"America/Lima\",country:$R[19]={id:5,code:\"PE\",name:\"Peru\"},owner:$R[20]={id:4,name:\"Unknown Governmental Organization\"},provider:$R[21]={id:71,name:\"Peru Organismo de Evaluación y Fiscalización Ambiental\"},isMobile:!1,isMonitor:!0,instruments:$R[22]=[$R[23]={id:2,name:\"Government Monitor\"}],sensors:$R[24]=[$R[25]={id:8437770,name:\"pm10 µg/m³\",parameter:$R[26]={id:1,name:\"pm10\",units:\"µg/m³\",displayName:\"PM10\"}},$R[27]={id:8437767,name:\"pm25 µg/m³\",parameter:$R[28]={id:2,name:\"pm25\",units:\"µg/m³\",displayName:\"PM2.5\"}}],coordinates:$R[29]={latitude:-17.09943,longitude:-70.681922},licenses:null,bounds:$R[30]=[-70.681922,-17.09943,-70.681922,-17.09943],distance:null,datetimeFirst:$R[31]={utc:\"2024-03-11T01:00:00Z\",local:\"2024-03-10T20:00:00-05:00\"},datetimeLast:$R[32]={utc:\"2025-12-04T00:05:00Z\",local:\"2025-12-03T19:05:00-05:00\"}});_$HY.r[\"000000000100000000000130091\"]=$R[18];$R[15]($R[10],$R[33]=[]);_$HY.r[\"000000000100000000000130092\"]=$R[33];$R[15]($R[12],!0);"
+    },
+    {
+      "id": 2578988,
+      "url": "https://explore.openaq.org/locations/2578988",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": 2578989,
+      "url": "https://explore.openaq.org/locations/2578989",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": 2578990,
+      "url": "https://explore.openaq.org/locations/2578990",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": 2402,
+      "url": "https://explore.openaq.org/locations/2402",
+      "response_date": "Mon, 19 Oct 2026 17:10:33 GMT",
+      "name": "SAN BORJA",
+      "provider": "Senamhi",
+      "timezone": "America/Lima",
+      "latitude": -12.108872,
+      "longitude": -77.007689,
+      "datetime_first_utc": "2016-03-13T05:00:00Z",
+      "datetime_last_utc": "2026-10-19T16:00:00Z",
+      "datetime_last_local": "2026-10-19T11:00:00-05:00",
+      "pm25_sensors": [
+        {
+          "id": 4492,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ],
+      "raw_public_metadata": "id:2402,name:\"SAN BORJA\",locality:\"Lima\",timezone:\"America/Lima\",country:$R[19]={id:5,code:\"PE\",name:\"Peru\"},owner:$R[20]={id:4,name:\"Unknown Governmental Organization\"},provider:$R[21]={id:221,name:\"Senamhi\"},isMobile:!1,isMonitor:!0,instruments:$R[22]=[$R[23]={id:2,name:\"Government Monitor\"}],sensors:$R[24]=[$R[25]={id:23124,name:\"co µg/m³\",parameter:$R[26]={id:4,name:\"co\",units:\"µg/m³\",displayName:\"CO mass\"}},$R[27]={id:4605,name:\"co ppm\",parameter:$R[28]={id:8,name:\"co\",units:\"ppm\",displayName:\"CO\"}},$R[29]={id:23127,name:\"no2 µg/m³\",parameter:$R[30]={id:5,name:\"no2\",units:\"µg/m³\",displayName:\"NO₂ mass\"}},$R[31]={id:4604,name:\"no2 ppm\",parameter:$R[32]={id:7,name:\"no2\",units:\"ppm\",displayName:\"NO₂\"}},$R[33]={id:4602,name:\"o3 ppm\",parameter:$R[34]={id:10,name:\"o3\",units:\"ppm\",displayName:\"O₃\"}},$R[35]={id:23123,name:\"o3 µg/m³\",parameter:$R[36]={id:3,name:\"o3\",units:\"µg/m³\",displayName:\"O₃ mass\"}},$R[37]={id:4587,name:\"pm10 µg/m³\",parameter:$R[38]={id:1,name:\"pm10\",units:\"µg/m³\",displayName:\"PM10\"}},$R[39]={id:4492,name:\"pm25 µg/m³\",parameter:$R[40]={id:2,name:\"pm25\",units:\"µg/m³\",displayName:\"PM2.5\"}},$R[41]={id:23125,name:\"so2 µg/m³\",parameter:$R[42]={id:6,name:\"so2\",units:\"µg/m³\",displayName:\"SO₂ mass\"}},$R[43]={id:4600,name:\"so2 ppm\",parameter:$R[44]={id:9,name:\"so2\",units:\"ppm\",displayName:\"SO₂\"}}],coordinates:$R[45]={latitude:-12.108872,longitude:-77.007689},licenses:null,bounds:$R[46]=[-77.007689,-12.108872,-77.007689,-12.108872],distance:null,datetimeFirst:$R[47]={utc:\"2016-03-13T05:00:00Z\",local:\"2016-03-13T00:00:00-05:00\"},datetimeLast:$R[48]={utc:\"2026-10-19T16:00:00Z\",local:\"2026-10-19T11:00:00-05:00\"}});_$HY.r[\"000000000100000000000130091\"]=$R[18];$R[15]($R[10],$R[49]=[]);_$HY.r[\"000000000100000000000130092\"]=$R[49];$R[15]($R[12],!0);"
+    },
+    {
+      "id": 2351,
+      "url": "https://explore.openaq.org/locations/2351",
+      "response_date": "Mon, 19 Oct 2026 17:10:33 GMT",
+      "name": "SAN MARTIN DE PORRES",
+      "provider": "Senamhi",
+      "timezone": "America/Lima",
+      "latitude": -12.008889,
+      "longitude": -77.084472,
+      "datetime_first_utc": "2016-03-13T05:00:00Z",
+      "datetime_last_utc": "2026-10-19T16:00:00Z",
+      "datetime_last_local": "2026-10-19T11:00:00-05:00",
+      "pm25_sensors": [
+        {
+          "id": 4319,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ],
+      "raw_public_metadata": "id:2351,name:\"SAN MARTIN DE PORRES\",locality:\"Lima\",timezone:\"America/Lima\",country:$R[19]={id:5,code:\"PE\",name:\"Peru\"},owner:$R[20]={id:4,name:\"Unknown Governmental Organization\"},provider:$R[21]={id:221,name:\"Senamhi\"},isMobile:!1,isMonitor:!0,instruments:$R[22]=[$R[23]={id:2,name:\"Government Monitor\"}],sensors:$R[24]=[$R[25]={id:4417,name:\"co ppm\",parameter:$R[26]={id:8,name:\"co\",units:\"ppm\",displayName:\"CO\"}},$R[27]={id:28915,name:\"co µg/m³\",parameter:$R[28]={id:4,name:\"co\",units:\"µg/m³\",displayName:\"CO mass\"}},$R[29]={id:4410,name:\"no2 ppm\",parameter:$R[30]={id:7,name:\"no2\",units:\"ppm\",displayName:\"NO₂\"}},$R[31]={id:28916,name:\"no2 µg/m³\",parameter:$R[32]={id:5,name:\"no2\",units:\"µg/m³\",displayName:\"NO₂ mass\"}},$R[33]={id:21683,name:\"o3 µg/m³\",parameter:$R[34]={id:3,name:\"o3\",units:\"µg/m³\",displayName:\"O₃ mass\"}},$R[35]={id:4374,name:\"o3 ppm\",parameter:$R[36]={id:10,name:\"o3\",units:\"ppm\",displayName:\"O₃\"}},$R[37]={id:4322,name:\"pm10 µg/m³\",parameter:$R[38]={id:1,name:\"pm10\",units:\"µg/m³\",displayName:\"PM10\"}},$R[39]={id:4319,name:\"pm25 µg/m³\",parameter:$R[40]={id:2,name:\"pm25\",units:\"µg/m³\",displayName:\"PM2.5\"}},$R[41]={id:16741,name:\"so2 µg/m³\",parameter:$R[42]={id:6,name:\"so2\",units:\"µg/m³\",displayName:\"SO₂ mass\"}},$R[43]={id:4365,name:\"so2 ppm\",parameter:$R[44]={id:9,name:\"so2\",units:\"ppm\",displayName:\"SO₂\"}}],coordinates:$R[45]={latitude:-12.008889,longitude:-77.084472},licenses:null,bounds:$R[46]=[-77.084472,-12.008889,-77.084472,-12.008889],distance:null,datetimeFirst:$R[47]={utc:\"2016-03-13T05:00:00Z\",local:\"2016-03-13T00:00:00-05:00\"},datetimeLast:$R[48]={utc:\"2026-10-19T16:00:00Z\",local:\"2026-10-19T11:00:00-05:00\"}});_$HY.r[\"000000000100000000000130091\"]=$R[18];$R[15]($R[10],$R[49]=[]);_$HY.r[\"000000000100000000000130092\"]=$R[49];$R[15]($R[12],!0);"
+    },
+    {
+      "id": 2415,
+      "url": "https://explore.openaq.org/locations/2415",
+      "response_date": "Mon, 19 Oct 2026 17:10:33 GMT",
+      "name": "CAMPO DE MARTE",
+      "provider": "Senamhi",
+      "timezone": "America/Lima",
+      "latitude": -12.070544,
+      "longitude": -77.043214,
+      "datetime_first_utc": "2016-03-13T05:00:00Z",
+      "datetime_last_utc": "2026-10-19T14:00:00Z",
+      "datetime_last_local": "2026-10-19T09:00:00-05:00",
+      "pm25_sensors": [
+        {
+          "id": 4672,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ],
+      "raw_public_metadata": "id:2415,name:\"CAMPO DE MARTE\",locality:\"Lima\",timezone:\"America/Lima\",country:$R[19]={id:5,code:\"PE\",name:\"Peru\"},owner:$R[20]={id:4,name:\"Unknown Governmental Organization\"},provider:$R[21]={id:221,name:\"Senamhi\"},isMobile:!1,isMonitor:!0,instruments:$R[22]=[$R[23]={id:2,name:\"Government Monitor\"}],sensors:$R[24]=[$R[25]={id:4529,name:\"co ppm\",parameter:$R[26]={id:8,name:\"co\",units:\"ppm\",displayName:\"CO\"}},$R[27]={id:22873,name:\"co µg/m³\",parameter:$R[28]={id:4,name:\"co\",units:\"µg/m³\",displayName:\"CO mass\"}},$R[29]={id:22712,name:\"no2 µg/m³\",parameter:$R[30]={id:5,name:\"no2\",units:\"µg/m³\",displayName:\"NO₂ mass\"}},$R[31]={id:4540,name:\"no2 ppm\",parameter:$R[32]={id:7,name:\"no2\",units:\"ppm\",displayName:\"NO₂\"}},$R[33]={id:22872,name:\"o3 µg/m³\",parameter:$R[34]={id:3,name:\"o3\",units:\"µg/m³\",displayName:\"O₃ mass\"}},$R[35]={id:4593,name:\"o3 ppm\",parameter:$R[36]={id:10,name:\"o3\",units:\"ppm\",displayName:\"O₃\"}},$R[37]={id:4645,name:\"pm10 µg/m³\",parameter:$R[38]={id:1,name:\"pm10\",units:\"µg/m³\",displayName:\"PM10\"}},$R[39]={id:4672,name:\"pm25 µg/m³\",parameter:$R[40]={id:2,name:\"pm25\",units:\"µg/m³\",displayName:\"PM2.5\"}},$R[41]={id:17212,name:\"so2 µg/m³\",parameter:$R[42]={id:6,name:\"so2\",units:\"µg/m³\",displayName:\"SO₂ mass\"}},$R[43]={id:4601,name:\"so2 ppm\",parameter:$R[44]={id:9,name:\"so2\",units:\"ppm\",displayName:\"SO₂\"}}],coordinates:$R[45]={latitude:-12.070544,longitude:-77.043214},licenses:null,bounds:$R[46]=[-77.043214,-12.070544,-77.043214,-12.070544],distance:null,datetimeFirst:$R[47]={utc:\"2016-03-13T05:00:00Z\",local:\"2016-03-13T00:00:00-05:00\"},datetimeLast:$R[48]={utc:\"2026-10-19T14:00:00Z\",local:\"2026-10-19T09:00:00-05:00\"}});_$HY.r[\"000000000100000000000130091\"]=$R[18];$R[15]($R[10],$R[49]=[]);_$HY.r[\"000000000100000000000130092\"]=$R[49];$R[15]($R[12],!0);"
+    }
+  ],
+  "coordinate_matches": [
+    {
+      "local_station": "CA-CH-03",
+      "local_coordinates": {
+        "latitude": -9.103297184468321,
+        "longitude": -78.56184718342848
+      },
+      "local_zone": "17",
+      "nearest_openaq_id": 2578966,
+      "nearest_openaq_name": "Inca Garcilaso de La Vega",
+      "distance_m": 364.6803835044475,
+      "coordinate_match_under_1m": false,
+      "pm25_numeric_local": 18275,
+      "pm25_sensors_openaq": [
+        {
+          "id": 8437794,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ]
+    },
+    {
+      "local_station": "CA-CP-01",
+      "local_coordinates": {
+        "latitude": -14.008672723517595,
+        "longitude": -72.00125616812642
+      },
+      "local_zone": "18",
+      "nearest_openaq_id": 2578964,
+      "nearest_openaq_name": "Ccapacmarca",
+      "distance_m": 0.03557557391186748,
+      "coordinate_match_under_1m": true,
+      "pm25_numeric_local": 17725,
+      "pm25_sensors_openaq": [
+        {
+          "id": 8437772,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ]
+    },
+    {
+      "local_station": "CA-MAC-01",
+      "local_coordinates": {
+        "latitude": -4.916988412052015,
+        "longitude": -80.85825524698954
+      },
+      "local_zone": "17",
+      "nearest_openaq_id": 2578979,
+      "nearest_openaq_name": "Macacara",
+      "distance_m": 0.05316651955579389,
+      "coordinate_match_under_1m": true,
+      "pm25_numeric_local": 8578,
+      "pm25_sensors_openaq": [
+        {
+          "id": 8437742,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ]
+    },
+    {
+      "local_station": "CA-ROM-01",
+      "local_coordinates": {
+        "latitude": -7.763268501602485,
+        "longitude": -79.15208272555907
+      },
+      "local_zone": "17",
+      "nearest_openaq_id": 2578963,
+      "nearest_openaq_name": "Casa Grande 03",
+      "distance_m": 4297.389671611855,
+      "coordinate_match_under_1m": false,
+      "pm25_numeric_local": 8389,
+      "pm25_sensors_openaq": [
+        {
+          "id": 8437744,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ]
+    },
+    {
+      "local_station": "CA-HUA-01",
+      "local_coordinates": {
+        "latitude": -4.914722551751399,
+        "longitude": -80.9603584686191
+      },
+      "local_zone": "17",
+      "nearest_openaq_id": 2578976,
+      "nearest_openaq_name": "La Huaca",
+      "distance_m": 0.0718228658501813,
+      "coordinate_match_under_1m": true,
+      "pm25_numeric_local": 7757,
+      "pm25_sensors_openaq": [
+        {
+          "id": 8437748,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ]
+    },
+    {
+      "local_station": "CA-AYAS-01",
+      "local_coordinates": {
+        "latitude": -9.523835225143966,
+        "longitude": -77.02043393809053
+      },
+      "local_zone": "18",
+      "nearest_openaq_id": 2578975,
+      "nearest_openaq_name": "Juprog",
+      "distance_m": 8120.216125627776,
+      "coordinate_match_under_1m": false,
+      "pm25_numeric_local": 7729,
+      "pm25_sensors_openaq": [
+        {
+          "id": 8437751,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ]
+    },
+    {
+      "local_station": "CA-CG-02",
+      "local_coordinates": {
+        "latitude": -7.741249960951247,
+        "longitude": -79.18494644465501
+      },
+      "local_zone": "17",
+      "nearest_openaq_id": 2578963,
+      "nearest_openaq_name": "Casa Grande 03",
+      "distance_m": 237.55587212218683,
+      "coordinate_match_under_1m": false,
+      "pm25_numeric_local": 6410,
+      "pm25_sensors_openaq": [
+        {
+          "id": 8437744,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ]
+    },
+    {
+      "local_station": "CA-03",
+      "local_coordinates": {
+        "latitude": -9.103297184468321,
+        "longitude": -78.56184718342848
+      },
+      "local_zone": "17",
+      "nearest_openaq_id": 2578966,
+      "nearest_openaq_name": "Inca Garcilaso de La Vega",
+      "distance_m": 364.6803835044475,
+      "coordinate_match_under_1m": false,
+      "pm25_numeric_local": 6300,
+      "pm25_sensors_openaq": [
+        {
+          "id": 8437794,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ]
+    },
+    {
+      "local_station": "CA-JUPR-01",
+      "local_coordinates": {
+        "latitude": -9.561685302123719,
+        "longitude": -77.08437831408429
+      },
+      "local_zone": "18",
+      "nearest_openaq_id": 2578975,
+      "nearest_openaq_name": "Juprog",
+      "distance_m": 53.772297930316434,
+      "coordinate_match_under_1m": false,
+      "pm25_numeric_local": 6039,
+      "pm25_sensors_openaq": [
+        {
+          "id": 8437751,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ]
+    },
+    {
+      "local_station": "CA-ESP-01",
+      "local_coordinates": {
+        "latitude": -14.806034092359548,
+        "longitude": -71.41484709225169
+      },
+      "local_zone": "19",
+      "nearest_openaq_id": 2578964,
+      "nearest_openaq_name": "Ccapacmarca",
+      "distance_m": 108546.23925717332,
+      "coordinate_match_under_1m": false,
+      "pm25_numeric_local": 1175,
+      "pm25_sensors_openaq": [
+        {
+          "id": 8437772,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ]
+    },
+    {
+      "local_station": "CA-CG-01",
+      "local_coordinates": {
+        "latitude": -7.742453800349627,
+        "longitude": -79.18738869879829
+      },
+      "local_zone": "17",
+      "nearest_openaq_id": 2578963,
+      "nearest_openaq_name": "Casa Grande 03",
+      "distance_m": 535.512695090329,
+      "coordinate_match_under_1m": false,
+      "pm25_numeric_local": 1115,
+      "pm25_sensors_openaq": [
+        {
+          "id": 8437744,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ]
+    },
+    {
+      "local_station": "CA-SOC-01",
+      "local_coordinates": {
+        "latitude": -16.487573544669686,
+        "longitude": -71.51915293338233
+      },
+      "local_zone": "19",
+      "nearest_openaq_id": 2578986,
+      "nearest_openaq_name": "Socabaya",
+      "distance_m": 0.05088811533868618,
+      "coordinate_match_under_1m": true,
+      "pm25_numeric_local": 738,
+      "pm25_sensors_openaq": [
+        {
+          "id": 8437738,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ]
+    },
+    {
+      "local_station": "CA-COLQ-01",
+      "local_coordinates": {
+        "latitude": -10.750829435443483,
+        "longitude": -76.26363064073516
+      },
+      "local_zone": "18",
+      "nearest_openaq_id": 2578967,
+      "nearest_openaq_name": "Colquijirca",
+      "distance_m": 0.062161813347804566,
+      "coordinate_match_under_1m": true,
+      "pm25_numeric_local": 724,
+      "pm25_sensors_openaq": [
+        {
+          "id": 8437777,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ]
+    },
+    {
+      "local_station": "CA-HUAR-01",
+      "local_coordinates": {
+        "latitude": -10.79367971878309,
+        "longitude": -70.29212348572038
+      },
+      "local_zone": "19",
+      "nearest_openaq_id": 2578964,
+      "nearest_openaq_name": "Ccapacmarca",
+      "distance_m": 401278.3731268508,
+      "coordinate_match_under_1m": false,
+      "pm25_numeric_local": 683,
+      "pm25_sensors_openaq": [
+        {
+          "id": 8437772,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ]
+    },
+    {
+      "local_station": "CA-TAL-01",
+      "local_coordinates": {
+        "latitude": -17.099429977397634,
+        "longitude": -70.68192245312548
+      },
+      "local_zone": "19",
+      "nearest_openaq_id": 2578987,
+      "nearest_openaq_name": "Tala",
+      "distance_m": 0.04829075626627495,
+      "coordinate_match_under_1m": true,
+      "pm25_numeric_local": 638,
+      "pm25_sensors_openaq": [
+        {
+          "id": 8437767,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ]
+    },
+    {
+      "local_station": "CA-HU-04",
+      "local_coordinates": {
+        "latitude": -11.996140636637486,
+        "longitude": -76.92252105880681
+      },
+      "local_zone": "18",
+      "nearest_openaq_id": 2578968,
+      "nearest_openaq_name": "Huachipa - El Paraiso",
+      "distance_m": 0.04070297447528941,
+      "coordinate_match_under_1m": true,
+      "pm25_numeric_local": 561,
+      "pm25_sensors_openaq": [
+        {
+          "id": 8437791,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ]
+    },
+    {
+      "local_station": "CA-RZC-02",
+      "local_coordinates": {
+        "latitude": -11.95288241208205,
+        "longitude": -76.87557174618864
+      },
+      "local_zone": "18",
+      "nearest_openaq_id": 2578962,
+      "nearest_openaq_name": "Cajamarquilla-ROJ",
+      "distance_m": 0.053313179642424664,
+      "coordinate_match_under_1m": true,
+      "pm25_numeric_local": 500,
+      "pm25_sensors_openaq": []
+    },
+    {
+      "local_station": "CA-HU-09",
+      "local_coordinates": {
+        "latitude": -12.012363399555802,
+        "longitude": -76.93717092353833
+      },
+      "local_zone": "18",
+      "nearest_openaq_id": 2578970,
+      "nearest_openaq_name": "Huachipa - Santa Maria",
+      "distance_m": 0.04497726546598233,
+      "coordinate_match_under_1m": true,
+      "pm25_numeric_local": 460,
+      "pm25_sensors_openaq": [
+        {
+          "id": 8437787,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ]
+    },
+    {
+      "local_station": "CA-RZC-01",
+      "local_coordinates": {
+        "latitude": -11.97892557668863,
+        "longitude": -76.88874233544443
+      },
+      "local_zone": "18",
+      "nearest_openaq_id": 2578978,
+      "nearest_openaq_name": "Los Andes",
+      "distance_m": 0.05939301388858669,
+      "coordinate_match_under_1m": true,
+      "pm25_numeric_local": 450,
+      "pm25_sensors_openaq": []
+    },
+    {
+      "local_station": "CA-VMP-2",
+      "local_coordinates": {
+        "latitude": -11.85985655134083,
+        "longitude": -77.12441922524106
+      },
+      "local_zone": "18",
+      "nearest_openaq_id": 2578969,
+      "nearest_openaq_name": "Huachipa - Nieveria",
+      "distance_m": 25755.64447657996,
+      "coordinate_match_under_1m": false,
+      "pm25_numeric_local": 46,
+      "pm25_sensors_openaq": [
+        {
+          "id": 8437769,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ]
+    },
+    {
+      "local_station": "CA-VMP-1",
+      "local_coordinates": {
+        "latitude": -11.861862233666233,
+        "longitude": -77.12210411573145
+      },
+      "local_zone": "18",
+      "nearest_openaq_id": 2578969,
+      "nearest_openaq_name": "Huachipa - Nieveria",
+      "distance_m": 25423.537612140204,
+      "coordinate_match_under_1m": false,
+      "pm25_numeric_local": 39,
+      "pm25_sensors_openaq": [
+        {
+          "id": 8437769,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ]
+    },
+    {
+      "local_station": "CA-VMP-2",
+      "local_coordinates": {
+        "latitude": -11.860417065829,
+        "longitude": -77.12439603678364
+      },
+      "local_zone": "18",
+      "nearest_openaq_id": 2578969,
+      "nearest_openaq_name": "Huachipa - Nieveria",
+      "distance_m": 25720.048868601756,
+      "coordinate_match_under_1m": false,
+      "pm25_numeric_local": 10,
+      "pm25_sensors_openaq": [
+        {
+          "id": 8437769,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ]
+    },
+    {
+      "local_station": "CA-VMP-8",
+      "local_coordinates": {
+        "latitude": -11.861374653947456,
+        "longitude": -77.12324730983181
+      },
+      "local_zone": "18",
+      "nearest_openaq_id": 2578969,
+      "nearest_openaq_name": "Huachipa - Nieveria",
+      "distance_m": 25557.537924060915,
+      "coordinate_match_under_1m": false,
+      "pm25_numeric_local": 10,
+      "pm25_sensors_openaq": [
+        {
+          "id": 8437769,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ]
+    },
+    {
+      "local_station": "CA-VMP-9",
+      "local_coordinates": {
+        "latitude": -11.861971042140663,
+        "longitude": -77.12326109987097
+      },
+      "local_zone": "18",
+      "nearest_openaq_id": 2578969,
+      "nearest_openaq_name": "Huachipa - Nieveria",
+      "distance_m": 25523.358305795304,
+      "coordinate_match_under_1m": false,
+      "pm25_numeric_local": 10,
+      "pm25_sensors_openaq": [
+        {
+          "id": 8437769,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ]
+    },
+    {
+      "local_station": "CA-01",
+      "local_coordinates": {
+        "latitude": -9.125847750594582,
+        "longitude": -78.55687468682557
+      },
+      "local_zone": "17",
+      "nearest_openaq_id": 2578982,
+      "nearest_openaq_name": "Miguel Grau ",
+      "distance_m": 1594.741111211097,
+      "coordinate_match_under_1m": false,
+      "pm25_numeric_local": 5,
+      "pm25_sensors_openaq": [
+        {
+          "id": 8437761,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ]
+    },
+    {
+      "local_station": "CA-VMP-10",
+      "local_coordinates": {
+        "latitude": -11.863314502473326,
+        "longitude": -77.12729048108375
+      },
+      "local_zone": "18",
+      "nearest_openaq_id": 2578969,
+      "nearest_openaq_name": "Huachipa - Nieveria",
+      "distance_m": 25816.705270544055,
+      "coordinate_match_under_1m": false,
+      "pm25_numeric_local": 5,
+      "pm25_sensors_openaq": [
+        {
+          "id": 8437769,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ]
+    },
+    {
+      "local_station": "CA-CC-01",
+      "local_coordinates": {
+        "latitude": -11.519951809848699,
+        "longitude": -75.90088152823219
+      },
+      "local_zone": "18",
+      "nearest_openaq_id": 2578977,
+      "nearest_openaq_name": "La Oroya",
+      "distance_m": 0.05559835616813223,
+      "coordinate_match_under_1m": true,
+      "pm25_numeric_local": 0,
+      "pm25_sensors_openaq": []
+    },
+    {
+      "local_station": "CA-SB-01",
+      "local_coordinates": {
+        "latitude": -10.675594591164232,
+        "longitude": -76.26919697235174
+      },
+      "local_zone": "18",
+      "nearest_openaq_id": 2578967,
+      "nearest_openaq_name": "Colquijirca",
+      "distance_m": 8344.122194003243,
+      "coordinate_match_under_1m": false,
+      "pm25_numeric_local": 0,
+      "pm25_sensors_openaq": [
+        {
+          "id": 8437777,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ]
+    },
+    {
+      "local_station": "CA-TA-01",
+      "local_coordinates": {
+        "latitude": -4.575799023996449,
+        "longitude": -81.27731828557016
+      },
+      "local_zone": "17",
+      "nearest_openaq_id": 2578976,
+      "nearest_openaq_name": "La Huaca",
+      "distance_m": 51392.09930698737,
+      "coordinate_match_under_1m": false,
+      "pm25_numeric_local": 0,
+      "pm25_sensors_openaq": [
+        {
+          "id": 8437748,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ]
+    },
+    {
+      "local_station": "CA-TO-01",
+      "local_coordinates": {
+        "latitude": -17.07540702423843,
+        "longitude": -70.82762654463484
+      },
+      "local_zone": "19",
+      "nearest_openaq_id": 2578987,
+      "nearest_openaq_name": "Tala",
+      "distance_m": 15734.495998624127,
+      "coordinate_match_under_1m": false,
+      "pm25_numeric_local": 0,
+      "pm25_sensors_openaq": [
+        {
+          "id": 8437767,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ]
+    },
+    {
+      "local_station": "CA-VE-01",
+      "local_coordinates": {
+        "latitude": -14.506129099151913,
+        "longitude": -71.88488727123148
+      },
+      "local_zone": "19",
+      "nearest_openaq_id": 2578980,
+      "nearest_openaq_name": "Mara",
+      "distance_m": 52163.40890805558,
+      "coordinate_match_under_1m": false,
+      "pm25_numeric_local": 0,
+      "pm25_sensors_openaq": [
+        {
+          "id": 8437736,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ]
+    },
+    {
+      "local_station": "CA-VMP-6",
+      "local_coordinates": {
+        "latitude": -11.87250879399789,
+        "longitude": -77.12570092509284
+      },
+      "local_zone": "18",
+      "nearest_openaq_id": 2578969,
+      "nearest_openaq_name": "Huachipa - Nieveria",
+      "distance_m": 25147.719864168765,
+      "coordinate_match_under_1m": false,
+      "pm25_numeric_local": 0,
+      "pm25_sensors_openaq": [
+        {
+          "id": 8437769,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ]
+    },
+    {
+      "local_station": "CA-VMP-7",
+      "local_coordinates": {
+        "latitude": -11.863139461707949,
+        "longitude": -77.12292146142977
+      },
+      "local_zone": "18",
+      "nearest_openaq_id": 2578969,
+      "nearest_openaq_name": "Huachipa - Nieveria",
+      "distance_m": 25422.9566700174,
+      "coordinate_match_under_1m": false,
+      "pm25_numeric_local": 0,
+      "pm25_sensors_openaq": [
+        {
+          "id": 8437769,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ]
+    },
+    {
+      "local_station": "CA-VMP-2A",
+      "local_coordinates": {
+        "latitude": -11.86020368596071,
+        "longitude": -77.1239264260539
+      },
+      "local_zone": "18",
+      "nearest_openaq_id": 2578969,
+      "nearest_openaq_name": "Huachipa - Nieveria",
+      "distance_m": 25689.713143054443,
+      "coordinate_match_under_1m": false,
+      "pm25_numeric_local": 0,
+      "pm25_sensors_openaq": [
+        {
+          "id": 8437769,
+          "name": "pm25 µg/m³",
+          "units": "µg/m³"
+        }
+      ]
+    }
+  ],
+  "api_probe": {
+    "url": "https://api.openaq.org/v3/locations/2578972",
+    "status": 401,
+    "authenticated": false
+  },
+  "metadata_scope": "datetimeLast is for the location, not necessarily the PM2.5 sensor."
+}

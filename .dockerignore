@@ -1,0 +1,17 @@
+.venv
+.git
+.env
+.pytest_cache
+Dataset
+data/raw
+data/live
+audit
+**/__pycache__
+tests
+
+models/registry
+models/mlops_demo
+backups
+android
+.local
+artifacts

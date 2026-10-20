@@ -1,0 +1,32 @@
+{
+  "solo_oefa": {
+    "fit_target_posthoc": {
+      "mae": 5.3307018267091495,
+      "rmse": 11.712641409925627,
+      "r2": 0.8478107328667437,
+      "bias": -3.615396864464646,
+      "n": 2482
+    },
+    "model_type": "RandomForestRegressor"
+  },
+  "solo_campo_marte": {
+    "fit_target_posthoc": {
+      "mae": 3.3895950279398606,
+      "rmse": 7.145715762160716,
+      "r2": 0.9433544490316289,
+      "bias": 0.00036711635741214124,
+      "n": 2482
+    },
+    "model_type": "HistGradientBoostingRegressor"
+  },
+  "combinado": {
+    "fit_target_posthoc": {
+      "mae": 3.4021898090955403,
+      "rmse": 7.149179644283786,
+      "r2": 0.9432995179162351,
+      "bias": -0.3049966227524851,
+      "n": 2482
+    },
+    "model_type": "HistGradientBoostingRegressor"
+  }
+}

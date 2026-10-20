@@ -1,0 +1,1316 @@
+[
+  {
+    "id": 2402,
+    "day": "2026-10-09",
+    "url": "https://openaq-data-archive.s3.amazonaws.com/records/csv.gz/locationid=2402/year=2026/month=10/location-2402-20261009.csv.gz",
+    "status": 200,
+    "columns": [
+      "location_id",
+      "sensors_id",
+      "location",
+      "datetime",
+      "lat",
+      "lon",
+      "parameter",
+      "units",
+      "value"
+    ],
+    "rows": 80,
+    "parameters": {
+      "o3": 14,
+      "co": 22,
+      "no2": 22,
+      "so2": 22
+    },
+    "pm25_rows": 0,
+    "pm25_sample": []
+  },
+  {
+    "id": 2402,
+    "day": "2026-10-10",
+    "url": "https://openaq-data-archive.s3.amazonaws.com/records/csv.gz/locationid=2402/year=2026/month=10/location-2402-20261010.csv.gz",
+    "status": 200,
+    "columns": [
+      "location_id",
+      "sensors_id",
+      "location",
+      "datetime",
+      "lat",
+      "lon",
+      "parameter",
+      "units",
+      "value"
+    ],
+    "rows": 57,
+    "parameters": {
+      "co": 19,
+      "no2": 19,
+      "so2": 19
+    },
+    "pm25_rows": 0,
+    "pm25_sample": []
+  },
+  {
+    "id": 2402,
+    "day": "2026-10-11",
+    "url": "https://openaq-data-archive.s3.amazonaws.com/records/csv.gz/locationid=2402/year=2026/month=10/location-2402-20261011.csv.gz",
+    "status": 200,
+    "columns": [
+      "location_id",
+      "sensors_id",
+      "location",
+      "datetime",
+      "lat",
+      "lon",
+      "parameter",
+      "units",
+      "value"
+    ],
+    "rows": 48,
+    "parameters": {
+      "co": 16,
+      "no2": 16,
+      "so2": 16
+    },
+    "pm25_rows": 0,
+    "pm25_sample": []
+  },
+  {
+    "id": 2402,
+    "day": "2026-10-12",
+    "url": "https://openaq-data-archive.s3.amazonaws.com/records/csv.gz/locationid=2402/year=2026/month=10/location-2402-20261012.csv.gz",
+    "status": 200,
+    "columns": [
+      "location_id",
+      "sensors_id",
+      "location",
+      "datetime",
+      "lat",
+      "lon",
+      "parameter",
+      "units",
+      "value"
+    ],
+    "rows": 67,
+    "parameters": {
+      "o3": 7,
+      "co": 20,
+      "no2": 20,
+      "so2": 20
+    },
+    "pm25_rows": 0,
+    "pm25_sample": []
+  },
+  {
+    "id": 2402,
+    "day": "2026-10-13",
+    "url": "https://openaq-data-archive.s3.amazonaws.com/records/csv.gz/locationid=2402/year=2026/month=10/location-2402-20261013.csv.gz",
+    "status": 200,
+    "columns": [
+      "location_id",
+      "sensors_id",
+      "location",
+      "datetime",
+      "lat",
+      "lon",
+      "parameter",
+      "units",
+      "value"
+    ],
+    "rows": 80,
+    "parameters": {
+      "o3": 20,
+      "co": 20,
+      "no2": 20,
+      "so2": 20
+    },
+    "pm25_rows": 0,
+    "pm25_sample": []
+  },
+  {
+    "id": 2402,
+    "day": "2026-10-14",
+    "url": "https://openaq-data-archive.s3.amazonaws.com/records/csv.gz/locationid=2402/year=2026/month=10/location-2402-20261014.csv.gz",
+    "status": 200,
+    "columns": [
+      "location_id",
+      "sensors_id",
+      "location",
+      "datetime",
+      "lat",
+      "lon",
+      "parameter",
+      "units",
+      "value"
+    ],
+    "rows": 74,
+    "parameters": {
+      "pm10": 9,
+      "pm25": 9,
+      "o3": 14,
+      "co": 14,
+      "no2": 14,
+      "so2": 14
+    },
+    "pm25_rows": 9,
+    "pm25_sample": [
+      {
+        "location_id": "2402",
+        "sensors_id": "4492",
+        "location": "SAN BORJA-2402",
+        "datetime": "2026-10-14T10:00:00-05:00",
+        "lat": "-12.108872",
+        "lon": "-77.007689",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "17.12"
+      },
+      {
+        "location_id": "2402",
+        "sensors_id": "4492",
+        "location": "SAN BORJA-2402",
+        "datetime": "2026-10-14T11:00:00-05:00",
+        "lat": "-12.108872",
+        "lon": "-77.007689",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "16.8"
+      },
+      {
+        "location_id": "2402",
+        "sensors_id": "4492",
+        "location": "SAN BORJA-2402",
+        "datetime": "2026-10-14T12:00:00-05:00",
+        "lat": "-12.108872",
+        "lon": "-77.007689",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "15.76"
+      }
+    ]
+  },
+  {
+    "id": 2402,
+    "day": "2026-10-15",
+    "url": "https://openaq-data-archive.s3.amazonaws.com/records/csv.gz/locationid=2402/year=2026/month=10/location-2402-20261015.csv.gz",
+    "status": 200,
+    "columns": [
+      "location_id",
+      "sensors_id",
+      "location",
+      "datetime",
+      "lat",
+      "lon",
+      "parameter",
+      "units",
+      "value"
+    ],
+    "rows": 92,
+    "parameters": {
+      "pm10": 16,
+      "pm25": 16,
+      "o3": 12,
+      "co": 16,
+      "no2": 16,
+      "so2": 16
+    },
+    "pm25_rows": 16,
+    "pm25_sample": [
+      {
+        "location_id": "2402",
+        "sensors_id": "4492",
+        "location": "SAN BORJA-2402",
+        "datetime": "2026-10-15T01:00:00-05:00",
+        "lat": "-12.108872",
+        "lon": "-77.007689",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "10.46"
+      },
+      {
+        "location_id": "2402",
+        "sensors_id": "4492",
+        "location": "SAN BORJA-2402",
+        "datetime": "2026-10-15T02:00:00-05:00",
+        "lat": "-12.108872",
+        "lon": "-77.007689",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "10.51"
+      },
+      {
+        "location_id": "2402",
+        "sensors_id": "4492",
+        "location": "SAN BORJA-2402",
+        "datetime": "2026-10-15T03:00:00-05:00",
+        "lat": "-12.108872",
+        "lon": "-77.007689",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "11.21"
+      }
+    ]
+  },
+  {
+    "id": 2351,
+    "day": "2026-10-09",
+    "url": "https://openaq-data-archive.s3.amazonaws.com/records/csv.gz/locationid=2351/year=2026/month=10/location-2351-20261009.csv.gz",
+    "status": 200,
+    "columns": [
+      "location_id",
+      "sensors_id",
+      "location",
+      "datetime",
+      "lat",
+      "lon",
+      "parameter",
+      "units",
+      "value"
+    ],
+    "rows": 104,
+    "parameters": {
+      "pm10": 16,
+      "pm25": 16,
+      "o3": 18,
+      "co": 18,
+      "no2": 18,
+      "so2": 18
+    },
+    "pm25_rows": 16,
+    "pm25_sample": [
+      {
+        "location_id": "2351",
+        "sensors_id": "4319",
+        "location": "SAN MARTIN DE PORRES-2351",
+        "datetime": "2026-10-09T01:00:00-05:00",
+        "lat": "-12.008889",
+        "lon": "-77.084472",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "12.78"
+      },
+      {
+        "location_id": "2351",
+        "sensors_id": "4319",
+        "location": "SAN MARTIN DE PORRES-2351",
+        "datetime": "2026-10-09T03:00:00-05:00",
+        "lat": "-12.008889",
+        "lon": "-77.084472",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "12.23"
+      },
+      {
+        "location_id": "2351",
+        "sensors_id": "4319",
+        "location": "SAN MARTIN DE PORRES-2351",
+        "datetime": "2026-10-09T04:00:00-05:00",
+        "lat": "-12.008889",
+        "lon": "-77.084472",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "13.16"
+      }
+    ]
+  },
+  {
+    "id": 2351,
+    "day": "2026-10-10",
+    "url": "https://openaq-data-archive.s3.amazonaws.com/records/csv.gz/locationid=2351/year=2026/month=10/location-2351-20261010.csv.gz",
+    "status": 200,
+    "columns": [
+      "location_id",
+      "sensors_id",
+      "location",
+      "datetime",
+      "lat",
+      "lon",
+      "parameter",
+      "units",
+      "value"
+    ],
+    "rows": 114,
+    "parameters": {
+      "pm10": 19,
+      "pm25": 19,
+      "o3": 19,
+      "co": 19,
+      "no2": 19,
+      "so2": 19
+    },
+    "pm25_rows": 19,
+    "pm25_sample": [
+      {
+        "location_id": "2351",
+        "sensors_id": "4319",
+        "location": "SAN MARTIN DE PORRES-2351",
+        "datetime": "2026-10-10T02:00:00-05:00",
+        "lat": "-12.008889",
+        "lon": "-77.084472",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "15.67"
+      },
+      {
+        "location_id": "2351",
+        "sensors_id": "4319",
+        "location": "SAN MARTIN DE PORRES-2351",
+        "datetime": "2026-10-10T01:00:00-05:00",
+        "lat": "-12.008889",
+        "lon": "-77.084472",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "17.97"
+      },
+      {
+        "location_id": "2351",
+        "sensors_id": "4319",
+        "location": "SAN MARTIN DE PORRES-2351",
+        "datetime": "2026-10-10T06:00:00-05:00",
+        "lat": "-12.008889",
+        "lon": "-77.084472",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "22.95"
+      }
+    ]
+  },
+  {
+    "id": 2351,
+    "day": "2026-10-11",
+    "url": "https://openaq-data-archive.s3.amazonaws.com/records/csv.gz/locationid=2351/year=2026/month=10/location-2351-20261011.csv.gz",
+    "status": 200,
+    "columns": [
+      "location_id",
+      "sensors_id",
+      "location",
+      "datetime",
+      "lat",
+      "lon",
+      "parameter",
+      "units",
+      "value"
+    ],
+    "rows": 81,
+    "parameters": {
+      "pm10": 16,
+      "pm25": 16,
+      "o3": 16,
+      "co": 16,
+      "no2": 1,
+      "so2": 16
+    },
+    "pm25_rows": 16,
+    "pm25_sample": [
+      {
+        "location_id": "2351",
+        "sensors_id": "4319",
+        "location": "SAN MARTIN DE PORRES-2351",
+        "datetime": "2026-10-11T01:00:00-05:00",
+        "lat": "-12.008889",
+        "lon": "-77.084472",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "19.5"
+      },
+      {
+        "location_id": "2351",
+        "sensors_id": "4319",
+        "location": "SAN MARTIN DE PORRES-2351",
+        "datetime": "2026-10-11T02:00:00-05:00",
+        "lat": "-12.008889",
+        "lon": "-77.084472",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "15.68"
+      },
+      {
+        "location_id": "2351",
+        "sensors_id": "4319",
+        "location": "SAN MARTIN DE PORRES-2351",
+        "datetime": "2026-10-11T04:00:00-05:00",
+        "lat": "-12.008889",
+        "lon": "-77.084472",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "12.61"
+      }
+    ]
+  },
+  {
+    "id": 2351,
+    "day": "2026-10-12",
+    "url": "https://openaq-data-archive.s3.amazonaws.com/records/csv.gz/locationid=2351/year=2026/month=10/location-2351-20261012.csv.gz",
+    "status": 200,
+    "columns": [
+      "location_id",
+      "sensors_id",
+      "location",
+      "datetime",
+      "lat",
+      "lon",
+      "parameter",
+      "units",
+      "value"
+    ],
+    "rows": 100,
+    "parameters": {
+      "pm10": 20,
+      "pm25": 20,
+      "o3": 20,
+      "co": 20,
+      "so2": 20
+    },
+    "pm25_rows": 20,
+    "pm25_sample": [
+      {
+        "location_id": "2351",
+        "sensors_id": "4319",
+        "location": "SAN MARTIN DE PORRES-2351",
+        "datetime": "2026-10-12T01:00:00-05:00",
+        "lat": "-12.008889",
+        "lon": "-77.084472",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "16.03"
+      },
+      {
+        "location_id": "2351",
+        "sensors_id": "4319",
+        "location": "SAN MARTIN DE PORRES-2351",
+        "datetime": "2026-10-12T02:00:00-05:00",
+        "lat": "-12.008889",
+        "lon": "-77.084472",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "14.95"
+      },
+      {
+        "location_id": "2351",
+        "sensors_id": "4319",
+        "location": "SAN MARTIN DE PORRES-2351",
+        "datetime": "2026-10-12T03:00:00-05:00",
+        "lat": "-12.008889",
+        "lon": "-77.084472",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "15.74"
+      }
+    ]
+  },
+  {
+    "id": 2351,
+    "day": "2026-10-13",
+    "url": "https://openaq-data-archive.s3.amazonaws.com/records/csv.gz/locationid=2351/year=2026/month=10/location-2351-20261013.csv.gz",
+    "status": 200,
+    "columns": [
+      "location_id",
+      "sensors_id",
+      "location",
+      "datetime",
+      "lat",
+      "lon",
+      "parameter",
+      "units",
+      "value"
+    ],
+    "rows": 100,
+    "parameters": {
+      "pm10": 17,
+      "pm25": 17,
+      "o3": 19,
+      "co": 19,
+      "no2": 9,
+      "so2": 19
+    },
+    "pm25_rows": 17,
+    "pm25_sample": [
+      {
+        "location_id": "2351",
+        "sensors_id": "4319",
+        "location": "SAN MARTIN DE PORRES-2351",
+        "datetime": "2026-10-13T01:00:00-05:00",
+        "lat": "-12.008889",
+        "lon": "-77.084472",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "11.49"
+      },
+      {
+        "location_id": "2351",
+        "sensors_id": "4319",
+        "location": "SAN MARTIN DE PORRES-2351",
+        "datetime": "2026-10-13T03:00:00-05:00",
+        "lat": "-12.008889",
+        "lon": "-77.084472",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "11.58"
+      },
+      {
+        "location_id": "2351",
+        "sensors_id": "4319",
+        "location": "SAN MARTIN DE PORRES-2351",
+        "datetime": "2026-10-13T04:00:00-05:00",
+        "lat": "-12.008889",
+        "lon": "-77.084472",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "12.44"
+      }
+    ]
+  },
+  {
+    "id": 2351,
+    "day": "2026-10-14",
+    "url": "https://openaq-data-archive.s3.amazonaws.com/records/csv.gz/locationid=2351/year=2026/month=10/location-2351-20261014.csv.gz",
+    "status": 200,
+    "columns": [
+      "location_id",
+      "sensors_id",
+      "location",
+      "datetime",
+      "lat",
+      "lon",
+      "parameter",
+      "units",
+      "value"
+    ],
+    "rows": 84,
+    "parameters": {
+      "pm10": 14,
+      "pm25": 14,
+      "o3": 14,
+      "co": 14,
+      "no2": 14,
+      "so2": 14
+    },
+    "pm25_rows": 14,
+    "pm25_sample": [
+      {
+        "location_id": "2351",
+        "sensors_id": "4319",
+        "location": "SAN MARTIN DE PORRES-2351",
+        "datetime": "2026-10-14T05:00:00-05:00",
+        "lat": "-12.008889",
+        "lon": "-77.084472",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "18.62"
+      },
+      {
+        "location_id": "2351",
+        "sensors_id": "4319",
+        "location": "SAN MARTIN DE PORRES-2351",
+        "datetime": "2026-10-14T06:00:00-05:00",
+        "lat": "-12.008889",
+        "lon": "-77.084472",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "21.09"
+      },
+      {
+        "location_id": "2351",
+        "sensors_id": "4319",
+        "location": "SAN MARTIN DE PORRES-2351",
+        "datetime": "2026-10-14T07:00:00-05:00",
+        "lat": "-12.008889",
+        "lon": "-77.084472",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "22.17"
+      }
+    ]
+  },
+  {
+    "id": 2351,
+    "day": "2026-10-15",
+    "url": "https://openaq-data-archive.s3.amazonaws.com/records/csv.gz/locationid=2351/year=2026/month=10/location-2351-20261015.csv.gz",
+    "status": 200,
+    "columns": [
+      "location_id",
+      "sensors_id",
+      "location",
+      "datetime",
+      "lat",
+      "lon",
+      "parameter",
+      "units",
+      "value"
+    ],
+    "rows": 96,
+    "parameters": {
+      "pm10": 16,
+      "pm25": 16,
+      "o3": 16,
+      "co": 16,
+      "no2": 16,
+      "so2": 16
+    },
+    "pm25_rows": 16,
+    "pm25_sample": [
+      {
+        "location_id": "2351",
+        "sensors_id": "4319",
+        "location": "SAN MARTIN DE PORRES-2351",
+        "datetime": "2026-10-15T01:00:00-05:00",
+        "lat": "-12.008889",
+        "lon": "-77.084472",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "15.95"
+      },
+      {
+        "location_id": "2351",
+        "sensors_id": "4319",
+        "location": "SAN MARTIN DE PORRES-2351",
+        "datetime": "2026-10-15T02:00:00-05:00",
+        "lat": "-12.008889",
+        "lon": "-77.084472",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "16.13"
+      },
+      {
+        "location_id": "2351",
+        "sensors_id": "4319",
+        "location": "SAN MARTIN DE PORRES-2351",
+        "datetime": "2026-10-15T03:00:00-05:00",
+        "lat": "-12.008889",
+        "lon": "-77.084472",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "16.59"
+      }
+    ]
+  },
+  {
+    "id": 2415,
+    "day": "2026-10-09",
+    "url": "https://openaq-data-archive.s3.amazonaws.com/records/csv.gz/locationid=2415/year=2026/month=10/location-2415-20261009.csv.gz",
+    "status": 200,
+    "columns": [
+      "location_id",
+      "sensors_id",
+      "location",
+      "datetime",
+      "lat",
+      "lon",
+      "parameter",
+      "units",
+      "value"
+    ],
+    "rows": 132,
+    "parameters": {
+      "pm10": 22,
+      "pm25": 22,
+      "o3": 22,
+      "co": 22,
+      "no2": 22,
+      "so2": 22
+    },
+    "pm25_rows": 22,
+    "pm25_sample": [
+      {
+        "location_id": "2415",
+        "sensors_id": "4672",
+        "location": "CAMPO DE MARTE-2415",
+        "datetime": "2026-10-09T01:00:00-05:00",
+        "lat": "-12.070544",
+        "lon": "-77.043214",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "9.97"
+      },
+      {
+        "location_id": "2415",
+        "sensors_id": "4672",
+        "location": "CAMPO DE MARTE-2415",
+        "datetime": "2026-10-09T03:00:00-05:00",
+        "lat": "-12.070544",
+        "lon": "-77.043214",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "10.43"
+      },
+      {
+        "location_id": "2415",
+        "sensors_id": "4672",
+        "location": "CAMPO DE MARTE-2415",
+        "datetime": "2026-10-09T04:00:00-05:00",
+        "lat": "-12.070544",
+        "lon": "-77.043214",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "10.91"
+      }
+    ]
+  },
+  {
+    "id": 2415,
+    "day": "2026-10-10",
+    "url": "https://openaq-data-archive.s3.amazonaws.com/records/csv.gz/locationid=2415/year=2026/month=10/location-2415-20261010.csv.gz",
+    "status": 200,
+    "columns": [
+      "location_id",
+      "sensors_id",
+      "location",
+      "datetime",
+      "lat",
+      "lon",
+      "parameter",
+      "units",
+      "value"
+    ],
+    "rows": 114,
+    "parameters": {
+      "pm10": 19,
+      "pm25": 19,
+      "o3": 19,
+      "co": 19,
+      "no2": 19,
+      "so2": 19
+    },
+    "pm25_rows": 19,
+    "pm25_sample": [
+      {
+        "location_id": "2415",
+        "sensors_id": "4672",
+        "location": "CAMPO DE MARTE-2415",
+        "datetime": "2026-10-10T02:00:00-05:00",
+        "lat": "-12.070544",
+        "lon": "-77.043214",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "12.95"
+      },
+      {
+        "location_id": "2415",
+        "sensors_id": "4672",
+        "location": "CAMPO DE MARTE-2415",
+        "datetime": "2026-10-10T01:00:00-05:00",
+        "lat": "-12.070544",
+        "lon": "-77.043214",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "13.38"
+      },
+      {
+        "location_id": "2415",
+        "sensors_id": "4672",
+        "location": "CAMPO DE MARTE-2415",
+        "datetime": "2026-10-10T06:00:00-05:00",
+        "lat": "-12.070544",
+        "lon": "-77.043214",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "16.09"
+      }
+    ]
+  },
+  {
+    "id": 2415,
+    "day": "2026-10-11",
+    "url": "https://openaq-data-archive.s3.amazonaws.com/records/csv.gz/locationid=2415/year=2026/month=10/location-2415-20261011.csv.gz",
+    "status": 200,
+    "columns": [
+      "location_id",
+      "sensors_id",
+      "location",
+      "datetime",
+      "lat",
+      "lon",
+      "parameter",
+      "units",
+      "value"
+    ],
+    "rows": 96,
+    "parameters": {
+      "pm10": 16,
+      "o3": 16,
+      "co": 16,
+      "so2": 16,
+      "pm25": 16,
+      "no2": 16
+    },
+    "pm25_rows": 16,
+    "pm25_sample": [
+      {
+        "location_id": "2415",
+        "sensors_id": "4672",
+        "location": "CAMPO DE MARTE-2415",
+        "datetime": "2026-10-11T01:00:00-05:00",
+        "lat": "-12.070544",
+        "lon": "-77.043214",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "17.02"
+      },
+      {
+        "location_id": "2415",
+        "sensors_id": "4672",
+        "location": "CAMPO DE MARTE-2415",
+        "datetime": "2026-10-11T02:00:00-05:00",
+        "lat": "-12.070544",
+        "lon": "-77.043214",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "13.66"
+      },
+      {
+        "location_id": "2415",
+        "sensors_id": "4672",
+        "location": "CAMPO DE MARTE-2415",
+        "datetime": "2026-10-11T04:00:00-05:00",
+        "lat": "-12.070544",
+        "lon": "-77.043214",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "11.69"
+      }
+    ]
+  },
+  {
+    "id": 2415,
+    "day": "2026-10-12",
+    "url": "https://openaq-data-archive.s3.amazonaws.com/records/csv.gz/locationid=2415/year=2026/month=10/location-2415-20261012.csv.gz",
+    "status": 200,
+    "columns": [
+      "location_id",
+      "sensors_id",
+      "location",
+      "datetime",
+      "lat",
+      "lon",
+      "parameter",
+      "units",
+      "value"
+    ],
+    "rows": 120,
+    "parameters": {
+      "pm10": 20,
+      "pm25": 20,
+      "o3": 20,
+      "co": 20,
+      "no2": 20,
+      "so2": 20
+    },
+    "pm25_rows": 20,
+    "pm25_sample": [
+      {
+        "location_id": "2415",
+        "sensors_id": "4672",
+        "location": "CAMPO DE MARTE-2415",
+        "datetime": "2026-10-12T01:00:00-05:00",
+        "lat": "-12.070544",
+        "lon": "-77.043214",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "13.54"
+      },
+      {
+        "location_id": "2415",
+        "sensors_id": "4672",
+        "location": "CAMPO DE MARTE-2415",
+        "datetime": "2026-10-12T02:00:00-05:00",
+        "lat": "-12.070544",
+        "lon": "-77.043214",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "12.18"
+      },
+      {
+        "location_id": "2415",
+        "sensors_id": "4672",
+        "location": "CAMPO DE MARTE-2415",
+        "datetime": "2026-10-12T03:00:00-05:00",
+        "lat": "-12.070544",
+        "lon": "-77.043214",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "12.2"
+      }
+    ]
+  },
+  {
+    "id": 2415,
+    "day": "2026-10-13",
+    "url": "https://openaq-data-archive.s3.amazonaws.com/records/csv.gz/locationid=2415/year=2026/month=10/location-2415-20261013.csv.gz",
+    "status": 200,
+    "columns": [
+      "location_id",
+      "sensors_id",
+      "location",
+      "datetime",
+      "lat",
+      "lon",
+      "parameter",
+      "units",
+      "value"
+    ],
+    "rows": 120,
+    "parameters": {
+      "pm10": 20,
+      "pm25": 20,
+      "o3": 20,
+      "co": 20,
+      "no2": 20,
+      "so2": 20
+    },
+    "pm25_rows": 20,
+    "pm25_sample": [
+      {
+        "location_id": "2415",
+        "sensors_id": "4672",
+        "location": "CAMPO DE MARTE-2415",
+        "datetime": "2026-10-13T01:00:00-05:00",
+        "lat": "-12.070544",
+        "lon": "-77.043214",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "9.74"
+      },
+      {
+        "location_id": "2415",
+        "sensors_id": "4672",
+        "location": "CAMPO DE MARTE-2415",
+        "datetime": "2026-10-13T03:00:00-05:00",
+        "lat": "-12.070544",
+        "lon": "-77.043214",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "11.38"
+      },
+      {
+        "location_id": "2415",
+        "sensors_id": "4672",
+        "location": "CAMPO DE MARTE-2415",
+        "datetime": "2026-10-13T04:00:00-05:00",
+        "lat": "-12.070544",
+        "lon": "-77.043214",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "13.95"
+      }
+    ]
+  },
+  {
+    "id": 2415,
+    "day": "2026-10-14",
+    "url": "https://openaq-data-archive.s3.amazonaws.com/records/csv.gz/locationid=2415/year=2026/month=10/location-2415-20261014.csv.gz",
+    "status": 200,
+    "columns": [
+      "location_id",
+      "sensors_id",
+      "location",
+      "datetime",
+      "lat",
+      "lon",
+      "parameter",
+      "units",
+      "value"
+    ],
+    "rows": 84,
+    "parameters": {
+      "pm10": 14,
+      "pm25": 14,
+      "o3": 14,
+      "co": 14,
+      "no2": 14,
+      "so2": 14
+    },
+    "pm25_rows": 14,
+    "pm25_sample": [
+      {
+        "location_id": "2415",
+        "sensors_id": "4672",
+        "location": "CAMPO DE MARTE-2415",
+        "datetime": "2026-10-14T05:00:00-05:00",
+        "lat": "-12.070544",
+        "lon": "-77.043214",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "15.84"
+      },
+      {
+        "location_id": "2415",
+        "sensors_id": "4672",
+        "location": "CAMPO DE MARTE-2415",
+        "datetime": "2026-10-14T06:00:00-05:00",
+        "lat": "-12.070544",
+        "lon": "-77.043214",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "16.66"
+      },
+      {
+        "location_id": "2415",
+        "sensors_id": "4672",
+        "location": "CAMPO DE MARTE-2415",
+        "datetime": "2026-10-14T07:00:00-05:00",
+        "lat": "-12.070544",
+        "lon": "-77.043214",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "17.79"
+      }
+    ]
+  },
+  {
+    "id": 2415,
+    "day": "2026-10-15",
+    "url": "https://openaq-data-archive.s3.amazonaws.com/records/csv.gz/locationid=2415/year=2026/month=10/location-2415-20261015.csv.gz",
+    "status": 200,
+    "columns": [
+      "location_id",
+      "sensors_id",
+      "location",
+      "datetime",
+      "lat",
+      "lon",
+      "parameter",
+      "units",
+      "value"
+    ],
+    "rows": 86,
+    "parameters": {
+      "pm10": 14,
+      "pm25": 14,
+      "o3": 16,
+      "co": 10,
+      "no2": 16,
+      "so2": 16
+    },
+    "pm25_rows": 14,
+    "pm25_sample": [
+      {
+        "location_id": "2415",
+        "sensors_id": "4672",
+        "location": "CAMPO DE MARTE-2415",
+        "datetime": "2026-10-15T01:00:00-05:00",
+        "lat": "-12.070544",
+        "lon": "-77.043214",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "11.94"
+      },
+      {
+        "location_id": "2415",
+        "sensors_id": "4672",
+        "location": "CAMPO DE MARTE-2415",
+        "datetime": "2026-10-15T02:00:00-05:00",
+        "lat": "-12.070544",
+        "lon": "-77.043214",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "12.72"
+      },
+      {
+        "location_id": "2415",
+        "sensors_id": "4672",
+        "location": "CAMPO DE MARTE-2415",
+        "datetime": "2026-10-15T03:00:00-05:00",
+        "lat": "-12.070544",
+        "lon": "-77.043214",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "13.36"
+      }
+    ]
+  },
+  {
+    "id": 2402,
+    "day": "2022-10-15",
+    "url": "https://openaq-data-archive.s3.amazonaws.com/records/csv.gz/locationid=2402/year=2022/month=10/location-2402-20221015.csv.gz",
+    "status": 200,
+    "columns": [
+      "location_id",
+      "sensors_id",
+      "location",
+      "datetime",
+      "lat",
+      "lon",
+      "parameter",
+      "units",
+      "value"
+    ],
+    "rows": 120,
+    "parameters": {
+      "pm25": 24,
+      "o3": 24,
+      "pm10": 24,
+      "no2": 24,
+      "so2": 24
+    },
+    "pm25_rows": 24,
+    "pm25_sample": [
+      {
+        "location_id": "2402",
+        "sensors_id": "4492",
+        "location": "SAN BORJA-2402",
+        "datetime": "2022-10-15T01:00:00-01:00",
+        "lat": "-12.108872",
+        "lon": "-77.007689",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "25.82"
+      },
+      {
+        "location_id": "2402",
+        "sensors_id": "4492",
+        "location": "SAN BORJA-2402",
+        "datetime": "2022-10-15T02:00:00-01:00",
+        "lat": "-12.108872",
+        "lon": "-77.007689",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "24.85"
+      },
+      {
+        "location_id": "2402",
+        "sensors_id": "4492",
+        "location": "SAN BORJA-2402",
+        "datetime": "2022-10-15T03:00:00-01:00",
+        "lat": "-12.108872",
+        "lon": "-77.007689",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "24.53"
+      }
+    ]
+  },
+  {
+    "id": 2351,
+    "day": "2022-10-15",
+    "url": "https://openaq-data-archive.s3.amazonaws.com/records/csv.gz/locationid=2351/year=2022/month=10/location-2351-20221015.csv.gz",
+    "status": 200,
+    "columns": [
+      "location_id",
+      "sensors_id",
+      "location",
+      "datetime",
+      "lat",
+      "lon",
+      "parameter",
+      "units",
+      "value"
+    ],
+    "rows": 96,
+    "parameters": {
+      "pm10": 24,
+      "pm25": 24,
+      "no2": 24,
+      "so2": 24
+    },
+    "pm25_rows": 24,
+    "pm25_sample": [
+      {
+        "location_id": "2351",
+        "sensors_id": "4319",
+        "location": "SAN MARTIN DE PORRES-2351",
+        "datetime": "2022-10-15T01:00:00-01:00",
+        "lat": "-12.008889",
+        "lon": "-77.084472",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "16.6"
+      },
+      {
+        "location_id": "2351",
+        "sensors_id": "4319",
+        "location": "SAN MARTIN DE PORRES-2351",
+        "datetime": "2022-10-15T02:00:00-01:00",
+        "lat": "-12.008889",
+        "lon": "-77.084472",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "19.39"
+      },
+      {
+        "location_id": "2351",
+        "sensors_id": "4319",
+        "location": "SAN MARTIN DE PORRES-2351",
+        "datetime": "2022-10-15T03:00:00-01:00",
+        "lat": "-12.008889",
+        "lon": "-77.084472",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "24.49"
+      }
+    ]
+  },
+  {
+    "id": 2415,
+    "day": "2022-10-15",
+    "url": "https://openaq-data-archive.s3.amazonaws.com/records/csv.gz/locationid=2415/year=2022/month=10/location-2415-20221015.csv.gz",
+    "status": 200,
+    "columns": [
+      "location_id",
+      "sensors_id",
+      "location",
+      "datetime",
+      "lat",
+      "lon",
+      "parameter",
+      "units",
+      "value"
+    ],
+    "rows": 88,
+    "parameters": {
+      "pm10": 22,
+      "pm25": 22,
+      "no2": 22,
+      "so2": 22
+    },
+    "pm25_rows": 22,
+    "pm25_sample": [
+      {
+        "location_id": "2415",
+        "sensors_id": "4672",
+        "location": "CAMPO DE MARTE-2415",
+        "datetime": "2022-10-15T01:00:00-01:00",
+        "lat": "-12.070544",
+        "lon": "-77.043214",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "16.63"
+      },
+      {
+        "location_id": "2415",
+        "sensors_id": "4672",
+        "location": "CAMPO DE MARTE-2415",
+        "datetime": "2022-10-15T02:00:00-01:00",
+        "lat": "-12.070544",
+        "lon": "-77.043214",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "19.39"
+      },
+      {
+        "location_id": "2415",
+        "sensors_id": "4672",
+        "location": "CAMPO DE MARTE-2415",
+        "datetime": "2022-10-15T03:00:00-01:00",
+        "lat": "-12.070544",
+        "lon": "-77.043214",
+        "parameter": "pm25",
+        "units": "µg/m³",
+        "value": "19.89"
+      }
+    ]
+  },
+  {
+    "id": 2578976,
+    "day": "2026-10-15",
+    "url": "https://openaq-data-archive.s3.amazonaws.com/records/csv.gz/locationid=2578976/year=2026/month=10/location-2578976-20261015.csv.gz",
+    "status": 404,
+    "error": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Error><Code>NoSuchKey</Code><Message>The specified key does not exist.</Message><Key>records/csv.gz/locationid=2578976/year=2026/month=10/location-2578976-20261015.csv.gz</Key><RequestId>PF78C2MQZ174ZHCH</RequestId><HostId>8SRhkg0zOtRb//dPlf1HN/UUEKvTkmMGmpiziGl2zYXoRxDusBGKTiQ4PNevCNkIvYXryn1xAtw=</HostId></Error>"
+  },
+  {
+    "id": 2578979,
+    "day": "2026-10-15",
+    "url": "https://openaq-data-archive.s3.amazonaws.com/records/csv.gz/locationid=2578979/year=2026/month=10/location-2578979-20261015.csv.gz",
+    "status": 404,
+    "error": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Error><Code>NoSuchKey</Code><Message>The specified key does not exist.</Message><Key>records/csv.gz/locationid=2578979/year=2026/month=10/location-2578979-20261015.csv.gz</Key><RequestId>PF782H7E6PGJ144B</RequestId><HostId>8baT9DzxKvHfK2s/G+fH5EDifdyrB9E67tSiNy9jtdHc6SFTSQRTbbAw9C/a0utA3oMXLiq7DhE=</HostId></Error>"
+  }
+]

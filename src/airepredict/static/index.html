@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#167567"><link rel="manifest" href="/static/manifest.webmanifest"><link rel="icon" href="/static/icon.svg"><script src="/static/pwa.js" defer></script>
@@ -8,20 +8,20 @@
   <script src="/static/app.js" defer></script>
 </head>
 <body>
-  <header><a class="brand" href="/">aire<span>predict</span><i aria-hidden="true"></i></a><span class="preview">Research preview</span></header>
+  <header><a class="brand" href="/">aire<span>predict</span><i aria-hidden="true"></i></a><span class="preview">Versión experimental</span></header>
   <main>
-    <div class="intro"><div><p class="eyebrow">LIMA, PERU · ENVIRONMENTAL OBSERVATIONS</p><h1>A little clarity<br>about the next hour.</h1><p class="subtitle">Explore measured fine particles and an experimental forecast for Campo de Marte.</p></div><div class="station"><span class="station-dot" aria-hidden="true"></span><div><strong>Campo de Marte</strong><span>Jesús María, Lima<br>PM2.5 · µg/m³</span></div></div></div>
-    <section class="toolbar" aria-label="Forecast mode"><div class="tabs"><button id="demo" class="active" aria-pressed="true">Recorded forecast</button><button id="live" aria-pressed="false">Current forecast</button></div><span id="mode-label" class="tag">Historical demonstration</span></section>
-    <p id="notice" class="notice" role="status" aria-live="polite">Loading recorded observations…</p>
-    <section class="metrics" aria-label="Measurements and prediction">
-      <article class="card"><p class="eyebrow">LAST MEASURED</p><div class="value"><span id="last">—</span><small>µg/m³</small></div><p id="last-time">—</p></article>
-      <article class="card forecast"><p class="eyebrow">NEXT-HOUR ESTIMATE</p><div class="value"><span id="forecast">—</span><small>µg/m³</small></div><p id="forecast-time">—</p></article>
-      <article class="card explanation"><span class="small-mark" aria-hidden="true">+1h</span><h2>A forecast, with context.</h2><p>This estimate uses recent measurements. It is experimental and may differ from the next observed value.</p></article>
+    <div class="intro"><div><p class="eyebrow">LIMA, PERÚ · OBSERVACIONES AMBIENTALES</p><h1>Un poco de claridad<br>sobre la próxima hora.</h1><p class="subtitle">Explora las mediciones de partículas finas y una predicción experimental para Campo de Marte.</p></div><div class="station"><span class="station-dot" aria-hidden="true"></span><div><strong>Campo de Marte</strong><span>Jesús María, Lima<br>PM2.5 · µg/m³</span></div></div></div>
+    <section class="toolbar" aria-label="Modo de predicción"><div class="tabs"><button id="demo" class="active" aria-pressed="true">Predicción histórica</button><button id="live" aria-pressed="false">Predicción actual</button></div><span id="mode-label" class="tag">Demostración histórica</span></section>
+    <p id="notice" class="notice" role="status" aria-live="polite">Cargando observaciones históricas…</p>
+    <section class="metrics" aria-label="Mediciones y predicción">
+      <article class="card"><p class="eyebrow">ÚLTIMA MEDICIÓN</p><div class="value"><span id="last">—</span><small>µg/m³</small></div><p id="last-time">—</p></article>
+      <article class="card forecast"><p class="eyebrow">ESTIMACIÓN PARA LA PRÓXIMA HORA</p><div class="value"><span id="forecast">—</span><small>µg/m³</small></div><p id="forecast-time">—</p></article>
+      <article class="card explanation"><span class="small-mark" aria-hidden="true">+1h</span><h2>Una predicción con contexto.</h2><p>Esta estimación usa mediciones recientes. Es experimental y puede diferir del próximo valor observado.</p></article>
     </section>
-    <section class="chart-panel"><div class="chart-heading"><div><p class="eyebrow">CONCENTRATION OVER TIME</p><h2>The most recent recorded hours</h2></div><div class="legend"><span><i class="observed"></i>Measured</span><span><i class="predicted"></i>Forecast</span></div></div><div id="chart" class="chart" aria-live="polite"><p>Waiting for observations.</p></div><p class="chart-note">Times shown in Lima (UTC−05). Gaps in the line indicate missing observations.</p></section>
-    <section class="details"><div><h2>What are we estimating?</h2><p>PM2.5 is the concentration of airborne particles with a diameter of 2.5 micrometres or smaller. The forecast estimates its numeric concentration one hour after the last measurement.</p></div><div><h2>Read the date first.</h2><p id="freshness-note">Recorded forecasts let you explore the model using historical observations. They do not describe current air conditions.</p></div></section>
-    <section class="details"><div><h2>Your app, your screen.</h2><p>Install the web app where supported. The Android app also offers a home-screen widget with clearly dated observations.</p><button id="install-app" hidden>Install app</button> <a href="/widget">Open compact view ↗</a> · <a href="https://github.com/Miguel7293/AirPredict/releases">Android downloads ↗</a><p>Notifications in the Android app are optional. Add the widget from the app or your home screen.</p></div><div><h2>About this model.</h2><p id="model-metrics">Loading historical evaluation…</p><p>Active version: <span id="model-version">Loading…</span></p><p>The historical improvement is modest and its confidence interval includes zero. This research preview does not replace official measurements.</p></div></section>
+    <section class="chart-panel"><div class="chart-heading"><div><p class="eyebrow">CONCENTRACIÓN A LO LARGO DEL TIEMPO</p><h2>Las últimas horas registradas</h2></div><div class="legend"><span><i class="observed"></i>Medido</span><span><i class="predicted"></i>Predicción</span></div></div><div id="chart" class="chart" aria-live="polite"><p>Esperando observaciones.</p></div><p class="chart-note">Horas de Lima (UTC−05). Las interrupciones de la línea indican observaciones faltantes.</p></section>
+    <section class="details"><div><h2>¿Qué estamos estimando?</h2><p>PM2.5 es la concentración de partículas en el aire con un diámetro de 2,5 micrómetros o menos. La predicción estima su concentración una hora después de la última medición.</p></div><div><h2>Revisa primero la fecha.</h2><p id="freshness-note">Las predicciones históricas permiten explorar el modelo con observaciones pasadas. No describen las condiciones actuales del aire.</p></div></section>
+    <section class="details"><div><h2>Tu aplicación, tu pantalla.</h2><p>Instala la aplicación web si tu navegador lo permite. La aplicación Android también ofrece un widget de pantalla de inicio con observaciones fechadas.</p><button id="install-app" hidden>Instalar aplicación</button> <a href="/widget">Abrir vista compacta ↗</a> · <a href="https://github.com/Miguel7293/AirPredict/releases">Descargas para Android ↗</a><p>Las notificaciones de Android son opcionales. Añade el widget desde la aplicación o desde la pantalla de inicio.</p></div><div><h2>Acerca del modelo.</h2><p id="model-metrics">Cargando evaluación histórica…</p><p>Versión activa: <span id="model-version">Cargando…</span></p><p>La mejora histórica es modesta y su intervalo de confianza incluye el cero. Esta versión experimental no reemplaza las mediciones oficiales.</p></div></section>
   </main>
-  <footer><span>Observations: SENAMHI via OpenAQ · AirePredict Perú</span><a href="/admin">Operations</a><a href="/docs">API documentation ↗</a></footer>
+  <footer><span>Observaciones: SENAMHI mediante OpenAQ · AirePredict Perú</span><a href="/admin">Operaciones</a><a href="/docs">Documentación de la API ↗</a></footer>
 </body>
 </html>

@@ -32,19 +32,19 @@ const context = vm.createContext({
 vm.runInContext(fs.readFileSync('src/airepredict/static/app.js','utf8'),context);
 await new Promise(resolve=>setImmediate(resolve));
 assert.equal(elements.get('forecast').textContent,'19.61');
-assert.match(elements.get('notice').textContent,/does not describe current/);
+assert.match(elements.get('notice').textContent,/[Nn]o describe las condiciones actuales/);
 assert(storage.has('airepredict-recorded'));
 
 await elements.get('live').events.click();
 assert.equal(elements.get('last').textContent,'24.90');
 assert.equal(elements.get('forecast').textContent,'—');
 assert.equal(elements.get('live').attrs['aria-pressed'],'true');
-assert.match(elements.get('notice').textContent,/No current forecast/);
+assert.match(elements.get('notice').textContent,/No hay una predicción actual/);
 assert.equal(elements.get('chart').children.length,1);
 
 context.navigator.onLine=false;
 await elements.get('demo').events.click();
 assert.equal(elements.get('forecast').textContent,'19.61');
-assert.match(elements.get('mode-label').textContent,/Offline.*historical/);
-assert.match(elements.get('notice').textContent,/does not describe current/);
+assert.match(elements.get('mode-label').textContent,/Sin conexión.*histórico/);
+assert.match(elements.get('notice').textContent,/[Nn]o describe las condiciones actuales/);
 console.log('3 client flows passed: historical, delayed observations, explicitly labelled offline record.');

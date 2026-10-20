@@ -1,4 +1,4 @@
-const CACHE='airepredict-shell-v0.3.0';
+const CACHE='airepredict-shell-v0.3.1-es';
 const SHELL=['/','/widget','/static/style.css','/static/app.js','/static/pwa.js','/static/widget.js','/static/icon.svg'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(SHELL))));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));
@@ -8,5 +8,5 @@ self.addEventListener('fetch',event=>{
   event.respondWith(fetch(event.request).then(response=>{
     if(response.ok&&SHELL.includes(url.pathname)){const copy=response.clone();event.waitUntil(caches.open(CACHE).then(cache=>cache.put(url.pathname,copy)));}
     return response;
-  }).catch(()=>caches.match(event.request,{ignoreSearch:true}).then(response=>response||new Response('Offline. Reconnect to refresh.',{status:503}))));
+  }).catch(()=>caches.match(event.request,{ignoreSearch:true}).then(response=>response||new Response('Sin conexión. Vuelve a conectarte para actualizar.',{status:503}))));
 });

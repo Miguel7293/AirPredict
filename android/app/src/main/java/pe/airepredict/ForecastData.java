@@ -17,7 +17,7 @@ final class ForecastData {
     static String validateUrl(String value) {
         String clean=value.trim().replaceAll("/+$", "");
         try { URL u=new URL(clean); if(!u.getProtocol().equals("https") || u.getHost().isEmpty() || u.getUserInfo()!=null || !u.getPath().isEmpty() || u.getQuery()!=null || u.getRef()!=null) throw new Exception(); }
-        catch(Exception e) { throw new IllegalArgumentException("Enter an HTTPS server origin without a path."); }
+        catch(Exception e) { throw new IllegalArgumentException("Introduce la dirección de un servidor HTTPS sin una ruta adicional."); }
         return clean;
     }
     static JSONObject cached(Context c) {
@@ -38,20 +38,20 @@ final class ForecastData {
         HttpsURLConnection conn=(HttpsURLConnection)new URL(origin+(historical?"/api/demo":"/api/forecast")).openConnection();
         conn.setConnectTimeout(8000); conn.setReadTimeout(8000); conn.setInstanceFollowRedirects(false);
         try {
-            if(conn.getResponseCode()!=200) throw new Exception("Fresh observations are unavailable. Historical examples are available in the full app.");
+            if(conn.getResponseCode()!=200) throw new Exception("No hay observaciones recientes disponibles. Puedes consultar ejemplos históricos en la aplicación completa.");
             java.io.BufferedReader reader=new java.io.BufferedReader(new java.io.InputStreamReader(conn.getInputStream(),StandardCharsets.UTF_8));
             StringBuilder body=new StringBuilder(); char[] block=new char[4096];int count;
-            while((count=reader.read(block))!=-1){body.append(block,0,count);if(body.length()>1000000)throw new Exception("Response too large");}
+            while((count=reader.read(block))!=-1){body.append(block,0,count);if(body.length()>1000000)throw new Exception("Respuesta demasiado grande");}
             JSONObject data=new JSONObject(body.toString());
-            if(historical){if(!data.optString("mode").equals("historical")||data.optBoolean("is_current_forecast"))throw new Exception("Unexpected historical response");}
-            else {if(!fresh(data)) throw new Exception("The forecast is outdated.");
+            if(historical){if(!data.optString("mode").equals("historical")||data.optBoolean("is_current_forecast"))throw new Exception("Respuesta histórica inesperada");}
+            else {if(!fresh(data)) throw new Exception("La predicción está desactualizada.");
                 preferences(c).edit().putString("forecast",data.toString()).putLong("fetched_at",System.currentTimeMillis()).apply();}
             return data;
         } finally { conn.disconnect(); }
     }
     static String value(JSONObject data) { return String.format(Locale.US,"%.2f µg/m³",data.optDouble("predicted_pm25",0)); }
     static String time(JSONObject data) {
-        try { return OffsetDateTime.parse(data.getString("target_time_utc")).atZoneSameInstant(ZoneId.of("America/Lima")).format(DateTimeFormatter.ofPattern("dd MMM HH:mm",Locale.ENGLISH))+" Lima"; }
-        catch(Exception e) { return "No forecast timestamp"; }
+        try { return OffsetDateTime.parse(data.getString("target_time_utc")).atZoneSameInstant(ZoneId.of("America/Lima")).format(DateTimeFormatter.ofPattern("dd MMM HH:mm",Locale.forLanguageTag("es-PE")))+" Lima"; }
+        catch(Exception e) { return "Sin fecha y hora de predicción"; }
     }
 }

@@ -63,7 +63,7 @@ public class ApplicationTest {
         Context context=InstrumentationRegistry.getInstrumentation().getTargetContext();
         try(ActivityScenario<MainActivity> scenario=ActivityScenario.launch(MainActivity.class)){
             UiDevice device=UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
-            UiSelector selector=new UiSelector().textMatches("(?i)Enable forecast notifications");
+            UiSelector selector=new UiSelector().textMatches("(?i)Activar notificaciones de predicción");
             new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(selector);
             device.findObject(selector).click();
             androidx.test.uiautomator.UiObject2 deny=device.wait(Until.findObject(By.res("com.android.permissioncontroller","permission_deny_button")),5000);

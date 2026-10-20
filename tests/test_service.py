@@ -119,6 +119,6 @@ def test_stale_live_store_is_rejected(tmp_path, engine):
 
 
 def test_page_assets_and_health(client):
-    assert 'Historical demonstration' in client.get('/').text
+    assert 'Demostración histórica' in client.get('/').text
     assert client.get('/static/app.js').status_code == 200
     assert client.get('/health').json()['status'] == 'ok'

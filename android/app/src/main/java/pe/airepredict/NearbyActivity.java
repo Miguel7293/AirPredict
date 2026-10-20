@@ -33,13 +33,13 @@ public class NearbyActivity extends Activity {
         locate();
     }
     @android.annotation.SuppressLint("MissingPermission") private void locate(){
-        cancelLocation();++sequence;results.removeAllViews();status.setText("Buscando tu ubicación aproximada…");
+        cancelLocation();final int requestSequence=++sequence;results.removeAllViews();status.setText("Buscando tu ubicación aproximada…");
         String provider=Build.VERSION.SDK_INT>=31&&manager.getProviders(true).contains("fused")?"fused":LocationManager.NETWORK_PROVIDER;
         try{
             if(!manager.isProviderEnabled(provider)){finishLocation("Activa la ubicación del teléfono o selecciona un punto manualmente.");return;}
             handler.postDelayed(timeout,25000);
-            if(Build.VERSION.SDK_INT>=30){cancellation=new CancellationSignal();manager.getCurrentLocation(provider,cancellation,getMainExecutor(),this::acceptLocation);}
-            else{listener=new LocationListener(){public void onLocationChanged(Location location){acceptLocation(location);}public void onStatusChanged(String p,int s,Bundle b){}public void onProviderEnabled(String p){}public void onProviderDisabled(String p){finishLocation("La ubicación está desactivada. Puedes consultar el mapa manualmente.");}};manager.requestSingleUpdate(provider,listener,Looper.getMainLooper());}
+            if(Build.VERSION.SDK_INT>=30){cancellation=new CancellationSignal();manager.getCurrentLocation(provider,cancellation,getMainExecutor(),position->{if(sequence==requestSequence)acceptLocation(position);});}
+            else{listener=new LocationListener(){public void onLocationChanged(Location location){if(sequence==requestSequence)acceptLocation(location);}public void onStatusChanged(String p,int s,Bundle b){}public void onProviderEnabled(String p){}public void onProviderDisabled(String p){if(sequence==requestSequence)finishLocation("La ubicación está desactivada. Puedes consultar el mapa manualmente.");}};manager.requestSingleUpdate(provider,listener,Looper.getMainLooper());}
         }catch(SecurityException error){finishLocation("No se concedió el permiso de ubicación. Puedes consultar los puntos manualmente.");}catch(IllegalArgumentException error){finishLocation("Este dispositivo no ofrece ubicación aproximada. Puedes seleccionar un punto manualmente.");}
     }
     private void cancelLocation(){handler.removeCallbacks(timeout);if(cancellation!=null){cancellation.cancel();cancellation=null;}if(listener!=null&&manager!=null){manager.removeUpdates(listener);listener=null;}}

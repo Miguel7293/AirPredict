@@ -1,20 +1,32 @@
 {
-  "action": "ingest",
+  "action": "verify",
   "status": "completed",
-  "completed_at": "2026-10-20T03:50:22.586005+00:00",
+  "completed_at": "2026-10-20T03:59:51.780262+00:00",
   "result": {
-    "mode": "historical_archive",
-    "live_api_configured": false,
-    "accepted_rows": 28,
-    "total_rows": 3315,
-    "duplicates": {
-      "identical_duplicates": 0,
-      "conflicting_rows_removed": 0
+    "retraining": {
+      "status": "skipped",
+      "active_unchanged": "20261020T035022-f10a116b8b",
+      "reason": "Fewer than 168 complete examples after the last reserved evaluation period.",
+      "new_examples": 0
     },
-    "archive_end": "2026-10-16",
-    "note": "Delayed archive; no observations written to the live store."
+    "monitoring": {
+      "status": "skipped",
+      "reason": "No active/previous release pair is available."
+    },
+    "backup": {
+      "backup_id": "2026-10-20T03-59-49.230549+00-00-4b9cbf",
+      "files": 8,
+      "archive": "2026-10-20T03-59-49.230549+00-00-4b9cbf.zip",
+      "sha256": "aa62310346f99699c11b442db0aad9022a2c1693cbc2087f3525426a1705d635"
+    },
+    "historical_simulation": {
+      "application_registry_modified": false,
+      "first_training": "promoted",
+      "second_training": "rejected",
+      "restored": true
+    }
   },
-  "code_commit": "6a824293fd327ef8ba9f4e29c79482165d33f17b",
+  "code_commit": "fc28d9ed15d10102aa517e82a40f3f85902bcfed",
   "registry": {
     "active": "20261020T035022-f10a116b8b",
     "previous": null

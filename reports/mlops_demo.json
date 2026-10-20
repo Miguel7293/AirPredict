@@ -1,0 +1,489 @@
+{
+  "historical_simulation": true,
+  "application_registry_modified": false,
+  "registry_path": "/home/runner/work/AirPredict/AirPredict/.runtime/models/mlops_demo/2026-10-20T03-59-49.241283+00-00",
+  "initial_baseline": "20261020T035949-cf1a16c66b",
+  "first_training": {
+    "status": "promoted",
+    "candidate": "20261020T035950-cdf01095ec",
+    "previous": "20261020T035949-cf1a16c66b",
+    "evaluation": {
+      "approved": true,
+      "checks": {
+        "enough_examples": true,
+        "enough_observed_days": true,
+        "sufficient_coverage": true,
+        "mae_improves_active": true,
+        "beats_persistence": true,
+        "rmse_acceptable": true,
+        "bias_acceptable": true,
+        "high_concentrations_acceptable": true,
+        "uncertainty_acceptable": true
+      },
+      "reasons": [],
+      "candidate": {
+        "mae": 2.017711271244565,
+        "rmse": 2.8814669469727745,
+        "r2": 0.6174525216430072,
+        "bias": 0.46875144773147737,
+        "n": 270
+      },
+      "active": {
+        "mae": 2.0699259259259257,
+        "rmse": 2.9318548041457633,
+        "r2": 0.6039564209618613,
+        "bias": 0.16451851851851856,
+        "n": 270
+      },
+      "persistence": {
+        "mae": 2.0699259259259257,
+        "rmse": 2.9318548041457633,
+        "r2": 0.6039564209618613,
+        "bias": 0.16451851851851856,
+        "n": 270
+      },
+      "relative_mae_improvement": 0.02522537353987876,
+      "n": 270,
+      "observed_days": 30,
+      "evaluable_coverage": 0.375,
+      "high_concentration_rmse": {
+        "candidate": 4.110420727077286,
+        "active": 4.279131531825899,
+        "n": 27
+      },
+      "uncertainty": {
+        "mae_difference_first_minus_second": -0.05221465468136153,
+        "ci95_daily_bootstrap": [
+          -0.11881978459282296,
+          0.006326438576612869
+        ],
+        "observed_days": 30,
+        "replications": 2000,
+        "interpretation": "Negativo favorece al primer modelo; un intervalo que contiene cero no respalda una mejora concluyente."
+      },
+      "policy": {
+        "minimum_examples": 100,
+        "minimum_observed_days": 7,
+        "minimum_evaluable_coverage": 0.35,
+        "minimum_relative_mae_improvement": 0.02,
+        "maximum_rmse_ratio": 1.02,
+        "maximum_absolute_bias": 1.0,
+        "maximum_high_concentration_rmse_ratio": 1.5,
+        "require_negative_daily_bootstrap_upper_bound": false,
+        "note": "SANDBOX ONLY: historical demonstration with relaxed statistical and high-tail controls."
+      },
+      "evaluation_start": "2026-09-16T05:00:00+00:00",
+      "evaluation_end": "2026-10-16T03:00:00+00:00",
+      "champion_id": "20261020T035949-cf1a16c66b",
+      "candidate_id": "20261020T035950-cdf01095ec",
+      "historical_demo": true
+    }
+  },
+  "repeated_training": {
+    "status": "rejected",
+    "candidate": "20261020T035951-91c2368e7c",
+    "active_unchanged": "20261020T035950-cdf01095ec",
+    "evaluation": {
+      "approved": false,
+      "checks": {
+        "enough_examples": true,
+        "enough_observed_days": true,
+        "sufficient_coverage": true,
+        "mae_improves_active": false,
+        "beats_persistence": true,
+        "rmse_acceptable": true,
+        "bias_acceptable": true,
+        "high_concentrations_acceptable": true,
+        "uncertainty_acceptable": true
+      },
+      "reasons": [
+        "mae_improves_active"
+      ],
+      "candidate": {
+        "mae": 2.017711271244565,
+        "rmse": 2.8814669469727745,
+        "r2": 0.6174525216430072,
+        "bias": 0.46875144773147737,
+        "n": 270
+      },
+      "active": {
+        "mae": 2.017711271244565,
+        "rmse": 2.8814669469727745,
+        "r2": 0.6174525216430072,
+        "bias": 0.46875144773147737,
+        "n": 270
+      },
+      "persistence": {
+        "mae": 2.0699259259259257,
+        "rmse": 2.9318548041457633,
+        "r2": 0.6039564209618613,
+        "bias": 0.16451851851851856,
+        "n": 270
+      },
+      "relative_mae_improvement": 0.0,
+      "n": 270,
+      "observed_days": 30,
+      "evaluable_coverage": 0.375,
+      "high_concentration_rmse": {
+        "candidate": 4.110420727077286,
+        "active": 4.110420727077286,
+        "n": 27
+      },
+      "uncertainty": {
+        "mae_difference_first_minus_second": 0.0,
+        "ci95_daily_bootstrap": [
+          0.0,
+          0.0
+        ],
+        "observed_days": 30,
+        "replications": 2000,
+        "interpretation": "Negativo favorece al primer modelo; un intervalo que contiene cero no respalda una mejora concluyente."
+      },
+      "policy": {
+        "minimum_examples": 100,
+        "minimum_observed_days": 7,
+        "minimum_evaluable_coverage": 0.35,
+        "minimum_relative_mae_improvement": 0.02,
+        "maximum_rmse_ratio": 1.02,
+        "maximum_absolute_bias": 1.0,
+        "maximum_high_concentration_rmse_ratio": 1.5,
+        "require_negative_daily_bootstrap_upper_bound": false,
+        "note": "SANDBOX ONLY: historical demonstration with relaxed statistical and high-tail controls."
+      },
+      "evaluation_start": "2026-09-16T05:00:00+00:00",
+      "evaluation_end": "2026-10-16T03:00:00+00:00",
+      "champion_id": "20261020T035950-cdf01095ec",
+      "candidate_id": "20261020T035951-91c2368e7c",
+      "historical_demo": true
+    }
+  },
+  "restored": "20261020T035949-cf1a16c66b",
+  "final_state": {
+    "active": "20261020T035949-cf1a16c66b",
+    "previous": null
+  },
+  "events": [
+    {
+      "id": 10,
+      "at": "2026-10-20T03:59:51.778030+00:00",
+      "action": "rolled_back",
+      "release_id": "20261020T035949-cf1a16c66b",
+      "detail": {
+        "failed_or_replaced": "20261020T035950-cdf01095ec",
+        "reason": "SIMULATED failure in historical sandbox",
+        "marked_faulty": false
+      }
+    },
+    {
+      "id": 9,
+      "at": "2026-10-20T03:59:51.775075+00:00",
+      "action": "simulated_post_deployment_failure",
+      "release_id": "20261020T035950-cdf01095ec",
+      "detail": {
+        "simulation": true
+      }
+    },
+    {
+      "id": 8,
+      "at": "2026-10-20T03:59:51.773016+00:00",
+      "action": "candidate_rejected",
+      "release_id": "20261020T035951-91c2368e7c",
+      "detail": {
+        "reasons": [
+          "mae_improves_active"
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "at": "2026-10-20T03:59:51.771113+00:00",
+      "action": "candidate_evaluated",
+      "release_id": "20261020T035951-91c2368e7c",
+      "detail": {
+        "approved": false,
+        "checks": {
+          "enough_examples": true,
+          "enough_observed_days": true,
+          "sufficient_coverage": true,
+          "mae_improves_active": false,
+          "beats_persistence": true,
+          "rmse_acceptable": true,
+          "bias_acceptable": true,
+          "high_concentrations_acceptable": true,
+          "uncertainty_acceptable": true
+        },
+        "reasons": [
+          "mae_improves_active"
+        ],
+        "candidate": {
+          "mae": 2.017711271244565,
+          "rmse": 2.8814669469727745,
+          "r2": 0.6174525216430072,
+          "bias": 0.46875144773147737,
+          "n": 270
+        },
+        "active": {
+          "mae": 2.017711271244565,
+          "rmse": 2.8814669469727745,
+          "r2": 0.6174525216430072,
+          "bias": 0.46875144773147737,
+          "n": 270
+        },
+        "persistence": {
+          "mae": 2.0699259259259257,
+          "rmse": 2.9318548041457633,
+          "r2": 0.6039564209618613,
+          "bias": 0.16451851851851856,
+          "n": 270
+        },
+        "relative_mae_improvement": 0.0,
+        "n": 270,
+        "observed_days": 30,
+        "evaluable_coverage": 0.375,
+        "high_concentration_rmse": {
+          "candidate": 4.110420727077286,
+          "active": 4.110420727077286,
+          "n": 27
+        },
+        "uncertainty": {
+          "mae_difference_first_minus_second": 0.0,
+          "ci95_daily_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "observed_days": 30,
+          "replications": 2000,
+          "interpretation": "Negativo favorece al primer modelo; un intervalo que contiene cero no respalda una mejora concluyente."
+        },
+        "policy": {
+          "minimum_examples": 100,
+          "minimum_observed_days": 7,
+          "minimum_evaluable_coverage": 0.35,
+          "minimum_relative_mae_improvement": 0.02,
+          "maximum_rmse_ratio": 1.02,
+          "maximum_absolute_bias": 1.0,
+          "maximum_high_concentration_rmse_ratio": 1.5,
+          "require_negative_daily_bootstrap_upper_bound": false,
+          "note": "SANDBOX ONLY: historical demonstration with relaxed statistical and high-tail controls."
+        },
+        "evaluation_start": "2026-09-16T05:00:00+00:00",
+        "evaluation_end": "2026-10-16T03:00:00+00:00",
+        "champion_id": "20261020T035950-cdf01095ec",
+        "candidate_id": "20261020T035951-91c2368e7c",
+        "historical_demo": true
+      }
+    },
+    {
+      "id": 6,
+      "at": "2026-10-20T03:59:51.412476+00:00",
+      "action": "registered",
+      "release_id": "20261020T035951-91c2368e7c",
+      "detail": {
+        "origin": "historical_replay",
+        "trained_until": "2026-09-16T00:00:00+00:00",
+        "evaluated_until": "2026-10-16T03:00:00+00:00",
+        "training_examples": 18069,
+        "target_training_examples": 2482,
+        "source_weight_budget": 1.0,
+        "historical_demo": true
+      }
+    },
+    {
+      "id": 5,
+      "at": "2026-10-20T03:59:50.512797+00:00",
+      "action": "activated",
+      "release_id": "20261020T035950-cdf01095ec",
+      "detail": {
+        "reason": "Candidate passed temporal evaluation",
+        "previous": "20261020T035949-cf1a16c66b",
+        "administrative": false,
+        "evaluation": {
+          "approved": true,
+          "checks": {
+            "enough_examples": true,
+            "enough_observed_days": true,
+            "sufficient_coverage": true,
+            "mae_improves_active": true,
+            "beats_persistence": true,
+            "rmse_acceptable": true,
+            "bias_acceptable": true,
+            "high_concentrations_acceptable": true,
+            "uncertainty_acceptable": true
+          },
+          "reasons": [],
+          "candidate": {
+            "mae": 2.017711271244565,
+            "rmse": 2.8814669469727745,
+            "r2": 0.6174525216430072,
+            "bias": 0.46875144773147737,
+            "n": 270
+          },
+          "active": {
+            "mae": 2.0699259259259257,
+            "rmse": 2.9318548041457633,
+            "r2": 0.6039564209618613,
+            "bias": 0.16451851851851856,
+            "n": 270
+          },
+          "persistence": {
+            "mae": 2.0699259259259257,
+            "rmse": 2.9318548041457633,
+            "r2": 0.6039564209618613,
+            "bias": 0.16451851851851856,
+            "n": 270
+          },
+          "relative_mae_improvement": 0.02522537353987876,
+          "n": 270,
+          "observed_days": 30,
+          "evaluable_coverage": 0.375,
+          "high_concentration_rmse": {
+            "candidate": 4.110420727077286,
+            "active": 4.279131531825899,
+            "n": 27
+          },
+          "uncertainty": {
+            "mae_difference_first_minus_second": -0.05221465468136153,
+            "ci95_daily_bootstrap": [
+              -0.11881978459282296,
+              0.006326438576612869
+            ],
+            "observed_days": 30,
+            "replications": 2000,
+            "interpretation": "Negativo favorece al primer modelo; un intervalo que contiene cero no respalda una mejora concluyente."
+          },
+          "policy": {
+            "minimum_examples": 100,
+            "minimum_observed_days": 7,
+            "minimum_evaluable_coverage": 0.35,
+            "minimum_relative_mae_improvement": 0.02,
+            "maximum_rmse_ratio": 1.02,
+            "maximum_absolute_bias": 1.0,
+            "maximum_high_concentration_rmse_ratio": 1.5,
+            "require_negative_daily_bootstrap_upper_bound": false,
+            "note": "SANDBOX ONLY: historical demonstration with relaxed statistical and high-tail controls."
+          },
+          "evaluation_start": "2026-09-16T05:00:00+00:00",
+          "evaluation_end": "2026-10-16T03:00:00+00:00",
+          "champion_id": "20261020T035949-cf1a16c66b",
+          "candidate_id": "20261020T035950-cdf01095ec",
+          "historical_demo": true
+        }
+      }
+    },
+    {
+      "id": 4,
+      "at": "2026-10-20T03:59:50.492799+00:00",
+      "action": "candidate_evaluated",
+      "release_id": "20261020T035950-cdf01095ec",
+      "detail": {
+        "approved": true,
+        "checks": {
+          "enough_examples": true,
+          "enough_observed_days": true,
+          "sufficient_coverage": true,
+          "mae_improves_active": true,
+          "beats_persistence": true,
+          "rmse_acceptable": true,
+          "bias_acceptable": true,
+          "high_concentrations_acceptable": true,
+          "uncertainty_acceptable": true
+        },
+        "reasons": [],
+        "candidate": {
+          "mae": 2.017711271244565,
+          "rmse": 2.8814669469727745,
+          "r2": 0.6174525216430072,
+          "bias": 0.46875144773147737,
+          "n": 270
+        },
+        "active": {
+          "mae": 2.0699259259259257,
+          "rmse": 2.9318548041457633,
+          "r2": 0.6039564209618613,
+          "bias": 0.16451851851851856,
+          "n": 270
+        },
+        "persistence": {
+          "mae": 2.0699259259259257,
+          "rmse": 2.9318548041457633,
+          "r2": 0.6039564209618613,
+          "bias": 0.16451851851851856,
+          "n": 270
+        },
+        "relative_mae_improvement": 0.02522537353987876,
+        "n": 270,
+        "observed_days": 30,
+        "evaluable_coverage": 0.375,
+        "high_concentration_rmse": {
+          "candidate": 4.110420727077286,
+          "active": 4.279131531825899,
+          "n": 27
+        },
+        "uncertainty": {
+          "mae_difference_first_minus_second": -0.05221465468136153,
+          "ci95_daily_bootstrap": [
+            -0.11881978459282296,
+            0.006326438576612869
+          ],
+          "observed_days": 30,
+          "replications": 2000,
+          "interpretation": "Negativo favorece al primer modelo; un intervalo que contiene cero no respalda una mejora concluyente."
+        },
+        "policy": {
+          "minimum_examples": 100,
+          "minimum_observed_days": 7,
+          "minimum_evaluable_coverage": 0.35,
+          "minimum_relative_mae_improvement": 0.02,
+          "maximum_rmse_ratio": 1.02,
+          "maximum_absolute_bias": 1.0,
+          "maximum_high_concentration_rmse_ratio": 1.5,
+          "require_negative_daily_bootstrap_upper_bound": false,
+          "note": "SANDBOX ONLY: historical demonstration with relaxed statistical and high-tail controls."
+        },
+        "evaluation_start": "2026-09-16T05:00:00+00:00",
+        "evaluation_end": "2026-10-16T03:00:00+00:00",
+        "champion_id": "20261020T035949-cf1a16c66b",
+        "candidate_id": "20261020T035950-cdf01095ec",
+        "historical_demo": true
+      }
+    },
+    {
+      "id": 3,
+      "at": "2026-10-20T03:59:50.131895+00:00",
+      "action": "registered",
+      "release_id": "20261020T035950-cdf01095ec",
+      "detail": {
+        "origin": "historical_replay",
+        "trained_until": "2026-09-16T00:00:00+00:00",
+        "evaluated_until": "2026-10-16T03:00:00+00:00",
+        "training_examples": 18069,
+        "target_training_examples": 2482,
+        "source_weight_budget": 1.0,
+        "historical_demo": true
+      }
+    },
+    {
+      "id": 2,
+      "at": "2026-10-20T03:59:49.266435+00:00",
+      "action": "activated",
+      "release_id": "20261020T035949-cf1a16c66b",
+      "detail": {
+        "reason": "Historical sandbox baseline, not application model",
+        "previous": null,
+        "administrative": false,
+        "evaluation": null
+      }
+    },
+    {
+      "id": 1,
+      "at": "2026-10-20T03:59:49.261936+00:00",
+      "action": "registered",
+      "release_id": "20261020T035949-cf1a16c66b",
+      "detail": {
+        "origin": "sandbox_persistence_baseline",
+        "trained_until": null,
+        "evaluated_until": null
+      }
+    }
+  ]
+}

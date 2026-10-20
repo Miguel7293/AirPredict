@@ -59,3 +59,5 @@ Un toque en «Actualizar» vuelve a consultar el último estado publicado; no ob
 ## Cartografía y dependencias
 
 Se incluye [Leaflet 1.9.4](https://leafletjs.com/download.html) con su licencia BSD. El mapa usa geometría vectorial local de [Natural Earth](https://www.naturalearthdata.com/about/terms-of-use/) y [geoBoundaries PER ADM1](https://www.geoboundaries.org/api/current/gbOpen/PER/ADM1/) (revisión `90a1d52`, geometría de referencia declarada de dominio público). Los límites departamentales son referenciales y no se usan para determinar la etiqueta o la evaluación del modelo. No se depende de servidores públicos de teselas para mostrar el mapa.
+
+El análisis general incluye «Simular con mis datos diarios»: selecciona un punto representado en el entrenamiento e introduce fecha, promedio diario y, opcionalmente, el valor del día anterior. `POST /api/general/predict` valida la entrada, rechaza puntos ajenos y observaciones futuras, y devuelve una simulación explícitamente no actual con su fecha objetivo. No convierte valores manuales en mediciones verificadas.

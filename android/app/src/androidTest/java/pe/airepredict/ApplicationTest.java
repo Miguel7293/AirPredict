@@ -64,6 +64,17 @@ public class ApplicationTest {
             saveEvidence("settings.png");
         }
     }
+    @Test public void historicalScreenConnectsToPublishedStationService() throws Exception {
+        Context context=InstrumentationRegistry.getInstrumentation().getTargetContext();
+        ForecastData.preferences(context).edit().putInt("station_id",2402).commit();
+        try(ActivityScenario<MainActivity> scenario=ActivityScenario.launch(MainActivity.class)){
+            UiDevice device=UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+            device.wait(Until.findObject(By.text("Estaciones")),5000).click();
+            device.wait(Until.findObject(By.text("Explorar predicción histórica")),5000).click();
+            assertNotNull(device.wait(Until.findObject(By.textContains("Ejemplo histórico: no describe")),90000));
+            saveEvidence("station-connected.png");
+        }finally{ForecastData.preferences(context).edit().clear().commit();}
+    }
     @Test public void homeScreenWidgetIsRegistered() {
         Context context=InstrumentationRegistry.getInstrumentation().getTargetContext();
         assertTrue(AppWidgetManager.getInstance(context).getInstalledProviders().stream().anyMatch(provider->provider.provider.getClassName().equals(ForecastWidget.class.getName())));

@@ -1,10 +1,10 @@
 # AirePredict Perú
 
-MVP de pronóstico supervisado de PM2.5 a una hora para Campo de Marte, Lima. Interfaz web en inglés, PWA, aplicación Android con widget y mantenimiento de modelos.
+Observatorio experimental de PM2.5 de Perú. Mapa e histórico del dataset OEFA completo, modelo general diario y modelos horarios independientes para Jesús María, San Borja y San Martín de Porres. Web y Android en español, con inicio, mapa, estaciones, ajustes y widget.
 
 **Aplicación:** https://airpredict-4u3c.onrender.com/  
 **Automatizaciones:** https://github.com/Miguel7293/AirPredict/actions  
-**APK Android de demostración:** [descargar](https://github.com/Miguel7293/AirPredict/releases/download/v0.3.0/airepredict-demo.apk)
+**APK Android de demostración:** [descargar](https://github.com/Miguel7293/AirPredict/releases/download/v0.4.0/airepredict-demo.apk)
 
 ## Producto y operación
 
@@ -13,6 +13,12 @@ La aplicación distingue observaciones actuales de la demostración histórica, 
 Render gratuito sirve la aplicación. GitHub Actions ejecuta las operaciones y conserva el estado en la rama pública `runtime-state`; el servidor carga revisiones completas cada diez minutos y al arrancar. No se contrató alojamiento de pago. El primer acceso puede tardar porque el servicio gratuito se suspende por inactividad.
 
 Los flujos comprueban pruebas y contenedor, publican imágenes por commit, despliegan en Render, ingieren datos, evalúan candidatos, supervisan predicciones y respaldan el estado. La ingesta autenticada ya se verificó con 34 horas aceptadas. Si las mediciones llegan tarde, la aplicación permite inspeccionarlas y mantiene deshabilitada la predicción actual. Sin `OPENAQ_API_KEY`, la ingesta utiliza el archivo público retrasado y conserva explícitamente el modo histórico.
+
+## Nuevo atlas y modelos (0.4)
+
+[Metodología del atlas, entrenamiento general y modelos por estación](docs/ATLAS_Y_MODELOS.md). El modelo general revisó 2.883.877 registros, utiliza 3.879 observaciones diarias válidas y mantiene el test separado. MAE diario 2,67 µg/m³ y R² 0,692; no equivale a las métricas horarias ni a cobertura continua del país.
+
+El mapa permite explorar el histórico y simular el día siguiente con datos diarios introducidos por el usuario. Las simulaciones se identifican como datos sin verificar. Solo los puntos de OpenAQ configurados participan en el MLOps automático.
 
 ## Documentación
 
@@ -25,7 +31,7 @@ Los flujos comprueban pruebas y contenedor, publican imágenes por commit, despl
 
 El combinado obtiene MAE 2,0177 µg/m³, RMSE 2,8815 y R² 0,6175 en 270 ejemplos históricos de prueba. La mejora observada frente a persistencia es pequeña; el intervalo diario incluye cero. El registro inicial no representa aprobación de la nueva política de promoción.
 
-## Verificación de entrega
+## Verificación de la entrega inicial (0.3)
 
 - 45 pruebas Python en Linux; en Windows pasan 43 y se omiten dos específicas de Linux.
 - Tres flujos del cliente: demostración histórica, mediciones retrasadas y consulta histórica guardada sin conexión.

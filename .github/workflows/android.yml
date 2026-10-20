@@ -90,6 +90,7 @@ jobs:
           adb pull /data/local/tmp/airepredict-application.png ../application.png || test "$TEST_STATUS" != 0
           adb pull /data/local/tmp/airepredict-widget.png ../widget.png || test "$TEST_STATUS" != 0
           adb pull /data/local/tmp/airepredict-settings.png ../settings.png || test "$TEST_STATUS" != 0
+          adb pull /data/local/tmp/airepredict-station-connected.png ../station-connected.png || test "$TEST_STATUS" != 0
           adb pull /data/local/tmp/airepredict-permission-failure.png ../permission-failure.png || true
           exit "$TEST_STATUS"
       - uses: actions/upload-artifact@v4
@@ -101,6 +102,7 @@ jobs:
             application.png
             widget.png
             settings.png
+            station-connected.png
             permission-failure.png
             android/app/build/reports/androidTests/
           retention-days: 30

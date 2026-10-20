@@ -4,7 +4,7 @@ const fmt=n=>Number.isFinite(n)?n.toLocaleString('es-PE',{maximumFractionDigits:
 const localDate=t=>new Intl.DateTimeFormat('es-PE',{timeZone:'America/Lima',dateStyle:'medium',timeStyle:'short'}).format(new Date(t));
 let atlasData, stationData=[], mode='general', selected=null, requestSequence=0, markers=[], map;
 const color=value=>value==null?'#87958d':value<=10?'#4da59b':value<=25?'#9bb968':value<=50?'#d7a354':'#a96857';
-async function getJSON(path){const response=await fetch(path,{cache:'no-store'});let value;try{value=await response.json();}catch{throw Error('El servidor aún se está iniciando. Espera un momento y vuelve a intentarlo.');}if(!response.ok)throw Error(typeof value.detail==='string'?value.detail:'No se pudo cargar la información.');return value;}
+async function getJSON(path,options={}){const response=await fetch(path,{cache:'no-store',...options});let value;try{value=await response.json();}catch{throw Error('El servidor aún se está iniciando. Espera un momento y vuelve a intentarlo.');}if(!response.ok)throw Error(typeof value.detail==='string'?value.detail:'No se pudo cargar la información.');return value;}
 function notice(text,error=false){byId('atlas-notice').textContent=text;byId('atlas-notice').classList.toggle('error',error);}
 function drawChart(rows,hourly=false){
   const chart=byId('history-chart');chart.replaceChildren();
@@ -25,7 +25,7 @@ function drawChart(rows,hourly=false){
   chart.appendChild(svg);
   byId('series-count').textContent=fmt(rows.length);byId('series-mean').textContent=fmt(rows.reduce((a,r)=>a+r.pm25,0)/rows.length);byId('series-max').textContent=fmt(Math.max(...rows.map(r=>r.pm25)));
 }
-function resetAnalysis(){for(const id of ['estimate','series-count','series-mean','series-max'])byId(id).textContent='—';byId('history-chart').replaceChildren();byId('estimate-date').textContent='Selecciona un punto para continuar.';byId('open-point').hidden=true;}
+function resetAnalysis(){byId('scenario-box').hidden=true;for(const id of ['estimate','series-count','series-mean','series-max'])byId(id).textContent='—';byId('history-chart').replaceChildren();byId('estimate-date').textContent='Selecciona un punto para continuar.';byId('open-point').hidden=true;}
 function filteredSites(){const term=byId('point-search').value.toLocaleLowerCase('es');const region=byId('region').value;return(mode==='general'?atlasData.sites:stationData).filter(s=>(!region||s.region===region)&&`${s.name||''} ${s.district||''} ${s.code||''} ${s.region}`.toLocaleLowerCase('es').includes(term));}
 function pointName(s){return mode==='general'?`${s.district} · ${s.code}`:s.name;}
 function showPoints(fit=false){
@@ -50,7 +50,7 @@ async function selectSite(site,pan){
   notice('Cargando el análisis del punto seleccionado…');
   if(mode==='general'){
     try{const data=await getJSON(`/api/atlas/sites/${encodeURIComponent(site.id)}${byId('year').value?'?year='+byId('year').value:''}`);if(seq!==requestSequence)return;drawChart(data.history);byId('chart-title').textContent='Evolución diaria de PM2.5';byId('prediction-kicker').textContent='MODELO GENERAL · PREDICCIÓN DIARIA HISTÓRICA';
-      if(data.prediction){byId('estimate').textContent=fmt(data.prediction.value);byId('estimate-date').textContent=`Para el ${data.prediction.target_date}, a partir de la medición del ${data.prediction.observed_date}.`;byId('estimate-context').textContent=`Ejemplo histórico, no actual. Última observación del periodo: ${fmt(data.prediction.observed)} µg/m³. ${data.prediction.trained_site?'Este punto está representado en el entrenamiento.':'Este punto no está representado en el entrenamiento; su estimación es exploratoria y no está validada.'}`;}else{byId('estimate-date').textContent='Sin observaciones diarias válidas en este periodo.';byId('estimate-context').textContent='Este punto se conserva en el inventario, pero no se inventan datos para emitir una predicción.';}
+      byId('scenario-box').hidden=!site.trained;if(data.prediction){byId('scenario-date').value=data.prediction.observed_date;byId('scenario-pm25').value=data.prediction.observed;byId('estimate').textContent=fmt(data.prediction.value);byId('estimate-date').textContent=`Para el ${data.prediction.target_date}, a partir de la medición del ${data.prediction.observed_date}.`;byId('estimate-context').textContent=`Ejemplo histórico, no actual. Última observación del periodo: ${fmt(data.prediction.observed)} µg/m³. ${data.prediction.trained_site?'Este punto está representado en el entrenamiento.':'Este punto no está representado en el entrenamiento; su estimación es exploratoria y no está validada.'}`;}else{byId('estimate-date').textContent='Sin observaciones diarias válidas en este periodo.';byId('estimate-context').textContent='Este punto se conserva en el inventario, pero no se inventan datos para emitir una predicción.';}
       notice('Análisis histórico cargado. Los valores y la estimación corresponden a las fechas indicadas.');
     }catch(error){if(seq===requestSequence)notice(error.message,true);}
   }else{
@@ -80,3 +80,9 @@ async function initializeAtlas(){
 }
 byId('general-tab').onclick=()=>changeMode('general');byId('stations-tab').onclick=()=>changeMode('stations');byId('region').onchange=()=>showPoints(true);byId('point-search').oninput=()=>showPoints();byId('fit-map').onclick=()=>showPoints(true);byId('year').onchange=()=>selected&&selectSite(selected,false);byId('refresh-stations').onclick=async()=>{byId('refresh-stations').disabled=true;try{await loadStations();if(mode==='stations'&&selected)await selectSite(selected,false);notice('Estado consultado de nuevo. Las mediciones conservan la fecha comunicada por el proveedor.');}catch(error){notice(error.message,true);}finally{byId('refresh-stations').disabled=false;}};
 if('serviceWorker' in navigator)navigator.serviceWorker.register('/sw.js').catch(()=>{});initializeAtlas();
+
+byId('scenario-form').addEventListener('submit',async event=>{
+  event.preventDefault();if(mode!=='general'||!selected?.trained)return;
+  const sequence=++requestSequence;byId('scenario-submit').disabled=true;notice('Calculando escenario diario…');
+  try{const body={site_id:selected.id,observed_date:byId('scenario-date').value,pm25:Number(byId('scenario-pm25').value),previous_pm25:byId('scenario-previous').value===''?null:Number(byId('scenario-previous').value)};const data=await getJSON('/api/general/predict',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});if(sequence!==requestSequence)return;byId('prediction-kicker').textContent='MODELO GENERAL · SIMULACIÓN CON TUS DATOS';byId('estimate').textContent=fmt(data.predicted_pm25);byId('estimate-date').textContent=`Escenario para el ${data.target_date}, a partir del ${data.observed_date}.`;byId('estimate-context').textContent=data.note;notice(data.outside_training_period?'Escenario calculado fuera del periodo usado para ajustar el modelo. Su validez actual no está demostrada.':'Simulación calculada con los valores introducidos; no se ha verificado su procedencia.');}catch(error){if(sequence===requestSequence)notice(error.message,true);}finally{byId('scenario-submit').disabled=false;}
+});

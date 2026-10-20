@@ -9,6 +9,8 @@ import joblib
 import numpy as np
 import pandas as pd
 from fastapi import HTTPException
+from pydantic import BaseModel, ConfigDict, Field
+from datetime import date
 from threadpoolctl import threadpool_limits
 
 from .data import ROOT
@@ -20,6 +22,22 @@ from .stations import STATIONS, station_config, station_registry, station_databa
 # General research assets are immutable application assets. Runtime state holds
 # only the mutable station registries, measurements and consumed eval windows.
 SEED=Path(os.environ.get('AIRPREDICT_SEED',Path(__file__).resolve().parents[2]))
+
+
+class GeneralScenario(BaseModel):
+    model_config=ConfigDict(extra='forbid',allow_inf_nan=False)
+    site_id:str
+    observed_date:date
+    pm25:float=Field(ge=0,le=3000)
+    previous_pm25:float|None=Field(default=None,ge=0,le=3000)
+
+
+def estimate_day(site,day,value,previous,bundle):
+    record={'pm25_now':value,'pm25_lag1':previous,'latitude':site['latitude'],'longitude':site['longitude'],'altitude':site['altitude']}
+    for name,calendar,period in [('month',day.month,12),('weekday',day.dayofweek,7)]:
+        record[name+'_sin']=np.sin(2*np.pi*calendar/period); record[name+'_cos']=np.cos(2*np.pi*calendar/period)
+    with threadpool_limits(limits=2):
+        return max(0,float(value+bundle['model'].predict(pd.DataFrame([record])[bundle['features']])[0]))
 
 
 @lru_cache(maxsize=1)
@@ -40,13 +58,9 @@ def general_history(identifier, year=None):
     result={'site':site,'history':history,'mode':'historical','units':'µg/m³','model_version':bundle['version'],'prediction':None}
     if history:
         latest=history[-1]; day=pd.Timestamp(latest['date']); previous=next((h['pm25'] for h in history if h['date']==(day-pd.Timedelta(days=1)).date().isoformat()),np.nan)
-        record={'pm25_now':latest['pm25'],'pm25_lag1':previous,'latitude':site['latitude'],'longitude':site['longitude'],'altitude':site['altitude']}
-        for name,value,period in [('month',day.month,12),('weekday',day.dayofweek,7)]:
-            record[name+'_sin']=np.sin(2*np.pi*value/period); record[name+'_cos']=np.cos(2*np.pi*value/period)
         # Inference on held-out-time points is explicitly historical evaluation;
         # it never modifies the frozen general model or its test metrics.
-        with threadpool_limits(limits=2):
-            value=max(0,float(latest['pm25']+bundle['model'].predict(pd.DataFrame([record])[bundle['features']])[0]))
+        value=estimate_day(site,day,latest['pm25'],previous,bundle)
         result['prediction']={'value':value,'target_date':(day+pd.Timedelta(days=1)).date().isoformat(),'observed_date':latest['date'],'observed':latest['pm25'],'historical':True,'trained_site':site['trained']}
     return result
 
@@ -96,6 +110,20 @@ def station_forecast(identifier,mode='live'):
 
 
 def install(app):
+    @app.post('/api/general/predict')
+    def scenario(request:GeneralScenario):
+        report,_,bundle=general_assets()
+        site=next((s for s in report['inventory'] if s['id']==request.site_id),None)
+        if not site or not site['trained']: raise HTTPException(422,'Selecciona un punto representado en el entrenamiento del modelo general.')
+        today=datetime.now(timezone(timedelta(hours=-5))).date()
+        if request.observed_date>today: raise HTTPException(422,'La observación introducida no puede estar en el futuro.')
+        day=pd.Timestamp(request.observed_date)
+        value=estimate_day(site,day,request.pm25,request.previous_pm25 if request.previous_pm25 is not None else np.nan,bundle)
+        return {'mode':'scenario','is_current_forecast':False,'site_id':site['id'],'model_version':bundle['version'],'units':'µg/m³',
+                'predicted_pm25':value,'observed_date':request.observed_date.isoformat(),'target_date':(day+pd.Timedelta(days=1)).date().isoformat(),
+                'input_origin':'user_unverified','outside_training_period':request.observed_date.isoformat()>report['fitted_through'],
+                'note':'Simulación con datos introducidos por el usuario, sin verificar. No representa las condiciones actuales. El modelo se evaluó en el histórico OEFA; una fecha nueva no implica validación actual.'}
+
     @app.get('/api/atlas')
     def atlas():
         report,daily,_=general_assets()

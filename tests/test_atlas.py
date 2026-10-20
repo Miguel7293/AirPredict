@@ -49,3 +49,18 @@ def test_atlas_api_never_accepts_unknown_station_or_location():
         assert client.get('/api/atlas/sites/not-a-point').status_code==404
         assert client.get('/api/atlas').status_code==200
         assert client.get('/stations').status_code==200
+
+
+def test_manual_general_scenario_is_never_presented_as_current():
+    report,_,_=general_assets()
+    site=next(s for s in report['inventory'] if s['trained'])
+    body={'site_id':site['id'],'observed_date':'2022-12-30','pm25':12,'previous_pm25':11}
+    with TestClient(create_app()) as client:
+        result=client.post('/api/general/predict',json=body)
+        assert result.status_code==200
+        assert result.json()['target_date']=='2022-12-31'
+        assert result.json()['mode']=='scenario' and not result.json()['is_current_forecast']
+        assert result.json()['input_origin']=='user_unverified'
+        assert client.post('/api/general/predict',json={**body,'pm25':-1}).status_code==422
+        assert client.post('/api/general/predict',json={**body,'site_id':'unknown'}).status_code==422
+        assert client.post('/api/general/predict',json={**body,'observed_date':'2099-01-01'}).status_code==422

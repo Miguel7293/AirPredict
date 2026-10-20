@@ -98,6 +98,13 @@ def main():
                 result = {'historical_simulation': True, 'application_registry_modified': False,
                           'first_training': report['first_training']['status'], 'second_training': report['repeated_training']['status'],
                           'restored': report['restored'] == report['initial_baseline']}
+            elif action == 'verify':
+                result = {'retraining': run(registry), 'monitoring': monitor(registry), 'backup': backup()}
+                historical = demo()
+                result['historical_simulation'] = {'application_registry_modified': False,
+                    'first_training': historical['first_training']['status'],
+                    'second_training': historical['repeated_training']['status'],
+                    'restored': historical['restored'] == historical['initial_baseline']}
             else:
                 raise ValueError('Unsupported maintenance action')
         report = {'action': action, 'status': 'completed', 'completed_at': now_string(), 'result': result,

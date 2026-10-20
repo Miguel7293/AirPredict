@@ -10,7 +10,7 @@ on:
       action:
         type: choice
         required: true
-        options: [ingest, retrain, monitor, backup, rollback, demo]
+        options: [ingest, retrain, monitor, backup, rollback, demo, verify]
         default: monitor
 permissions:
   contents: write
@@ -62,6 +62,7 @@ jobs:
             artifacts/
             .runtime/backups/*.zip
           retention-days: 30
+          include-hidden-files: true
       - name: Record workflow result
         if: always()
         run: echo "### Maintenance $ACTION — ${{ job.status }}. Durable state is on runtime-state." >> "$GITHUB_STEP_SUMMARY"

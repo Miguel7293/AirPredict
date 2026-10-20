@@ -47,3 +47,14 @@ def test_conflicting_duplicate_is_quarantined():
     clean, stats = validate_records(raw)
     assert len(clean) == 1 and clean.iloc[0]['pm25'] == 7
     assert stats['conflicting_rows_removed'] == 2
+
+
+def test_csv_and_api_station_ids_share_one_feature_series():
+    from airepredict.data import validate_records
+    frame = pd.DataFrame({'source': ['OpenAQ']*4, 'station': [2415, '2415', 2415, '2415'],
+                          'timestamp': pd.date_range('2020-01-01', periods=4, freq='h', tz='UTC'), 'pm25': [1, 2, 3, 4]})
+    normalized, _ = validate_records(frame)
+    features = make_features(normalized)
+    assert len(features) == 1
+    assert features.iloc[0]['pm25_now'] == 3
+    assert features.iloc[0]['y'] == 4

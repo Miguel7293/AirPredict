@@ -260,10 +260,25 @@ def create_app(predictor=None, database=DEFAULT_DATABASE, demo_path=None, regist
         latest = hours[-1]['timestamp'] if hours else None
         now = datetime.now(timezone.utc)
         fresh = bool(latest and utc_stamp(latest) <= now < utc_stamp(latest)+timedelta(hours=1))
+        published_path = ROOT/'state.json'
+        published = json.loads(published_path.read_text(encoding='utf-8')) if published_path.exists() else {}
         return {'station': load_config()['target_name'], 'location_id': 2415, 'model_available': available,
                 'model_version': version, 'model_status': 'experimental', 'api_key_configured': bool(os.environ.get('OPENAQ_API_KEY', '').strip()),
+                'ingestion_runtime': 'github_actions' if os.environ.get('STATE_SYNC_REPOSITORY') else 'local',
+                'workflow_api_key_configured': published.get('live_api_configured'),
                 'historical_demo_available': demo_path.exists(), 'latest_live_observation_utc': latest,
                 'live_data_fresh': fresh, 'retraining': retraining_readiness(database)}
+
+    @app.get('/api/observations')
+    def recent_observations():
+        hours = read_hours(database, limit=72)
+        latest = hours[-1]['timestamp'] if hours else None
+        now = datetime.now(timezone.utc)
+        return {'location_id': 2415, 'sensor_id': 4672, 'units': 'µg/m³', 'history': hours,
+                'latest_observation_utc': latest,
+                'data_age_hours': (now-utc_stamp(latest)).total_seconds()/3600 if latest else None,
+                'fresh_for_next_hour': bool(latest and utc_stamp(latest) <= now < utc_stamp(latest)+timedelta(hours=1)),
+                'note': 'Ingested measurements can be inspected even when a current forecast is unavailable.'}
 
     @app.post('/api/predict')
     def manual_prediction(request: PredictionRequest):

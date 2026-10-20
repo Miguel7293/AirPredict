@@ -8,7 +8,7 @@ Código y automatizaciones: https://github.com/Miguel7293/AirPredict
 
 AirePredict estima la concentración de PM2.5 una hora después de la última observación de Campo de Marte, ubicación OpenAQ 2415, sensor 4672. La interfaz está en inglés. Las mediciones auxiliares de La Huaca y Macacará no se presentan como estaciones actuales de Lima. El resultado es experimental y no sustituye mediciones oficiales.
 
-La web incluye observación, predicción, fechas en Lima, gráfico con discontinuidades, explicación del modelo, instalación PWA, vista compacta y acceso a operaciones. Android añade consulta nativa, acceso a la web completa, widget de pantalla de inicio y notificaciones opcionales. El widget muestra su hora objetivo; Android decide cuándo ejecuta las actualizaciones en segundo plano.
+La web incluye observación, predicción, fechas en Lima, gráfico con discontinuidades, explicación del modelo, instalación PWA, vista compacta y acceso a operaciones. Android añade consulta nativa, consulta histórica nativa, acceso a la web completa, widget de pantalla de inicio y notificaciones opcionales. El widget muestra su hora objetivo; Android decide cuándo ejecuta las actualizaciones en segundo plano.
 
 ## Arquitectura gratuita
 
@@ -88,6 +88,6 @@ El modo con disco y trabajos administrativos locales sigue disponible para una f
 
 ## Evidencia y límites pendientes
 
-Los enlaces a ejecuciones y comprobaciones finales se conservarán en `reports/ENTREGA_MVP.json`. Las pruebas incluyen separación temporal, integridad de artefactos, recuperación, autenticación, respaldo/restauración y actualización atómica del estado en Linux. Android añade compilación, análisis y comprobaciones de dispositivo.
+Se verificó también la restauración de un respaldo real descargado de GitHub: 23 archivos con hashes correctos, registro compatible y predicción histórica reproducida. Los enlaces a ejecuciones y comprobaciones finales se conservarán en `reports/ENTREGA_MVP.json`. Las pruebas incluyen separación temporal, integridad de artefactos, recuperación, autenticación, respaldo/restauración y actualización atómica del estado en Linux. Android añade compilación, análisis y comprobaciones de dispositivo.
 
-La conexión autenticada de OpenAQ requiere una clave propia; sin ella la demostración sigue siendo histórica. El archivo público tiene retraso y el servicio gratuito puede dormir. La disponibilidad de datos suficientes y buenas métricas se comprueba en cada ciclo, no se garantiza por el hecho de automatizarlo.
+La conexión autenticada de OpenAQ se verificó desde GitHub Actions: se aceptaron 34 horas y no se emitió un pronóstico actual porque faltaba una ventana suficientemente fresca. La clave se conserva como secreto de GitHub. Sin clave, la demostración y actualización histórica siguen disponibles. El archivo público tiene retraso y el servicio gratuito puede dormir. La disponibilidad de datos suficientes y buenas métricas se comprueba en cada ciclo, no se garantiza por el hecho de automatizarlo.

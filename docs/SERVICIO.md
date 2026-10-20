@@ -78,3 +78,5 @@ El registro local permite evaluar y activar candidatos, conservar una versión a
 ## Actualización del MVP
 
 La aplicación se publica en https://airpredict-4u3c.onrender.com/ con una proyección de estado administrada por GitHub Actions. El contenedor y las pruebas de arranque ya se ejecutan en GitHub. La conexión autenticada sigue dependiendo de una clave propia. Véase [INFORME_TECNICO_MVP.md](INFORME_TECNICO_MVP.md) para la arquitectura actual; las instrucciones locales anteriores conservan su utilidad.
+
+La ingesta autenticada ya se verificó desde GitHub Actions (34 horas aceptadas). En el despliegue gratuito la credencial reside en el trabajo de ingesta, no en el servicio web. `/api/observations` permite consultar las mediciones ingresadas aun cuando falta una ventana fresca para predecir.

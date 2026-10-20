@@ -16,6 +16,18 @@ class FlatChange:
         return np.zeros(len(frame))
 
 
+def test_delayed_measurements_remain_visible_without_current_forecast(tmp_path, engine):
+    database = tmp_path/'observations.sqlite'
+    save_hours(database, [{'timestamp': '2020-01-01T01:00:00+00:00', 'pm25': 12.5, 'coverage': 100}],
+               load_config(), datetime.now(timezone.utc))
+    with TestClient(create_app(engine, database=database)) as client:
+        measured = client.get('/api/observations').json()
+        assert len(measured['history']) == 1
+        assert measured['history'][0]['pm25'] == 12.5
+        assert measured['fresh_for_next_hour'] is False
+        assert client.get('/api/forecast').status_code == 409
+
+
 @pytest.fixture
 def engine():
     instance = Predictor.__new__(Predictor)

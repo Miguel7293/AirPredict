@@ -11,7 +11,7 @@ La aplicación distingue observaciones actuales de la demostración histórica, 
 
 Render gratuito sirve la aplicación. GitHub Actions ejecuta las operaciones y conserva el estado en la rama pública `runtime-state`; el servidor carga revisiones completas cada diez minutos y al arrancar. No se contrató alojamiento de pago. El primer acceso puede tardar porque el servicio gratuito se suspende por inactividad.
 
-Los flujos comprueban pruebas y contenedor, publican imágenes por commit, despliegan en Render, ingieren datos, evalúan candidatos, supervisan predicciones y respaldan el estado. Sin `OPENAQ_API_KEY`, la ingesta utiliza el archivo público retrasado y conserva explícitamente el modo histórico.
+Los flujos comprueban pruebas y contenedor, publican imágenes por commit, despliegan en Render, ingieren datos, evalúan candidatos, supervisan predicciones y respaldan el estado. La ingesta autenticada ya se verificó con 34 horas aceptadas. Si las mediciones llegan tarde, la aplicación permite inspeccionarlas y mantiene deshabilitada la predicción actual. Sin `OPENAQ_API_KEY`, la ingesta utiliza el archivo público retrasado y conserva explícitamente el modo histórico.
 
 ## Documentación
 

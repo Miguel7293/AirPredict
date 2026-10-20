@@ -164,6 +164,8 @@ def validate_records(frame):
     frame = frame.copy()
     if frame.empty:
         return frame, {'identical_duplicates': 0, 'conflicting_rows_removed': 0}
+    frame['station'] = frame['station'].astype(str).str.strip()
+    frame['source'] = frame['source'].astype(str).str.strip()
     frame['timestamp'] = pd.to_datetime(frame['timestamp'], utc=True, format='mixed')
     # Conflicting observations are quarantined instead of arbitrarily averaged.
     keys = ['source', 'station', 'timestamp']

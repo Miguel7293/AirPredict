@@ -1,0 +1,9 @@
+{
+  "backup_sha256_verified": true,
+  "files_verified": 23,
+  "restored_model_loaded": true,
+  "prediction_finite": true,
+  "predicted_pm25": 19.61290224040626,
+  "active": "20261020T035022-f10a116b8b",
+  "source_workflow": "https://github.com/Miguel7293/AirPredict/actions/runs/39367599201"
+}

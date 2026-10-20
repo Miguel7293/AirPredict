@@ -70,6 +70,7 @@ def main():
             if action == 'ingest':
                 result = ingest() if os.environ.get('OPENAQ_API_KEY', '').strip() else archive_ingestion()
                 if os.environ.get('OPENAQ_API_KEY', '').strip():
+                    result.update(mode='authenticated_openaq', live_api_configured=True)
                     from airepredict.live import read_hours, DEFAULT_DATABASE
                     from airepredict.service import Predictor
                     from airepredict.monitoring import record_forecast
@@ -108,7 +109,8 @@ def main():
             else:
                 raise ValueError('Unsupported maintenance action')
         report = {'action': action, 'status': 'completed', 'completed_at': now_string(), 'result': result,
-                  'code_commit': os.environ.get('GITHUB_SHA', 'local'), 'registry': registry.state()}
+                  'code_commit': os.environ.get('GITHUB_SHA', 'local'), 'registry': registry.state(),
+                  'live_api_configured': bool(os.environ.get('OPENAQ_API_KEY', '').strip())}
     except Exception as exc:
         report = {'action': action, 'status': 'failed', 'completed_at': now_string(),
                   'error_type': type(exc).__name__, 'registry': registry.state()}

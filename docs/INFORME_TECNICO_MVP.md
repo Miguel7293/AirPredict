@@ -46,9 +46,10 @@ La descripción completa de limpieza, alternativas e hiperparámetros está en [
 | `ci.yml` | Push, PR, manual y llamada desde despliegue | Pruebas Python y contenedor con arranque y predicción real |
 | `deploy.yml` | Main y manual | Imagen identificada por commit en GHCR, despliegue de ese commit y comprobación remota |
 | `operations.yml` | Horario y manual | Ingesta, evaluación, monitorización, respaldo, simulación o recuperación |
+| `rollback.yml` | Manual | Recupera y verifica un commit de aplicación con entrega previa correcta |
 | `android.yml` | Cambios Android y manual | Compilación, análisis y APK; pruebas de dispositivo en ejecución manual |
 
-Horarios de mantenimiento en UTC: ingesta al minuto 17 de cada hora, monitorización a las 08:37 diariamente, entrenamiento los lunes a las 09:47 y respaldo a las 07:27 diariamente. GitHub puede retrasar las ejecuciones. Todos los flujos que modifican estado comparten un grupo de exclusión mutua y publican resultados consultables.
+Horarios de mantenimiento en UTC: ingesta al minuto 17 de cada hora, monitorización a las 08:37 diariamente, entrenamiento los lunes a las 09:47 y respaldo a las 07:27 diariamente. GitHub puede retrasar las ejecuciones. Las escrituras del estado de modelos comparten un grupo de exclusión mutua. Las entregas y recuperaciones de la aplicación comparten otro; el servidor solo consume copias completas del estado. Todos publican resultados consultables.
 
 La ingesta usa OpenAQ autenticado si existe `OPENAQ_API_KEY`. En ausencia de clave, actualiza únicamente el archivo histórico público retrasado, con una etiqueta explícita. Ese archivo no alimenta el almacén de observaciones actuales ni habilita pronósticos en vivo.
 
@@ -81,6 +82,8 @@ El modo con disco y trabajos administrativos locales sigue disponible para una f
 **Reentrenar:** abrir Scheduled model maintenance → Run workflow → retrain. Revisar el informe y el registro. `skipped` significa falta de datos; `rejected` significa que el activo se mantiene por controles de calidad.
 
 **Recuperar modelo:** ejecutar la acción manual rollback. Requiere que exista una versión anterior compatible. No se fabrica una versión anterior para aparentar una recuperación.
+
+**Recuperar aplicación:** ejecutar Restore application version con el SHA completo de una entrega anterior correcta. El flujo comprueba esa condición y verifica la recuperación. El despliegue normal también intenta recuperar el último commit saludable si falla su comprobación final. La compatibilidad del modelo y entorno sigue siendo necesaria.
 
 **Respaldar y restaurar:** ejecutar backup y descargar el artefacto. El ZIP usa copia online de SQLite e incluye un manifiesto de hashes. Para restaurar, verificar hashes e integridad, probar el estado aislado y publicar una revisión controlada de runtime-state. Conservar también el commit de código y entorno compatible. Los artefactos tienen retención de 30 días; el estado actual y su historial permanecen en la rama.
 

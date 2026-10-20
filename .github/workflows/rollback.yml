@@ -1,0 +1,31 @@
+name: Restore application version
+on:
+  workflow_dispatch:
+    inputs:
+      commit:
+        description: Complete SHA of a previously successful delivery
+        type: string
+        required: true
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: production-deployment
+  cancel-in-progress: false
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: production
+    env:
+      TARGET_COMMIT: ${{ inputs.commit }}
+      APP_BASE_URL: ${{ vars.APP_BASE_URL }}
+      RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Recover and verify the selected application version
+        run: python scripts/rollback_application.py

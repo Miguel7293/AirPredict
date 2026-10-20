@@ -51,7 +51,7 @@ Los registros se almacenan en `data/live/airepredict.sqlite`. Repetir una ingest
 
 ## Comprobaciones realizadas
 
-- 33 pruebas pasaron, incluyendo registro y recuperación de modelos: integridad temporal, fronteras de estaciones, inferencia sin objetivo futuro, etiquetas históricas, rechazo de datos antiguos, paginación fallida, duplicados y correcciones.
+- La suite actual contiene 45 casos, incluyendo registro, recuperación, respaldo y sincronización de modelos: integridad temporal, fronteras de estaciones, inferencia sin objetivo futuro, etiquetas históricas, rechazo de datos antiguos, paginación fallida, duplicados y correcciones.
 - La aplicación local se probó con el modelo combinado real y las observaciones históricas preparadas.
 - El servicio de salud, las rutas de API y los recursos de interfaz respondieron localmente.
 - La conexión autenticada de OpenAQ y la disponibilidad en vivo no se probaron, según la elección de continuar sin clave.

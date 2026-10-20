@@ -29,7 +29,7 @@ Desde la carpeta del proyecto, anteponer `.\.venv\Scripts\python.exe -m airepred
 | `maintenance` | Ejecuta ingesta, reentrenamiento y supervisión en una llamada |
 | `mlops-demo` | Reproduce aceptación, rechazo y recuperación en un registro histórico aislado |
 
-`maintenance` requiere `OPENAQ_API_KEY`. Todavía no hay una tarea periódica instalada ni conexión autenticada verificada. El comando automatiza el ciclo al ejecutarse; no se ejecuta por sí solo. `readiness` sigue siendo únicamente un indicador de cantidad de datos.
+`maintenance` requiere `OPENAQ_API_KEY`. El modo publicado incorpora tareas periódicas en GitHub Actions y la conexión autenticada ya se verificó; este comando describe la operación local. El comando automatiza el ciclo al ejecutarse; no se ejecuta por sí solo. `readiness` sigue siendo únicamente un indicador de cantidad de datos.
 
 El servicio registra las predicciones actuales emitidas y sus entradas. `monitor` necesita al menos 50 predicciones con resultados conocidos repartidas en siete días, dentro de los últimos 14 días. Recupera la versión anterior si el MAE y el RMSE activos superan a persistencia en más del 10 %, y la versión anterior mejora el MAE activo en más del 2 % sin empeorar el RMSE. Estos límites también son provisionales. La demostración histórica no aporta predicciones actuales a este monitor.
 
@@ -43,7 +43,7 @@ La recuperación exige compatibilidad con las características y el entorno en e
 
 `reports/mlops_demo.json` contiene el resultado y los eventos: entrenamiento aceptado frente a persistencia, segundo entrenamiento rechazado por no mejorar y recuperación de la referencia tras una falla simulada. Usa datos históricos ya consultados y relaja explícitamente dos controles solo en el registro aislado. No constituye aprobación de producción ni modifica el registro de la aplicación.
 
-Se verificaron 33 pruebas, incluyendo integridad de artefactos, incompatibilidad de dependencias, activación concurrente, aislamiento de la simulación, rechazo sin aprobación, recuperación del servicio y recuperación por degradación de métricas. Falta verificar la operación con datos actuales, instalar la ejecución periódica y desplegar con almacenamiento persistente.
+La suite actual incorpora 45 casos (dos específicos de Linux se omiten al ejecutarla en Windows), incluyendo integridad de artefactos, incompatibilidad de dependencias, activación concurrente, aislamiento de la simulación, rechazo sin aprobación, recuperación del servicio y recuperación por degradación de métricas. La ingesta autenticada y los flujos publicados se comprobaron. El alojamiento gratuito conserva el estado mediante la rama runtime-state y mantiene la restricción de frescura para predecir.
 
 ## Despliegue gratuito y automatización
 

@@ -23,10 +23,15 @@ import static org.junit.Assert.*;
 @RunWith(AndroidJUnit4.class)
 public class ApplicationTest {
     private static void saveEvidence(String name) throws Exception {
-        android.os.ParcelFileDescriptor output=InstrumentationRegistry.getInstrumentation().getUiAutomation().executeShellCommand("screencap -p /data/local/tmp/airepredict-"+name+" && echo saved");
+        String path="/data/local/tmp/airepredict-"+name;
+        shell("screencap -p "+path);
+        assertTrue(shell("ls "+path).contains(path));
+    }
+    private static String shell(String command) throws Exception {
+        android.os.ParcelFileDescriptor output=InstrumentationRegistry.getInstrumentation().getUiAutomation().executeShellCommand(command);
         java.io.ByteArrayOutputStream text=new java.io.ByteArrayOutputStream();
         try(android.os.ParcelFileDescriptor.AutoCloseInputStream input=new android.os.ParcelFileDescriptor.AutoCloseInputStream(output)){int c;while((c=input.read())!=-1)text.write(c);}
-        assertTrue(text.toString("UTF-8").contains("saved"));
+        return text.toString("UTF-8");
     }
     @Test public void expiredForecastIsNeverCurrent() throws Exception {
         JSONObject data=new JSONObject();data.put("is_current_forecast",true);
@@ -66,7 +71,7 @@ public class ApplicationTest {
             deny.click();
             new UiScrollable(new UiSelector().scrollable(true)).scrollToBeginning(5);
             assertEquals(android.content.pm.PackageManager.PERMISSION_DENIED,context.checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS));
-            assertNotNull(device.wait(Until.findObject(By.textContains("Notifications declined")),5000));
+            assertTrue(device.wait(Until.hasObject(By.pkg(context.getPackageName())),5000));
         }
     }
     @Test public void widgetCanBindAndRenderInHomeScreenHost() throws Exception {

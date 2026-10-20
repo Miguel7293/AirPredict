@@ -13,7 +13,7 @@ on:
         options: [ingest, retrain, monitor, backup, rollback, demo]
         default: monitor
 permissions:
-  contents: read
+  contents: write
 concurrency:
   group: production-maintenance
   cancel-in-progress: false
@@ -23,24 +23,45 @@ jobs:
     timeout-minutes: 25
     environment: production
     env:
+      AIRPREDICT_ROOT: ${{ github.workspace }}/.runtime
+      OPENAQ_API_KEY: ${{ secrets.OPENAQ_API_KEY }}
       APP_BASE_URL: ${{ vars.APP_BASE_URL }}
-      AIRPREDICT_ADMIN_TOKEN: ${{ secrets.AIRPREDICT_ADMIN_TOKEN }}
       ACTION: ${{ inputs.action || (github.event.schedule == '17 * * * *' && 'ingest') || (github.event.schedule == '37 8 * * *' && 'monitor') || (github.event.schedule == '47 9 * * 1' && 'retrain') || 'backup' }}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          ref: runtime-state
+          path: .runtime
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Check production configuration
-        run: python -c "import os; assert os.environ['APP_BASE_URL'] and len(os.environ['AIRPREDICT_ADMIN_TOKEN']) >= 32, 'Production secrets or URL are missing'"
-      - name: Run serialized operation on persistent server
-        run: python scripts/remote_job.py "$ACTION"
+          cache: pip
+      - run: python -m pip install -r requirements.txt
+      - run: python -m pip install -e . --no-deps
+      - name: Execute against the durable state branch
+        run: python scripts/state_job.py "$ACTION"
+      - name: Publish state and consumed evaluation windows
+        if: always()
+        working-directory: .runtime
+        run: |
+          if test -f state.json; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add config data/processed data/live models requirements.txt reports state.json
+            if ! git diff --cached --quiet; then
+              git commit -m "Maintenance ${ACTION}: run ${GITHUB_RUN_ID}"
+              git push origin HEAD:runtime-state
+            fi
+          fi
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: maintenance-${{ github.run_id }}
-          path: artifacts/
+          path: |
+            artifacts/
+            .runtime/backups/*.zip
           retention-days: 30
       - name: Record workflow result
         if: always()
-        run: echo "### Maintenance $ACTION — ${{ job.status }}" >> "$GITHUB_STEP_SUMMARY"
+        run: echo "### Maintenance $ACTION — ${{ job.status }}. Durable state is on runtime-state." >> "$GITHUB_STEP_SUMMARY"

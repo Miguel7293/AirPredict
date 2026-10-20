@@ -17,7 +17,7 @@ from pathlib import Path
 
 import pandas as pd
 
-ROOT = Path(os.environ.get('AIRPREDICT_ROOT', Path(__file__).resolve().parents[2])).resolve()
+ROOT = Path(os.environ.get('AIRPREDICT_ROOT', Path(__file__).resolve().parents[2])).absolute()
 FIXED_LIMA = timezone(timedelta(hours=-5))
 COLUMNS = ['source', 'station', 'sensor_id', 'timestamp', 'pm25']
 

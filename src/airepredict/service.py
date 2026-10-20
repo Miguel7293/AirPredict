@@ -205,6 +205,8 @@ def create_app(predictor=None, database=DEFAULT_DATABASE, demo_path=None, regist
 
     @app.post('/api/admin/jobs/{action}', status_code=202, dependencies=[Depends(administrator)])
     def start_job(action: str):
+        if os.environ.get('STATE_SYNC_REPOSITORY'):
+            raise HTTPException(409, 'This deployment is read-only. Run maintenance from the authenticated GitHub Actions workflows.')
         if action not in ['ingest', 'retrain', 'monitor', 'backup', 'rollback', 'demo']:
             raise HTTPException(404, 'Unknown operation')
         try:
@@ -231,6 +233,14 @@ def create_app(predictor=None, database=DEFAULT_DATABASE, demo_path=None, regist
     @app.get('/ready')
     def readiness():
         return {'status': 'ready', 'model_version': model().version, 'commit': os.environ.get('RENDER_GIT_COMMIT', os.environ.get('APP_COMMIT', 'local'))}
+
+    @app.get('/api/operations')
+    def public_operations():
+        path = ROOT/'state.json'
+        published = json.loads(path.read_text(encoding='utf-8')) if path.exists() else {}
+        return {'managed_by_github': bool(os.environ.get('STATE_SYNC_REPOSITORY')),
+                'workflows_url': 'https://github.com/Miguel7293/AirPredict/actions',
+                'published_state': published, 'state': registry.state()}
 
     @app.get('/health')
     def health():

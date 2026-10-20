@@ -61,12 +61,18 @@ public class ApplicationTest {
     }
     @Test public void decliningNotificationsKeepsAppAvailable() throws Exception {
         Context context=InstrumentationRegistry.getInstrumentation().getTargetContext();
+        shell("pm revoke "+context.getPackageName()+" android.permission.POST_NOTIFICATIONS");
+        shell("pm clear-permission-flags "+context.getPackageName()+" android.permission.POST_NOTIFICATIONS user-set user-fixed");
         try(ActivityScenario<MainActivity> scenario=ActivityScenario.launch(MainActivity.class)){
             UiDevice device=UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
-            UiSelector selector=new UiSelector().textMatches("(?i)Activar notificaciones de predicción");
+            UiSelector selector=new UiSelector().textMatches("(?iu)Activar notificaciones de predicción");
             new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(selector);
-            device.findObject(selector).click();
-            androidx.test.uiautomator.UiObject2 deny=device.wait(Until.findObject(By.res("com.android.permissioncontroller","permission_deny_button")),5000);
+            device.waitForIdle();
+            androidx.test.uiautomator.UiObject2 enable=device.wait(Until.findObject(By.text(java.util.regex.Pattern.compile("Activar notificaciones de predicción",java.util.regex.Pattern.CASE_INSENSITIVE|java.util.regex.Pattern.UNICODE_CASE))),5000);
+            assertNotNull("Expected notification button in Spanish",enable);
+            enable.click();
+            androidx.test.uiautomator.UiObject2 deny=device.wait(Until.findObject(By.res("com.android.permissioncontroller","permission_deny_button")),10000);
+            if(deny==null){saveEvidence("permission-failure.png");device.dumpWindowHierarchy(new File("/data/local/tmp/airepredict-permission-failure.xml"));}
             assertNotNull("Expected optional notification permission request",deny);
             deny.click();
             assertEquals(android.content.pm.PackageManager.PERMISSION_DENIED,context.checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS));

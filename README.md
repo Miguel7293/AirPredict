@@ -3,7 +3,8 @@
 MVP de pronóstico supervisado de PM2.5 a una hora para Campo de Marte, Lima. Interfaz web en inglés, PWA, aplicación Android con widget y mantenimiento de modelos.
 
 **Aplicación:** https://airpredict-4u3c.onrender.com/  
-**Automatizaciones:** https://github.com/Miguel7293/AirPredict/actions
+**Automatizaciones:** https://github.com/Miguel7293/AirPredict/actions  
+**APK Android de demostración:** [descargar](https://github.com/Miguel7293/AirPredict/releases/download/v0.3.0/airepredict-demo.apk)
 
 ## Producto y operación
 
@@ -23,6 +24,16 @@ Los flujos comprueban pruebas y contenedor, publican imágenes por commit, despl
 - [Auditoría de compatibilidad](audit/COMPATIBILIDAD.md).
 
 El combinado obtiene MAE 2,0177 µg/m³, RMSE 2,8815 y R² 0,6175 en 270 ejemplos históricos de prueba. La mejora observada frente a persistencia es pequeña; el intervalo diario incluye cero. El registro inicial no representa aprobación de la nueva política de promoción.
+
+## Verificación de entrega
+
+- 45 pruebas Python en Linux; en Windows pasan 43 y se omiten dos específicas de Linux.
+- Tres flujos del cliente: demostración histórica, mediciones retrasadas y consulta histórica guardada sin conexión.
+- Seis pruebas de Android 15, incluida la vinculación del widget y el rechazo de notificaciones.
+- Ingesta autenticada comprobada, recuperación real de una versión anterior de la aplicación y restauración de un respaldo con hashes verificados.
+- Simulación aislada de aceptación, rechazo y recuperación de modelos; el activo conserva su condición experimental.
+
+[Evidencias y enlaces a ejecuciones](reports/ENTREGA_MVP.json). [Desarrollo e instalación de Android](docs/ANDROID.md).
 
 ## Ejecución local
 

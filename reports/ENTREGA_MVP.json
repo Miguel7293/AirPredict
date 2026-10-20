@@ -1,0 +1,93 @@
+{
+  "verified_at_utc": "2026-10-20T04:35:38.972292+00:00",
+  "application_url": "https://airpredict-4u3c.onrender.com",
+  "repository": "https://github.com/Miguel7293/AirPredict",
+  "validated_code_commit": "0964f17b0d0a4a14cc49366f8c4868e6fa4f6aff",
+  "deployment": {
+    "workflow": "https://github.com/Miguel7293/AirPredict/actions/runs/39369811624",
+    "status": "success",
+    "ready": {
+      "status": "ready",
+      "model_version": "20261020T035022-f10a116b8b",
+      "commit": "0964f17b0d0a4a14cc49366f8c4868e6fa4f6aff"
+    },
+    "hosting": "Render free",
+    "paid_service_created": false
+  },
+  "tests": {
+    "python_linux": 45,
+    "python_windows_passed": 43,
+    "python_windows_linux_only_skipped": 2,
+    "web_client_flows": 3,
+    "ci_workflow": "https://github.com/Miguel7293/AirPredict/actions/runs/39369811676",
+    "android15_tests": 6,
+    "android_workflow": "https://github.com/Miguel7293/AirPredict/actions/runs/39369414906"
+  },
+  "android": {
+    "release": "https://github.com/Miguel7293/AirPredict/releases/tag/v0.3.0",
+    "apk": "https://github.com/Miguel7293/AirPredict/releases/download/v0.3.0/airepredict-demo.apk",
+    "apk_sha256": "117123a98ab6fa9a25aca667d5a02a9f7a58be689e6a4ce53f3b2b91870401a6",
+    "public_download_verified": true,
+    "distribution": "Signed demonstration APK; not Google Play",
+    "production_source_matches_release_tag": true
+  },
+  "authenticated_ingestion": {
+    "workflow": "https://github.com/Miguel7293/AirPredict/actions/runs/39367810027",
+    "accepted_hours": 34,
+    "latest_observation_utc": "2026-10-19T13:00:00+00:00",
+    "age_hours_at_verification": 15.593635291944445,
+    "fresh_for_next_hour": false,
+    "new_complete_examples": 18
+  },
+  "maintenance": {
+    "workflow": "https://github.com/Miguel7293/AirPredict/actions/runs/39367599201",
+    "verification": {
+      "retraining": {
+        "status": "skipped",
+        "active_unchanged": "20261020T035022-f10a116b8b",
+        "reason": "Fewer than 168 complete examples after the last reserved evaluation period.",
+        "new_examples": 0
+      },
+      "monitoring": {
+        "status": "skipped",
+        "reason": "No active/previous release pair is available."
+      },
+      "backup": {
+        "backup_id": "2026-10-20T04-04-41.925401+00-00-f37aab",
+        "files": 23,
+        "archive": "2026-10-20T04-04-41.925401+00-00-f37aab.zip",
+        "sha256": "467d39bb296346046df860a99231fb08c261c363fc082fdaa00b929d15cf1333"
+      },
+      "historical_simulation": {
+        "application_registry_modified": false,
+        "first_training": "promoted",
+        "second_training": "rejected",
+        "restored": true
+      }
+    },
+    "scheduler_state": "active",
+    "scheduled_run_observed": false,
+    "note": "Schedules configured; maintenance executions were validated through workflow_dispatch."
+  },
+  "software_rollback": {
+    "workflow": "https://github.com/Miguel7293/AirPredict/actions/runs/39369212544",
+    "status": "success",
+    "tested_previous_commit": "854614e328bfe36520faf921ded5fec82a5c6341",
+    "latest_application_restored_after_test": true
+  },
+  "backup_restore": {
+    "backup_sha256_verified": true,
+    "files_verified": 23,
+    "restored_model_loaded": true,
+    "prediction_finite": true,
+    "predicted_pm25": 19.61290224040626,
+    "active": "20261020T035022-f10a116b8b",
+    "source_workflow": "https://github.com/Miguel7293/AirPredict/actions/runs/39367599201"
+  },
+  "limits": [
+    "Provider observations are delayed; current forecasts remain unavailable without fresh inputs.",
+    "Initial historical model improvement is modest and statistically inconclusive.",
+    "Free Render instances can sleep; state refresh can take up to ten minutes after publication.",
+    "APK is a demonstration build; physical devices and launchers may behave differently."
+  ]
+}

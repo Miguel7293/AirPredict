@@ -94,3 +94,16 @@ El modo con disco y trabajos administrativos locales sigue disponible para una f
 Se verificó también la restauración de un respaldo real descargado de GitHub: 23 archivos con hashes correctos, registro compatible y predicción histórica reproducida. Los enlaces a ejecuciones y comprobaciones finales se conservarán en `reports/ENTREGA_MVP.json`. Las pruebas incluyen separación temporal, integridad de artefactos, recuperación, autenticación, respaldo/restauración y actualización atómica del estado en Linux. Android añade compilación, análisis y comprobaciones de dispositivo.
 
 La conexión autenticada de OpenAQ se verificó desde GitHub Actions: se aceptaron 34 horas y no se emitió un pronóstico actual porque faltaba una ventana suficientemente fresca. La clave se conserva como secreto de GitHub. Sin clave, la demostración y actualización histórica siguen disponibles. El archivo público tiene retraso y el servicio gratuito puede dormir. La disponibilidad de datos suficientes y buenas métricas se comprueba en cada ciclo, no se garantiza por el hecho de automatizarlo.
+
+
+## Cierre de verificación
+
+Se aprobaron 45 pruebas Python en Linux, tres flujos del cliente y seis pruebas de Android 15. Se verificaron una recuperación real de la aplicación desde GitHub Actions y la posterior entrega de la versión final. El registro de modelos se verificó mediante pruebas y simulación histórica aislada. Los horarios de mantenimiento están activos; las ejecuciones usadas como evidencia se iniciaron manualmente para validar sus resultados.
+
+El APK está publicado en [v0.3.0](https://github.com/Miguel7293/AirPredict/releases/tag/v0.3.0), con suma SHA-256. El código de producción Android coincide con el de la etiqueta; el flujo de pruebas incorpora las correcciones posteriores de la infraestructura de pruebas. El informe [ENTREGA_MVP.json](../reports/ENTREGA_MVP.json) identifica las revisiones y ejecuciones comprobadas.
+
+![Demostración histórica publicada](../reports/MVP_WEB.png)
+
+![Mediciones autenticadas y estado de frescura](../reports/MVP_DATOS_INGESTADOS.png)
+
+Las capturas [ANDROID_APP.png](../reports/ANDROID_APP.png) y [ANDROID_WIDGET_TEST.png](../reports/ANDROID_WIDGET_TEST.png) corresponden al emulador. La segunda muestra el widget en un host de pruebas; su tamaño en la pantalla de inicio lo determina el launcher. El estado sin pronóstico fresco es esperado con el retraso observado del proveedor.

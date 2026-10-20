@@ -59,6 +59,10 @@ def test_backup_restores_sqlite_and_checksums(tmp_path, monkeypatch):
     monkeypatch.setattr(operations, 'ROOT', tmp_path)
     folder = tmp_path/'data/live'
     folder.mkdir(parents=True)
+    (tmp_path/'requirements.txt').write_text('example==1.0')
+    processed = tmp_path/'data/processed'
+    processed.mkdir()
+    (processed/'measurements.csv').write_text('timestamp,pm25\n2026-01-01,12.5\n')
     with sqlite3.connect(folder/'airepredict.sqlite') as connection:
         connection.execute('CREATE TABLE observations(value REAL)')
         connection.execute('INSERT INTO observations VALUES (12.5)')
@@ -68,6 +72,8 @@ def test_backup_restores_sqlite_and_checksums(tmp_path, monkeypatch):
     restored = tmp_path/'restore'
     with zipfile.ZipFile(archive) as z:
         z.extractall(restored)
+    assert (restored/'requirements.txt').read_text() == 'example==1.0'
+    assert (restored/'data/processed/measurements.csv').is_file()
     with sqlite3.connect(restored/'data/live/airepredict.sqlite') as connection:
         assert connection.execute('SELECT value FROM observations').fetchone()[0] == 12.5
         assert connection.execute('PRAGMA integrity_check').fetchone()[0] == 'ok'

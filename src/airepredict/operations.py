@@ -43,13 +43,16 @@ def backup():
     destination = ROOT/'backups'/identifier
     destination.mkdir(parents=True)
     checksums = {}
-    for source in [ROOT/'models/registry', ROOT/'data/live']:
+    for source in [ROOT/'models', ROOT/'data/live', ROOT/'data/processed', ROOT/'config',
+                   ROOT/'requirements.txt', ROOT/'reports/oefa_campo_marte_v1']:
         if not source.exists():
             continue
-        for path in source.rglob('*'):
+        for path in ([source] if source.is_file() else source.rglob('*')):
             if not path.is_file() or path.suffix in ['.lock', '.tmp'] or path.name.endswith(('-wal', '-shm')):
                 continue
             relative = path.relative_to(ROOT)
+            if 'mlops_demo' in relative.parts:
+                continue
             target = destination/relative
             target.parent.mkdir(parents=True, exist_ok=True)
             if path.suffix == '.sqlite':

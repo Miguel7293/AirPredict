@@ -21,6 +21,7 @@ function renderChart(data){
 async function load(mode){
   $('notice').classList.remove('error');$('notice').textContent='Loading observations…';
   $('demo').disabled=$('live').disabled=true;
+  for(const name of ['demo','live']){$(name).classList.toggle('active',name===mode);$(name).setAttribute('aria-pressed',String(name===mode));}
   try{
     const response=await fetch(mode==='live'?'/api/forecast':'/api/demo');const data=await response.json();if(!response.ok)throw new Error(mode==='live'&&response.status===409?'No recent measurements are available. Explore a recorded forecast instead.':typeof data.detail==='string'?data.detail:'The forecast could not be loaded.');
     $('last').textContent=data.last_observed_pm25.toFixed(2);$('forecast').textContent=data.predicted_pm25.toFixed(2);
@@ -28,7 +29,7 @@ async function load(mode){
     const historical=data.mode!=='live';$('mode-label').textContent=historical?'Historical demonstration':'Current · experimental';
     $('notice').textContent=historical?`Recorded observations from ${dateFormat.format(new Date(data.last_observation_utc))}. This forecast does not describe current conditions.`:'Forecast based on recently ingested hourly observations. The model remains experimental.';
     $('freshness-note').textContent=historical?'Recorded forecasts let you explore the model using historical observations. They do not describe current air conditions.':'This forecast is available only when three consecutive hourly measurements exist and its target hour is still in the future.';
-    for(const name of ['demo','live']){$(name).classList.toggle('active',name===mode);$(name).setAttribute('aria-pressed',String(name===mode));}renderChart(data);
+    renderChart(data);
   }catch(error){$('notice').classList.add('error');$('notice').textContent=error.message;$('last').textContent=$('forecast').textContent='—';$('last-time').textContent=$('forecast-time').textContent='Unavailable';$('chart').textContent='No observations loaded for this mode.';$('mode-label').textContent=mode==='live'?'Current forecast unavailable':'Historical forecast unavailable';}
   finally{$('demo').disabled=$('live').disabled=false;}
 }

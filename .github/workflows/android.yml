@@ -52,7 +52,7 @@ jobs:
           java-version: '17'
       - uses: android-actions/setup-android@v3
         with:
-          packages: platform-tools platforms;android-35 build-tools;35.0.0
+          packages: platform-tools platforms;android-35 build-tools;35.0.0 emulator system-images;android-35;google_apis;x86_64
           log-accepted-android-sdk-licenses: false
       - uses: gradle/actions/setup-gradle@v4
         with:
@@ -62,21 +62,32 @@ jobs:
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
-      - uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 35
-          arch: x86_64
-          target: google_apis
-          disable-animations: true
-          script: |
-            cd android && gradle connectedDebugAndroidTest --no-daemon
-            adb pull /sdcard/Android/data/pe.airepredict/files/application.png ../application.png
-            adb pull /sdcard/Android/data/pe.airepredict/files/widget.png ../widget.png
+      - name: Exercise application and widget on Android 15
+        timeout-minutes: 12
+        run: |
+          echo no | avdmanager create avd --force --name airepredict --package 'system-images;android-35;google_apis;x86_64'
+          mkdir -p artifacts
+          "$ANDROID_HOME/emulator/emulator" -avd airepredict -no-window -no-snapshot -noaudio -no-boot-anim -gpu swiftshader_indirect > artifacts/emulator.log 2>&1 < /dev/null &
+          EMULATOR_PID=$!
+          trap 'kill "$EMULATOR_PID" 2>/dev/null || true' EXIT
+          timeout 180 adb wait-for-device
+          BOOTED=false
+          for i in $(seq 1 90); do
+            if test "$(timeout 5 adb shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" = 1; then BOOTED=true; break; fi
+            sleep 2
+          done
+          test "$BOOTED" = true || { echo 'Emulator did not finish booting'; exit 1; }
+          adb shell input keyevent 82
+          cd android
+          gradle connectedDebugAndroidTest --no-daemon
+          adb pull /data/local/tmp/airepredict-application.png ../application.png
+          adb pull /data/local/tmp/airepredict-widget.png ../widget.png
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: Android-device-evidence
           path: |
+            artifacts/emulator.log
             application.png
             widget.png
             android/app/build/reports/androidTests/

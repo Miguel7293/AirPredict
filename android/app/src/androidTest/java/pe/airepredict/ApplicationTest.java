@@ -22,6 +22,12 @@ import static org.junit.Assert.*;
 
 @RunWith(AndroidJUnit4.class)
 public class ApplicationTest {
+    private static void saveEvidence(String name) throws Exception {
+        android.os.ParcelFileDescriptor output=InstrumentationRegistry.getInstrumentation().getUiAutomation().executeShellCommand("screencap -p /data/local/tmp/airepredict-"+name+" && echo saved");
+        java.io.ByteArrayOutputStream text=new java.io.ByteArrayOutputStream();
+        try(android.os.ParcelFileDescriptor.AutoCloseInputStream input=new android.os.ParcelFileDescriptor.AutoCloseInputStream(output)){int c;while((c=input.read())!=-1)text.write(c);}
+        assertTrue(text.toString("UTF-8").contains("saved"));
+    }
     @Test public void expiredForecastIsNeverCurrent() throws Exception {
         JSONObject data=new JSONObject();data.put("is_current_forecast",true);
         data.put("target_time_utc",OffsetDateTime.now().minusHours(1).toString());assertFalse(ForecastData.fresh(data));
@@ -45,7 +51,7 @@ public class ApplicationTest {
             UiDevice device=UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
             assertNotNull(device.wait(Until.findObject(By.textContains("Campo de Marte")),10000));
             File directory=context.getExternalFilesDir(null);
-            assertTrue(device.takeScreenshot(new File(directory,"application.png")));
+            saveEvidence("application.png");
         }
     }
     @Test public void decliningNotificationsKeepsAppAvailable() throws Exception {
@@ -80,7 +86,7 @@ public class ApplicationTest {
             });
             UiDevice device=UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
             assertNotNull(device.wait(Until.findObject(By.textContains("AIREPREDICT")),10000));
-            assertTrue(device.takeScreenshot(new File(context.getExternalFilesDir(null),"widget.png")));
+            saveEvidence("widget.png");
         } finally {host.deleteAppWidgetId(id);host.stopListening();}
     }
 }

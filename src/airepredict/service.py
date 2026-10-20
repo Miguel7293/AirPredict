@@ -49,8 +49,8 @@ class PredictionRequest(BaseModel):
 
 
 class Predictor:
-    def __init__(self, model_path=None):
-        config = load_config()
+    def __init__(self, model_path=None, config=None):
+        config = config or load_config()
         path = Path(model_path or ROOT / f'models/{config["experiment_id"]}/combinado.joblib')
         if not path.exists():
             raise FileNotFoundError('Experimental model is missing. Run the experiment first.')
@@ -65,7 +65,7 @@ class Predictor:
 
     def forecast(self, observations, location_id, mode='historical', now=None):
         if location_id != self.config['target_location_id']:
-            raise ValueError('This model only supports Campo de Marte, location 2415.')
+            raise ValueError('El modelo no corresponde al punto solicitado.')
         request = PredictionRequest(location_id=location_id, observations=observations)
         frame = pd.DataFrame([{'source': 'OpenAQ', 'station': str(location_id), 'timestamp': o.timestamp, 'pm25': o.pm25} for o in request.observations])
         inputs = make_features(frame, require_target=False)
@@ -99,8 +99,8 @@ def create_app(predictor=None, database=DEFAULT_DATABASE, demo_path=None, regist
     async def lifespan(app):
         jobs.recover()
         yield
-    app = FastAPI(title='AirePredict Perú', version='0.3.0', lifespan=lifespan,
-                  description='Experimental next-hour PM2.5 forecasts for Campo de Marte. Historical demonstrations are explicitly labelled.')
+    app = FastAPI(title='AirePredict Perú', version='0.4.0', lifespan=lifespan,
+                  description='Mapa histórico de PM2.5 de Perú y modelos horarios por distrito. Los ejemplos históricos se identifican expresamente.')
     state = {'predictor': predictor, 'error': None}
     injected = predictor is not None
     registry = registry or Registry()
@@ -170,6 +170,10 @@ def create_app(predictor=None, database=DEFAULT_DATABASE, demo_path=None, regist
 
     @app.get('/', include_in_schema=False)
     def home():
+        return FileResponse(static / 'dashboard.html')
+
+    @app.get('/stations', include_in_schema=False)
+    def station_page():
         return FileResponse(static / 'index.html')
 
     @app.get('/sw.js', include_in_schema=False)
@@ -320,6 +324,8 @@ def create_app(predictor=None, database=DEFAULT_DATABASE, demo_path=None, regist
         record_forecast(result, observations, database)
         return result
 
+    from .atlas import install
+    install(app)
     return app
 
 

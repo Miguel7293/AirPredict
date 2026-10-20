@@ -1,4 +1,8 @@
 const $ = id => document.getElementById(id);
+let stationId=Number(new URLSearchParams(globalThis.location?.search||'').get('id'))||2415;
+if(![2415,2402,2351].includes(stationId))stationId=2415;
+let activeMode='demo',loadSequence=0;
+$('station-select').value=String(stationId);
 const dateFormat = new Intl.DateTimeFormat('es-PE',{timeZone:'America/Lima',day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
 const hourFormat = new Intl.DateTimeFormat('es-PE',{timeZone:'America/Lima',hour:'2-digit',minute:'2-digit'});
 function renderChart(data){
@@ -21,25 +25,30 @@ function renderChart(data){
   $('chart').replaceChildren(svg);
 }
 async function load(mode){
+  activeMode=mode;const sequence=++loadSequence;
+  $('station-name').textContent=({'2415':'Jesús María','2402':'San Borja','2351':'San Martín de Porres'})[stationId];
   $('notice').classList.remove('error');$('notice').textContent='Cargando observaciones…';
   $('demo').disabled=$('live').disabled=true;
   for(const name of ['demo','live']){$(name).classList.toggle('active',name===mode);$(name).setAttribute('aria-pressed',String(name===mode));}
   try{
-    const response=await fetch(mode==='live'?'/api/forecast':'/api/demo');const data=await response.json();if(!response.ok)throw new Error(mode==='live'&&response.status===409?'No hay suficientes mediciones consecutivas recientes para emitir una predicción actual.':typeof data.detail==='string'?data.detail:'No se pudo cargar la predicción.');
+    const response=await fetch(`/api/stations/${stationId}/forecast?mode=${mode==='live'?'live':'historical'}`,{cache:'no-store'});const data=await response.json();if(sequence!==loadSequence)return;if(!response.ok)throw new Error(mode==='live'&&response.status===409?'No hay suficientes mediciones consecutivas recientes para emitir una predicción actual.':typeof data.detail==='string'?data.detail:'No se pudo cargar la predicción.');
     $('last').textContent=data.last_observed_pm25.toFixed(2);$('forecast').textContent=data.predicted_pm25.toFixed(2);
     $('last-time').textContent=dateFormat.format(new Date(data.last_observation_utc));$('forecast-time').textContent=dateFormat.format(new Date(data.target_time_utc));
     const historical=data.mode!=='live';$('mode-label').textContent=historical?'Demostración histórica':'Actual · experimental';
     $('notice').textContent=historical?`Observaciones registradas el ${dateFormat.format(new Date(data.last_observation_utc))}. Esta predicción no describe las condiciones actuales.`:'Predicción basada en observaciones horarias recibidas recientemente. El modelo sigue siendo experimental.';
     $('freshness-note').textContent=historical?'Las predicciones históricas permiten explorar el modelo con observaciones pasadas. No describen las condiciones actuales del aire.':'Esta predicción solo está disponible si existen tres mediciones horarias consecutivas y la hora estimada aún está en el futuro.';
-    renderChart(data);if(mode==='demo'){try{localStorage.setItem('airepredict-recorded',JSON.stringify(data));}catch(ignored){}}
-  }catch(error){$('notice').classList.add('error');$('notice').textContent=error.message;$('last').textContent=$('forecast').textContent='—';$('last-time').textContent=$('forecast-time').textContent='No disponible';$('chart').textContent='No se cargaron observaciones para este modo.';$('mode-label').textContent=mode==='live'?'Predicción actual no disponible':'Predicción histórica no disponible';
+    renderChart(data);if(mode==='demo'){try{localStorage.setItem('airepredict-recorded-'+stationId,JSON.stringify(data));}catch(ignored){}}
+  }catch(error){if(sequence!==loadSequence)return;$('notice').classList.add('error');$('notice').textContent=error.message;$('last').textContent=$('forecast').textContent='—';$('last-time').textContent=$('forecast-time').textContent='No disponible';$('chart').textContent='No se cargaron observaciones para este modo.';$('mode-label').textContent=mode==='live'?'Predicción actual no disponible':'Predicción histórica no disponible';
     if(mode==='demo'&&!navigator.onLine){
-      try{const cached=JSON.parse(localStorage.getItem('airepredict-recorded'));if(cached&&Number.isFinite(cached.predicted_pm25)&&Number.isFinite(cached.last_observed_pm25)){$('last').textContent=cached.last_observed_pm25.toFixed(2);$('forecast').textContent=cached.predicted_pm25.toFixed(2);$('last-time').textContent=dateFormat.format(new Date(cached.last_observation_utc));$('forecast-time').textContent=dateFormat.format(new Date(cached.target_time_utc));$('mode-label').textContent='Sin conexión · registro histórico guardado';$('notice').textContent='Sin conexión. Se muestra una predicción histórica guardada. No describe las condiciones actuales. Vuelve a conectarte para actualizar.';renderChart(cached);}}catch(ignored){}
+      try{const cached=JSON.parse(localStorage.getItem('airepredict-recorded-'+stationId));if(cached&&Number.isFinite(cached.predicted_pm25)&&Number.isFinite(cached.last_observed_pm25)){$('last').textContent=cached.last_observed_pm25.toFixed(2);$('forecast').textContent=cached.predicted_pm25.toFixed(2);$('last-time').textContent=dateFormat.format(new Date(cached.last_observation_utc));$('forecast-time').textContent=dateFormat.format(new Date(cached.target_time_utc));$('mode-label').textContent='Sin conexión · registro histórico guardado';$('notice').textContent='Sin conexión. Se muestra una predicción histórica guardada. No describe las condiciones actuales. Vuelve a conectarte para actualizar.';renderChart(cached);}}catch(ignored){}
     }
     if(mode==='live'){
-      try{const response=await fetch('/api/observations',{cache:'no-store'});if(response.ok){const measured=await response.json();if(measured.history.length){const latest=measured.history.at(-1);$('last').textContent=latest.pm25.toFixed(2);$('last-time').textContent=dateFormat.format(new Date(latest.timestamp));$('notice').textContent=`Última observación recibida: ${dateFormat.format(new Date(latest.timestamp))}. No hay una predicción actual disponible; los datos pueden estar retrasados o incompletos.`;$('freshness-note').textContent='Estas son observaciones reales recibidas. Su fecha y las horas faltantes determinan si es posible emitir una predicción para la próxima hora.';renderChart(measured);}}}catch(ignored){}
+      try{const response=await fetch(`/api/stations/${stationId}/observations`,{cache:'no-store'});if(response.ok){const measured=await response.json();if(sequence!==loadSequence)return;if(measured.history.length){const latest=measured.history.at(-1);$('last').textContent=latest.pm25.toFixed(2);$('last-time').textContent=dateFormat.format(new Date(latest.timestamp));$('notice').textContent=`Última observación recibida: ${dateFormat.format(new Date(latest.timestamp))}. No hay una predicción actual disponible; los datos pueden estar retrasados o incompletos.`;$('freshness-note').textContent='Estas son observaciones reales recibidas. Su fecha y las horas faltantes determinan si es posible emitir una predicción para la próxima hora.';renderChart(measured);}}}catch(ignored){}
     }
   }
-  finally{$('demo').disabled=$('live').disabled=false;}
+  finally{if(sequence===loadSequence)$('demo').disabled=$('live').disabled=false;}
 }
 $('demo').addEventListener('click',()=>load('demo'));$('live').addEventListener('click',()=>load('live'));load('demo');
+
+$('station-select').addEventListener('change',()=>{stationId=Number($('station-select').value);load(activeMode);window.dispatchEvent(new Event('stationchange'));});
+$('refresh-station').addEventListener('click',()=>load(activeMode));

@@ -45,6 +45,25 @@ public class ApplicationTest {
         }
         assertEquals("https://example.com",ForecastData.validateUrl("https://example.com/"));
     }
+    @Test public void districtCachesNeverMix() throws Exception {
+        Context context=InstrumentationRegistry.getInstrumentation().getTargetContext();
+        ForecastData.preferences(context).edit().putInt("station_id",2402).putString("forecast_2402","{\"location_id\":2402}").putString("forecast_2351","{\"location_id\":2351}").commit();
+        assertEquals(2402,ForecastData.cached(context).getInt("location_id"));
+        ForecastData.preferences(context).edit().putInt("station_id",2351).commit();
+        assertEquals(2351,ForecastData.cached(context).getInt("location_id"));
+        ForecastData.preferences(context).edit().clear().commit();
+    }
+    @Test public void navigationSeparatesModelsAndConnectionSettings() throws Exception {
+        try(ActivityScenario<MainActivity> scenario=ActivityScenario.launch(MainActivity.class)){
+            UiDevice device=UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+            assertNotNull(device.wait(Until.findObject(By.textContains("en perspectiva.")),5000));
+            device.findObject(By.text("Estaciones")).click();
+            assertNotNull(device.wait(Until.findObject(By.textContains("con contexto.")),5000));
+            device.findObject(By.text("Ajustes")).click();
+            assertNotNull(device.wait(Until.findObject(By.text("Guardar y comprobar conexión")),5000));
+            saveEvidence("settings.png");
+        }
+    }
     @Test public void homeScreenWidgetIsRegistered() {
         Context context=InstrumentationRegistry.getInstrumentation().getTargetContext();
         assertTrue(AppWidgetManager.getInstance(context).getInstalledProviders().stream().anyMatch(provider->provider.provider.getClassName().equals(ForecastWidget.class.getName())));
@@ -54,7 +73,7 @@ public class ApplicationTest {
         ForecastData.preferences(context).edit().clear().commit();
         try(ActivityScenario<MainActivity> scenario=ActivityScenario.launch(MainActivity.class)){
             UiDevice device=UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
-            assertNotNull(device.wait(Until.findObject(By.textContains("Campo de Marte")),10000));
+            assertNotNull(device.wait(Until.findObject(By.textContains("AirePredict")),10000));
             File directory=context.getExternalFilesDir(null);
             saveEvidence("application.png");
         }
@@ -65,6 +84,7 @@ public class ApplicationTest {
         shell("pm clear-permission-flags "+context.getPackageName()+" android.permission.POST_NOTIFICATIONS user-set user-fixed");
         try(ActivityScenario<MainActivity> scenario=ActivityScenario.launch(MainActivity.class)){
             UiDevice device=UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+            device.wait(Until.findObject(By.text("Ajustes")),5000).click();
             UiSelector selector=new UiSelector().textMatches("(?iu)Activar notificaciones de predicción");
             new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(selector);
             device.waitForIdle();

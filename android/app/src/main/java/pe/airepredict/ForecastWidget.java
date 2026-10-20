@@ -13,6 +13,7 @@ public class ForecastWidget extends AppWidgetProvider {
     static void update(Context c,AppWidgetManager manager,int[] ids){
         JSONObject data=ForecastData.cached(c);boolean fresh=ForecastData.fresh(data);
         for(int id:ids){RemoteViews view=new RemoteViews(c.getPackageName(),R.layout.forecast_widget);
+            view.setTextViewText(R.id.widget_title,"AIREPREDICT · "+ForecastData.stationName(c));
             view.setTextViewText(R.id.widget_value,fresh?ForecastData.value(data):"— µg/m³");
             view.setTextViewText(R.id.widget_status,fresh?"Experimental · válida solo hasta la hora indicada":"Desactualizada / no disponible · abre la aplicación para actualizar");
             view.setTextViewText(R.id.widget_time,ForecastData.time(data));

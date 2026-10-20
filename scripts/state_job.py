@@ -9,7 +9,7 @@ from pathlib import Path
 seed = Path.cwd()
 root = Path(os.environ['AIRPREDICT_ROOT'])
 root.mkdir(parents=True, exist_ok=True)
-for relative in ['config', 'reports/oefa_campo_marte_v1', 'data/processed', 'models/oefa_campo_marte_v1']:
+for relative in ['config', 'reports/oefa_campo_marte_v1', 'data/processed', 'models/oefa_campo_marte_v1', 'models/station_2402', 'models/station_2351', 'reports/station_2402', 'reports/station_2351']:
     for path in (seed/relative).glob('*'):
         if path.is_file():
             target = root/path.relative_to(seed)
@@ -108,6 +108,31 @@ def main():
                     'restored': historical['restored'] == historical['initial_baseline']}
             else:
                 raise ValueError('Unsupported maintenance action')
+            # The general daily model is frozen. Only explicitly configured
+            # live-capable stations participate in automated maintenance.
+            if action in ['ingest', 'retrain', 'monitor', 'verify']:
+                from airepredict.stations import STATIONS, station_config, station_registry, station_database
+                from airepredict.atlas import station_forecast
+                station_results={}
+                for station in STATIONS[1:]:
+                    identifier=station['id']; config=station_config(identifier)
+                    local_registry=station_registry(identifier)
+                    initialize(local_registry)
+                    try:
+                        if action=='ingest':
+                            if os.environ.get('OPENAQ_API_KEY','').strip():
+                                value=ingest(path=station_database(identifier),config=config)
+                                try: station_forecast(identifier,'live'); value['forecast_issued']=True
+                                except Exception: value['forecast_issued']=False
+                            else: value={'status':'skipped','reason':'OpenAQ credential not configured; no fabricated live data'}
+                        elif action=='retrain': value=run(local_registry)
+                        elif action=='monitor': value=monitor(local_registry,database=station_database(identifier))
+                        else: value={'retraining':run(local_registry),'monitoring':monitor(local_registry,database=station_database(identifier))}
+                        station_results[str(identifier)]=value
+                    except Exception as error:
+                        local_registry.event('station_operation_failed',local_registry.state()['active'],{'error_type':type(error).__name__,'action':action})
+                        station_results[str(identifier)]={'status':'failed','error_type':type(error).__name__,'active_preserved':local_registry.state()['active']}
+                result['station_results']=station_results
         report = {'action': action, 'status': 'completed', 'completed_at': now_string(), 'result': result,
                   'code_commit': os.environ.get('GITHUB_SHA', 'local'), 'registry': registry.state(),
                   'live_api_configured': bool(os.environ.get('OPENAQ_API_KEY', '').strip())}

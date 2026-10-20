@@ -1,5 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/widget_root" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:background="@drawable/widget_background">
-    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="AIREPREDICT · CAMPO DE MARTE" android:textColor="#167567" android:textSize="12sp"/>
+    <TextView android:id="@+id/widget_title" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="AIREPREDICT · TU DISTRITO" android:textColor="#167567" android:textSize="12sp"/>
     <TextView android:id="@+id/widget_value" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="— µg/m³" android:textColor="#183D36" android:textSize="30sp"/>
     <TextView android:id="@+id/widget_status" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Abre la aplicación para conectar" android:textColor="#334A43" android:textSize="12sp"/>
     <TextView android:id="@+id/widget_time" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Experimental · toca para abrir" android:textColor="#334A43" android:textSize="11sp"/>

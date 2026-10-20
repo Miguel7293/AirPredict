@@ -27,3 +27,12 @@ artifacts/
 .runtime/
 /data/*.csv
 /reports/RENDER_SETUP.png
+!models/general_v1/
+!models/general_v1/general.joblib
+!models/station_2402/
+!models/station_2402/combinado.joblib
+!models/station_2351/
+!models/station_2351/combinado.joblib
+!data/processed/oefa_daily.csv
+!data/processed/station_2402_hourly.csv
+!data/processed/station_2351_hourly.csv

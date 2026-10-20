@@ -27,9 +27,10 @@ def environment():
 
 
 class Registry:
-    def __init__(self, root=None, *, sandbox=False):
+    def __init__(self, root=None, *, sandbox=False, config=None):
         self.root = Path(root or ROOT/'models/registry')
         self.sandbox = sandbox
+        self.config = config or load_config()
 
     @contextmanager
     def connection(self):
@@ -76,7 +77,7 @@ class Registry:
             raise ValueError('Training library version differs from the current runtime')
         if bundle['features'] != FEATURES or bundle.get('predicts') != 'delta_pm25_t_plus_1':
             raise ValueError('Incompatible feature/output contract')
-        config = load_config()
+        config = self.config
         if any(bundle['config'][key] != config[key] for key in ['target_location_id', 'target_sensor_id']):
             raise ValueError('Incompatible location or sensor')
         identifier = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S')+'-'+uuid.uuid4().hex[:10]
@@ -176,7 +177,7 @@ def initialize(registry=None):
     registry = registry or Registry()
     if registry.state()['active']:
         return registry.state()['active']
-    config = load_config()
+    config = registry.config
     result = json.loads((ROOT/f'reports/{config["experiment_id"]}/resultados.json').read_text(encoding='utf-8'))
     bundle = joblib.load(ROOT/f'models/{config["experiment_id"]}/combinado.joblib')
     reserved_end = (pd.Timestamp(config['target_end'], tz='Etc/GMT+5')+pd.Timedelta(days=1)-pd.Timedelta(microseconds=1)).tz_convert('UTC').isoformat()

@@ -85,10 +85,10 @@ def save_hours(path, hours, config, now):
     return {'inserted': inserted, 'updated': updated, 'unchanged': unchanged}
 
 
-def read_hours(path=DEFAULT_DATABASE, limit=72):
+def read_hours(path=DEFAULT_DATABASE, limit=72, config=None):
     if not Path(path).exists():
         return []
-    config = load_config()
+    config = config or load_config()
     with connect(path) as connection:
         rows = connection.execute('''SELECT timestamp, pm25, coverage FROM observations
             WHERE sensor_id=? AND location_id=? ORDER BY timestamp DESC LIMIT ?''',
@@ -116,13 +116,13 @@ def api_get(path, params, key):
         time.sleep(2 ** attempt)
 
 
-def ingest(path=DEFAULT_DATABASE, now=None, get=None):
+def ingest(path=DEFAULT_DATABASE, now=None, get=None, config=None):
     now = now or datetime.now(timezone.utc)
     key = os.environ.get('OPENAQ_API_KEY', '').strip()
     if not key:
         raise RuntimeError('OPENAQ_API_KEY is not configured. Historical demonstration remains available.')
     get = get or api_get
-    config = load_config()
+    config = config or load_config()
     # Confirm location/sensor identity before fetching values.
     location = get(f'locations/{config["target_location_id"]}', {}, key)
     records = location.get('results') or []
@@ -172,7 +172,7 @@ def ingest(path=DEFAULT_DATABASE, now=None, get=None):
     report = {'fetched_at_utc': now.isoformat(), 'location_id': config['target_location_id'],
               'sensor_id': config['target_sensor_id'], 'accepted_unique_hours': len(by_time),
               'rejected': dict(rejected), **saved}
-    report_path = Path(path).parent / 'last_ingestion.json'
+    report_path = Path(path).parent / ('last_ingestion.json' if config['target_location_id']==2415 else f'last_ingestion_{config["target_location_id"]}.json')
     report_path.write_text(json.dumps(report, indent=2), encoding='utf-8')
     return report
 

@@ -37,7 +37,7 @@ def monitor(registry=None, database=DEFAULT_DATABASE, now=None):
     now = now or datetime.now(timezone.utc)
     if not state['active'] or not state['previous']:
         return {'status': 'skipped', 'reason': 'No active/previous release pair is available.'}
-    config = load_config()
+    config = registry.config
     with connect(database) as connection:
         forecast_table(connection)
         rows = connection.execute('''SELECT f.*, o.pm25 AS observed FROM forecasts f

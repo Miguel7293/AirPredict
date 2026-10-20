@@ -19,6 +19,16 @@ def main():
                 fallback.mkdir(parents=True, exist_ok=True)
                 root.symlink_to(fallback, target_is_directory=True)
     root.mkdir(parents=True, exist_ok=True)
+    # New station seeds must also be available when runtime-state predates this
+    # application release. Never overwrite an existing mutable registry.
+    for relative in ['models/station_2402', 'models/station_2351', 'reports/station_2402', 'reports/station_2351']:
+        if (seed/relative).exists():
+            shutil.copytree(seed/relative, root/relative, dirs_exist_ok=True)
+    for filename in ['station_2402_hourly.csv', 'station_2351_hourly.csv']:
+        target=root/'data/processed'/filename
+        if not target.exists() and (seed/'data/processed'/filename).exists():
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(seed/'data/processed'/filename,target)
     if root.resolve() != seed.resolve() and not (root/'state.json').exists():
         for relative in ['config', 'reports/oefa_campo_marte_v1', 'data/processed', 'models/oefa_campo_marte_v1']:
             source, target = seed/relative, root/relative

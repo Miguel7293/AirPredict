@@ -1,0 +1,73 @@
+{
+  "station": {
+    "id": 2402,
+    "name": "San Borja",
+    "region": "Lima",
+    "latitude": -12.108872,
+    "longitude": -77.007689,
+    "sensor_id": 4492
+  },
+  "observations": 2860,
+  "features": 2630,
+  "split_counts": {
+    "train": 1839,
+    "validation": 384,
+    "test": 407
+  },
+  "split_ranges": {
+    "train": {
+      "first_outcome_utc": "2026-04-01T09:00:00+00:00",
+      "last_outcome_utc": "2026-06-17T23:00:00+00:00"
+    },
+    "validation": {
+      "first_outcome_utc": "2026-06-18T00:00:00+00:00",
+      "last_outcome_utc": "2026-07-03T23:00:00+00:00"
+    },
+    "test": {
+      "first_outcome_utc": "2026-07-04T00:00:00+00:00",
+      "last_outcome_utc": "2026-10-16T03:00:00+00:00"
+    }
+  },
+  "summary": {
+    "combinado": {
+      "test": {
+        "mae": 2.732988903507134,
+        "rmse": 3.882617921168953,
+        "r2": 0.8053637734844405,
+        "bias": 0.2819245863444762,
+        "n": 407
+      }
+    },
+    "persistencia": {
+      "test": {
+        "mae": 2.767690417690418,
+        "rmse": 4.067941815494737,
+        "r2": 0.7863397011181441,
+        "bias": -0.007936117936117964,
+        "n": 407
+      }
+    }
+  },
+  "selection": {
+    "source_weight_budget": 0,
+    "family": "random_forest",
+    "parameters": {
+      "n_estimators": 100,
+      "min_samples_leaf": 5,
+      "max_depth": 10,
+      "max_features": 1.0
+    },
+    "validation_mae": 2.679812401742248
+  },
+  "source_stats": {
+    "counts": {
+      "pm25_rows": 2860
+    },
+    "duplicates": {
+      "identical_duplicates": 0,
+      "conflicting_rows_removed": 0
+    },
+    "accepted": 2860,
+    "output_sha256": "162995fcb4d98e7951284a55f1f501bf24bb31bba7cee438af4d1a4e9193e729"
+  }
+}

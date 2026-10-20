@@ -63,12 +63,13 @@ def run(registry=None, *, historical_demo=False):
         raise ValueError('Historical replay must use a separate sandbox registry')
     active_id = initialize(registry)
     try:
-        config = load_config()
+        config = registry.config
         manifest = registry.manifest(active_id)
         champion = joblib.load(registry.validate(active_id))
-        raw = pd.read_csv(ROOT/'data/processed/campo_marte_hourly.csv')
+        raw = pd.read_csv(ROOT/'data/processed'/config.get('target_file', 'campo_marte_hourly.csv'))
+        database = ROOT/config.get('live_database', 'data/live/airepredict.sqlite')
         if not historical_demo:
-            fresh = read_hours(DEFAULT_DATABASE, limit=100000)
+            fresh = read_hours(database, limit=100000, config=config)
             if fresh:
                 appended = pd.DataFrame(fresh).assign(source='OpenAQ', station=str(config['target_location_id']), sensor_id=config['target_sensor_id'])
                 raw = pd.concat([raw, appended], ignore_index=True)
@@ -98,12 +99,17 @@ def run(registry=None, *, historical_demo=False):
             registry.event('evaluation_reserved', active_id, {'evaluation_start': evaluation['target_time'].min().isoformat(),
                                                            'evaluation_end': evaluation['target_time'].max().isoformat(),
                                                            'reason': 'Consumed even if training fails or the candidate is rejected; no repeated selection on this window.'})
-        source = make_features(pd.read_csv(ROOT/'data/processed/oefa_hourly.csv'))
+        source = make_features(pd.read_csv(ROOT/'data/processed/oefa_hourly.csv')) if config.get('use_source', True) else target.iloc[:0].copy()
         source = source.loc[source['target_time'] < evaluation_start]
         # Freeze the recipe; do not tune hyperparameters against the approval window.
         reference = joblib.load(ROOT/f'models/{config["experiment_id"]}/combinado.joblib')
-        estimator = clone(reference['model'])
-        fitting, weights = training_data(source, train, 'combinado', reference['selection']['source_weight_budget'])
+        if reference['model'] is None:
+            from sklearn.ensemble import HistGradientBoostingRegressor
+            estimator = HistGradientBoostingRegressor(max_leaf_nodes=7, max_iter=120, learning_rate=.05,
+                l2_regularization=5, min_samples_leaf=20, early_stopping=False, random_state=2026)
+        else:
+            estimator = clone(reference['model'])
+        fitting, weights = training_data(source, train, 'combinado', reference['selection']['source_weight_budget']) if len(source) else (train, np.ones(len(train)))
         fit(estimator, fitting, weights)
         candidate = {**reference, 'model': estimator, 'status': 'candidate_unapproved'}
         identifier = registry.register(candidate, {'origin': 'historical_replay' if historical_demo else 'retraining',

@@ -216,8 +216,9 @@ def prepare_target(config, manifest):
     frame, duplicates = validate_records(pd.DataFrame(records, columns=COLUMNS))
     output = ROOT / 'data/processed'
     output.mkdir(parents=True, exist_ok=True)
-    frame.to_csv(output / 'campo_marte_hourly.csv', index=False)
+    target_file = output / config.get('target_file', 'campo_marte_hourly.csv')
+    frame.to_csv(target_file, index=False)
     stats = {'counts': dict(counts), 'duplicates': duplicates, 'accepted': len(frame),
-             'output_sha256': digest(output / 'campo_marte_hourly.csv')}
-    (output / 'campo_marte_hourly.json').write_text(json.dumps(stats, indent=2), encoding='utf-8')
+             'output_sha256': digest(target_file)}
+    target_file.with_suffix('.json').write_text(json.dumps(stats, indent=2), encoding='utf-8')
     return frame, stats

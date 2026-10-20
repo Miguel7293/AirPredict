@@ -146,7 +146,7 @@ def test_retraining_failure_preserves_active(registry, monkeypatch):
     active = registry.state()['active']
     def fail_config():
         raise RuntimeError('Simulated training setup failure')
-    monkeypatch.setattr(maintenance, 'load_config', fail_config)
+    monkeypatch.setattr(registry, 'manifest', lambda *args: fail_config())
     with pytest.raises(RuntimeError, match='Simulated'):
         maintenance.run(registry)
     assert registry.state()['active'] == active

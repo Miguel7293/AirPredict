@@ -1,0 +1,75 @@
+{
+  "station": {
+    "id": 2351,
+    "name": "San Martín de Porres",
+    "region": "Lima",
+    "latitude": -12.008889,
+    "longitude": -77.084472,
+    "sensor_id": 4319
+  },
+  "observations": 3562,
+  "features": 3013,
+  "split_counts": {
+    "train": 2106,
+    "validation": 451,
+    "test": 456
+  },
+  "split_ranges": {
+    "train": {
+      "first_outcome_utc": "2026-04-01T09:00:00+00:00",
+      "last_outcome_utc": "2026-07-01T23:00:00+00:00"
+    },
+    "validation": {
+      "first_outcome_utc": "2026-07-02T00:00:00+00:00",
+      "last_outcome_utc": "2026-08-20T07:00:00+00:00"
+    },
+    "test": {
+      "first_outcome_utc": "2026-08-21T03:00:00+00:00",
+      "last_outcome_utc": "2026-10-16T03:00:00+00:00"
+    }
+  },
+  "summary": {
+    "combinado": {
+      "test": {
+        "mae": 2.142066381275136,
+        "rmse": 3.2310465324268898,
+        "r2": 0.7522723418448809,
+        "bias": 0.409671542114905,
+        "n": 456
+      }
+    },
+    "persistencia": {
+      "test": {
+        "mae": 2.1573245614035086,
+        "rmse": 3.265816842556056,
+        "r2": 0.7469119026979282,
+        "bias": -0.14600877192982456,
+        "n": 456
+      }
+    }
+  },
+  "selection": {
+    "source_weight_budget": 0,
+    "family": "hist_gradient_boosting",
+    "parameters": {
+      "max_leaf_nodes": 7,
+      "max_iter": 120,
+      "learning_rate": 0.05,
+      "l2_regularization": 5.0,
+      "min_samples_leaf": 20,
+      "early_stopping": false
+    },
+    "validation_mae": 2.3272093991182383
+  },
+  "source_stats": {
+    "counts": {
+      "pm25_rows": 3562
+    },
+    "duplicates": {
+      "identical_duplicates": 0,
+      "conflicting_rows_removed": 0
+    },
+    "accepted": 3562,
+    "output_sha256": "120439a079879b312978eb01f4006098bfe3dba531d48e12a5e50aa349e39b05"
+  }
+}

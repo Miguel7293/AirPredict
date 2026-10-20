@@ -24,4 +24,4 @@ with urllib.request.urlopen(urllib.request.Request(hook+'&ref='+target, method='
     if response.status not in [200, 202]:
         raise SystemExit('Render did not accept the recovery deployment')
 subprocess.run([sys.executable, 'scripts/check_deployment.py'], check=True,
-               env={**os.environ, 'EXPECTED_COMMIT': target})
+               env={**os.environ, 'EXPECTED_COMMIT': target, 'CHECK_ATLAS': '0'})

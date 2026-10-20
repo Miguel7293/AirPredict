@@ -1,7 +1,7 @@
 {
   "action": "verify",
   "status": "completed",
-  "completed_at": "2026-10-20T03:59:51.780262+00:00",
+  "completed_at": "2026-10-20T04:04:43.189168+00:00",
   "result": {
     "retraining": {
       "status": "skipped",
@@ -14,10 +14,10 @@
       "reason": "No active/previous release pair is available."
     },
     "backup": {
-      "backup_id": "2026-10-20T03-59-49.230549+00-00-4b9cbf",
-      "files": 8,
-      "archive": "2026-10-20T03-59-49.230549+00-00-4b9cbf.zip",
-      "sha256": "aa62310346f99699c11b442db0aad9022a2c1693cbc2087f3525426a1705d635"
+      "backup_id": "2026-10-20T04-04-41.925401+00-00-f37aab",
+      "files": 23,
+      "archive": "2026-10-20T04-04-41.925401+00-00-f37aab.zip",
+      "sha256": "467d39bb296346046df860a99231fb08c261c363fc082fdaa00b929d15cf1333"
     },
     "historical_simulation": {
       "application_registry_modified": false,
@@ -26,7 +26,7 @@
       "restored": true
     }
   },
-  "code_commit": "fc28d9ed15d10102aa517e82a40f3f85902bcfed",
+  "code_commit": "08ba3c39b9dbc8420f045381a4b1c9ad784bf0e1",
   "registry": {
     "active": "20261020T035022-f10a116b8b",
     "previous": null

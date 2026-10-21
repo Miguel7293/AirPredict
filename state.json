@@ -1,22 +1,58 @@
 {
-  "action": "monitor",
+  "action": "ingest",
   "status": "completed",
-  "completed_at": "2026-10-21T14:04:07.716194+00:00",
+  "completed_at": "2026-10-21T17:26:45.635124+00:00",
   "result": {
-    "status": "skipped",
-    "reason": "No active/previous release pair is available.",
+    "fetched_at_utc": "2026-10-21T17:26:42.668840+00:00",
+    "location_id": 2415,
+    "sensor_id": 4672,
+    "accepted_unique_hours": 18,
+    "rejected": {
+      "conflicting_timestamps": 0
+    },
+    "inserted": 0,
+    "updated": 0,
+    "unchanged": 18,
+    "mode": "authenticated_openaq",
+    "live_api_configured": true,
+    "forecast_status": "No fresh consecutive input window",
     "station_results": {
       "2402": {
-        "status": "skipped",
-        "reason": "No active/previous release pair is available."
+        "fetched_at_utc": "2026-10-21T17:26:44.030976+00:00",
+        "location_id": 2402,
+        "sensor_id": 4492,
+        "accepted_unique_hours": 12,
+        "rejected": {
+          "conflicting_timestamps": 0
+        },
+        "inserted": 0,
+        "updated": 0,
+        "unchanged": 12,
+        "forecast_issued": false
       },
       "2351": {
-        "status": "skipped",
-        "reason": "No active/previous release pair is available."
+        "fetched_at_utc": "2026-10-21T17:26:45.024568+00:00",
+        "location_id": 2351,
+        "sensor_id": 4319,
+        "accepted_unique_hours": 39,
+        "rejected": {
+          "conflicting_timestamps": 0
+        },
+        "inserted": 0,
+        "updated": 0,
+        "unchanged": 39,
+        "forecast_issued": false
+      }
+    },
+    "puno": {
+      "ingestion": {
+        "accepted_new_targets": 4,
+        "total_targets": 63,
+        "is_measurement": false
       }
     }
   },
-  "code_commit": "bd3dc99df99922de1961cd84622779472fba91fb",
+  "code_commit": "1e1d8d3910975829c466dcdba1dc71c22f39741f",
   "registry": {
     "active": "20261020T035022-f10a116b8b",
     "previous": null

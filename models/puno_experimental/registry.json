@@ -1,0 +1,32 @@
+{
+  "active": "62a943772e8ced30",
+  "previous": null,
+  "events": [
+    {
+      "status": "promoted",
+      "candidate": "62a943772e8ced30",
+      "active": "62a943772e8ced30",
+      "test": {
+        "n": 9,
+        "mae": 0.26707246476407787,
+        "rmse": 0.28841729217815126,
+        "r2": 0.6983909002409336
+      },
+      "baseline": {
+        "n": 9,
+        "mae": 0.23333333333333334,
+        "rmse": 0.2848001248439177,
+        "r2": 0.7059086839749329
+      },
+      "initial_demo": true,
+      "at": "2026-10-21T02:21:59.238182+00:00"
+    }
+  ],
+  "evaluated_through": "2026-10-22T20:00:00-05:00",
+  "last_attempt": {
+    "status": "skipped",
+    "new_targets": 0,
+    "minimum_new_targets": 168,
+    "reason": "Se conserva el modelo activo hasta reunir 168 horas objetivo nuevas."
+  }
+}

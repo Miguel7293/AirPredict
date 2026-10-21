@@ -1,51 +1,23 @@
 {
-  "action": "ingest",
+  "action": "puno",
   "status": "completed",
-  "completed_at": "2026-10-21T01:41:26.704244+00:00",
+  "completed_at": "2026-10-21T02:29:47.172983+00:00",
   "result": {
-    "fetched_at_utc": "2026-10-21T01:41:24.142992+00:00",
-    "location_id": 2415,
-    "sensor_id": 4672,
-    "accepted_unique_hours": 22,
-    "rejected": {
-      "conflicting_timestamps": 0
-    },
-    "inserted": 0,
-    "updated": 0,
-    "unchanged": 22,
-    "mode": "authenticated_openaq",
-    "live_api_configured": true,
-    "forecast_status": "No fresh consecutive input window",
-    "station_results": {
-      "2402": {
-        "fetched_at_utc": "2026-10-21T01:41:25.348800+00:00",
-        "location_id": 2402,
-        "sensor_id": 4492,
-        "accepted_unique_hours": 27,
-        "rejected": {
-          "conflicting_timestamps": 0
-        },
-        "inserted": 0,
-        "updated": 0,
-        "unchanged": 27,
-        "forecast_issued": false
+    "puno": {
+      "ingestion": {
+        "accepted_new_targets": 0,
+        "total_targets": 48,
+        "is_measurement": false
       },
-      "2351": {
-        "fetched_at_utc": "2026-10-21T01:41:26.111818+00:00",
-        "location_id": 2351,
-        "sensor_id": 4319,
-        "accepted_unique_hours": 43,
-        "rejected": {
-          "conflicting_timestamps": 0
-        },
-        "inserted": 4,
-        "updated": 0,
-        "unchanged": 39,
-        "forecast_issued": false
+      "training": {
+        "status": "skipped",
+        "new_targets": 0,
+        "minimum_new_targets": 168,
+        "reason": "Se conserva el modelo activo hasta reunir 168 horas objetivo nuevas."
       }
     }
   },
-  "code_commit": "300ec387b20a384cc9cb299f18fcbd8fc84dfe00",
+  "code_commit": "0d74c79611d122ee0caeedd51ec0e804b53fc93c",
   "registry": {
     "active": "20261020T035022-f10a116b8b",
     "previous": null

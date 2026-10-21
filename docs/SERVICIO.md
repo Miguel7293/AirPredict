@@ -80,3 +80,8 @@ El registro local permite evaluar y activar candidatos, conservar una versión a
 La aplicación se publica en https://airpredict-4u3c.onrender.com/ con una proyección de estado administrada por GitHub Actions. El contenedor y las pruebas de arranque ya se ejecutan en GitHub. La conexión autenticada sigue dependiendo de una clave propia. Véase [INFORME_TECNICO_MVP.md](INFORME_TECNICO_MVP.md) para la arquitectura actual; las instrucciones locales anteriores conservan su utilidad.
 
 La ingesta autenticada ya se verificó desde GitHub Actions (34 horas aceptadas). En el despliegue gratuito la credencial reside en el trabajo de ingesta, no en el servicio web. `/api/observations` permite consultar las mediciones ingresadas aun cuando falta una ventana fresca para predecir.
+
+
+## Consulta con últimos datos disponibles
+
+`GET /api/stations/{id}/forecast?mode=latest` ejecuta el modelo con las tres últimas mediciones horarias consecutivas del almacén recibido. Devuelve valor, fecha de entrada, hora objetivo y `target_in_past`; no rechaza una ventana válida solo por antigüedad. `is_current_forecast` únicamente es verdadero si la hora objetivo aún es futura. No registra estimaciones de horas pasadas como pronósticos operativos. El contrato estricto `mode=live` permanece para monitor, widget y notificaciones. Sin tres horas válidas no se inventa una entrada.

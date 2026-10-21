@@ -1,7 +1,7 @@
 const $ = id => document.getElementById(id);
 let stationId=Number(new URLSearchParams(globalThis.location?.search||'').get('id'))||2415;
 if(![2415,2402,2351].includes(stationId))stationId=2415;
-let activeMode='demo',loadSequence=0;
+let activeMode='live',loadSequence=0;
 $('station-select').value=String(stationId);
 const dateFormat = new Intl.DateTimeFormat('es-PE',{timeZone:'America/Lima',day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
 const hourFormat = new Intl.DateTimeFormat('es-PE',{timeZone:'America/Lima',hour:'2-digit',minute:'2-digit'});
@@ -13,7 +13,7 @@ function renderChart(data){
   const W=Math.min(1080,Math.max(300,$('chart').clientWidth)),H=W<600?220:260,L=40,R=24,T=18,B=37;
   const max=Math.max(...rows.map(r=>r.pm25),(hasForecast?data.predicted_pm25:0),1)*1.2;
   const x=t=>L+(new Date(t).getTime()-first)/(last-first)*(W-L-R),y=v=>T+(1-v/max)*(H-T-B);
-  const ns='http://www.w3.org/2000/svg',svg=document.createElementNS(ns,'svg');svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.setAttribute('role','img');svg.setAttribute('aria-label',hasForecast?'Concentraciones medidas de PM2.5 y predicción para la próxima hora':'Observaciones de PM2.5 recibidas; sin predicción actual disponible');
+  const ns='http://www.w3.org/2000/svg',svg=document.createElementNS(ns,'svg');svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.setAttribute('role','img');svg.setAttribute('aria-label',hasForecast?'Concentraciones medidas de PM2.5 y predicción una hora después de la última medición':'Observaciones de PM2.5 recibidas; sin predicción actual disponible');
   const el=(name,attrs,text)=>{const e=document.createElementNS(ns,name);for(const [k,v] of Object.entries(attrs))e.setAttribute(k,v);if(text!==undefined)e.textContent=text;svg.appendChild(e);return e;};
   for(let i=0;i<=4;i++){const v=max*i/4;el('line',{x1:L,y1:y(v),x2:W-R,y2:y(v),stroke:'#e6ebe3'});el('text',{x:L-9,y:y(v)+4,'text-anchor':'end',fill:'#73847c','font-size':12},v.toFixed(0));}
   let path='';rows.forEach((r,i)=>{const gap=i&&new Date(r.timestamp)-new Date(rows[i-1].timestamp)>3600000;path+=`${!i||gap?'M':'L'}${x(r.timestamp)},${y(r.pm25)} `;});
@@ -31,12 +31,12 @@ async function load(mode){
   $('demo').disabled=$('live').disabled=true;
   for(const name of ['demo','live']){$(name).classList.toggle('active',name===mode);$(name).setAttribute('aria-pressed',String(name===mode));}
   try{
-    const response=await fetch(`/api/stations/${stationId}/forecast?mode=${mode==='live'?'live':'historical'}`,{cache:'no-store'});const data=await response.json();if(sequence!==loadSequence)return;if(!response.ok)throw new Error(mode==='live'&&response.status===409?'No hay suficientes mediciones consecutivas recientes para emitir una predicción actual.':typeof data.detail==='string'?data.detail:'No se pudo cargar la predicción.');
+    const response=await fetch(`/api/stations/${stationId}/forecast?mode=${mode==='live'?'latest':'historical'}`,{cache:'no-store'});const data=await response.json();if(sequence!==loadSequence)return;if(!response.ok)throw new Error(mode==='live'&&response.status===409?'No hay tres mediciones consecutivas válidas para calcular la predicción.':typeof data.detail==='string'?data.detail:'No se pudo cargar la predicción.');
     $('last').textContent=data.last_observed_pm25.toFixed(2);$('forecast').textContent=data.predicted_pm25.toFixed(2);
     $('last-time').textContent=dateFormat.format(new Date(data.last_observation_utc));$('forecast-time').textContent=dateFormat.format(new Date(data.target_time_utc));
-    const historical=data.mode!=='live';$('mode-label').textContent=historical?'Demostración histórica':'Actual · experimental';
-    $('notice').textContent=historical?`Observaciones registradas el ${dateFormat.format(new Date(data.last_observation_utc))}. Esta predicción no describe las condiciones actuales.`:'Predicción basada en observaciones horarias recibidas recientemente. El modelo sigue siendo experimental.';
-    $('freshness-note').textContent=historical?'Las predicciones históricas permiten explorar el modelo con observaciones pasadas. No describen las condiciones actuales del aire.':'Esta predicción solo está disponible si existen tres mediciones horarias consecutivas y la hora estimada aún está en el futuro.';
+    const historical=data.mode==='historical',current=data.is_current_forecast===true;$('mode-label').textContent=historical?'Demostración histórica':current?'Vigente · experimental':'Últimos datos · hora objetivo pasada';
+    $('notice').textContent=historical?`Observaciones registradas el ${dateFormat.format(new Date(data.last_observation_utc))}. Esta predicción no describe las condiciones actuales.`:`Predicción calculada con las últimas mediciones disponibles del ${dateFormat.format(new Date(data.last_observation_utc))}. Hora estimada: ${dateFormat.format(new Date(data.target_time_utc))}.${current?'':' Esa hora ya pasó; se muestra el cálculo con datos retrasados.'}`;
+    $('freshness-note').textContent=historical?'Las predicciones históricas permiten explorar el modelo con observaciones pasadas. No describen las condiciones actuales del aire.':'El modelo estima una hora después de la última medición utilizada. El valor permanece visible aunque esa hora ya haya pasado; revisa siempre la fecha.';
     renderChart(data);if(mode==='demo'){try{localStorage.setItem('airepredict-recorded-'+stationId,JSON.stringify(data));}catch(ignored){}}
   }catch(error){if(sequence!==loadSequence)return;$('notice').classList.add('error');$('notice').textContent=error.message;$('last').textContent=$('forecast').textContent='—';$('last-time').textContent=$('forecast-time').textContent='No disponible';$('chart').textContent='No se cargaron observaciones para este modo.';$('mode-label').textContent=mode==='live'?'Predicción actual no disponible':'Predicción histórica no disponible';
     if(mode==='demo'&&!navigator.onLine){
@@ -48,7 +48,7 @@ async function load(mode){
   }
   finally{if(sequence===loadSequence)$('demo').disabled=$('live').disabled=false;}
 }
-$('demo').addEventListener('click',()=>load('demo'));$('live').addEventListener('click',()=>load('live'));load('demo');
+$('demo').addEventListener('click',()=>load('demo'));$('live').addEventListener('click',()=>load('live'));load('live');
 
 $('station-select').addEventListener('change',()=>{stationId=Number($('station-select').value);load(activeMode);window.dispatchEvent(new Event('stationchange'));});
 $('refresh-station').addEventListener('click',()=>load(activeMode));

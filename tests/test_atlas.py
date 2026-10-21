@@ -43,6 +43,23 @@ def test_live_sensor_isolation(tmp_path):
         assert read_hours(database,config=station_config(identifier))[0]['pm25']==value
 
 
+@pytest.mark.parametrize('identifier',[2415,2402,2351])
+def test_latest_station_mode_keeps_delayed_prediction_and_dates(tmp_path, monkeypatch, identifier):
+    import airepredict.atlas as atlas
+    database=tmp_path/f'{identifier}.sqlite'
+    rows=[{'timestamp':f'2020-01-01T0{h}:00:00+00:00','pm25':10+h,'coverage':100} for h in [1,2,3]]
+    save_hours(database,rows,station_config(identifier),datetime.now(timezone.utc))
+    monkeypatch.setattr(atlas,'station_database',lambda _:database)
+    with TestClient(create_app()) as client:
+        assert client.get(f'/api/stations/{identifier}/forecast?mode=live').status_code==409
+        data=client.get(f'/api/stations/{identifier}/forecast?mode=latest').json()
+        assert data['mode']=='latest' and data['location_id']==identifier
+        assert data['predicted_pm25']>=0 and data['target_in_past']
+        assert not data['is_current_forecast']
+        assert data['target_time_utc']=='2020-01-01T04:00:00+00:00'
+        assert data['last_observation_utc']=='2020-01-01T03:00:00+00:00'
+
+
 def test_atlas_api_never_accepts_unknown_station_or_location():
     with TestClient(create_app()) as client:
         assert client.get('/api/stations/999999/forecast').status_code==404

@@ -169,6 +169,15 @@ public class ApplicationTest {
             saveEvidence("station-connected.png");
         }finally{ForecastData.preferences(context).edit().clear().commit();}
     }
+    @Test public void latestStationEstimateRemainsVisibleWithoutEnablingStaleAlerts() throws Exception {
+        Context context=InstrumentationRegistry.getInstrumentation().getTargetContext();
+        JSONObject response=ForecastData.latest(context,2402);
+        assertEquals("latest",response.getString("mode"));
+        assertEquals(2402,response.getInt("location_id"));
+        assertTrue(Double.isFinite(response.getDouble("predicted_pm25")));
+        assertFalse(ForecastData.time(response).equals("Sin fecha de medición"));
+        if(response.optBoolean("target_in_past"))assertFalse(ForecastData.fresh(response));
+    }
     @Test public void homeScreenWidgetIsRegistered() {
         Context context=InstrumentationRegistry.getInstrumentation().getTargetContext();
         assertTrue(AppWidgetManager.getInstance(context).getInstalledProviders().stream().anyMatch(provider->provider.provider.getClassName().equals(ForecastWidget.class.getName())));

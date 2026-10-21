@@ -89,7 +89,8 @@ class Predictor:
                 'last_observation_utc': latest.isoformat(), 'target_time_utc': horizon.isoformat(),
                 'last_observed_pm25': float(inputs.iloc[0]['pm25_now']), 'predicted_pm25': value,
                 'data_age_hours': (now-latest).total_seconds()/3600,
-                'is_current_forecast': mode == 'live', 'generated_at_utc': now.isoformat()}
+                'is_current_forecast': mode in ['live', 'latest'] and horizon > now,
+                'target_in_past': horizon <= now, 'generated_at_utc': now.isoformat()}
 
 
 def create_app(predictor=None, database=DEFAULT_DATABASE, demo_path=None, registry=None):

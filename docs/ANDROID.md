@@ -34,3 +34,10 @@ Las pruebas comprueban expiración de pronósticos, rechazo de orígenes insegur
 La pestaña Mapa utiliza el espacio disponible con un WebView flexible, sin el desplazamiento anidado ni la altura fija anterior. La vista móvil muestra el mapa primero, los filtros plegados y el nombre del punto seleccionado. «Ver datos» abre la simulación y el histórico en una vista separada; «Mapa» regresa y recalcula el tamaño de Leaflet. Los botones nativos permiten actualizar y usar la ubicación.
 
 El icono del lanzador es adaptativo y utiliza el mismo símbolo de viento y colores del SVG web. La cabecera conserva su fondo redondeado y las notificaciones emplean una versión monocroma del símbolo. Las pruebas de Android comprueban el mapa visible y sus marcadores en 320 × 568 dp, el cambio entre mapa y datos, el recurso adaptativo y el dibujo del icono.
+
+
+## Predicción con últimos datos (0.5.3)
+
+Estaciones consulta `mode=latest` y muestra el resultado de la siguiente hora respecto a las tres últimas mediciones consecutivas válidas, aunque su hora objetivo ya haya pasado. La pantalla conserva fecha de entrada, hora estimada y advertencia de retraso. La demostración histórica sigue disponible por separado. No se extrapola hasta la hora actual ni se inventan entradas.
+
+El widget, las notificaciones y el monitor conservan el contrato `mode=live` y no tratan una estimación retrasada como vigente. La web y el mapa integrado también muestran los últimos datos; para la pantalla nativa de Estaciones se necesita el APK 0.5.3 o posterior.

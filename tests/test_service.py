@@ -55,6 +55,16 @@ def test_live_forecast_rejects_past_horizon(engine, observations):
         engine.forecast(observations, 2415, mode='live', now=datetime(2026, 10, 19, 17, 1, tzinfo=timezone.utc))
 
 
+def test_latest_forecast_shows_past_target_without_calling_it_current(engine, observations):
+    result = engine.forecast(observations, 2415, mode='latest', now=datetime(2026, 10, 21, tzinfo=timezone.utc))
+    assert result['predicted_pm25'] == 11
+    assert result['mode'] == 'latest' and result['target_in_past']
+    assert not result['is_current_forecast']
+    assert result['target_time_utc'] == '2026-10-19T17:00:00+00:00'
+    with pytest.raises(ValueError):
+        engine.forecast([observations[0], observations[1], {**observations[2], 'timestamp': '2026-10-19T18:00:00Z'}], 2415, mode='latest')
+
+
 def test_current_forecast_has_future_horizon(engine, observations):
     now = datetime(2026, 10, 19, 16, 30, tzinfo=timezone.utc)
     forecast = engine.forecast(observations, 2415, mode='live', now=now)

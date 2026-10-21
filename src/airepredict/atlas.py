@@ -90,14 +90,14 @@ def station_forecast(identifier,mode='live'):
         selected=frame.loc[frame.timestamp.isin([latest-pd.Timedelta(hours=i) for i in [2,1,0]])]
         hours=[{'timestamp':r.timestamp.isoformat(),'pm25':float(r.pm25)} for r in selected.sort_values('timestamp').itertuples()]
         history=[{'timestamp':r.timestamp.isoformat(),'pm25':float(r.pm25)} for r in frame.loc[(frame.timestamp<=latest)&(frame.timestamp>latest-pd.Timedelta(hours=48))].itertuples()]
-    elif mode=='live':
+    elif mode in ['live','latest']:
         history=read_hours(station_database(identifier),limit=72,config=config)
         hours=[{'timestamp':h['timestamp'],'pm25':h['pm25']} for h in history[-3:]]
-        if len(hours)<3: raise HTTPException(409,'Aún no hay tres mediciones recientes para este punto. Puedes ver el histórico.')
-    else: raise HTTPException(422,'El modo debe ser live o historical.')
+        if len(hours)<3: raise HTTPException(409,'Aún no hay tres mediciones para este punto. Puedes ver el histórico.')
+    else: raise HTTPException(422,'El modo debe ser live, latest o historical.')
     try:
         with threadpool_limits(limits=2): result=engine.forecast(hours,identifier,mode=mode)
-    except ValueError: raise HTTPException(409,'Los datos recibidos están retrasados o no forman tres horas consecutivas. No se emite una predicción actual.') from None
+    except ValueError: raise HTTPException(409,'Los datos no forman tres horas consecutivas válidas.' if mode=='latest' else 'Los datos recibidos están retrasados o no forman tres horas consecutivas. No se emite una predicción actual.') from None
     except Exception:
         if registry.state()['previous']:
             registry.rollback(expected_active=identifier_version,reason='Invalid station prediction',mark_failed=True)

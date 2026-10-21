@@ -36,6 +36,12 @@ final class ForecastData {
     }
     static JSONObject fetch(Context c)throws Exception{return fetchStation(c,stationId(c),false);}
     static JSONObject historical(Context c)throws Exception{return fetchStation(c,stationId(c),true);}
+    static JSONObject latest(Context c,int id)throws Exception{
+        JSONObject data=request(c,"/api/stations/"+id+"/forecast?mode=latest");
+        if(data.optInt("location_id")!=id||!data.optString("mode").equals("latest")||!Double.isFinite(data.optDouble("predicted_pm25",Double.NaN)))throw new Exception("Respuesta de predicción incompatible con el punto seleccionado.");
+        // Delayed estimates are displayed in the app, never cached as live alerts.
+        return data;
+    }
     static JSONObject fetchStation(Context c,int id,boolean historical)throws Exception{
         JSONObject data=request(c,"/api/stations/"+id+"/forecast?mode="+(historical?"historical":"live"));
         if(data.optInt("location_id")!=id)throw new Exception("El servidor devolvió un punto de monitoreo diferente.");

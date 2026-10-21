@@ -91,6 +91,7 @@ jobs:
           adb pull /data/local/tmp/airepredict-widget.png ../widget.png || test "$TEST_STATUS" != 0
           adb pull /data/local/tmp/airepredict-settings.png ../settings.png || test "$TEST_STATUS" != 0
           adb pull /data/local/tmp/airepredict-station-connected.png ../station-connected.png || test "$TEST_STATUS" != 0
+          adb pull /data/local/tmp/airepredict-map.png ../map.png || test "$TEST_STATUS" != 0
           adb pull /data/local/tmp/airepredict-puno.png ../puno.png || test "$TEST_STATUS" != 0
           adb pull /data/local/tmp/airepredict-location.png ../location.png || test "$TEST_STATUS" != 0
           adb pull /data/local/tmp/airepredict-location-nearby.png ../location-nearby.png || test "$TEST_STATUS" != 0
@@ -106,6 +107,7 @@ jobs:
             widget.png
             settings.png
             station-connected.png
+            map.png
             puno.png
             location.png
             location-nearby.png

@@ -85,6 +85,33 @@ public class ApplicationTest {
             saveEvidence("puno.png");
         }finally{shell("wm size reset");shell("wm density reset");}
     }
+    private static JSONObject mapLayout(ActivityScenario<MainActivity> screen) throws Exception {
+        java.util.concurrent.CountDownLatch done=new java.util.concurrent.CountDownLatch(1);String[] result={"null"};
+        screen.onActivity(activity->{android.webkit.WebView web=findWeb(activity.getWindow().getDecorView());assertNotNull(web);web.evaluateJavascript("JSON.stringify((()=>{const map=document.getElementById('map'),filters=document.getElementById('mobile-filters'),rect=map?map.getBoundingClientRect():{};return {ready:document.body.classList.contains('mobile-map')&&document.querySelectorAll('#map [role=button].leaflet-interactive').length>0,top:rect.top||0,bottom:rect.bottom||0,mapHeight:rect.height||0,height:innerHeight,width:innerWidth,contentWidth:document.documentElement.scrollWidth,filtersOpen:filters?filters.open:true,analysis:document.body.classList.contains('show-analysis')};})())",text->{result[0]=text;done.countDown();});});
+        assertTrue(done.await(5,java.util.concurrent.TimeUnit.SECONDS));Object text=new org.json.JSONTokener(result[0]).nextValue();return text instanceof String?new JSONObject((String)text):new JSONObject();
+    }
+    @Test public void mapIsVisibleOnSmallDisplayAndDetailsOpenSeparately() throws Exception {
+        shell("wm size 640x1136");shell("wm density 320");
+        try(ActivityScenario<MainActivity> screen=ActivityScenario.launch(MainActivity.class)){
+            UiDevice device=UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());device.wait(Until.findObject(By.text("Mapa")),5000).click();
+            try{
+                JSONObject layout=new JSONObject();long deadline=android.os.SystemClock.elapsedRealtime()+90000;
+                while(android.os.SystemClock.elapsedRealtime()<deadline){layout=mapLayout(screen);if(layout.optBoolean("ready"))break;android.os.SystemClock.sleep(350);}
+                assertTrue("Expected visible Leaflet markers in the map",layout.optBoolean("ready"));
+                assertFalse(layout.getBoolean("filtersOpen"));assertTrue(layout.getDouble("mapHeight")>=180);
+                assertTrue("Map begins inside viewport",layout.getDouble("top")>=0);
+                assertTrue("Map is visible before scrolling",layout.getDouble("bottom")<=layout.getDouble("height")+1);
+                assertTrue(layout.getDouble("contentWidth")<=layout.getDouble("width")+1);
+                saveEvidence("map.png");device.wait(Until.findObject(By.text("Ver datos →")),5000).click();assertTrue(mapLayout(screen).getBoolean("analysis"));
+                device.wait(Until.findObject(By.text("← Mapa")),5000).click();assertFalse(mapLayout(screen).getBoolean("analysis"));
+            }catch(Throwable error){saveEvidence("map.png");throw error;}
+        }finally{shell("wm size reset");shell("wm density reset");}
+    }
+    @Test public void launcherAndHeaderUseTheWebWindIcon() {
+        Context context=InstrumentationRegistry.getInstrumentation().getTargetContext();assertTrue(context.getApplicationInfo().loadIcon(context.getPackageManager()) instanceof android.graphics.drawable.AdaptiveIconDrawable);
+        android.graphics.drawable.Drawable icon=context.getDrawable(pe.airepredict.R.drawable.app_icon);android.graphics.Bitmap bitmap=android.graphics.Bitmap.createBitmap(192,192,android.graphics.Bitmap.Config.ARGB_8888);icon.setBounds(0,0,192,192);icon.draw(new android.graphics.Canvas(bitmap));
+        assertEquals(android.graphics.Color.rgb(245,247,239),bitmap.getPixel(70,116));assertEquals(android.graphics.Color.rgb(22,117,103),bitmap.getPixel(96,170));assertEquals(0,android.graphics.Color.alpha(bitmap.getPixel(0,0)));
+    }
     @Test public void nearbyDistanceAndUnknownCoordinatesAreHandled() {
         assertEquals(0,NearbyActivity.distanceKm(-12.07,-77.04,-12.07,-77.04),.0001);
         assertEquals(111.195,NearbyActivity.distanceKm(0,0,0,1),.01);

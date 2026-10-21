@@ -28,3 +28,9 @@ gradle -p android assembleDebug lintDebug
 El APK se genera en `android/app/build/outputs/apk/debug/`. La compilación también está automatizada en Android application de GitHub Actions. Su ejecución manual añade las pruebas de emulador y guarda capturas e informes como artefactos.
 
 Las pruebas comprueban expiración de pronósticos, rechazo de orígenes inseguros, registro del proveedor del widget, apertura del aplicativo, rechazo de notificaciones y vinculación/renderizado del widget en un host Android de pruebas. El permiso de vinculación del host se concede únicamente dentro del emulador de CI; el aplicativo distribuido usa la confirmación normal del launcher.
+
+## Mapa e identidad visual (0.5.2)
+
+La pestaña Mapa utiliza el espacio disponible con un WebView flexible, sin el desplazamiento anidado ni la altura fija anterior. La vista móvil muestra el mapa primero, los filtros plegados y el nombre del punto seleccionado. «Ver datos» abre la simulación y el histórico en una vista separada; «Mapa» regresa y recalcula el tamaño de Leaflet. Los botones nativos permiten actualizar y usar la ubicación.
+
+El icono del lanzador es adaptativo y utiliza el mismo símbolo de viento y colores del SVG web. La cabecera conserva su fondo redondeado y las notificaciones emplean una versión monocroma del símbolo. Las pruebas de Android comprueban el mapa visible y sus marcadores en 320 × 568 dp, el cambio entre mapa y datos, el recurso adaptativo y el dibujo del icono.

@@ -58,16 +58,32 @@ public class ApplicationTest {
         site.put("latest",new JSONObject().put("pm25",24.9).put("timestamp","2026-10-19T08:00:00-05:00"));
         String reading=NearbyActivity.stationReading(site);assertTrue(reading.contains("24.90"));assertTrue(reading.contains("2026"));assertTrue(reading.contains("no describe necesariamente"));
     }
-    @Test public void punoLaboratoryIsSeparateFromMeasuredStations() throws Exception {
+    private static android.webkit.WebView findWeb(android.view.View view){
+        if(view instanceof android.webkit.WebView)return (android.webkit.WebView)view;
+        if(view instanceof android.view.ViewGroup){android.view.ViewGroup group=(android.view.ViewGroup)view;for(int i=0;i<group.getChildCount();i++){android.webkit.WebView child=findWeb(group.getChildAt(i));if(child!=null)return child;}}return null;
+    }
+    private static JSONObject punoLayout(ActivityScenario<PunoActivity> screen) throws Exception {
+        java.util.concurrent.CountDownLatch done=new java.util.concurrent.CountDownLatch(1);String[] result={"null"};
+        screen.onActivity(activity->{android.webkit.WebView web=findWeb(activity.getWindow().getDecorView());assertNotNull(web);web.evaluateJavascript("JSON.stringify((()=>{const info=document.getElementById('puno-source-details'),value=document.getElementById('puno-value');return {ready:!!info&&!!value&&value.textContent!=='—',open:info?info.open:false,infoHeight:info?info.getBoundingClientRect().height:0,valueBottom:value?value.getBoundingClientRect().bottom:9999,height:innerHeight,width:innerWidth,contentWidth:document.documentElement.scrollWidth};})())",text->{result[0]=text;done.countDown();});});
+        assertTrue(done.await(5,java.util.concurrent.TimeUnit.SECONDS));Object text=new org.json.JSONTokener(result[0]).nextValue();return text instanceof String?new JSONObject((String)text):new JSONObject();
+    }
+    @Test public void punoScreenFitsSmallDisplayAndSeparatesEstimatedData() throws Exception {
         for(String name:ForecastData.NAMES)assertFalse(name.contains("Puno"));
+        shell("wm size 640x1136");shell("wm density 320");
         try(ActivityScenario<PunoActivity> screen=ActivityScenario.launch(PunoActivity.class)){
             UiDevice device=UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
-            assertNotNull(device.wait(Until.findObject(By.text("Puno · modelo experimental")),5000));
-            assertNotNull(device.findObject(By.textContains("Datos modelados por CAMS")));
+            assertNotNull(device.wait(Until.findObject(By.text("Puno")),5000));
+            JSONObject layout=new JSONObject();long deadline=android.os.SystemClock.elapsedRealtime()+90000;
+            while(android.os.SystemClock.elapsedRealtime()<deadline){layout=punoLayout(screen);if(layout.optBoolean("ready"))break;android.os.SystemClock.sleep(350);}
+            assertTrue("Expected the deployed Puno page and loaded estimate",layout.optBoolean("ready"));
+            assertFalse("Source details start collapsed",layout.getBoolean("open"));
+            assertTrue("Source notice must be compact",layout.getDouble("infoHeight")<75);
+            assertTrue("Estimate must be visible on a small phone",layout.getDouble("valueBottom")<layout.getDouble("height"));
+            assertTrue("No horizontal page overflow",layout.getDouble("contentWidth")<=layout.getDouble("width")+1);
             JSONObject data=ForecastData.request(InstrumentationRegistry.getInstrumentation().getTargetContext(),"/api/puno/experiment");
             assertEquals("experimental",data.getString("mode"));assertFalse(data.getBoolean("is_measurement"));assertFalse(data.getBoolean("health_alerts_enabled"));
             saveEvidence("puno.png");
-        }
+        }finally{shell("wm size reset");shell("wm density reset");}
     }
     @Test public void nearbyDistanceAndUnknownCoordinatesAreHandled() {
         assertEquals(0,NearbyActivity.distanceKm(-12.07,-77.04,-12.07,-77.04),.0001);

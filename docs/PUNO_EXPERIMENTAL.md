@@ -4,7 +4,7 @@
 
 La fuente es `https://api-aire-puno.onrender.com/api/puno/forecast`, identificada como CAMS global vía Open-Meteo. No es una estación física. Sus valores son pronósticos externos y nunca se guardan en las bases de mediciones SENAMHI/OpenAQ. No se reutilizan las métricas del modelo OEFA ni se presentan como precisión local. No se habilitan alertas de salud, notificaciones ni selección de widget para este laboratorio.
 
-La web `/puno` y la pantalla Android «Puno · modelo experimental» muestran el mapa, la curva CAMS, una estimación del modelo propio, fechas, métricas y versiones. También se ofrece el acceso al usar una ubicación próxima a Puno. Las coordenadas personales siguen procesándose solo en el dispositivo.
+La web `/puno` y la pantalla Android «Puno · calidad del aire» muestran el mapa, la curva CAMS, una estimación del modelo propio, fechas, métricas y versiones. También se ofrece el acceso al usar una ubicación próxima a Puno. Las coordenadas personales siguen procesándose solo en el dispositivo.
 
 ## Entrenamiento inicial
 
@@ -35,3 +35,7 @@ Las pruebas cubren procedencia, unidades, horas duplicadas, separación temporal
 Una futura fase con sensores locales deberá crear un conjunto de mediciones reales independiente, registrar pronósticos antes de sus objetivos y evaluar contra dichas mediciones. La coincidencia con CAMS no demuestra precisión frente a la contaminación real.
 
 Fuentes: https://api-aire-puno.onrender.com/docs y https://open-meteo.com/en/docs/air-quality-api. Atribución CAMS ENSEMBLE / Open-Meteo (CC BY 4.0); se mantienen las condiciones del proveedor.
+
+## Pantallas pequeñas (0.5.1)
+
+La información de la fuente se muestra una sola vez, en una tarjeta desplegable dentro del contenido. No es fija ni cubre el mapa o la estimación. Android dispone de una barra compacta con Volver y Actualizar; los mensajes de conexión desaparecen al cargar correctamente y los errores siguen visibles. Los botones comparten tamaños táctiles de al menos 48 dp, esquinas redondeadas y respuesta visual al pulsar. La prueba Android verifica una pantalla de 320 × 568 dp, la estimación visible y la ausencia de desbordamiento horizontal.

@@ -20,6 +20,7 @@ jobs:
       - run: python -m pytest -q
       - run: node tests/client_smoke.mjs
       - run: node tests/nearby_smoke.mjs
+      - run: node tests/atlas_smoke.mjs
       - name: Verify deployment image and seeded model
         run: |
           docker build --build-arg APP_COMMIT=${{ github.sha }} -t airepredict:test .

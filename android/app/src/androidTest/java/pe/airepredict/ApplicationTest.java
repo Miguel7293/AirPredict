@@ -53,6 +53,11 @@ public class ApplicationTest {
         assertEquals(2351,ForecastData.cached(context).getInt("location_id"));
         ForecastData.preferences(context).edit().clear().commit();
     }
+    @Test public void nearestStationReadingIncludesValueAndStaleness() throws Exception {
+        JSONObject site=new JSONObject();assertTrue(NearbyActivity.stationReading(site).contains("no hay una medición"));
+        site.put("latest",new JSONObject().put("pm25",24.9).put("timestamp","2026-10-19T08:00:00-05:00"));
+        String reading=NearbyActivity.stationReading(site);assertTrue(reading.contains("24.90"));assertTrue(reading.contains("2026"));assertTrue(reading.contains("no describe necesariamente"));
+    }
     @Test public void nearbyDistanceAndUnknownCoordinatesAreHandled() {
         assertEquals(0,NearbyActivity.distanceKm(-12.07,-77.04,-12.07,-77.04),.0001);
         assertEquals(111.195,NearbyActivity.distanceKm(0,0,0,1),.01);

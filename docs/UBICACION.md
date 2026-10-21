@@ -27,3 +27,9 @@ La ubicación ayuda a elegir referencias. La predicción corresponde a su punto 
 Pruebas de distancia conocida, coordenadas inválidas, orden por cercanía, ausencia de referencias y margen demasiado amplio. En web se prueban permiso aceptado con coordenadas sintéticas, rechazo, error de tiempo y falta de soporte sin obtener la ubicación real del operador. Android prueba el permiso opcional rechazado y una ubicación aproximada sintética de Lima que debe mostrar referencias próximas. Los ejemplos sintéticos validan la interfaz y el cálculo, no la recepción física de GPS en cada dispositivo.
 
 Referencias: [Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition), [permisos de ubicación Android](https://developer.android.com/develop/sensors-and-location/location/permissions).
+
+## Flujo de consulta y simulación (0.4.2)
+
+Al obtener la ubicación, se presenta primero la estación disponible más cercana dentro del rango: nombre, distancia, última concentración de PM2.5 y fecha. Una medición antigua conserva su advertencia; no se interpreta como condición actual. La referencia histórica OEFA se identifica por separado. Se selecciona automáticamente el punto más cercano del modo activo; si no existe referencia diaria cercana pero sí una estación, se abre el modo por estación.
+
+En la web y el mapa integrado de Android, «Simular con mis datos diarios» permanece visible antes del análisis histórico. Usa la fecha, el PM2.5 diario, el dato opcional del día anterior y las coordenadas del punto entrenado seleccionado. Los valores precargados se identifican como ejemplo histórico. La ubicación personal no se emplea como coordenada de entrenamiento ni se envía al modelo. El resultado de la simulación es experimental y no se trata como medición o pronóstico actual validado.

@@ -99,7 +99,7 @@ def create_app(predictor=None, database=DEFAULT_DATABASE, demo_path=None, regist
     async def lifespan(app):
         jobs.recover()
         yield
-    app = FastAPI(title='AirePredict Perú', version='0.4.1', lifespan=lifespan,
+    app = FastAPI(title='AirePredict Perú', version='0.4.2', lifespan=lifespan,
                   description='Mapa histórico de PM2.5 de Perú y modelos horarios por distrito. Los ejemplos históricos se identifican expresamente.')
     state = {'predictor': predictor, 'error': None}
     injected = predictor is not None

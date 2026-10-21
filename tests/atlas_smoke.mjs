@@ -1,6 +1,6 @@
 import vm from 'node:vm';import fs from 'node:fs';import assert from 'node:assert/strict';
 const nodes=new Map(),requests=[];let geoRequests=0;
-function node(){return {value:'',textContent:'',hidden:false,clientWidth:600,children:[],classList:{add(){},toggle(){},contains(){return false;}},replaceChildren(...items){this.children=items;},appendChild(item){this.children.push(item);},setAttribute(){},addEventListener(name,fn){this[name]=fn;}};}
+function node(){return {attrs:{},value:'',textContent:'',hidden:false,clientWidth:600,children:[],classList:{add(){},toggle(){},contains(){return false;}},replaceChildren(...items){this.children=items;},appendChild(item){this.children.push(item);},setAttribute(name,value){this.attrs[name]=value;},addEventListener(name,fn){this[name]=fn;}};}
 function layer(){return {addTo(){return this;},remove(){},getElement(){return node();},bindPopup(){return this;},on(){return this;},bindTooltip(){return this;}};}
 const map={setView(){return this;},fitBounds(){return this;},createPane(){},getPane(){return {style:{}};},attributionControl:{addAttribution(){}}};
 const site={id:'near',code:'P-1',district:'Distrito de ejemplo',region:'Lima',latitude:-12.071,longitude:-77.041,daily_count:310,trained:true,first_date:'2022-01-01',last_date:'2022-12-31'};
@@ -19,12 +19,12 @@ nodes.get('scenario-date').value='2022-12-20';nodes.get('scenario-pm25').value='
 await nodes.get('scenario-form').submit({preventDefault(){}});
 const scenarioRequest=requests.find(([path])=>path==='/api/general/predict');assert(scenarioRequest);
 assert.deepEqual(JSON.parse(scenarioRequest[1].body),{site_id:'near',observed_date:'2022-12-20',pm25:15,previous_pm25:14});
-assert.equal(nodes.get('estimate').textContent,'16.4');assert.match(nodes.get('prediction-kicker').textContent,/SIMULACIÓN CON TUS DATOS/);
+assert.equal(nodes.get('notice-panel').attrs['data-tone'],'warning');assert.equal(nodes.get('notice-panel').hidden,false);nodes.get('dismiss-notice').onclick();assert.equal(nodes.get('notice-panel').hidden,true);assert.equal(nodes.get('estimate').textContent,'16.4');assert.match(nodes.get('prediction-kicker').textContent,/SIMULACIÓN CON TUS DATOS/);
 for(const [path,options] of requests){assert(!path.includes('-12.07')&&!path.includes('-77.04'));assert(!options?.body?.includes('latitude'));assert(!options?.body?.includes('longitude'));}
 const html=fs.readFileSync('src/airepredict/static/dashboard.html','utf8');
 assert(html.indexOf('id="simular"')<html.indexOf('id="historico"'));assert(!html.includes('<details id="scenario-box"'));assert(html.indexOf('id="scenario-form"')<html.indexOf('id="history-chart"'));
 
 nodes.get('clear-location').onclick();assert.equal(nodes.get('nearby-list').children.length,0);assert(nodes.get('clear-location').hidden);
-context.navigator.geolocation.getCurrentPosition=(ok,error)=>error({code:1});await nodes.get('use-location').onclick();assert.match(nodes.get('location-status').textContent,/rechazado/);
+context.navigator.geolocation.getCurrentPosition=(ok,error)=>error({code:1});await nodes.get('use-location').onclick();assert.match(nodes.get('location-status').textContent,/rechazado/);assert.equal(nodes.get('notice-panel').hidden,false);assert.equal(nodes.get('notice-panel').attrs['data-tone'],'error');assert.equal(nodes.get('notice-live').attrs.role,'alert');
 context.navigator.geolocation.getCurrentPosition=ok=>ok({coords:{latitude:40,longitude:0,accuracy:500}});await nodes.get('use-location').onclick();assert.match(nodes.get('nearby-list').textContent,/No hay puntos/);
 console.log('Atlas flows passed: visible daily simulation before history, scenario inputs/result, nearest station measurement/date, automatic historical reference selection, optional location, denial, clear, no coverage and no coordinates transmitted.');

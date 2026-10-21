@@ -12,3 +12,13 @@
 .scenario-help{font-size:12px;color:var(--muted);line-height:1.8}#scenario-box{margin:0}
 
 #scenario-form{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px 18px;margin:20px 0;align-items:center}#scenario-form label{grid-column:1;font-size:12px;line-height:1.6}#scenario-form input{grid-column:2;width:100%;box-sizing:border-box;padding:12px}#scenario-form button{grid-column:1/-1;justify-content:center;font-size:13px}button:disabled{cursor:wait}@media(max-width:650px){#scenario-form{grid-template-columns:1fr;gap:6px}#scenario-form label,#scenario-form input{grid-column:1}#scenario-form label{margin-top:12px}}
+
+/* A persistent, readable notice stays visible while the user works below. */
+.notification-bar{position:sticky;top:0;z-index:1100;background:#e7f1ed;border-block:1px solid #adc8bc;box-shadow:0 4px 16px #123f3c18;color:#123f3c}
+.notification-bar[hidden]{display:none}.notification-inner{max-width:1320px;margin:auto;padding:16px 36px;display:grid;grid-template-columns:36px minmax(0,1fr) 40px;gap:16px;align-items:start}
+.notification-icon{display:grid;place-items:center;width:32px;height:32px;border:2px solid currentColor;border-radius:50%;font-size:23px;font-weight:700}
+.notification-copy strong{display:block;font-size:17px;line-height:1.4;margin-bottom:5px}.notification-copy #atlas-notice{font-size:15px;line-height:1.65;margin:0;color:inherit;overflow-wrap:anywhere}
+#dismiss-notice{background:transparent;border:1px solid currentColor;border-radius:6px;color:inherit;font-size:19px;min-height:40px;min-width:40px;padding:6px;cursor:pointer}#dismiss-notice:focus-visible{outline:3px solid currentColor;outline-offset:3px}
+.notification-bar[data-tone="error"]{background:#fff0ec;border-color:#b85138;color:#842e1e}.notification-bar[data-tone="warning"]{background:#fff4d9;border-color:#bd8b27;color:#654507}.notification-bar[data-tone="loading"]{background:#e9f2fa;border-color:#86adc6;color:#214c68}
+#scenario-availability,#location-status{font-size:14px!important;line-height:1.7!important}html{scroll-padding-top:155px}
+@media(max-width:650px){.notification-inner{padding:12px 16px;grid-template-columns:28px minmax(0,1fr) 36px;gap:10px}.notification-icon{width:25px;height:25px;font-size:18px}.notification-copy strong{font-size:16px}.notification-copy #atlas-notice{font-size:14px;max-height:24vh;overflow:auto}#dismiss-notice{min-width:36px;min-height:36px;font-size:17px}.topbar nav{gap:18px}}

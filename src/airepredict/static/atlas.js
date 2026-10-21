@@ -6,7 +6,17 @@ let userPosition=null,userLayers=[],locationSequence=0,nearbySequence=0;
 let atlasData, stationData=[], mode='general', selected=null, requestSequence=0, markers=[], map;
 const color=value=>value==null?'#87958d':value<=10?'#4da59b':value<=25?'#9bb968':value<=50?'#d7a354':'#a96857';
 async function getJSON(path,options={}){const response=await fetch(path,{cache:'no-store',...options});let value;try{value=await response.json();}catch{throw Error('El servidor aún se está iniciando. Espera un momento y vuelve a intentarlo.');}if(!response.ok)throw Error(typeof value.detail==='string'?value.detail:'No se pudo cargar la información.');return value;}
-function notice(text,error=false){byId('atlas-notice').textContent=text;byId('atlas-notice').classList.toggle('error',error);}
+function notice(text,error=false,tone='info'){
+  if(error)tone='error';else if(/^(Calculando|Cargando|Conectando|Solicitando)/.test(text))tone='loading';
+  const titles={info:'Información de tu consulta',loading:'Procesando tu consulta',warning:'Revisa esta información',error:'No se pudo completar la consulta'};
+  byId('notice-panel').hidden=false;byId('notice-panel').setAttribute('data-tone',tone);
+  byId('notice-title').textContent=titles[tone];byId('notice-icon').textContent=error?'!':tone==='warning'?'!':tone==='loading'?'↻':'i';
+  byId('notice-live').setAttribute('role',error?'alert':'status');byId('notice-live').setAttribute('aria-live',error?'assertive':'polite');
+  byId('atlas-notice').textContent=text;
+}
+byId('dismiss-notice').onclick=()=>{byId('notice-panel').hidden=true;};
+function locationNotice(text,error=false){byId('location-status').textContent=text;notice(text,error);}
+
 function drawChart(rows,hourly=false){
   const chart=byId('history-chart');chart.replaceChildren();
   if(!rows.length){chart.textContent='No hay observaciones en este periodo.';return;}
@@ -86,7 +96,7 @@ if('serviceWorker' in navigator)navigator.serviceWorker.register('/sw.js').catch
 byId('scenario-form').addEventListener('submit',async event=>{
   event.preventDefault();if(mode!=='general'||!selected?.trained)return;
   const sequence=++requestSequence;byId('scenario-submit').disabled=true;notice('Calculando escenario diario…');
-  try{const body={site_id:selected.id,observed_date:byId('scenario-date').value,pm25:Number(byId('scenario-pm25').value),previous_pm25:byId('scenario-previous').value===''?null:Number(byId('scenario-previous').value)};const data=await getJSON('/api/general/predict',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});if(sequence!==requestSequence)return;byId('prediction-kicker').textContent='MODELO GENERAL · SIMULACIÓN CON TUS DATOS';byId('estimate').textContent=fmt(data.predicted_pm25);byId('estimate-date').textContent=`Escenario para el ${data.target_date}, a partir del ${data.observed_date}.`;byId('estimate-context').textContent=data.note;notice(data.outside_training_period?'Escenario calculado fuera del periodo usado para ajustar el modelo. Su validez actual no está demostrada.':'Simulación calculada con los valores introducidos; no se ha verificado su procedencia.');}catch(error){if(sequence===requestSequence)notice(error.message,true);}finally{byId('scenario-submit').disabled=false;}
+  try{const body={site_id:selected.id,observed_date:byId('scenario-date').value,pm25:Number(byId('scenario-pm25').value),previous_pm25:byId('scenario-previous').value===''?null:Number(byId('scenario-previous').value)};const data=await getJSON('/api/general/predict',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});if(sequence!==requestSequence)return;byId('prediction-kicker').textContent='MODELO GENERAL · SIMULACIÓN CON TUS DATOS';byId('estimate').textContent=fmt(data.predicted_pm25);byId('estimate-date').textContent=`Escenario para el ${data.target_date}, a partir del ${data.observed_date}.`;byId('estimate-context').textContent=data.note;notice(data.outside_training_period?'Escenario calculado fuera del periodo usado para ajustar el modelo. Su validez actual no está demostrada.':'Simulación calculada con los valores introducidos; no se ha verificado su procedencia.',false,'warning');}catch(error){if(sequence===requestSequence)notice(error.message,true);}finally{byId('scenario-submit').disabled=false;}
 });
 
 async function renderNearby(){
@@ -100,12 +110,12 @@ async function renderNearby(){
   if(mode==='general'&&nearby.length){const site=nearby[0];try{const data=await getJSON('/api/atlas/sites/'+encodeURIComponent(site.id));if(token!==nearbySequence||!userPosition||mode!=='general')return;const latest=data.history.at(-1);if(latest){const text=document.createElement('p');text.className='nearby-history';text.textContent='El punto histórico más cercano, '+site.district+' · '+site.code+', registró '+fmt(latest.pm25)+' µg/m³ el '+latest.date+'. Es una referencia histórica, no una medición actual de tu ubicación.';list.appendChild(text);}}catch{if(token===nearbySequence){const text=document.createElement('p');text.textContent='No se pudo consultar la última medición del punto histórico. Vuelve a seleccionarlo para reintentar.';list.appendChild(text);}}}
 }
 byId('use-location').onclick=async()=>{
-  if(!atlasData||!map){byId('location-status').textContent='Espera a que termine de cargar el mapa e inténtalo de nuevo.';return;}
-  const sequence=++locationSequence;byId('use-location').disabled=true;byId('location-status').textContent='Solicitando permiso y buscando tu ubicación…';
+  if(!atlasData||!map){locationNotice('Espera a que termine de cargar el mapa e inténtalo de nuevo.');return;}
+  const sequence=++locationSequence;byId('use-location').disabled=true;locationNotice('Solicitando permiso y buscando tu ubicación…');
   try{const position=await AireNearby.locate(navigator.geolocation);if(sequence!==locationSequence)return;userPosition=position;userLayers.forEach(layer=>layer.remove());
     userLayers=[L.circle([position.latitude,position.longitude],{radius:Math.max(20,position.accuracy),color:'#487ba5',weight:1,fillOpacity:.12,interactive:false}).addTo(map),L.circleMarker([position.latitude,position.longitude],{radius:7,color:'white',weight:2,fillColor:'#3678a0',fillOpacity:1}).addTo(map).bindTooltip('Tu ubicación aproximada')];
-    map.setView([position.latitude,position.longitude],11);byId('clear-location').hidden=false;byId('location-status').textContent='Ubicación obtenida. Margen aproximado: ±'+fmt(position.accuracy/1000)+' km. La cercanía no valida una predicción para tu dirección.';renderNearby();const candidates=mode==='general'?atlasData.sites.filter(s=>s.trained&&s.daily_count>0):stationData;const closest=AireNearby.nearest(candidates,position)[0];if(closest){byId('region').value='';byId('point-search').value='';byId('year').value='';await selectSite(closest,true);}else if(mode==='general'){const station=AireNearby.nearest(stationData,position)[0];if(station){changeMode('stations');await selectSite(station,true);}}
-  }catch(error){if(sequence===locationSequence)byId('location-status').textContent=error.message;}finally{if(sequence===locationSequence)byId('use-location').disabled=false;}
+    map.setView([position.latitude,position.longitude],11);byId('clear-location').hidden=false;locationNotice('Ubicación obtenida. Margen aproximado: ±'+fmt(position.accuracy/1000)+' km. La cercanía no valida una predicción para tu dirección.');renderNearby();const candidates=mode==='general'?atlasData.sites.filter(s=>s.trained&&s.daily_count>0):stationData;const closest=AireNearby.nearest(candidates,position)[0];if(closest){byId('region').value='';byId('point-search').value='';byId('year').value='';await selectSite(closest,true);}else if(mode==='general'){const station=AireNearby.nearest(stationData,position)[0];if(station){changeMode('stations');await selectSite(station,true);}}
+  }catch(error){if(sequence===locationSequence)locationNotice(error.message,true);}finally{if(sequence===locationSequence)byId('use-location').disabled=false;}
 };
-byId('clear-location').onclick=()=>{++locationSequence;++nearbySequence;userPosition=null;byId('nearby-reading').replaceChildren();byId('nearby-reading').hidden=true;userLayers.forEach(layer=>layer.remove());userLayers=[];byId('nearby-list').replaceChildren();byId('clear-location').hidden=true;byId('use-location').disabled=false;byId('location-status').textContent='Ubicación eliminada de esta página. Puedes cambiar el permiso en los ajustes del navegador.';};
+byId('clear-location').onclick=()=>{++locationSequence;++nearbySequence;userPosition=null;byId('nearby-reading').replaceChildren();byId('nearby-reading').hidden=true;userLayers.forEach(layer=>layer.remove());userLayers=[];byId('nearby-list').replaceChildren();byId('clear-location').hidden=true;byId('use-location').disabled=false;locationNotice('Ubicación eliminada de esta página. Puedes cambiar el permiso en los ajustes del navegador.');};
 if(document.body.classList.contains('embedded')){byId('use-location').hidden=true;byId('location-status').textContent='Usa el botón «Usar mi ubicación» de la aplicación para buscar puntos cercanos.';}

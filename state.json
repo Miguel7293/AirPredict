@@ -1,9 +1,9 @@
 {
   "action": "ingest",
   "status": "completed",
-  "completed_at": "2026-10-21T17:26:45.635124+00:00",
+  "completed_at": "2026-10-21T18:42:59.973874+00:00",
   "result": {
-    "fetched_at_utc": "2026-10-21T17:26:42.668840+00:00",
+    "fetched_at_utc": "2026-10-21T18:42:45.275558+00:00",
     "location_id": 2415,
     "sensor_id": 4672,
     "accepted_unique_hours": 18,
@@ -18,7 +18,7 @@
     "forecast_status": "No fresh consecutive input window",
     "station_results": {
       "2402": {
-        "fetched_at_utc": "2026-10-21T17:26:44.030976+00:00",
+        "fetched_at_utc": "2026-10-21T18:42:46.193458+00:00",
         "location_id": 2402,
         "sensor_id": 4492,
         "accepted_unique_hours": 12,
@@ -31,7 +31,7 @@
         "forecast_issued": false
       },
       "2351": {
-        "fetched_at_utc": "2026-10-21T17:26:45.024568+00:00",
+        "fetched_at_utc": "2026-10-21T18:42:46.615317+00:00",
         "location_id": 2351,
         "sensor_id": 4319,
         "accepted_unique_hours": 39,
@@ -46,13 +46,13 @@
     },
     "puno": {
       "ingestion": {
-        "accepted_new_targets": 4,
-        "total_targets": 63,
+        "accepted_new_targets": 1,
+        "total_targets": 64,
         "is_measurement": false
       }
     }
   },
-  "code_commit": "1e1d8d3910975829c466dcdba1dc71c22f39741f",
+  "code_commit": "fc9be6e1e039709d915397c2aa5013f202be624f",
   "registry": {
     "active": "20261020T035022-f10a116b8b",
     "previous": null

@@ -39,3 +39,11 @@ Fuentes: https://api-aire-puno.onrender.com/docs y https://open-meteo.com/en/doc
 ## Pantallas pequeñas (0.5.1)
 
 La información de la fuente se muestra una sola vez, en una tarjeta desplegable dentro del contenido. No es fija ni cubre el mapa o la estimación. Android dispone de una barra compacta con Volver y Actualizar; los mensajes de conexión desaparecen al cargar correctamente y los errores siguen visibles. Los botones comparten tamaños táctiles de al menos 48 dp, esquinas redondeadas y respuesta visual al pulsar. La prueba Android verifica una pantalla de 320 × 568 dp, la estimación visible y la ausencia de desbordamiento horizontal.
+
+## Renovación de la fuente desde web y Android
+
+La página consulta `/api/puno/experiment?refresh=true` al abrirse o actualizarse. El servicio descarga y valida la curva pública de Puno para inferencia con el mismo modelo verificado. Esta renovación no entrena, no cambia métricas ni versiones y no escribe observaciones o registros duraderos. También funciona en el WebView del APK existente, sin reinstalarlo.
+
+Una caché compartida por proceso limita la consulta al proveedor a una cada diez minutos; después de un fallo espera al menos un minuto. Las solicitudes concurrentes usan la última copia mientras una sola consulta renueva la fuente. Una lectura de caché no modifica `fetched_at`. Se mantiene el límite de tres horas y la exigencia de horizonte futuro; si la fuente falla y la copia ya caducó, el valor sigue no disponible con un mensaje de renovación fallida. Un valor todavía vigente puede mostrarse con advertencia de que no pudo renovarse.
+
+GitHub Actions sigue siendo el único escritor del histórico de entrenamiento y del registro persistente. Su horario puede retrasarse, por lo que la inferencia en pantalla ya no depende exclusivamente de una ejecución puntual. La copia en memoria desaparece al reiniciar y se vuelve a consultar si el usuario abre Puno. El endpoint sin `refresh` consulta el estado disponible sin iniciar llamadas al proveedor.

@@ -3,6 +3,8 @@ import hashlib
 import json
 import math
 import os
+import threading
+import time
 import urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -49,7 +51,8 @@ def seed_path(relative, root=ROOT):
 
 
 def validate_payload(payload, issued=None):
-    if (payload.get('site_id') != 'puno_city' or payload.get('is_measurement') is not False
+    if (not isinstance(payload, dict)
+            or payload.get('site_id') != 'puno_city' or payload.get('is_measurement') is not False
             or payload.get('timezone') != 'America/Lima'
             or payload.get('units') not in ['µg/m³', 'μg/m³']
             or 'CAMS' not in payload.get('source', '')
@@ -72,15 +75,56 @@ def validate_payload(payload, issued=None):
     return rows
 
 
+def fetch_payload():
+    request = urllib.request.Request(SOURCE_URL, headers={'User-Agent': 'AirePredict-Puno-experiment'})
+    with urllib.request.urlopen(request, timeout=65) as response:
+        data = response.read(1_000_001)
+    if len(data) > 1_000_000:
+        raise ValueError('Respuesta de Puno demasiado grande.')
+    return json.loads(data)
+
+
+class SourceCache:
+    """Read-only inference refresh, separate from durable MLOps observations.
+
+    One provider request per ten minutes, with a one-minute retry after errors.
+    Concurrent visitors use the previous snapshot rather than starting requests.
+    A cache hit never changes fetched_at or makes an old curve appear fresh.
+    """
+    def __init__(self):
+        self.lock = threading.Lock()
+        self.snapshot = None
+        self.attempted_at = None
+        self.failed = False
+
+    def get(self, now):
+        if not self.lock.acquire(blocking=False):
+            return self.snapshot, {'status': 'refreshing', 'retry_after_seconds': 10}
+        try:
+            cooldown = 60 if self.failed else 600
+            elapsed = time.monotonic() - self.attempted_at if self.attempted_at is not None else cooldown
+            if elapsed < cooldown:
+                return self.snapshot, {'status': 'retry_later' if self.failed else 'cached',
+                                       'retry_after_seconds': max(1, math.ceil(cooldown-elapsed))}
+            try:
+                rows = validate_payload(fetch_payload(), now.isoformat())
+                self.snapshot = {'fetched_at': now.isoformat(), 'latest_curve': rows}
+                self.failed = False
+                status = 'downloaded'
+            except (OSError, ValueError, TypeError, KeyError, OverflowError):
+                self.failed = True
+                status = 'failed'
+            finally:
+                self.attempted_at = time.monotonic()
+            return self.snapshot, {'status': status, 'retry_after_seconds': 60 if self.failed else 600}
+        finally:
+            self.lock.release()
+
+
 def ingest(root=ROOT, payload=None, now=None):
     now = now or datetime.now(timezone.utc)
     if payload is None:
-        request = urllib.request.Request(SOURCE_URL, headers={'User-Agent': 'AirePredict-Puno-experiment'})
-        with urllib.request.urlopen(request, timeout=65) as response:
-            data = response.read(1_000_001)
-        if len(data) > 1_000_000:
-            raise ValueError('Respuesta de Puno demasiado grande.')
-        payload = json.loads(data)
+        payload = fetch_payload()
     rows = validate_payload(payload, now.isoformat())
     path = Path(root)/'data/processed/puno_forecasts.json'
     previous = json.loads(path.read_text(encoding='utf-8')) if path.exists() else {'rows': []}
@@ -207,7 +251,7 @@ def train(root=ROOT):
     return result
 
 
-def view(root=ROOT, now=None):
+def view(root=ROOT, now=None, *, refresh_source=False, source_cache=None):
     now = now or datetime.now(timezone.utc)
     state = registry(root)
     try:
@@ -218,6 +262,14 @@ def view(root=ROOT, now=None):
             bundle = load_model(state['previous'], root)
             recovery = True
         dataset = json.loads(seed_path('data/processed/puno_forecasts.json', root).read_text(encoding='utf-8'))
+        refresh = {'status': 'stored', 'retry_after_seconds': 0}
+        snapshot = source_cache.snapshot if source_cache else None
+        if refresh_source:
+            snapshot, refresh = (source_cache or SourceCache()).get(now)
+        elif snapshot:
+            refresh = {'status': 'cached', 'retry_after_seconds': 0}
+        if snapshot and stamp(snapshot['fetched_at']) > stamp(dataset['fetched_at']):
+            dataset = snapshot
         curve = dataset['latest_curve']
         windows = examples(curve)
         future = [r for r in windows if stamp(r['timestamp']) > now]
@@ -231,6 +283,7 @@ def view(root=ROOT, now=None):
                 'available': available, 'predicted_pm25': value, 'units': 'µg/m³',
                 'target_time': first['timestamp'] if first else None, 'source_reference_pm25': first['y'] if first else None,
                 'source': SOURCE, 'source_url': SOURCE_URL, 'fetched_at': dataset['fetched_at'],
+                'source_refresh': refresh,
                 'history': curve, 'model_version': state['previous'] if recovery else state['active'],
                 'local_recovery': recovery, 'report': bundle['report'], 'mlops': state,
                 'note': NOTE, 'health_alerts_enabled': False}
@@ -248,6 +301,7 @@ def maintain(root=ROOT, action='ingest'):
 
 
 def install(app):
+    source_cache = SourceCache()
     @app.get('/api/puno/experiment')
-    def experiment():
-        return view()
+    def experiment(refresh: bool = False):
+        return view(refresh_source=refresh, source_cache=source_cache)

@@ -113,3 +113,96 @@ def test_public_route_does_not_add_a_measured_station():
         assert data['mode'] == 'experimental' and data['site_id'] == 'puno_city'
         assert data['is_measurement'] is False and data['health_alerts_enabled'] is False
         assert all(s['name'] != 'Puno' for s in client.get('/api/stations').json()['stations'])
+
+
+def test_refresh_renews_inference_without_writing_or_training(tmp_path, monkeypatch):
+    initial(tmp_path)
+    before = {p.relative_to(tmp_path): p.read_bytes() for p in tmp_path.rglob('*') if p.is_file()}
+    calls = []
+    monkeypatch.setattr(puno, 'fetch_payload', lambda: calls.append(True) or payload())
+    cache = puno.SourceCache()
+    now = datetime(2026, 10, 20, 4, tzinfo=puno.LIMA)
+    fresh = puno.view(tmp_path, now, refresh_source=True, source_cache=cache)
+    assert fresh['available'] and fresh['source_refresh']['status'] == 'downloaded'
+    assert fresh['target_time'] > now.isoformat()
+    cached = puno.view(tmp_path, now+timedelta(minutes=1), refresh_source=True, source_cache=cache)
+    assert len(calls) == 1 and cached['source_refresh']['status'] == 'cached'
+    assert cached['fetched_at'] == fresh['fetched_at']
+    assert cached['model_version'] == fresh['model_version']
+    assert cached['report'] == fresh['report'] and not cached['health_alerts_enabled']
+    assert {p.relative_to(tmp_path): p.read_bytes() for p in tmp_path.rglob('*') if p.is_file()} == before
+    projected = puno.view(tmp_path, now, source_cache=cache)
+    assert projected['fetched_at'] == fresh['fetched_at']
+
+
+@pytest.mark.parametrize('invalid', [None, {'site_id': 'other'}, {'is_measurement': True}])
+def test_refresh_failure_preserves_stale_state_and_backs_off(tmp_path, monkeypatch, invalid):
+    initial(tmp_path)
+    calls = []
+    def download():
+        calls.append(True)
+        if invalid is None:
+            raise OSError('Provider unavailable')
+        return {**payload(), **invalid}
+    monkeypatch.setattr(puno, 'fetch_payload', download)
+    cache = puno.SourceCache()
+    now = datetime(2026, 10, 20, 4, tzinfo=puno.LIMA)
+    failed = puno.view(tmp_path, now, refresh_source=True, source_cache=cache)
+    assert not failed['available'] and failed['predicted_pm25'] is None
+    assert failed['source_refresh']['status'] == 'failed'
+    retry = puno.view(tmp_path, now, refresh_source=True, source_cache=cache)
+    assert retry['source_refresh']['status'] == 'retry_later' and len(calls) == 1
+    assert failed['fetched_at'] == retry['fetched_at']
+
+
+def test_cached_curve_expires_even_when_provider_fails(tmp_path, monkeypatch):
+    initial(tmp_path)
+    clock = [0.]
+    monkeypatch.setattr(puno.time, 'monotonic', lambda: clock[0])
+    monkeypatch.setattr(puno, 'fetch_payload', payload)
+    cache = puno.SourceCache()
+    now = datetime(2026, 10, 20, 4, tzinfo=puno.LIMA)
+    fresh = puno.view(tmp_path, now, refresh_source=True, source_cache=cache)
+    clock[0] = 601.
+    def fail(): raise OSError('Unavailable')
+    monkeypatch.setattr(puno, 'fetch_payload', fail)
+    still_valid = puno.view(tmp_path, now+timedelta(minutes=11), refresh_source=True, source_cache=cache)
+    assert still_valid['available'] and still_valid['source_refresh']['status'] == 'failed'
+    clock[0] = 12000.
+    stale = puno.view(tmp_path, now+timedelta(hours=4), refresh_source=True, source_cache=cache)
+    assert stale['fetched_at'] == fresh['fetched_at']
+    assert not stale['available'] and stale['predicted_pm25'] is None
+
+
+def test_concurrent_refresh_reuses_snapshot_and_missing_future_stays_unavailable(tmp_path, monkeypatch):
+    initial(tmp_path)
+    cache = puno.SourceCache()
+    monkeypatch.setattr(puno, 'fetch_payload', lambda: pytest.fail('Concurrent request must not call provider'))
+    cache.lock.acquire()
+    try:
+        data = puno.view(tmp_path, datetime(2026, 10, 20, 4, tzinfo=puno.LIMA),
+                         refresh_source=True, source_cache=cache)
+        assert data['source_refresh']['status'] == 'refreshing' and not data['available']
+    finally:
+        cache.lock.release()
+    monkeypatch.setattr(puno, 'fetch_payload', payload)
+    data = puno.view(tmp_path, datetime(2026, 10, 23, tzinfo=puno.LIMA),
+                     refresh_source=True, source_cache=cache)
+    assert data['source_refresh']['status'] == 'downloaded'
+    assert not data['available'] and data['predicted_pm25'] is None
+
+
+def test_public_refresh_route_shares_cache_without_touching_mlops(monkeypatch):
+    from airepredict.service import create_app
+    calls = []
+    monkeypatch.setattr(puno, 'fetch_payload', lambda: calls.append(True) or payload())
+    with TestClient(create_app()) as client:
+        before = client.get('/api/puno/experiment').json()
+        assert not calls
+        refreshed = client.get('/api/puno/experiment?refresh=true').json()
+        assert refreshed['source_refresh']['status'] == 'downloaded' and len(calls) == 1
+        cached = client.get('/api/puno/experiment?refresh=true').json()
+        assert cached['source_refresh']['status'] == 'cached' and len(calls) == 1
+        assert refreshed['model_version'] == before['model_version']
+        assert refreshed['mlops'] == before['mlops'] and refreshed['report'] == before['report']
+        assert refreshed['is_measurement'] is False and not refreshed['health_alerts_enabled']

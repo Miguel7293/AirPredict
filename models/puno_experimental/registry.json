@@ -25,7 +25,7 @@
   "evaluated_through": "2026-10-22T20:00:00-05:00",
   "last_attempt": {
     "status": "skipped",
-    "new_targets": 0,
+    "new_targets": 1,
     "minimum_new_targets": 168,
     "reason": "Se conserva el modelo activo hasta reunir 168 horas objetivo nuevas."
   }

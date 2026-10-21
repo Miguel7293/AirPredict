@@ -36,6 +36,7 @@ jobs:
           test "$(wc -c < /tmp/leaflet.js)" -gt 100000
           curl --fail --silent http://127.0.0.1:8000/static/departments.geojson | python -c "import json,sys; assert len(json.load(sys.stdin)['features'])==26"
           curl --fail --silent http://127.0.0.1:8000/static/region.geojson | python -c "import json,sys; assert len(json.load(sys.stdin)['features'])>=5"
+          curl --fail --silent http://127.0.0.1:8000/api/puno/experiment | python -c "import json,sys; d=json.load(sys.stdin); assert d['mode']=='experimental' and not d['is_measurement'] and not d['health_alerts_enabled'] and d['report']['test']['n']>=1"
           for station in 2415 2402 2351; do
             curl --fail --silent "http://127.0.0.1:8000/api/stations/$station/forecast?mode=historical" | python -c "import json,sys; d=json.load(sys.stdin); assert d['predicted_pm25'] >= 0 and d['mode']=='historical' and not d['is_current_forecast']"
           done

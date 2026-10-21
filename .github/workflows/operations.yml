@@ -10,7 +10,7 @@ on:
       action:
         type: choice
         required: true
-        options: [ingest, retrain, monitor, backup, rollback, demo, verify]
+        options: [ingest, retrain, monitor, backup, rollback, demo, verify, puno, puno-rollback]
         default: monitor
 permissions:
   contents: write

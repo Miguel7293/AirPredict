@@ -16,6 +16,9 @@ for relative in ['config', 'reports/oefa_campo_marte_v1', 'data/processed', 'mod
             target.parent.mkdir(parents=True, exist_ok=True)
             if not target.exists() or relative == 'config':
                 shutil.copy2(path, target)
+# Seed the isolated experiment without replacing existing versions or samples.
+if not (root/'models/puno_experimental/registry.json').exists():
+    shutil.copytree(seed/'models/puno_experimental', root/'models/puno_experimental', dirs_exist_ok=True)
 shutil.copy2(seed/'requirements.txt', root/'requirements.txt')
 
 from airepredict.registry import Registry, initialize, now_string
@@ -86,6 +89,9 @@ def main():
                             result['issued_forecast'] = forecast
                         except ValueError:
                             result['forecast_status'] = 'No fresh consecutive input window'
+            elif action in ['puno', 'puno-rollback']:
+                from airepredict.puno import maintain
+                result = {'puno': maintain(root, 'rollback' if action == 'puno-rollback' else 'retrain')}
             elif action == 'retrain':
                 result = run(registry)
             elif action == 'monitor':
@@ -133,6 +139,10 @@ def main():
                         local_registry.event('station_operation_failed',local_registry.state()['active'],{'error_type':type(error).__name__,'action':action})
                         station_results[str(identifier)]={'status':'failed','error_type':type(error).__name__,'active_preserved':local_registry.state()['active']}
                 result['station_results']=station_results
+            if action in ['ingest', 'retrain']:
+                from airepredict.puno import maintain
+                try: result['puno'] = maintain(root, action)
+                except Exception as error: result['puno'] = {'status': 'failed', 'error_type': type(error).__name__, 'active_preserved': True}
         report = {'action': action, 'status': 'completed', 'completed_at': now_string(), 'result': result,
                   'code_commit': os.environ.get('GITHUB_SHA', 'local'), 'registry': registry.state(),
                   'live_api_configured': bool(os.environ.get('OPENAQ_API_KEY', '').strip())}

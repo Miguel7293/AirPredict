@@ -36,3 +36,7 @@ artifacts/
 !data/processed/oefa_daily.csv
 !data/processed/station_2402_hourly.csv
 !data/processed/station_2351_hourly.csv
+
+!models/puno_experimental/
+!models/puno_experimental/*.joblib
+!data/processed/puno_forecasts.json

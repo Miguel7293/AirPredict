@@ -1,12 +1,12 @@
 {
   "historical_simulation": true,
   "application_registry_modified": false,
-  "registry_path": "C:\\DesktopMig\\Semestre2026-2\\Aprendizaje de Maquina\\ProyectoPrimeraUnidadV2\\models\\mlops_demo\\2026-10-20T03-18-57.374764+00-00",
-  "initial_baseline": "20261020T031857-825a9a55f9",
+  "registry_path": "models/mlops_demo (sandbox)",
+  "initial_baseline": "20261021T161330-933f4fbe39",
   "first_training": {
     "status": "promoted",
-    "candidate": "20261020T031858-8ea624dfa8",
-    "previous": "20261020T031857-825a9a55f9",
+    "candidate": "20261021T161331-07771cd249",
+    "previous": "20261021T161330-933f4fbe39",
     "evaluation": {
       "approved": true,
       "checks": {
@@ -22,10 +22,10 @@
       },
       "reasons": [],
       "candidate": {
-        "mae": 2.0177004056222074,
-        "rmse": 2.8814661331641678,
-        "r2": 0.6174527377276559,
-        "bias": 0.46814897468444727,
+        "mae": 2.017711271244565,
+        "rmse": 2.8814669469727745,
+        "r2": 0.6174525216430072,
+        "bias": 0.46875144773147737,
         "n": 270
       },
       "active": {
@@ -42,20 +42,20 @@
         "bias": 0.16451851851851856,
         "n": 270
       },
-      "relative_mae_improvement": 0.025230622820648335,
+      "relative_mae_improvement": 0.02522537353987876,
       "n": 270,
       "observed_days": 30,
       "evaluable_coverage": 0.375,
       "high_concentration_rmse": {
-        "candidate": 4.1106284945496006,
+        "candidate": 4.110420727077286,
         "active": 4.279131531825899,
         "n": 27
       },
       "uncertainty": {
-        "mae_difference_first_minus_second": -0.05222552030371811,
+        "mae_difference_first_minus_second": -0.05221465468136153,
         "ci95_daily_bootstrap": [
-          -0.11875073145779753,
-          0.006252136769564768
+          -0.11881978459282296,
+          0.006326438576612869
         ],
         "observed_days": 30,
         "replications": 2000,
@@ -74,15 +74,15 @@
       },
       "evaluation_start": "2026-09-16T05:00:00+00:00",
       "evaluation_end": "2026-10-16T03:00:00+00:00",
-      "champion_id": "20261020T031857-825a9a55f9",
-      "candidate_id": "20261020T031858-8ea624dfa8",
+      "champion_id": "20261021T161330-933f4fbe39",
+      "candidate_id": "20261021T161331-07771cd249",
       "historical_demo": true
     }
   },
   "repeated_training": {
     "status": "rejected",
-    "candidate": "20261020T031859-d1611c9d32",
-    "active_unchanged": "20261020T031858-8ea624dfa8",
+    "candidate": "20261021T161331-caf72de2c0",
+    "active_unchanged": "20261021T161331-07771cd249",
     "evaluation": {
       "approved": false,
       "checks": {
@@ -100,17 +100,17 @@
         "mae_improves_active"
       ],
       "candidate": {
-        "mae": 2.0177004056222074,
-        "rmse": 2.8814661331641678,
-        "r2": 0.6174527377276559,
-        "bias": 0.46814897468444727,
+        "mae": 2.017711271244565,
+        "rmse": 2.8814669469727745,
+        "r2": 0.6174525216430072,
+        "bias": 0.46875144773147737,
         "n": 270
       },
       "active": {
-        "mae": 2.0177004056222074,
-        "rmse": 2.8814661331641678,
-        "r2": 0.6174527377276559,
-        "bias": 0.46814897468444727,
+        "mae": 2.017711271244565,
+        "rmse": 2.8814669469727745,
+        "r2": 0.6174525216430072,
+        "bias": 0.46875144773147737,
         "n": 270
       },
       "persistence": {
@@ -125,8 +125,8 @@
       "observed_days": 30,
       "evaluable_coverage": 0.375,
       "high_concentration_rmse": {
-        "candidate": 4.1106284945496006,
-        "active": 4.1106284945496006,
+        "candidate": 4.110420727077286,
+        "active": 4.110420727077286,
         "n": 27
       },
       "uncertainty": {
@@ -152,42 +152,42 @@
       },
       "evaluation_start": "2026-09-16T05:00:00+00:00",
       "evaluation_end": "2026-10-16T03:00:00+00:00",
-      "champion_id": "20261020T031858-8ea624dfa8",
-      "candidate_id": "20261020T031859-d1611c9d32",
+      "champion_id": "20261021T161331-07771cd249",
+      "candidate_id": "20261021T161331-caf72de2c0",
       "historical_demo": true
     }
   },
-  "restored": "20261020T031857-825a9a55f9",
+  "restored": "20261021T161330-933f4fbe39",
   "final_state": {
-    "active": "20261020T031857-825a9a55f9",
+    "active": "20261021T161330-933f4fbe39",
     "previous": null
   },
   "events": [
     {
       "id": 10,
-      "at": "2026-10-20T03:18:59.132338+00:00",
+      "at": "2026-10-21T16:13:32.101137+00:00",
       "action": "rolled_back",
-      "release_id": "20261020T031857-825a9a55f9",
+      "release_id": "20261021T161330-933f4fbe39",
       "detail": {
-        "failed_or_replaced": "20261020T031858-8ea624dfa8",
+        "failed_or_replaced": "20261021T161331-07771cd249",
         "reason": "SIMULATED failure in historical sandbox",
         "marked_faulty": false
       }
     },
     {
       "id": 9,
-      "at": "2026-10-20T03:18:59.120137+00:00",
+      "at": "2026-10-21T16:13:32.096421+00:00",
       "action": "simulated_post_deployment_failure",
-      "release_id": "20261020T031858-8ea624dfa8",
+      "release_id": "20261021T161331-07771cd249",
       "detail": {
         "simulation": true
       }
     },
     {
       "id": 8,
-      "at": "2026-10-20T03:18:59.113304+00:00",
+      "at": "2026-10-21T16:13:32.092258+00:00",
       "action": "candidate_rejected",
-      "release_id": "20261020T031859-d1611c9d32",
+      "release_id": "20261021T161331-caf72de2c0",
       "detail": {
         "reasons": [
           "mae_improves_active"
@@ -196,9 +196,9 @@
     },
     {
       "id": 7,
-      "at": "2026-10-20T03:18:59.107297+00:00",
+      "at": "2026-10-21T16:13:32.087918+00:00",
       "action": "candidate_evaluated",
-      "release_id": "20261020T031859-d1611c9d32",
+      "release_id": "20261021T161331-caf72de2c0",
       "detail": {
         "approved": false,
         "checks": {
@@ -216,17 +216,17 @@
           "mae_improves_active"
         ],
         "candidate": {
-          "mae": 2.0177004056222074,
-          "rmse": 2.8814661331641678,
-          "r2": 0.6174527377276559,
-          "bias": 0.46814897468444727,
+          "mae": 2.017711271244565,
+          "rmse": 2.8814669469727745,
+          "r2": 0.6174525216430072,
+          "bias": 0.46875144773147737,
           "n": 270
         },
         "active": {
-          "mae": 2.0177004056222074,
-          "rmse": 2.8814661331641678,
-          "r2": 0.6174527377276559,
-          "bias": 0.46814897468444727,
+          "mae": 2.017711271244565,
+          "rmse": 2.8814669469727745,
+          "r2": 0.6174525216430072,
+          "bias": 0.46875144773147737,
           "n": 270
         },
         "persistence": {
@@ -241,8 +241,8 @@
         "observed_days": 30,
         "evaluable_coverage": 0.375,
         "high_concentration_rmse": {
-          "candidate": 4.1106284945496006,
-          "active": 4.1106284945496006,
+          "candidate": 4.110420727077286,
+          "active": 4.110420727077286,
           "n": 27
         },
         "uncertainty": {
@@ -268,16 +268,16 @@
         },
         "evaluation_start": "2026-09-16T05:00:00+00:00",
         "evaluation_end": "2026-10-16T03:00:00+00:00",
-        "champion_id": "20261020T031858-8ea624dfa8",
-        "candidate_id": "20261020T031859-d1611c9d32",
+        "champion_id": "20261021T161331-07771cd249",
+        "candidate_id": "20261021T161331-caf72de2c0",
         "historical_demo": true
       }
     },
     {
       "id": 6,
-      "at": "2026-10-20T03:18:59.072373+00:00",
+      "at": "2026-10-21T16:13:31.796870+00:00",
       "action": "registered",
-      "release_id": "20261020T031859-d1611c9d32",
+      "release_id": "20261021T161331-caf72de2c0",
       "detail": {
         "origin": "historical_replay",
         "trained_until": "2026-09-16T00:00:00+00:00",
@@ -290,12 +290,12 @@
     },
     {
       "id": 5,
-      "at": "2026-10-20T03:18:58.337438+00:00",
+      "at": "2026-10-21T16:13:31.333370+00:00",
       "action": "activated",
-      "release_id": "20261020T031858-8ea624dfa8",
+      "release_id": "20261021T161331-07771cd249",
       "detail": {
         "reason": "Candidate passed temporal evaluation",
-        "previous": "20261020T031857-825a9a55f9",
+        "previous": "20261021T161330-933f4fbe39",
         "administrative": false,
         "evaluation": {
           "approved": true,
@@ -312,10 +312,10 @@
           },
           "reasons": [],
           "candidate": {
-            "mae": 2.0177004056222074,
-            "rmse": 2.8814661331641678,
-            "r2": 0.6174527377276559,
-            "bias": 0.46814897468444727,
+            "mae": 2.017711271244565,
+            "rmse": 2.8814669469727745,
+            "r2": 0.6174525216430072,
+            "bias": 0.46875144773147737,
             "n": 270
           },
           "active": {
@@ -332,20 +332,20 @@
             "bias": 0.16451851851851856,
             "n": 270
           },
-          "relative_mae_improvement": 0.025230622820648335,
+          "relative_mae_improvement": 0.02522537353987876,
           "n": 270,
           "observed_days": 30,
           "evaluable_coverage": 0.375,
           "high_concentration_rmse": {
-            "candidate": 4.1106284945496006,
+            "candidate": 4.110420727077286,
             "active": 4.279131531825899,
             "n": 27
           },
           "uncertainty": {
-            "mae_difference_first_minus_second": -0.05222552030371811,
+            "mae_difference_first_minus_second": -0.05221465468136153,
             "ci95_daily_bootstrap": [
-              -0.11875073145779753,
-              0.006252136769564768
+              -0.11881978459282296,
+              0.006326438576612869
             ],
             "observed_days": 30,
             "replications": 2000,
@@ -364,17 +364,17 @@
           },
           "evaluation_start": "2026-09-16T05:00:00+00:00",
           "evaluation_end": "2026-10-16T03:00:00+00:00",
-          "champion_id": "20261020T031857-825a9a55f9",
-          "candidate_id": "20261020T031858-8ea624dfa8",
+          "champion_id": "20261021T161330-933f4fbe39",
+          "candidate_id": "20261021T161331-07771cd249",
           "historical_demo": true
         }
       }
     },
     {
       "id": 4,
-      "at": "2026-10-20T03:18:58.313291+00:00",
+      "at": "2026-10-21T16:13:31.316997+00:00",
       "action": "candidate_evaluated",
-      "release_id": "20261020T031858-8ea624dfa8",
+      "release_id": "20261021T161331-07771cd249",
       "detail": {
         "approved": true,
         "checks": {
@@ -390,10 +390,10 @@
         },
         "reasons": [],
         "candidate": {
-          "mae": 2.0177004056222074,
-          "rmse": 2.8814661331641678,
-          "r2": 0.6174527377276559,
-          "bias": 0.46814897468444727,
+          "mae": 2.017711271244565,
+          "rmse": 2.8814669469727745,
+          "r2": 0.6174525216430072,
+          "bias": 0.46875144773147737,
           "n": 270
         },
         "active": {
@@ -410,20 +410,20 @@
           "bias": 0.16451851851851856,
           "n": 270
         },
-        "relative_mae_improvement": 0.025230622820648335,
+        "relative_mae_improvement": 0.02522537353987876,
         "n": 270,
         "observed_days": 30,
         "evaluable_coverage": 0.375,
         "high_concentration_rmse": {
-          "candidate": 4.1106284945496006,
+          "candidate": 4.110420727077286,
           "active": 4.279131531825899,
           "n": 27
         },
         "uncertainty": {
-          "mae_difference_first_minus_second": -0.05222552030371811,
+          "mae_difference_first_minus_second": -0.05221465468136153,
           "ci95_daily_bootstrap": [
-            -0.11875073145779753,
-            0.006252136769564768
+            -0.11881978459282296,
+            0.006326438576612869
           ],
           "observed_days": 30,
           "replications": 2000,
@@ -442,16 +442,16 @@
         },
         "evaluation_start": "2026-09-16T05:00:00+00:00",
         "evaluation_end": "2026-10-16T03:00:00+00:00",
-        "champion_id": "20261020T031857-825a9a55f9",
-        "candidate_id": "20261020T031858-8ea624dfa8",
+        "champion_id": "20261021T161330-933f4fbe39",
+        "candidate_id": "20261021T161331-07771cd249",
         "historical_demo": true
       }
     },
     {
       "id": 3,
-      "at": "2026-10-20T03:18:58.280010+00:00",
+      "at": "2026-10-21T16:13:31.020345+00:00",
       "action": "registered",
-      "release_id": "20261020T031858-8ea624dfa8",
+      "release_id": "20261021T161331-07771cd249",
       "detail": {
         "origin": "historical_replay",
         "trained_until": "2026-09-16T00:00:00+00:00",
@@ -464,9 +464,9 @@
     },
     {
       "id": 2,
-      "at": "2026-10-20T03:18:57.444563+00:00",
+      "at": "2026-10-21T16:13:30.523765+00:00",
       "action": "activated",
-      "release_id": "20261020T031857-825a9a55f9",
+      "release_id": "20261021T161330-933f4fbe39",
       "detail": {
         "reason": "Historical sandbox baseline, not application model",
         "previous": null,
@@ -476,9 +476,9 @@
     },
     {
       "id": 1,
-      "at": "2026-10-20T03:18:57.431146+00:00",
+      "at": "2026-10-21T16:13:30.518155+00:00",
       "action": "registered",
-      "release_id": "20261020T031857-825a9a55f9",
+      "release_id": "20261021T161330-933f4fbe39",
       "detail": {
         "origin": "sandbox_persistence_baseline",
         "trained_until": null,

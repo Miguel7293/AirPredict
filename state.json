@@ -1,18 +1,37 @@
 {
-  "action": "monitor",
+  "action": "retrain",
   "status": "completed",
-  "completed_at": "2026-10-26T15:24:58.285201+00:00",
+  "completed_at": "2026-10-26T16:19:38.929725+00:00",
   "result": {
     "status": "skipped",
-    "reason": "No active/previous release pair is available.",
+    "active_unchanged": "20261020T035022-f10a116b8b",
+    "reason": "Fewer than 168 complete examples after the last reserved evaluation period.",
+    "new_examples": 52,
     "station_results": {
       "2402": {
         "status": "skipped",
-        "reason": "No active/previous release pair is available."
+        "active_unchanged": "20261020T175133-0d97c6d742",
+        "reason": "Fewer than 168 complete examples after the last reserved evaluation period.",
+        "new_examples": 39
       },
       "2351": {
         "status": "skipped",
-        "reason": "No active/previous release pair is available."
+        "active_unchanged": "20261020T175133-1ec3d839ce",
+        "reason": "Fewer than 168 complete examples after the last reserved evaluation period.",
+        "new_examples": 47
+      }
+    },
+    "puno": {
+      "ingestion": {
+        "accepted_new_targets": 2,
+        "total_targets": 182,
+        "is_measurement": false
+      },
+      "training": {
+        "status": "skipped",
+        "new_targets": 134,
+        "minimum_new_targets": 168,
+        "reason": "Se conserva el modelo activo hasta reunir 168 horas objetivo nuevas."
       }
     }
   },

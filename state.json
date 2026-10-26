@@ -1,37 +1,54 @@
 {
-  "action": "retrain",
+  "action": "ingest",
   "status": "completed",
-  "completed_at": "2026-10-26T16:19:38.929725+00:00",
+  "completed_at": "2026-10-26T20:34:45.029318+00:00",
   "result": {
-    "status": "skipped",
-    "active_unchanged": "20261020T035022-f10a116b8b",
-    "reason": "Fewer than 168 complete examples after the last reserved evaluation period.",
-    "new_examples": 52,
+    "fetched_at_utc": "2026-10-26T20:34:29.855315+00:00",
+    "location_id": 2415,
+    "sensor_id": 4672,
+    "accepted_unique_hours": 43,
+    "rejected": {
+      "conflicting_timestamps": 0
+    },
+    "inserted": 8,
+    "updated": 0,
+    "unchanged": 35,
+    "mode": "authenticated_openaq",
+    "live_api_configured": true,
+    "forecast_status": "No fresh consecutive input window",
     "station_results": {
       "2402": {
-        "status": "skipped",
-        "active_unchanged": "20261020T175133-0d97c6d742",
-        "reason": "Fewer than 168 complete examples after the last reserved evaluation period.",
-        "new_examples": 39
+        "fetched_at_utc": "2026-10-26T20:34:30.616472+00:00",
+        "location_id": 2402,
+        "sensor_id": 4492,
+        "accepted_unique_hours": 42,
+        "rejected": {
+          "conflicting_timestamps": 0
+        },
+        "inserted": 8,
+        "updated": 0,
+        "unchanged": 34,
+        "forecast_issued": false
       },
       "2351": {
-        "status": "skipped",
-        "active_unchanged": "20261020T175133-1ec3d839ce",
-        "reason": "Fewer than 168 complete examples after the last reserved evaluation period.",
-        "new_examples": 47
+        "fetched_at_utc": "2026-10-26T20:34:31.253841+00:00",
+        "location_id": 2351,
+        "sensor_id": 4319,
+        "accepted_unique_hours": 37,
+        "rejected": {
+          "conflicting_timestamps": 0
+        },
+        "inserted": 8,
+        "updated": 0,
+        "unchanged": 29,
+        "forecast_issued": false
       }
     },
     "puno": {
       "ingestion": {
-        "accepted_new_targets": 2,
-        "total_targets": 182,
+        "accepted_new_targets": 4,
+        "total_targets": 186,
         "is_measurement": false
-      },
-      "training": {
-        "status": "skipped",
-        "new_targets": 134,
-        "minimum_new_targets": 168,
-        "reason": "Se conserva el modelo activo hasta reunir 168 horas objetivo nuevas."
       }
     }
   },

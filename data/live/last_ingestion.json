@@ -1,12 +1,12 @@
 {
-  "fetched_at_utc": "2026-10-28T18:54:42.642416+00:00",
+  "fetched_at_utc": "2026-10-28T23:16:52.048679+00:00",
   "location_id": 2415,
   "sensor_id": 4672,
-  "accepted_unique_hours": 32,
+  "accepted_unique_hours": 28,
   "rejected": {
     "conflicting_timestamps": 0
   },
   "inserted": 0,
   "updated": 0,
-  "unchanged": 32
+  "unchanged": 28
 }

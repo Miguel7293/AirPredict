@@ -1,53 +1,53 @@
 {
   "action": "ingest",
   "status": "completed",
-  "completed_at": "2026-10-29T16:58:37.909363+00:00",
+  "completed_at": "2026-10-29T21:51:20.064960+00:00",
   "result": {
-    "fetched_at_utc": "2026-10-29T16:58:23.138676+00:00",
+    "fetched_at_utc": "2026-10-29T21:50:54.856903+00:00",
     "location_id": 2415,
     "sensor_id": 4672,
-    "accepted_unique_hours": 28,
+    "accepted_unique_hours": 23,
     "rejected": {
       "conflicting_timestamps": 0
     },
     "inserted": 0,
     "updated": 0,
-    "unchanged": 28,
+    "unchanged": 23,
     "mode": "authenticated_openaq",
     "live_api_configured": true,
     "forecast_status": "No fresh consecutive input window",
     "station_results": {
       "2402": {
-        "fetched_at_utc": "2026-10-29T16:58:23.801123+00:00",
+        "fetched_at_utc": "2026-10-29T21:50:55.606494+00:00",
         "location_id": 2402,
         "sensor_id": 4492,
-        "accepted_unique_hours": 28,
+        "accepted_unique_hours": 23,
         "rejected": {
           "conflicting_timestamps": 0
         },
         "inserted": 0,
         "updated": 0,
-        "unchanged": 28,
+        "unchanged": 23,
         "forecast_issued": false
       },
       "2351": {
-        "fetched_at_utc": "2026-10-29T16:58:24.390010+00:00",
+        "fetched_at_utc": "2026-10-29T21:50:56.291146+00:00",
         "location_id": 2351,
         "sensor_id": 4319,
-        "accepted_unique_hours": 28,
+        "accepted_unique_hours": 23,
         "rejected": {
           "conflicting_timestamps": 0
         },
         "inserted": 0,
         "updated": 0,
-        "unchanged": 28,
+        "unchanged": 23,
         "forecast_issued": false
       }
     },
     "puno": {
       "ingestion": {
-        "accepted_new_targets": 6,
-        "total_targets": 254,
+        "accepted_new_targets": 5,
+        "total_targets": 259,
         "is_measurement": false
       }
     }

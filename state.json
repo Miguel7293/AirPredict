@@ -1,12 +1,20 @@
 {
-  "action": "backup",
+  "action": "monitor",
   "status": "completed",
-  "completed_at": "2026-10-29T14:34:45.428412+00:00",
+  "completed_at": "2026-10-29T15:29:04.994505+00:00",
   "result": {
-    "backup_id": "2026-10-29T14-34-45.259701+00-00-992200",
-    "files": 54,
-    "archive": "2026-10-29T14-34-45.259701+00-00-992200.zip",
-    "sha256": "42d43f0d20e98c203f2998e872b8148b0df0740f19faab9e957b3f6bda8d8f8f"
+    "status": "skipped",
+    "reason": "No active/previous release pair is available.",
+    "station_results": {
+      "2402": {
+        "status": "skipped",
+        "reason": "No active/previous release pair is available."
+      },
+      "2351": {
+        "status": "skipped",
+        "reason": "No active/previous release pair is available."
+      }
+    }
   },
   "code_commit": "fc9be6e1e039709d915397c2aa5013f202be624f",
   "registry": {

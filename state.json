@@ -1,49 +1,54 @@
 {
-  "action": "retrain",
+  "action": "ingest",
   "status": "completed",
-  "completed_at": "2026-11-02T19:47:53.627454+00:00",
+  "completed_at": "2026-11-03T01:39:01.304587+00:00",
   "result": {
-    "status": "skipped",
-    "active_unchanged": "20261020T035022-f10a116b8b",
-    "reason": "Fewer than 168 complete examples after the last reserved evaluation period.",
-    "new_examples": 67,
+    "fetched_at_utc": "2026-11-03T01:38:46.205908+00:00",
+    "location_id": 2415,
+    "sensor_id": 4672,
+    "accepted_unique_hours": 0,
+    "rejected": {
+      "conflicting_timestamps": 0
+    },
+    "inserted": 0,
+    "updated": 0,
+    "unchanged": 0,
+    "mode": "authenticated_openaq",
+    "live_api_configured": true,
+    "forecast_status": "No fresh consecutive input window",
     "station_results": {
       "2402": {
-        "status": "skipped",
-        "active_unchanged": "20261020T175133-0d97c6d742",
-        "reason": "Fewer than 168 complete examples after the last reserved evaluation period.",
-        "new_examples": 57
+        "fetched_at_utc": "2026-11-03T01:38:47.245105+00:00",
+        "location_id": 2402,
+        "sensor_id": 4492,
+        "accepted_unique_hours": 0,
+        "rejected": {
+          "conflicting_timestamps": 0
+        },
+        "inserted": 0,
+        "updated": 0,
+        "unchanged": 0,
+        "forecast_issued": false
       },
       "2351": {
-        "status": "skipped",
-        "active_unchanged": "20261020T175133-1ec3d839ce",
-        "reason": "Fewer than 168 complete examples after the last reserved evaluation period.",
-        "new_examples": 62
+        "fetched_at_utc": "2026-11-03T01:38:47.620084+00:00",
+        "location_id": 2351,
+        "sensor_id": 4319,
+        "accepted_unique_hours": 0,
+        "rejected": {
+          "conflicting_timestamps": 0
+        },
+        "inserted": 0,
+        "updated": 0,
+        "unchanged": 0,
+        "forecast_issued": false
       }
     },
     "puno": {
       "ingestion": {
-        "accepted_new_targets": 1,
-        "total_targets": 353,
+        "accepted_new_targets": 6,
+        "total_targets": 359,
         "is_measurement": false
-      },
-      "training": {
-        "status": "promoted",
-        "candidate": "2087c751b3c38f2c",
-        "active": "2087c751b3c38f2c",
-        "test": {
-          "n": 61,
-          "mae": 0.3308847399018556,
-          "rmse": 0.5209368514532113,
-          "r2": 0.9223225132876052
-        },
-        "baseline": {
-          "n": 61,
-          "mae": 0.5065573770491804,
-          "rmse": 0.6967135968714647,
-          "r2": 0.8610579903905771
-        },
-        "initial_demo": false
       }
     }
   },

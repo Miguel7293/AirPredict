@@ -1,9 +1,9 @@
 {
   "action": "ingest",
   "status": "completed",
-  "completed_at": "2026-11-06T21:34:36.212692+00:00",
+  "completed_at": "2026-11-07T01:59:37.803146+00:00",
   "result": {
-    "fetched_at_utc": "2026-11-06T21:34:11.653149+00:00",
+    "fetched_at_utc": "2026-11-07T01:59:22.420481+00:00",
     "location_id": 2415,
     "sensor_id": 4672,
     "accepted_unique_hours": 0,
@@ -18,7 +18,7 @@
     "forecast_status": "No fresh consecutive input window",
     "station_results": {
       "2402": {
-        "fetched_at_utc": "2026-11-06T21:34:12.334517+00:00",
+        "fetched_at_utc": "2026-11-07T01:59:23.536592+00:00",
         "location_id": 2402,
         "sensor_id": 4492,
         "accepted_unique_hours": 0,
@@ -31,7 +31,7 @@
         "forecast_issued": false
       },
       "2351": {
-        "fetched_at_utc": "2026-11-06T21:34:12.894891+00:00",
+        "fetched_at_utc": "2026-11-07T01:59:24.248387+00:00",
         "location_id": 2351,
         "sensor_id": 4319,
         "accepted_unique_hours": 0,
@@ -45,9 +45,11 @@
       }
     },
     "puno": {
-      "status": "failed",
-      "error_type": "HTTPError",
-      "active_preserved": true
+      "ingestion": {
+        "accepted_new_targets": 10,
+        "total_targets": 455,
+        "is_measurement": false
+      }
     }
   },
   "code_commit": "fc9be6e1e039709d915397c2aa5013f202be624f",

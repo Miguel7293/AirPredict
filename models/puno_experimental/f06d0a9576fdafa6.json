@@ -1,0 +1,35 @@
+{
+  "source": "CAMS global vía API Aire Puno / Open-Meteo",
+  "is_measurement": false,
+  "scope": "Reproducción experimental de la curva CAMS; sin validación local",
+  "algorithm": "StandardScaler + Ridge",
+  "alpha": 0.1,
+  "train_n": 364,
+  "validation_n": 122,
+  "test": {
+    "n": 33,
+    "mae": 0.28268636699094085,
+    "rmse": 0.3811793372300512,
+    "r2": 0.6825766705067151
+  },
+  "baseline": {
+    "n": 33,
+    "mae": 0.2454545454545455,
+    "rmse": 0.3817821050777207,
+    "r2": 0.6815719788155994
+  },
+  "incumbent_on_same_test": {
+    "n": 33,
+    "mae": 0.26147717507928814,
+    "rmse": 0.36743500790536027,
+    "r2": 0.7050548864498579
+  },
+  "train_end": "2026-11-05T03:00:00-05:00",
+  "validation_end": "2026-11-10T05:00:00-05:00",
+  "test_start": "2026-11-10T06:00:00-05:00",
+  "test_end": "2026-11-11T14:00:00-05:00",
+  "fitted_at": "2026-11-09T20:07:05.790886+00:00",
+  "small_sample": false,
+  "note": "Modelo experimental de Puno entrenado para reproducir estimaciones de CAMS. No utiliza mediciones locales ni demuestra precisión frente al aire real. No activa alertas de salud ni notificaciones de estaciones reales.",
+  "training_origin": "Curvas de pronóstico publicadas por la API; no observaciones. El arranque puede incluir horas futuras ya estimadas por CAMS."
+}

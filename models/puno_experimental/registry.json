@@ -62,21 +62,9 @@
   ],
   "evaluated_through": "2026-11-11T14:00:00-05:00",
   "last_attempt": {
-    "status": "rejected",
-    "candidate": "f06d0a9576fdafa6",
-    "active": "2087c751b3c38f2c",
-    "test": {
-      "n": 33,
-      "mae": 0.28268636699094085,
-      "rmse": 0.3811793372300512,
-      "r2": 0.6825766705067151
-    },
-    "baseline": {
-      "n": 33,
-      "mae": 0.2454545454545455,
-      "rmse": 0.3817821050777207,
-      "r2": 0.6815719788155994
-    },
-    "initial_demo": false
+    "status": "skipped",
+    "new_targets": 167,
+    "minimum_new_targets": 168,
+    "reason": "Se conserva el modelo activo hasta reunir 168 horas objetivo nuevas."
   }
 }

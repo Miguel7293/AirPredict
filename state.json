@@ -1,56 +1,12 @@
 {
-  "action": "ingest",
+  "action": "backup",
   "status": "completed",
-  "completed_at": "2026-11-20T13:01:49.195941+00:00",
+  "completed_at": "2026-11-20T16:18:17.674099+00:00",
   "result": {
-    "fetched_at_utc": "2026-11-20T13:01:29.523333+00:00",
-    "location_id": 2415,
-    "sensor_id": 4672,
-    "accepted_unique_hours": 0,
-    "rejected": {
-      "conflicting_timestamps": 0
-    },
-    "inserted": 0,
-    "updated": 0,
-    "unchanged": 0,
-    "mode": "authenticated_openaq",
-    "live_api_configured": true,
-    "forecast_status": "No fresh consecutive input window",
-    "station_results": {
-      "2402": {
-        "fetched_at_utc": "2026-11-20T13:01:30.183756+00:00",
-        "location_id": 2402,
-        "sensor_id": 4492,
-        "accepted_unique_hours": 0,
-        "rejected": {
-          "conflicting_timestamps": 0
-        },
-        "inserted": 0,
-        "updated": 0,
-        "unchanged": 0,
-        "forecast_issued": false
-      },
-      "2351": {
-        "fetched_at_utc": "2026-11-20T13:01:30.591244+00:00",
-        "location_id": 2351,
-        "sensor_id": 4319,
-        "accepted_unique_hours": 0,
-        "rejected": {
-          "conflicting_timestamps": 0
-        },
-        "inserted": 0,
-        "updated": 0,
-        "unchanged": 0,
-        "forecast_issued": false
-      }
-    },
-    "puno": {
-      "ingestion": {
-        "accepted_new_targets": 10,
-        "total_targets": 779,
-        "is_measurement": false
-      }
-    }
+    "backup_id": "2026-11-20T16-18-17.511249+00-00-0cb36d",
+    "files": 58,
+    "archive": "2026-11-20T16-18-17.511249+00-00-0cb36d.zip",
+    "sha256": "afdb7b5de2af7266a35582b2cf49637156b1f98af6f17ff4c1e5ab746d9f9c6d"
   },
   "code_commit": "fc9be6e1e039709d915397c2aa5013f202be624f",
   "registry": {

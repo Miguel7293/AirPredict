@@ -1,9 +1,9 @@
 {
   "action": "ingest",
   "status": "completed",
-  "completed_at": "2026-11-20T03:27:12.895022+00:00",
+  "completed_at": "2026-11-20T13:01:49.195941+00:00",
   "result": {
-    "fetched_at_utc": "2026-11-20T03:26:58.097056+00:00",
+    "fetched_at_utc": "2026-11-20T13:01:29.523333+00:00",
     "location_id": 2415,
     "sensor_id": 4672,
     "accepted_unique_hours": 0,
@@ -18,7 +18,7 @@
     "forecast_status": "No fresh consecutive input window",
     "station_results": {
       "2402": {
-        "fetched_at_utc": "2026-11-20T03:26:58.826613+00:00",
+        "fetched_at_utc": "2026-11-20T13:01:30.183756+00:00",
         "location_id": 2402,
         "sensor_id": 4492,
         "accepted_unique_hours": 0,
@@ -31,7 +31,7 @@
         "forecast_issued": false
       },
       "2351": {
-        "fetched_at_utc": "2026-11-20T03:26:59.292785+00:00",
+        "fetched_at_utc": "2026-11-20T13:01:30.591244+00:00",
         "location_id": 2351,
         "sensor_id": 4319,
         "accepted_unique_hours": 0,
@@ -46,8 +46,8 @@
     },
     "puno": {
       "ingestion": {
-        "accepted_new_targets": 14,
-        "total_targets": 769,
+        "accepted_new_targets": 10,
+        "total_targets": 779,
         "is_measurement": false
       }
     }

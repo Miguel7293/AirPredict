@@ -58,13 +58,44 @@
       },
       "initial_demo": false,
       "at": "2026-11-09T20:07:05.790886+00:00"
+    },
+    {
+      "status": "rejected",
+      "candidate": "65ca5fc749bfb165",
+      "active": "2087c751b3c38f2c",
+      "test": {
+        "n": 67,
+        "mae": 0.2883807845482899,
+        "rmse": 0.4085988263383004,
+        "r2": 0.9233930397203203
+      },
+      "baseline": {
+        "n": 67,
+        "mae": 0.2701492537313433,
+        "rmse": 0.43279721907126534,
+        "r2": 0.9140505852962462
+      },
+      "initial_demo": false,
+      "at": "2026-11-23T21:40:59.140146+00:00"
     }
   ],
-  "evaluated_through": "2026-11-11T14:00:00-05:00",
+  "evaluated_through": "2026-11-25T15:00:00-05:00",
   "last_attempt": {
-    "status": "skipped",
-    "new_targets": 167,
-    "minimum_new_targets": 168,
-    "reason": "Se conserva el modelo activo hasta reunir 168 horas objetivo nuevas."
+    "status": "rejected",
+    "candidate": "65ca5fc749bfb165",
+    "active": "2087c751b3c38f2c",
+    "test": {
+      "n": 67,
+      "mae": 0.2883807845482899,
+      "rmse": 0.4085988263383004,
+      "r2": 0.9233930397203203
+    },
+    "baseline": {
+      "n": 67,
+      "mae": 0.2701492537313433,
+      "rmse": 0.43279721907126534,
+      "r2": 0.9140505852962462
+    },
+    "initial_demo": false
   }
 }

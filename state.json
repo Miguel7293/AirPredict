@@ -1,18 +1,49 @@
 {
-  "action": "monitor",
+  "action": "retrain",
   "status": "completed",
-  "completed_at": "2026-11-23T20:29:28.527671+00:00",
+  "completed_at": "2026-11-23T21:40:59.141398+00:00",
   "result": {
     "status": "skipped",
-    "reason": "No active/previous release pair is available.",
+    "active_unchanged": "20261020T035022-f10a116b8b",
+    "reason": "Fewer than 168 complete examples after the last reserved evaluation period.",
+    "new_examples": 67,
     "station_results": {
       "2402": {
         "status": "skipped",
-        "reason": "No active/previous release pair is available."
+        "active_unchanged": "20261020T175133-0d97c6d742",
+        "reason": "Fewer than 168 complete examples after the last reserved evaluation period.",
+        "new_examples": 57
       },
       "2351": {
         "status": "skipped",
-        "reason": "No active/previous release pair is available."
+        "active_unchanged": "20261020T175133-1ec3d839ce",
+        "reason": "Fewer than 168 complete examples after the last reserved evaluation period.",
+        "new_examples": 62
+      }
+    },
+    "puno": {
+      "ingestion": {
+        "accepted_new_targets": 9,
+        "total_targets": 859,
+        "is_measurement": false
+      },
+      "training": {
+        "status": "rejected",
+        "candidate": "65ca5fc749bfb165",
+        "active": "2087c751b3c38f2c",
+        "test": {
+          "n": 67,
+          "mae": 0.2883807845482899,
+          "rmse": 0.4085988263383004,
+          "r2": 0.9233930397203203
+        },
+        "baseline": {
+          "n": 67,
+          "mae": 0.2701492537313433,
+          "rmse": 0.43279721907126534,
+          "r2": 0.9140505852962462
+        },
+        "initial_demo": false
       }
     }
   },
